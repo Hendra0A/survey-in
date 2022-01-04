@@ -1,7 +1,7 @@
 @extends('admin.main')
 @section('main-content')
 @include('admin.header')
-<div class="content d-flex flex-column" id="set-content">
+<div class="content d-flex flex-column ps-sm-0" id="set-content">
     <div class="admin-hl mt-4">
         <h1>Edit Input Data Survei</h1>
         <p>Edit atau tambah input data survei di sini</p>
