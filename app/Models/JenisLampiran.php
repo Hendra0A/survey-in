@@ -10,4 +10,9 @@ class JenisLampiran extends Model
     use HasFactory;
     public $timestamps = false;
     protected $guarded = ['id'];
+
+    public function dataSurvey()
+    {
+        return $this->belongsToMany(DataSurvey::class, 'lampiran_fotos');
+    }
 }

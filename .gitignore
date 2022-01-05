@@ -4,6 +4,7 @@
 /storage/*.key
 /vendor
 !/vendor/dompdf/*
+!/vendor/barryvdh/*
 .env
 .env.backup
 .phpunit.result.cache

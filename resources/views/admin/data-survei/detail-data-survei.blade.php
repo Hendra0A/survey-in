@@ -22,6 +22,13 @@
 
 </p>
 <p>Luas Fasos :
+    @if ($fasos === 0)
+        Tidak ada
+    @else
+        @foreach ($data->fasosTable as $item)
+            {{ $item->panjang }} x {{ $item->lebar }} = {{ $item->panjang * $item->lebar }},
+        @endforeach
+    @endif
 </p>
 <p>Koordinat Fasos :
     @if ($fasos === 0)
@@ -38,9 +45,19 @@
 <p>Jenis Rumah : Developer = {{ $data->jumlah_rumah_developer }}, <br>Swadaya = {{ $data->jumlah_rumah_swadaya }}
 </p>
 <p>Pos Jaga : {{ $data->pos_jaga }}</p>
-<p>Ruko di bagian depan : </p>
+<p>Ruko di bagian depan : {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} Lantai (Kanan) dan
+    {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} Lantai (Kanan)</p>
 <p>No. IMB Pendahuluan : {{ $data->no_imb }}</p>
 <p>Surveyor : {{ $data->user->nama_lengkap }}</p>
 <p>Lampiran Data : </p>
+<p>
+    @foreach ($data->jenisLampiran as $lampiran)
+        {{ $lampiran->jenis }}
+    @endforeach
+    <br>
+    @foreach ($data->lampiranFoto as $foto)
+        <img src="{{ $foto->foto }}" width="120px" id="img">
+    @endforeach
+</p>
 
 <a href="/data-survei/print/{{ $data->id }}">Print PDF</a>

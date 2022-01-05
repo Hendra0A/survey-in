@@ -32,4 +32,14 @@ class DataSurvey extends Model
     {
         return $this->belongsToMany(JenisFasos::class, 'fasos');
     }
+
+    public function lampiranFoto()
+    {
+        return $this->hasMany(LampiranFoto::class, 'data_survey_id');
+    }
+
+    public function jenisLampiran()
+    {
+        return $this->belongsToMany(JenisLampiran::class, 'lampiran_fotos');
+    }
 }

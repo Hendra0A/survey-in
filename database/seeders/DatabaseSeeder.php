@@ -164,7 +164,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DataSurvey::factory(30)->create();
-        LampiranFoto::factory(10)->create();
+        LampiranFoto::factory(30)->create();
         Fasos::factory(30)->create();
 
         User::create([

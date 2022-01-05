@@ -21,6 +21,7 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
 use Dompdf\Dompdf;
+use PDF;
 
 class AdminController extends Controller
 {
@@ -423,38 +424,58 @@ class AdminController extends Controller
 
     public function detailDataSurvei($id)
     {
-        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable')->where('id', $id)->get();
+        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto')->where('id', $id)->get();
+
+        // fasos
         if ($data[0]->fasos === 1) {
             $fasos = $data[0]->jenisFasos;
         } else {
             $fasos = 0;
         }
-        // dd($data[0]);
 
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
             'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
-            'fasos' => $fasos
+            'fasos' => $fasos,
         ]);
     }
 
     public function cetakDetailDataSurvei($id)
     {
-        $html = $this->detailDataSurvei($id);
+        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto')->where('id', $id)->get();
 
-        // instantiate and use the dompdf class
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
+        // fasos
+        if ($data[0]->fasos === 1) {
+            $fasos = $data[0]->jenisFasos;
+        } else {
+            $fasos = 0;
+        }
 
-        // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('A4', 'landscape');
+        $pdf = app('dompdf.wrapper');
 
-        // Render the HTML as PDF
-        $dompdf->render();
+        //############ if image are not loading execute this code ################################
+        $contxt = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE,
+            ]
+        ]);
 
-        // Output the generated PDF to Browser
-        $dompdf->stream();
+        $pdf = \PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->getDomPDF()->setHttpContext($contxt);
+        //#################################################################################
+
+        //Cargar vista/tabla html y enviar varibles con la data
+        $pdf->loadView('admin.data-survei.detail-data-survei', [
+            'title' => 'Data Survei',
+            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
+            'data' => $data[0],
+            'fasos' => $fasos,
+        ]);
+        //descargar la vista en formato pdf 
+        return $pdf->download($data[0]->nama_gang . ".pdf");
     }
 
     public function destroyDataSurvei(Request $request)
