@@ -22,6 +22,7 @@ $(document).ready(async function () {
         try {
             data = await getData(`/kecamatan`, idKab);
             setResumeSurvey(data.data[0].id);
+            $(".text-kec").text(data.data[0].nama);
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {
@@ -50,6 +51,7 @@ $(document).ready(async function () {
         }
     };
     $("#kecamatan").change(function (e) {
+        $(".text-kec").text($(this).find("option:selected").text());
         e.preventDefault();
         setResumeSurvey($(this).val());
     });

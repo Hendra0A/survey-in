@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Surveyor')     
 @section('main-content')
     @include('admin.header')
     <!-- content -->
@@ -40,7 +41,7 @@
                                         <tr>
                                             <th class="p-0" scope="col">Surveyor</th>
                                             <th class="p-0" scope="col">Kecamatan</th>
-                                            <th class="p-0" scope="col">Kategori Target</th>
+                                            <th class="p-0" scope="col">Jenis Target</th>
                                             <th class="p-0" scope="col">Tanggal Mulai</th>
                                             <th class="p-0" scope="col">Tanggal Selesai</th>
                                             <th class="p-0" scope="col">Hasil Target</th>
@@ -52,8 +53,10 @@
                                             <tr>
                                                 <td>{{ $profile->nama_lengkap }}</td>
                                                 <td>{{ $item->kecamatan->nama }}</td>
-                                                <td>Per-Hari</td>
-                                                <td>{{ \Carbon\Carbon::parse($item->tanggal)->format('j F Y') }}</td>
+                                                <td>Per-Minggu</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('j F Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('j F Y') }}</td>
+
                                                 <td>{{ $item->selesai }} dari {{ $item->target }} Gang dan Perumahan
                                                 </td>
                                                 <td class="text-danger">

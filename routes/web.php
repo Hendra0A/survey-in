@@ -29,6 +29,7 @@ Route::get('/surveyor/{model}/hapus/{id}', [AdminController::class, 'destroy']);
 Route::get('/surveyor', [AdminController::class, 'surveyor']);
 Route::get('/surveyor/tambah', function () {
     $data = [
+        'active' => 'surveyor',
         'title' => 'Surveyor - Tambah Surveyor',
         'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
         'kabupaten' => Kabupaten::all('id', 'nama')

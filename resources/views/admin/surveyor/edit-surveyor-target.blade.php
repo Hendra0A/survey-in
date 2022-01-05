@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Surveyor')
 @section('main-content')
     @include('admin.header')
     <!-- content -->
@@ -40,7 +41,7 @@
                 <div class="mb-3 w-100 d-flex justify-content-between">
                     <div class="target-tanggal">
                         <label for="validationServer03" class="form-label date-target">Tanggal Mulai</label>
-                        <input type="date" class="form-control" name="tanggal_mulai" value="{{ $detail_survey->tanggal_mulai }}" disabled> 
+                        <input type="date" class="form-control" name="tanggal_mulai" value="{{ $detail_survey->tanggal_mulai }}"> 
                     </div>
                     <div class="target-tanggal">
                         <label for="validationServer03" class="form-label date-target">Tanggal Selesai</label>

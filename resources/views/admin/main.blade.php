@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title')</title>
+    <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
@@ -32,19 +32,19 @@
             </div>
             <ul class="navbar-nav d-flex flex-column mt-3 w-100">
                 <li class="nav-item w-100">
-                    <a href="/beranda" class="nav-link"><i class="fas fa-home"></i>Beranda</a>
+                    <a href="/beranda" class="nav-link {{ ($active=='beranda')?'text-primary':'' }}"><i class="fas fa-home"></i>Beranda</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/profile" class="nav-link"><i class="fas fa-user"></i>Profile</a>
+                    <a href="/profile" class="nav-link {{ ($active=='profile')?'text-primary':'' }}"><i class="fas fa-user"></i>Profile</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/surveyor" class="nav-link"><i class="fas fa-poll-h"></i>Surveyor</a>
+                    <a href="/surveyor" class="nav-link {{ ($active=='surveyor')?'text-primary':'' }}"><i class="fas fa-poll-h"></i>Surveyor</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/data-survei" class="nav-link"><i class="fas fa-download"></i>Data Survei</a>
+                    <a href="/data-survei" class="nav-link {{ ($active=='data')?'text-primary':'' }}"><i class="fas fa-download"></i>Data Survei</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/pengaturan" class="nav-link"><i class="fas fa-cog"></i>Pengaturan</a>
+                    <a href="/pengaturan" class="nav-link {{ ($active=='pengaturan')?'text-primary':'' }}"><i class="fas fa-cog"></i>Pengaturan</a>
                 </li>
                 <li class="nav-item w-100">
                     <a href="login.html" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i

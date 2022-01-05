@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Surveyor')
 @section('main-content')
 @include('admin.header')
 {{-- content --}}
@@ -66,7 +67,7 @@
                 @enderror
             </div>
             <div class="tambah-akun d-flex justify-content-end mt-4">
-                <button type="button" class="btn btn-lg btn-primary mb-5 text-dark fs-6" id="batal">Batal</button>
+                <a href="/surveyor" class="btn btn-lg btn-outline-primary mb-5 fs-6" id="batal">Batal</a>
 
                 <button type="submit" class="btn btn-lg btn-primary mb-5 ms-3 fs-6"
                     id="tambah-akun-surveyor">Tambahkan</button>
