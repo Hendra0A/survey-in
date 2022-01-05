@@ -42,3 +42,5 @@
 <p>No. IMB Pendahuluan : {{ $data->no_imb }}</p>
 <p>Surveyor : {{ $data->user->nama_lengkap }}</p>
 <p>Lampiran Data : </p>
+
+<a href="/data-survei/print/{{ $data->id }}">Print PDF</a>
