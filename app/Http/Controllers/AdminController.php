@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
+use Dompdf\Dompdf;
 
 class AdminController extends Controller
 {
@@ -420,9 +421,9 @@ class AdminController extends Controller
         ]);
     }
 
-    public function detailDataSurvei(Request $request)
+    public function detailDataSurvei($id)
     {
-        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable')->where('id', $request->id)->get();
+        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable')->where('id', $id)->get();
         if ($data[0]->fasos === 1) {
             $fasos = $data[0]->jenisFasos;
         } else {
@@ -436,6 +437,24 @@ class AdminController extends Controller
             'data' => $data[0],
             'fasos' => $fasos
         ]);
+    }
+
+    public function cetakDetailDataSurvei($id)
+    {
+        $html = $this->detailDataSurvei($id);
+
+        // instantiate and use the dompdf class
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($html);
+
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream();
     }
 
     public function destroyDataSurvei($id)

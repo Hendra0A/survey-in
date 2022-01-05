@@ -66,4 +66,5 @@ Route::post('/pengaturan/ubah-password', [AdminController::class, 'updatePasswor
 Route::get('/data-survei', [AdminController::class, 'dataSurvei'])->name('data-survei');
 // Route::post('data-survei', [AdminController::class, 'getData'])->name('get-data');
 Route::get('/data-survei/{id}', [AdminController::class, 'detailDataSurvei']);
+Route::get('/data-survei/print/{id}', [AdminController::class, 'cetakDetailDataSurvei']);
 Route::get('/data-survei/hapus/{id}', [AdminController::class, 'destroyDataSurvei']);
