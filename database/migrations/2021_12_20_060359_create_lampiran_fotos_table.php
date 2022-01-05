@@ -1,9 +1,10 @@
 <?php
 
 use App\Models\DataSurvey;
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\JenisLampiran;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateLampiranFotosTable extends Migration
 {
@@ -16,10 +17,10 @@ class CreateLampiranFotosTable extends Migration
     {
         Schema::create('lampiran_fotos', function (Blueprint $table) {
             $table->foreignIdFor(DataSurvey::class);
-            $table->foreignId('jenis_lampirans_id');
+            $table->foreignIdFor(JenisLampiran::class)->onDelete('cascade');
             $table->string('foto');
 
-            $table->foreign('jenis_lampirans_id')->references('id')->on('jenis_lampirans')->onDelete('cascade');
+            // $table->foreign('jenis_lampirans_id')->references('id')->on('jenis_lampirans')->onDelete('cascade');
             $table->softDeletes();
         });
     }

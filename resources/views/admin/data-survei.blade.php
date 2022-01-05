@@ -82,24 +82,23 @@
                 </tr>
             </thead>
             <tbody id="data" class="data">
+                <script type="module" src="/js/data-survei.js"></script>
             </tbody>
         </table>
     </div>
     </form>
 
-    <script src="/js/data-survei.js"></script>
 
     <!-- Modal 3 -->
     <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
         <div class="modal-dialog">
-            <form id="form-hapus-data" method="post" action="/pengaturan/edit-data-survey/hapus">
+            <form id="form-hapus-data" method="post" action="/data-survei">
                 @csrf
                 @method('put')
                 <div class="modal-content border-0">
                     <div class="modal-body">
                         <p class="p text-center mt-4">Anda yakin ingin menghapus<br>data ini ?</p>
                         <input type="hidden" name="id" id="hapus-id">
-                        <input type="hidden" name="model" id="hapus-model">
                     </div>
 
                     <div class="choose d-flex justify-content-center gap-5 mb-5">
@@ -113,30 +112,17 @@
         </div>
     </div>
 
+    {{-- Ini form --}}
     <script>
-        $(document).ready(function () {
-            $(".btn-table").click(function(e) {
-                console.log(e)
-                // $('#hapus-id').attr('value', $(e.target).val());
-                // $('#hapus-model').attr('value', $(e.target).data('model'));
-            })
+        $(window).ready(function () {
+            $("#dasur-table").click(function (e) {
+            let btn = e.target;
+            if (btn.classList.contains('btn-hapus') ) {
+                $('#hapus-id').attr('value', btn.value);
+            }
         })
+    });
+
     </script>
-        <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
-            <table class="table table-hover table-responsive col-lg-12" id="dasur-table" style="width: 100%;">    
-            <thead>
-                    <tr>
-                        <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
-                        <th scope="col" style="width: 21%;">Lokasi</th>
-                        <th scope="col" style="width: 15%;">Koordinat</th>
-                        <th scope="col" style="width: 20%;">Surveyor</th>
-                        <th scope="col" style="width: 25%;"></th>
-                    </tr>
-                </thead>
-                <tbody id="data" class="data">
-                </tbody>
-            </table>
-        </div>
-        </form>
 
     @endsection
