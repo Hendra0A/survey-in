@@ -11,14 +11,14 @@
                 Pencarian Hasil Survei
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survei Gang dan Perumahan di Kecamatan Pontianak Barat
+                Temukan hasil Survei Gang dan Perumahan di Kecamatan <span class="text-kec">Pontianak Barat</span>
             </p>
             <form action="" method="POST">
                 @csrf
                 <div class="row justify-content-center my-3">
                     <div class="col-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="kabupaten">Kabupaten/Kota</label>
+                            <label class="input-group-text fw-bold" for="kabupaten">Kabupaten/Kota</label>
                             <select class="form-select" id="kabupaten" name="kabupaten">
                                 <option selected>Pilih kota/kabupaten</option>
                                 @foreach ($kabupaten as $item)
@@ -30,7 +30,7 @@
                     </div>
                     <div class="col-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="kecamatan">Kecamatan</label>
+                            <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                             <select class="form-select" id="kecamatan" name="kecamatan">
                                 <option value="" selected> Pilih kabupaten</option>
                             </select>

@@ -128,10 +128,12 @@ class AdminController extends Controller
             'kecamatan' => ['required'],
             'tanggal_selesai' => ['required'],
             'target' => ['required'],
+            'tanggal_selesai' => ['required']
         ]);
         DetailSurveys::where('id', $request->id)
             ->update([
                 'kecamatan_id' => $request->kecamatan,
+                'tanggal_mulai' => $request->tanggal_selesai,
                 'tanggal_selesai' => $request->tanggal_selesai,
                 'target' => $request->target,
             ]);
