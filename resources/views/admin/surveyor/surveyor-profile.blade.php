@@ -114,9 +114,14 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left-bio">Hasil Target</td>
+                        <td class="left-bio">Target Tercapai</td>
                         <td class="right-bio">: {{ $selesai }} dari
                             {{ $target }} Gang dan Perumahan</td>
+                    </tr>
+                    <tr>
+                        <td class="left-bio">Target Mingguan Tercapai</td>
+                        <td class="right-bio">: {{ $weekly_selesai }} dari
+                            {{ $weekly_target }} Gang dan Perumahan</td>
                     </tr>
                     <tr id="tr-akhir">
                         <td class="left-bio">Perhitungan Target</td>

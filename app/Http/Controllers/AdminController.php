@@ -87,9 +87,18 @@ class AdminController extends Controller
         $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $request->id)->where('role', 'surveyor')->get();
         $selesai = 0;
         $target = 0;
+        $weekly_target = 0;
+        $weekly_selesai = 0;
+        // dd($data);
         foreach ($data[0]->detailSurvey as $hasil) {
             $selesai = $selesai + $hasil->selesai;
             $target = $target + $hasil->target;
+            $date1 = Carbon::now();
+            $date2 = Carbon::createFromFormat('Y-m-d', $hasil->tanggal_selesai);
+            if ($date1->gt($date2)) {
+                $weekly_target = $hasil->target;
+                $weekly_selesai = $hasil->selesai;
+            }
         }
 
         $detail = [
@@ -98,9 +107,12 @@ class AdminController extends Controller
             'profile' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
+            'weekly_target' => $weekly_target,
+            'weekly_selesai' => $weekly_selesai,
             'detailSurvey' => $data[0]->detailSurvey,
             'area' => $data[0]->kabupaten
         ];
+        // dd($detail);
         return view('admin.surveyor.surveyor-profile', $detail);
     }
     public function addSurveyorTarget(Request $request)
@@ -160,10 +172,8 @@ class AdminController extends Controller
             'kecamatans' => $user->kabupaten->kecamatan
         ];
         if (count($detail) == 0) {
-            // dd($data);
             return view('admin.surveyor.add-surveyor-target', $data);
         } else if ($date1->gte($date2)) {
-            // dd($data);
             return view('admin.surveyor.add-surveyor-target', $data);
         } else {
             $surveyor = User::with(['detailSurvey' => function ($query) {
