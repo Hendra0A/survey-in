@@ -55,31 +55,18 @@ $(document).ready(async function () {
             $("#data").empty();
             dataS.data.forEach((element) => {
                 $("#data").append(
-                    "\
-                <tr>\
-                        <td>" +
-                        element.nama_gang +
-                        "</td>\
-                        <td>" +
-                        element.lokasi +
-                        "</td>\
-                        <td>" +
-                        element.no_gps +
-                        '</td>\
-                        <td class="last-kolom">' +
-                        element.user.nama_lengkap +
-                        '</td>\
-                        <td>\
-                            <div class="btn-table gap-1 justify-content-end">\
-                <a href="/data-survei/' + element.id +
-                                    '" class="btn btn-primary shadow-none" id="detail"><i\
-                        class="far fa-file"></i>Detail</a>\
-                <a href="/data-survei/hapus/' +
-                        element.id +
-                        '" class="btn btn-danger shadow-none"><i class="far fa-trash-alt"></i>Hapus</a></div>\
-                        </td>\
-                    </tr>\
-                '
+                    `<tr>
+                    <td>${element.nama_gang}</td>
+                    <td>${element.lokasi}</td>
+                    <td>${element.no_gps}</td>
+                    <td class="last-kolom">${element.user.nama_lengkap}</td>
+                    <td>
+                        <div class="btn-table gap-1 justify-content-end">
+                            <button class="btn btn-primary btn-detail shadow-none" id="detail" value="${element.id}"><i class="far fa-file"></i>Detail</button>
+                            <button class="btn btn-danger btn-hapus shadow-none" value="${element.id}"><i class="far fa-trash-alt"></i>Hapus</button>
+                        </div>
+                    </td>
+                </tr>`
                 );
             });
         }
