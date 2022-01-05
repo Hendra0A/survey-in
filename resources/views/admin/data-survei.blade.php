@@ -1,29 +1,8 @@
 @extends('admin.main')
+@section('title', 'Data Survei')
 @section('main-content')
     {{-- header --}}
-    <div class="header d-flex pt-2 pb-4" id="prf-edit-header">
-        <div class="subhead-a ps-3 d-flex align-items-center">
-            <h1 class="h1 ms-5">Profile</h1>
-        </div>
-        <div class="subhead-b d-flex w-100 justify-content-end align-items-center">
-            <button type="button" class="btn btn-primary me-4 border-0" id="prf-btn">+ Tambah Data</button>
-            <p class="prf-p m-0 me-4">{{ $profile->nama_lengkap }}</p>
-            <!-- avatar -->
-            <!-- <div class="prf-img me-4 rounded-circle"></div> -->
-            <img src="{{ $profile->avatar }}" alt="" class="prf-img rounded-circle">
-            <!-- avatar end -->
-            <div class="dropdown me-4">
-                <a class="btn btn-secondary dropdown-toggle me-2" href="#" role="button" id="dropdownMenuLink"
-                    data-bs-toggle="dropdown" aria-expanded="false">
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                    <li><a class="dropdown-item" href="/profile">Profile Admin</a></li>
-                    <li><button class="dropdown-item" id="open" data-bs-toggle="modal"
-                            data-bs-target="#exampleModal">Keluar</button></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+    @include('admin.header')
     {{-- end headerr --}}
 
     <div class="content d-flex flex-column" id="dasur-content">
@@ -32,14 +11,14 @@
                 Pencarian Hasil Survei
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survei Gang dan Perumahan di Kecamatan Pontianak Barat
+                Temukan hasil Survei Gang dan Perumahan di Kecamatan <span class="text-kec">Pontianak Barat</span>
             </p>
             <form action="" method="POST">
                 @csrf
                 <div class="row justify-content-center my-3">
                     <div class="col-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="kabupaten">Kabupaten/Kota</label>
+                            <label class="input-group-text fw-bold" for="kabupaten">Kabupaten/Kota</label>
                             <select class="form-select" id="kabupaten" name="kabupaten">
                                 <option selected>Pilih kota/kabupaten</option>
                                 @foreach ($kabupaten as $item)
@@ -51,7 +30,7 @@
                     </div>
                     <div class="col-6">
                         <div class="input-group mb-3">
-                            <label class="input-group-text" for="kecamatan">Kecamatan</label>
+                            <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                             <select class="form-select" id="kecamatan" name="kecamatan">
                                 <option value="" selected> Pilih kabupaten</option>
                             </select>
@@ -96,8 +75,8 @@
             <thead>
                     <tr>
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
-                        <th scope="col" style="width: 17%;">Lokasi</th>
-                        <th scope="col" style="width: 18%;">Koordinat</th>
+                        <th scope="col" style="width: 21%;">Lokasi</th>
+                        <th scope="col" style="width: 15%;">Koordinat</th>
                         <th scope="col" style="width: 20%;">Surveyor</th>
                         <th scope="col" style="width: 25%;"></th>
                     </tr>

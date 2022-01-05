@@ -32,19 +32,24 @@
             </div>
             <ul class="navbar-nav d-flex flex-column mt-3 w-100">
                 <li class="nav-item w-100">
-                    <a href="/beranda" class="nav-link"><i class="fas fa-home"></i>Beranda</a>
+                    <a href="/beranda" class="nav-link {{ ($active=='beranda')?'text-primary':'' }}"><i
+                            class="fas fa-home"></i>Beranda</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/profile" class="nav-link"><i class="fas fa-user"></i>Profile</a>
+                    <a href="/profile" class="nav-link {{ ($active=='profile')?'text-primary':'' }}"><i
+                            class="fas fa-user"></i>Profile</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/surveyor" class="nav-link"><i class="fas fa-poll-h"></i>Surveyor</a>
+                    <a href="/surveyor" class="nav-link {{ ($active=='surveyor')?'text-primary':'' }}"><i
+                            class="fas fa-poll-h"></i>Surveyor</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/data-survei" class="nav-link"><i class="fas fa-download"></i>Data Survei</a>
+                    <a href="/data-survei" class="nav-link {{ ($active=='data')?'text-primary':'' }}"><i
+                            class="fas fa-download"></i>Data Survei</a>
                 </li>
                 <li class="nav-item w-100">
-                    <a href="/pengaturan" class="nav-link"><i class="fas fa-cog"></i>Pengaturan</a>
+                    <a href="/pengaturan" class="nav-link {{ ($active=='pengaturan')?'text-primary':'' }}"><i
+                            class="fas fa-cog"></i>Pengaturan</a>
                 </li>
                 <li class="nav-item w-100">
                     <a href="login.html" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
@@ -67,8 +72,7 @@
 
         </section>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content border-0">
                     <div class="modal-body">

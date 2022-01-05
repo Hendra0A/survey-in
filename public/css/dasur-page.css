@@ -77,13 +77,9 @@ button#btn-pencarian {
 
 .btn-table {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
 }
 
 .btn-table button {
-    width: 6em;
-    padding: .5em .2em;
     font-size: 1em;
     color: white;
     border-radius: .5em;

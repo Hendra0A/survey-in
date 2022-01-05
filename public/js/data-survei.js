@@ -1,4 +1,4 @@
-$(document).ready(async function() {
+$(document).ready(async function () {
     // $.ajaxSetup({
     //     headers: {
     //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -29,57 +29,70 @@ $(document).ready(async function() {
         try {
             data = await getData(`/kecamatan`, idKab);
             setData(data.data[0].id);
+            $(".text-kec").text(data.data[0].nama);
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {
-            $("#kecamatan").append(new Option(element.nama, element.id))
+            $("#kecamatan").append(new Option(element.nama, element.id));
         });
     };
 
-    let setData = async function(idKec = 160){
+    let setData = async function (idKec = 160) {
         let dataS = await getData("/data-survei", idKec);
         if (dataS.data.length == 0) {
-            $('#data').empty();
-            $('#data').append('\
+            $("#data").empty();
+            $("#data").append(
+                '\
                 <tr>\
                         <td>-</td>\
                         <td>-</td>\
                         <td>-</td>\
                         <td class="last-kolom">-</td>\
                     </tr>\
-                ');
+                '
+            );
         } else {
-            $('#data').empty();
+            $("#data").empty();
             dataS.data.forEach((element) => {
-                $('#data').append('\
+                $("#data").append(
+                    "\
                 <tr>\
-                        <td>'+ element.nama_gang +'</td>\
-                        <td>'+ element.lokasi +'</td>\
-                        <td>'+ element.no_gps +'</td>\
-                        <td class="last-kolom">'+ element.user.nama_lengkap +'</td>\
+                        <td>" +
+                        element.nama_gang +
+                        "</td>\
+                        <td>" +
+                        element.lokasi +
+                        "</td>\
+                        <td>" +
+                        element.no_gps +
+                        '</td>\
+                        <td class="last-kolom">' +
+                        element.user.nama_lengkap +
+                        '</td>\
                         <td>\
                             <div class="btn-table gap-1 justify-content-end">\
-                            <a class="btn btn-warning shadow-none"><i class="far fa-edit"></i>Edit</a>\
                 <a href="/data-survei/' + element.id +
                                     '" class="btn btn-primary shadow-none" id="detail"><i\
                         class="far fa-file"></i>Detail</a>\
-                <a href="/data-survei/hapus/' + element.id +
-                '" class="btn btn-danger shadow-none"><i class="far fa-trash-alt"></i>Hapus</a></div>\
+                <a href="/data-survei/hapus/' +
+                        element.id +
+                        '" class="btn btn-danger shadow-none"><i class="far fa-trash-alt"></i>Hapus</a></div>\
                         </td>\
                     </tr>\
-                ');
-            })
-        };
-    }
+                '
+                );
+            });
+        }
+    };
 
-
-    $("#kabupaten").change(function(e) {
+    $("#kabupaten").change(function (e) {
         e.preventDefault();
         setKecamatan($(this).val());
     });
 
-    $("#kecamatan").change(function(e) {
+    $("#kecamatan").change(function (e) {
         e.preventDefault();
+        $(".text-kec").text($(this).find("option:selected").text());
         setData($(this).val());
     });
 

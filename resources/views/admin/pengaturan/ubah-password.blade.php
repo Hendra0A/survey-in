@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Pengaturan')
 @section('main-content')
 @include('admin.header')
 <div class="content d-flex flex-column" id="edit-pw-content">
@@ -54,7 +55,9 @@
 
                 <i class="far fa-eye position-absolute p-1" id="togglePassword2"></i>
             </div>
+
             <button type="submit" class="btn btn-primary w-75 ms-sm-5 mt-4 mb-5 h-auto ps-2 pe-2 align-items-start" id="edit-pw">Simpan</button>
+
         </form>
     </div>
 </div>

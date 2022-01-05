@@ -12,4 +12,9 @@ class JenisFasos extends Model
     use SoftDeletes;
     public $timestamps = false;
     protected $guarded = ['id'];
+
+    public function dataSurvey()
+    {
+        return $this->belongsToMany(DataSurvey::class, 'fasos');
+    }
 }

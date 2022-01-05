@@ -1,9 +1,12 @@
 @extends('admin.main')
+@section('title','Profile')
 @section('main-content')
     @include('admin.header')
+
     <div class="content d-flex flex-column" id="prf-page-content">
         <div class="admin-hl mt-4 ps-sm-5 ms-sm-2 ps-1">
             <h1>Profile Admin</h1>
+
             <p>Profil Admin berisi data pribadi Admin.</p>
             <div class="admin d-flex">
                 <img src="{{ $profile->avatar }}" alt="aw" class="hl-img rounded-circle">
@@ -43,7 +46,7 @@
             </table>
         </div>
         <div class="submit d-flex justify-content-center mt-5">
-            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary mb-5 shadow-none">Edit profil</a>
+            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>
             
         </div>
     </div>

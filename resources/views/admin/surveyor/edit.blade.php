@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Surveyor')
 @section('main-content')
     <div class="content">
         <h2 class="p-3 text-center shadow mb-5">Edit Surveyor {{ $profile->nama_lengkap }}</h2>

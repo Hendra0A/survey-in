@@ -62,59 +62,6 @@
     height: 2.5em;
 }
 /* login end */
-
-/* main hero */
-.hero {
-    flex: 1;
-    background-color: #3f4fc8;
-    border-top-left-radius: 12.5em;
-    border-bottom-right-radius: 12.5em;
-    box-sizing: border-box;
-}
-
-.hero .logo {
-    width: 7em;
-    height: 7em;
-    top: 1.5em;
-    right: 1.5em;
-}
-
-.hero .logo-img {
-    width: 6.3125em;
-    height: 4.375em;
-}
-
-.hero h4 {
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 36px;
-    color: #f8b94a;
-}
-
-.hero .desc {
-    margin-left: 4em;
-}
-
-.hero .desc h1 {
-    font-weight: bold;
-    font-size: 37px;
-    line-height: 55px;
-    letter-spacing: 0.02em;
-    color: white;
-}
-
-.hero span {
-    color: #f8b94a;
-}
-
-.hero .desc p {
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 33px;
-    color: #c5c5c5;
-    letter-spacing: 0.02em;
-}
-/* main hero end*/
 /* =================== */
 
 /* sidebar section */
@@ -191,8 +138,8 @@ i {
 
 /* Header section */
 .header {
-    flex: 1;
     border-bottom: 2px solid gray;
+    box-sizing: border-box;
 }
 
 .prf-img {

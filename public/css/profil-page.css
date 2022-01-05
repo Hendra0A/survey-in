@@ -145,7 +145,7 @@ table td.right-bio {
     font-size: 20px;
 }
 
-#prf-page-content.content button#submit {
+#prf-page-content.content a#submit {
     background-color: #3F4FC8;
     border-radius: 10px;
     width: 14em;
@@ -277,7 +277,7 @@ table td.right-bio {
         opacity: 0 !important;
     }
 
-    #prf-page-header.header .prf-p {
+     .subhead-b .prf-p {
         display: none;
     }
 

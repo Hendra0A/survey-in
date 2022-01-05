@@ -59,6 +59,7 @@ body {
 /* login end */
 
 .hero {
+    display: flex;
     flex: 1;
     background-color: #3F4FC8;
     border-top-left-radius: 12.5em;
@@ -107,4 +108,11 @@ body {
     line-height: 33px;
     color: #C5C5C5;
     letter-spacing: 0.02em;
+}
+
+@media only screen and (max-width: 660px) {
+
+    .hero {
+        display: none;
+    }
 }

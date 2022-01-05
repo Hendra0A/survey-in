@@ -1,4 +1,5 @@
 @extends('admin.main')
+@section('title','Surveyor')
 @section('main-content')
     @include('admin.header')
     <!-- content -->

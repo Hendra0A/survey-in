@@ -39,7 +39,7 @@
             </form>
         </div>
 
-        <div class="hero d-flex flex-column position-relative justify-content-center">
+        <div class="hero flex-column position-relative justify-content-center" id="hero"> 
             <div class="logo position-absolute d-flex flex-column align-items-center">
                 <img src="img/logo.png" alt="" class="logo-img text-center">
                 <h4 class="logo w-75 text-center p-0 mt-2">Survei</h4>

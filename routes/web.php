@@ -29,6 +29,7 @@ Route::get('/surveyor/{model}/hapus/{id}', [AdminController::class, 'destroy']);
 Route::get('/surveyor', [AdminController::class, 'surveyor']);
 Route::get('/surveyor/tambah', function () {
     $data = [
+        'active' => 'surveyor',
         'title' => 'Surveyor - Tambah Surveyor',
         'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
         'kabupaten' => Kabupaten::all('id', 'nama')
@@ -39,10 +40,10 @@ Route::post('/surveyor/tambah', [AdminController::class, 'tambahSurveyor']);
 Route::put('/surveyor/hapus', [AdminController::class, 'destroySuyveyor']);
 Route::post('/surveyor/edit/', [AdminController::class, 'updateSurveyor']);
 Route::get('/surveyor/edit/{id}', [AdminController::class, 'getSurveyor']);
-Route::get('/surveyor/profile/{id}', [AdminController::class, 'surveyorProfile']);
+Route::post('/surveyor/profile/', [AdminController::class, 'surveyorProfile']);
 Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
 Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
-Route::get('/surveyor/target/{id}', [AdminController::class, 'surveyorTarget']);
+Route::post('/surveyor/target/', [AdminController::class, 'surveyorTarget']);
 // Route::get('/surveyor/target/add/{id}', [AdminController::class, 'surveyorShowTarget']);
 
 
@@ -65,4 +66,5 @@ Route::post('/pengaturan/ubah-password', [AdminController::class, 'updatePasswor
 Route::get('/data-survei', [AdminController::class, 'dataSurvei'])->name('data-survei');
 // Route::post('data-survei', [AdminController::class, 'getData'])->name('get-data');
 Route::get('/data-survei/{id}', [AdminController::class, 'detailDataSurvei']);
+Route::get('/data-survei/print/{id}', [AdminController::class, 'cetakDetailDataSurvei']);
 Route::get('/data-survei/hapus/{id}', [AdminController::class, 'destroyDataSurvei']);
