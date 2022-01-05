@@ -220,7 +220,6 @@ class AdminController extends Controller
             'password' => ['required', 'confirmed'],
             'password_confirmation' => ['required'],
         ]);
-        dd($request);
         User::where('id', $request->id)
             ->update([
                 'password' => Hash::make($request->password)
