@@ -1,5 +1,5 @@
 @extends('admin.main')
-@section('title','Data Survei')
+@section('title', 'Data Survei')
 @section('main-content')
     {{-- header --}}
     @include('admin.header')
@@ -75,10 +75,10 @@
                 <thead>
                     <tr>
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
-                        <th scope="col" style="width: 17%;">Lokasi</th>
-                        <th scope="col" style="width: 11%;">Koordinat</th>
+                        <th scope="col" style="width: 21%;">Lokasi</th>
+                        <th scope="col" style="width: 15%;">Koordinat</th>
                         <th scope="col" style="width: 20%;">Surveyor</th>
-                        <th scope="col" style="width: 32%;"></th>
+                        <th scope="col" style="width: 25%;"></th>
                     </tr>
                 </thead>
                 <tbody id="data" class="data">
