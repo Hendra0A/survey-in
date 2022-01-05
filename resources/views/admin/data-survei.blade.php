@@ -122,5 +122,21 @@
             })
         })
     </script>
+        <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
+            <table class="table table-hover table-responsive col-lg-12" id="dasur-table" style="width: 100%;">    
+            <thead>
+                    <tr>
+                        <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
+                        <th scope="col" style="width: 21%;">Lokasi</th>
+                        <th scope="col" style="width: 15%;">Koordinat</th>
+                        <th scope="col" style="width: 20%;">Surveyor</th>
+                        <th scope="col" style="width: 25%;"></th>
+                    </tr>
+                </thead>
+                <tbody id="data" class="data">
+                </tbody>
+            </table>
+        </div>
+        </form>
 
     @endsection
