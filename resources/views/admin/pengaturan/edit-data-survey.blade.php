@@ -23,7 +23,8 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-jalan" type="submit">+ Tambah</button>
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-jalan" type="submit">+
+                    Tambah</button>
             </div>
         </form>
         {{-- DISPLAY JALAN --}}
@@ -32,14 +33,17 @@
                 <h3 class=" text-sm-center">Keadaan Jalan</h3>
                 @foreach ($jalan as $item)
                 <tr>
-                    <td class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center"><span>{{ $item->jenis }}</span>
+                    <td
+                        class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center">
+                        <span>{{ $item->jenis }}</span>
                         <div id="jalan" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2  btn-edit text-light" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="jalan" value="{{ $item->id }}">
                                 <i class="far fa-edit"></i>Edit
                             </button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3" data-model="jalan" value="{{ $item->id }}" class=" text-white text-decoration-none">
+                                data-bs-target="#exampleModal3" data-model="jalan" value="{{ $item->id }}"
+                                class=" text-white text-decoration-none">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -64,7 +68,8 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-saluran" type="submit">+ Tambah</button>
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-saluran" type="submit">+
+                    Tambah</button>
             </div>
         </form>
         {{-- DISPLAY SALURAN --}}
@@ -73,13 +78,16 @@
                 <h3 class=" text-sm-center">Kondisi Saluran</h3>
                 @foreach ($saluran as $item)
                 <tr>
-                    <td class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center"><span>{{ $item->jenis }}</span>
+                    <td
+                        class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center">
+                        <span>{{ $item->jenis }}</span>
                         <div id="saluran" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="saluran" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3" data-model="saluran" value="{{ $item->id }}" class=" text-white text-decoration-none">
+                                data-bs-target="#exampleModal3" data-model="saluran" value="{{ $item->id }}"
+                                class=" text-white text-decoration-none">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -104,7 +112,8 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+ Tambah</button>
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+
+                    Tambah</button>
             </div>
         </form>
         {{-- DISPLAY FASOS --}}
@@ -113,13 +122,16 @@
                 <h3 class=" text-sm-center">Jenis Fasos</h3>
                 @foreach ($sosial as $item)
                 <tr>
-                    <td class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center"><span>{{ $item->jenis }}</span>
+                    <td
+                        class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center">
+                        <span>{{ $item->jenis }}</span>
                         <div id="fasos" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="fasos" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3" data-model="fasos" value="{{ $item->id }}" class=" text-white text-decoration-none">
+                                data-bs-target="#exampleModal3" data-model="fasos" value="{{ $item->id }}"
+                                class=" text-white text-decoration-none">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -144,7 +156,8 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+ Tambah</button>
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+
+                    Tambah</button>
             </div>
         </form>
         {{-- DISPLAY LAMPIRAN --}}
@@ -153,13 +166,16 @@
                 <h3 class=" text-sm-center">Jenis Lampiran</h3>
                 @foreach ($lampiran as $item)
                 <tr>
-                    <td class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center"><span>{{ $item->jenis }}</span>
+                    <td
+                        class="kolom text-left text-sm-center d-flex flex-wrap justify-content-sm-between justify-content-center">
+                        <span>{{ $item->jenis }}</span>
                         <div id="lampiran" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="lampiran" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3" data-model="lampiran" value="{{ $item->id }}" class=" text-white text-decoration-none">
+                                data-bs-target="#exampleModal3" data-model="lampiran" value="{{ $item->id }}"
+                                class=" text-white text-decoration-none">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -195,7 +211,7 @@
     </div>
 </div>
 
-<!-- Modal 3 -->
+<!-- Modal Hapus -->
 <div class="modal fade" id="exampleModal3" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog">
         <form id="form-hapus-data" method="post" action="/pengaturan/edit-data-survey/hapus">
@@ -217,6 +233,8 @@
         </form>
     </div>
 </div>
+
+
 
 <script>
     $(document).ready(function () {

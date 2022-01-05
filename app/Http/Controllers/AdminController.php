@@ -457,9 +457,9 @@ class AdminController extends Controller
         $dompdf->stream();
     }
 
-    public function destroyDataSurvei($id)
+    public function destroyDataSurvei(Request $request)
     {
-        DataSurvey::destroy($id);
+        DataSurvey::destroy($request->id);
 
         return redirect('/data-survei')->with('success', 'Data has been deleted!');
     }

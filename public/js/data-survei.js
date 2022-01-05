@@ -42,14 +42,12 @@ $(document).ready(async function () {
         if (dataS.data.length == 0) {
             $("#data").empty();
             $("#data").append(
-                '\
-                <tr>\
-                        <td>-</td>\
-                        <td>-</td>\
-                        <td>-</td>\
-                        <td class="last-kolom">-</td>\
-                    </tr>\
-                '
+                `<tr>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="last-kolom">-</td>
+                </tr>`
             );
         } else {
             $("#data").empty();
@@ -62,8 +60,8 @@ $(document).ready(async function () {
                     <td class="last-kolom">${element.user.nama_lengkap}</td>
                     <td>
                         <div class="btn-table gap-1 justify-content-end">
-                            <button class="btn btn-primary btn-detail shadow-none" id="detail" value="${element.id}"><i class="far fa-file"></i>Detail</button>
-                            <button class="btn btn-danger btn-hapus shadow-none" value="${element.id}"><i class="far fa-trash-alt"></i>Hapus</button>
+                            <a href="/data-survei/${element.id}" class="btn btn-primary btn-detail shadow-none" id="detail""><i class="far fa-file"></i>Detail</a>
+                            <button class="btn btn-danger btn-hapus shadow-none" data-bs-toggle="modal" data-bs-target="#exampleModal3" value="${element.id}"><i class="far fa-trash-alt"></i>Hapus</button>
                         </div>
                     </td>
                 </tr>`
