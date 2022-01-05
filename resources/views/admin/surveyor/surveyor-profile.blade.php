@@ -133,8 +133,10 @@
 
          <!-- Btn Ubah Password -->
         <div class="ubah-password d-flex justify-content-center mt-5">
-            <form action="">
-                <input type="hidden" name="id" value="">
+            <form action="/surveyor/edit" method="POST">
+                @csrf
+                @method('put')
+                <input type="hidden" name="id" value="{{ $profile->id }}">
                 <input class="btn btn-primary ps-5 pe-5 mb-5" type="submit" value="Ubah Password">
             </form>
         </div>

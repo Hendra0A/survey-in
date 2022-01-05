@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
-use Dompdf\Dompdf;
+use dompdf\Dompdf;
 
 class AdminController extends Controller
 {
@@ -217,31 +217,26 @@ class AdminController extends Controller
     public function updateSurveyor(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => ['required'],
-            'nomor_telepon' => ['required'],
-            'email' => ['required'],
-            'area' => ['required']
+            'password' => ['required', 'confirmed'],
+            'password_confirmation' => ['required'],
         ]);
+        dd($request);
         User::where('id', $request->id)
             ->update([
-                "nama_lengkap" => $request->nama_lengkap,
-                "nomor_telepon" => $request->nomor_telepon,
-                "email" => $request->email,
-                'kabupaten_id' => $request->area,
-                "password" => ($request == '') ? $request->oldPassword : Hash::make($request->password)
+                'password' => Hash::make($request->password)
             ]);
-
-
         return redirect('/surveyor')->withInput();
     }
-    public function getSurveyor($id)
+    public function getSurveyor(Request $request)
     {
         $data = [
             'active' => 'Surveyor - Edit',
             'title' => 'Surveyor - Profile',
-            'profile' => User::with('kabupaten')->where('id', $id)->get(['id', 'nama_lengkap', 'nomor_telepon', 'email', 'password', 'kabupaten_id'])[0],
-            'kabupaten' => Kabupaten::all('id', 'nama')
+            'profile' => User::where('id', $request->id)
+                ->where('role', 'surveyor')
+                ->get(['avatar', 'nama_lengkap', 'role', 'id'])[0]
         ];
+        // dd($data);
         return view('admin.surveyor.edit', $data);
     }
     public function destroySuyveyor(Request $request)
@@ -402,7 +397,7 @@ class AdminController extends Controller
 
         if (Hash::check($kata_sandi_lama, $currentPassword)) {
             $admin->update([
-                'password' => Hash::make($request->kata_sandi_baru)
+                'password' => Hash::make($request->password)
             ]);
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);

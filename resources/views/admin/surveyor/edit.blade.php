@@ -1,79 +1,43 @@
 @extends('admin.main')
 @section('title','Surveyor')
 @section('main-content')
-    <div class="content">
-        <h2 class="p-3 text-center shadow mb-5">Edit Surveyor {{ $profile->nama_lengkap }}</h2>
-        <div class="row justify-content-center">
-            <div class="col-8  p-5 shadow">
-                <form method="POST" action="/surveyor/edit">
-                    @csrf
-                    <div class="mb-3">
-                        <input type="hidden" name="id" value="{{ $profile->id }}">
-                        <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
-                            name="nama_lengkap" value="{{ $profile->nama_lengkap }}">
-                        @error('nama_lengkap'))
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="input-group mb-3">
-                        <label class="input-group-text" for="area">Area Survey</label>
-                        <select class="form-select @error('area') is-invalid @enderror" id="area" name="area">
-                            @foreach ($kabupaten as $item)
-                                <option value="{{ $item->id }}"
-                                    {{ $profile->kabupaten_id == $item->id ? 'selected' : '' }}>{{ $item->nama }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('area')
-                            <div class="alert alert-danger">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="nomor_telpon" class="form-label">Nomor Telepon</label>
-                        <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror"
-                            id="nomor_telepon" name="nomor_telepon" value="{{ $profile->nomor_telepon }}">
-                        @error('nomor_telepon')
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email address</label>
-                        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                            name="email" value="{{ $profile->email }}">
-                        @error('email')
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password Baru</label>
-                        <input type="password" class="form-control" name="password" id="password" value="">
-                        <input type="hidden" name="oldPassword">
-                    </div>
+<div class="content d-flex flex-column">
+    <div class="surveyor-hl ms-5">
+        <h1>Edit Profile Surveyor</h1>
+        <p class="mb-5">Edit akun surveyor di bawah ini dengan benar</p>
 
-                    <button type="submit" class="btn btn-primary container-fluid">Submit</button>
-                </form>
-            </div>
+        <!-- avatar -->
+        <div class="surveyor">
+            <img src="{{ $profile->avatar }}" alt=""class="profile-img rounded-circle"/>
+        </div>
+        <div class="profile-status mt-3 d-flex flex-column">
+            <h3>{{ $profile->nama_lengkap }}</h3>
+            <p>{{ $profile->role }}</p>
         </div>
     </div>
+    <!-- Form Edit -->
+    <form action="/surveyor/update" method="post">
+        @csrf
+        @method('put')
+        <div class="row justify-content-evenly">
+            <div class="col-5">
+                <input type="hidden" name="id" value="{{ $profile->id }}">
+                <div class="bio-left d-flex flex-column">
+                    <label for="password" class="form-label fw-bold">Password :</label>
+                    <input type="password" class="form-control" id="password" name="password" required/>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="bio-right w-100 d-flex flex-column">
+                    <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password :</label>
+                    <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required/>
+                </div>
+            </div>
+        <div class="row justify-content-center">
+            <div class="col-5 mt-5">
+                <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5">
+            </div>
+        </div>
+    </form>
+</div>
 @endsection
