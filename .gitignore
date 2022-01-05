@@ -3,7 +3,7 @@
 /public/storage
 /storage/*.key
 /vendor
-!/vendor/dompdf
+!/vendor/dompdf/*
 .env
 .env.backup
 .phpunit.result.cache
