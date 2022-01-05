@@ -319,7 +319,7 @@ class AdminController extends Controller
     }
     public function editData(Request $request)
     {
-        switch ($request->target) {
+        switch ($request->model) {
             case 'jalan':
                 JenisKonstruksiJalan::where('id', $request->id)->update([
                     'jenis' => $request->jenis
