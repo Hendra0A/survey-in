@@ -89,7 +89,7 @@
             </table>
         </div>
 
-        <!-- FASOS -->
+        {{-- FASOS --}}
         <form action="/pengaturan/edit-data-survey/fasos/tambah" method="post" id="form-fasos"
             class="data first needs-validation ms-3" novalidate>
             @csrf
@@ -129,7 +129,7 @@
             </table>
         </div>
 
-        <!-- LAMPIRAN -->
+        {{-- LAMPIRAN --}}
         <form action="/pengaturan/edit-data-survey/lampiran/tambah" method="post" id="form-lampiran"
             class="data first needs-validation ms-3" novalidate>
             @csrf
@@ -209,7 +209,7 @@
                 </div>
 
                 <div class="choose d-flex justify-content-center gap-5 mb-5">
-                    <button type="submit" class="btn btn-secondary btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
+                    <button type="submit" class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
                     <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
                         data-bs-dismiss="modal">batal</button>
                 </div>
@@ -217,12 +217,10 @@
         </form>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
         $(".btn-edit").click(function (e) {
-            console.log(e.target.value)
-            console.log($(e.target).data('model'))
-            console.log($(this).parent().siblings().text())
             $('#edit-id').attr('value', e.target.value);
             $('#edit-model').attr('value',$(e.target).data('model'));
             $('#edit-jenis').attr('value',$(this).parent().siblings().text());
