@@ -406,12 +406,13 @@ class AdminController extends Controller
 
     public function detailDataSurvei(Request $request)
     {
-        $data = DataSurvey::with('jenisFasos')->where('id', $request->id)->get();
+        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable')->where('id', $request->id)->get();
         if ($data[0]->fasos === 1) {
             $fasos = $data[0]->jenisFasos;
         } else {
-            $fasos = 'Tidak ada';
+            $fasos = 0;
         }
+        // dd($data[0]);
 
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',

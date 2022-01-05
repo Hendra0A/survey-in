@@ -23,6 +23,11 @@ class DataSurvey extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function fasosTable()
+    {
+        return $this->hasMany(Fasos::class, 'data_survey_id');
+    }
+
     public function jenisFasos()
     {
         return $this->belongsToMany(JenisFasos::class, 'fasos');
