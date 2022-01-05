@@ -23,9 +23,7 @@ Route::get('/', function () {
 });
 //beranda
 Route::get('/beranda', [AdminController::class, 'beranda']);
-// Halaman Surveyor Admin
-// Route::resource('/surveyor/hapus', AdminController::class);
-Route::get('/surveyor/{model}/hapus/{id}', [AdminController::class, 'destroy']);
+// pengelolaan surveyor
 Route::get('/surveyor', [AdminController::class, 'surveyor']);
 Route::get('/surveyor/tambah', function () {
     $data = [
@@ -38,13 +36,13 @@ Route::get('/surveyor/tambah', function () {
 });
 Route::post('/surveyor/tambah', [AdminController::class, 'tambahSurveyor']);
 Route::put('/surveyor/hapus', [AdminController::class, 'destroySuyveyor']);
-Route::post('/surveyor/edit/', [AdminController::class, 'updateSurveyor']);
-Route::get('/surveyor/edit/{id}', [AdminController::class, 'getSurveyor']);
+Route::put('/surveyor/update', [AdminController::class, 'updateSurveyor']);
+Route::put('/surveyor/edit', [AdminController::class, 'getSurveyor']);
 Route::post('/surveyor/profile/', [AdminController::class, 'surveyorProfile']);
 Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
 Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
 Route::post('/surveyor/target/', [AdminController::class, 'surveyorTarget']);
-// Route::get('/surveyor/target/add/{id}', [AdminController::class, 'surveyorShowTarget']);
+
 
 
 // Profile Admin
