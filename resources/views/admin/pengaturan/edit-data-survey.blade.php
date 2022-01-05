@@ -1,18 +1,18 @@
 @extends('admin.main')
-@section('title','Pengaturan')
 @section('main-content')
 @include('admin.header')
-<div class="content d-flex flex-column ps-sm-0" id="set-content">
-    <div class="admin-hl mt-4 ps-sm-5 ms-sm-2 ps-1">
+<div class="content d-flex flex-column" id="set-content">
+    <div class="admin-hl mt-4">
         <h1>Edit Input Data Survei</h1>
         <p>Edit atau tambah input data survei di sini</p>
     </div>
 
     <div class="tambah-data d-flex flex-column w-100 mt-5 flex-wrap">
+        {{-- JALAN --}}
         <form action="/pengaturan/edit-data-survey/jalan/tambah" method="post" id="form-jalan"
-            class="data first needs-validation ms-sm-3" novalidate>
+            class="data first needs-validation ms-3" novalidate>
             @csrf
-            <div class="data d-flex ms-sm-5 align-items-end flex-column flex-sm-row">
+            <div class="data d-flex ms-5 align-items-center">
                 <div class="col-md-6">
                     <label for="validationServer01" class="form-label">Kondisi Jalan :</label>
                     <input type="text" class="form-control @error('jalan') is-invalid @enderror" name="jalan" id="jalan"
@@ -26,21 +26,21 @@
                 <button class="btn btn-primary ms-5 mt-2 submit" form="form-jalan" type="submit">+ Tambah</button>
             </div>
         </form>
-        <div class="edit ms-sm-5 mt-5 w-75">
+        {{-- DISPLAY JALAN --}}
+        <div class="edit ms-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Keadaan Jalan</h3>
+                <h3>Keadaan Jalan</h3>
                 @foreach ($jalan as $item)
                 <tr>
                     <td class="kolom"><span>{{ $item->jenis }}</span>
-                        <div id="jalan" class=" d-flex flex-wrap justify-content-center">
+                        <div id="jalan">
                             <button class="btn btn-warning me-2  btn-edit text-light" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="jalan" value="{{ $item->id }}">
                                 <i class="far fa-edit"></i>Edit
                             </button>
-                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3">
-                                <a href="/pengaturan/edit-data-survey/jalan/hapus/{{ $item->id }}" class=" text-white text-decoration-none"><i
-                                        class="far fa-trash-alt"></i>Hapus</a>
+                            <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3" data-model="jalan" value="{{ $item->id }}">
+                                <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
                     </td>
@@ -53,7 +53,7 @@
         <form action="/pengaturan/edit-data-survey/saluran/tambah" method="post" id="form-saluran"
             class="data first needs-validation ms-3" novalidate>
             @csrf
-            <div class="data d-flex ms-sm-5 align-items-end">
+            <div class="data d-flex ms-5 align-items-center">
                 <div class="col-md-6">
                     <label for="validationServer01" class="form-label">Kondisi Saluran :</label>
                     <input type="text" class="form-control @error('saluran') is-invalid @enderror" name="saluran"
@@ -67,20 +67,21 @@
                 <button class="btn btn-primary ms-5 mt-2 submit" form="form-saluran" type="submit">+ Tambah</button>
             </div>
         </form>
-        <div class="edit ms-sm-5 mt-5 w-75">
+        {{-- DISPLAY SALURAN --}}
+        <div class="edit ms-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Kondisi Saluran</h3>
+                <h3>Kondisi Saluran</h3>
                 @foreach ($saluran as $item)
                 <tr>
                     <td class="kolom"><span>{{ $item->jenis }}</span>
-                        <div id="saluran" class=" d-flex flex-wrap justify-content-center">
+                        <div id="saluran">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="saluran" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
-                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3"><a
-                                    href="/pengaturan/edit-data-survey/saluran/hapus/{{ $item->id }}" class=" text-white text-decoration-none"><i
-                                        class="far fa-trash-alt"></i>Hapus</a></button>
+                            <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3" data-model="saluran" value="{{ $item->id }}">
+                                <i class="far fa-trash-alt"></i>Hapus
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -92,7 +93,7 @@
         <form action="/pengaturan/edit-data-survey/fasos/tambah" method="post" id="form-fasos"
             class="data first needs-validation ms-3" novalidate>
             @csrf
-            <div class="data d-flex ms-sm-5 align-items-end">
+            <div class="data d-flex ms-5 align-items-center">
                 <div class="col-md-6">
                     <label for="validationServer01" class="form-label">Kondisi Fasos :</label>
                     <input type="text" class="form-control @error('fasos') is-invalid @enderror" name="fasos" id="fasos"
@@ -106,20 +107,21 @@
                 <button class="btn btn-primary ms-5 mt-2 submit" form="form-fasos" type="submit">+ Tambah</button>
             </div>
         </form>
-        <div class="edit ms-sm-5 mt-5 w-75">
+        {{-- DISPLAY FASOS --}}
+        <div class="edit ms-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Jenis Fasos</h3>
+                <h3>Jenis Fasos</h3>
                 @foreach ($sosial as $item)
                 <tr>
                     <td class="kolom"><span>{{ $item->jenis }}</span>
-                        <div id="fasos" class=" d-flex flex-wrap justify-content-center">
+                        <div id="fasos">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="fasos" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
-                            <button class="btn btn-danger" data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3"><a
-                                    href="/pengaturan/edit-data-survey/fasos/hapus/{{ $item->id }}" class=" text-white text-decoration-none"><i
-                                        class="far fa-trash-alt"></i>Hapus</a></button>
+                            <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3" data-model="fasos" value="{{ $item->id }}">
+                                <i class="far fa-trash-alt"></i>Hapus
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -129,11 +131,11 @@
 
         <!-- LAMPIRAN -->
         <form action="/pengaturan/edit-data-survey/lampiran/tambah" method="post" id="form-lampiran"
-            class="data first needs-validation ms-sm-3" novalidate>
+            class="data first needs-validation ms-3" novalidate>
             @csrf
-            <div class="data d-flex ms-sm-5 align-items-end">
+            <div class="data d-flex ms-5 align-items-center">
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Lampiran Data :</label>
+                    <label for="validationServer01" class="form-label">Jenis Lampiran :</label>
                     <input type="text" class="form-control @error('lampiran') is-invalid @enderror" name="lampiran"
                         id="lampiran" aria-describedby="validationServer01Feedback" required>
                     @error('lampiran')
@@ -145,20 +147,21 @@
                 <button class="btn btn-primary ms-5 mt-2 submit" form="form-fasos" type="submit">+ Tambah</button>
             </div>
         </form>
-        <div class="edit ms-sm-5 mt-5 w-75">
+        {{-- DISPLAY LAMPIRAN --}}
+        <div class="edit ms-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Jenis Lampiran</h3>
+                <h3>Jenis Lampiran</h3>
                 @foreach ($lampiran as $item)
                 <tr>
                     <td class="kolom"><span>{{ $item->jenis }}</span>
-                        <div class=" d-flex flex-wrap justify-content-center">
-                            <button class="btn btn-warning me-2 btn-edit text-light" data-bs-toggle="modal"
+                        <div id="lampiran">
+                            <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
                                 data-bs-target="#modal-edit" data-model="lampiran" value="{{ $item->id }}"><i
                                     class="far fa-edit"></i>Edit</button>
-                            <button class="btn btn-danger " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal3"><a
-                                    href="/pengaturan/edit-data-survey/lampiran/hapus/{{ $item->id }}" class=" text-white text-decoration-none"><i
-                                        class="far fa-trash-alt"></i>Hapus</a></button>
+                            <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal3" data-model="lampiran" value="{{ $item->id }}">
+                                <i class="far fa-trash-alt"></i>Hapus
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -217,9 +220,12 @@
 <script>
     $(document).ready(function () {
         $(".btn-edit").click(function (e) {
-            $('#id').attr('value', e.target.value);
-            $('#target').attr('value',$(e.target).data('model'));
-            $('#jenis').attr('value',$(this).parent().siblings().text());
+            console.log(e.target.value)
+            console.log($(e.target).data('model'))
+            console.log($(this).parent().siblings().text())
+            $('#edit-id').attr('value', e.target.value);
+            $('#edit-model').attr('value',$(e.target).data('model'));
+            $('#edit-jenis').attr('value',$(this).parent().siblings().text());
         });
         
         $(".btn-hapus").click(function(e) {
