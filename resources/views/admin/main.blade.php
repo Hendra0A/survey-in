@@ -55,7 +55,7 @@
         <!-- sidebar end -->
 
         <!-- main-content -->
-        <section class="my-container d-flex flex-column w-100" id="prf-page-section">
+        <section class="my-container d-flex flex-column w-100 pt-3 overflow-hidden" id="prf-page-section">
             <button class="btn my-2" id="menu-btn">xxx</button>
             <!-- Header -->
             <!-- Content -->
