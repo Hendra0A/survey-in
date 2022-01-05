@@ -2,9 +2,11 @@
 @section('title','Profile')
 @section('main-content')
     @include('admin.header')
-    <div class="content d-flex flex-column ms-sm-1 ps-sm-1 ms-0 ps-0" id="prf-page-content">
-        <div class="admin-hl mt-4">
-            <h1>Profil Admin</h1>
+
+    <div class="content d-flex flex-column" id="prf-page-content">
+        <div class="admin-hl mt-4 ps-sm-5 ms-sm-2 ps-1">
+            <h1>Profile Admin</h1>
+
             <p>Profil Admin berisi data pribadi Admin.</p>
             <div class="admin d-flex">
                 <img src="{{ $profile->avatar }}" alt="aw" class="hl-img rounded-circle">
@@ -19,27 +21,27 @@
                 <tr>
                     <td class="left-bio p-2">Nama Lengkap</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ ucwords($profile->nama_lengkap) }}</td>
+                    <td class="right-bio p-2">: {{ ucwords($profile->nama_lengkap) }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Email</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $profile->email }}</td>
+                    <td class="right-bio p-2">: {{ $profile->email }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Jenis Kelamin</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ ucwords($profile->gender) }}</td>
+                    <td class="right-bio p-2">: {{ ucwords($profile->gender) }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">No. Handphone</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $profile->nomor_telepon }}</td>
+                    <td class="right-bio p-2">: {{ $profile->nomor_telepon }}</td>
                 </tr>
                 <tr style="border: none;">
                     <td class="left-bio p-2">Alamat</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $profile->alamat }}</td>
+                    <td class="right-bio p-2">: {{ $profile->alamat }}</td>
                 </tr>
             </table>
         </div>

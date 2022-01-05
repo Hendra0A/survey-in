@@ -71,8 +71,8 @@
         </div>
 
         <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
-            <table class="table table-hover" id="dasur-table" style="width: 100%;">
-                <thead>
+            <table class="table table-hover table-responsive col-lg-12" id="dasur-table" style="width: 100%;">    
+            <thead>
                     <tr>
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
                         <th scope="col" style="width: 21%;">Lokasi</th>
