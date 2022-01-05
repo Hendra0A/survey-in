@@ -59,7 +59,6 @@ $(document).ready(async function() {
                         <td class="last-kolom">'+ element.user.nama_lengkap +'</td>\
                         <td>\
                             <div class="btn-table gap-1 justify-content-end">\
-                            <a class="btn btn-warning shadow-none"><i class="far fa-edit"></i>Edit</a>\
                 <a href="/data-survei/' + element.id +
                                     '" class="btn btn-primary shadow-none" id="detail"><i\
                         class="far fa-file"></i>Detail</a>\
