@@ -11,4 +11,9 @@ class Fasos extends Model
     use HasFactory;
     use SoftDeletes;
     public $timestamps = false;
+
+    public function dataSurvey()
+    {
+        return $this->belongsTo(DataSurvey::class);
+    }
 }
