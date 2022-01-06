@@ -30,6 +30,10 @@ $(document).ready(async function () {
             data = await getData(`/kecamatan`, idKab);
             setData(data.data[0].id);
             $(".text-kec").text(data.data[0].nama);
+            $("#resume").attr(
+                "href",
+                `/data-survei/print/resume/${data.data[0].id}`
+            );
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {
@@ -78,6 +82,7 @@ $(document).ready(async function () {
     $("#kecamatan").change(function (e) {
         e.preventDefault();
         $(".text-kec").text($(this).find("option:selected").text());
+        $("#resume").attr("href", `/data-survei/print/resume/` + $(this).val());
         setData($(this).val());
     });
 
