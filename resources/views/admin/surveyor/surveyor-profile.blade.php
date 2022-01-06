@@ -1,20 +1,20 @@
 @extends('admin.main')
-@section('title','Surveyor')     
+@section('title', 'Surveyor')
 @section('main-content')
     @include('admin.header')
     <!-- content -->
     <div class="content d-flex flex-column" id="surveyor-profile">
         <div class="surveyor-hl ms-5">
             <h1>Profil Surveyor</h1>
-            <p class="mb-5">Dibawah ini adalah lengkap <br> dari surveyor</p>
+            <p class="mb-5">Dibawah ini adalah informasi lengkap <br> dari surveyor</p>
 
             <!-- avatar -->
             <div class="surveyor">
-                <img src="{{ $profile->avatar }}" class="profile-img rounded-circle">
+                <img src="{{ $profile_surveyor->avatar }}" class="profile-img rounded-circle">
             </div>
             <div class="profile-status mt-3 d-flex flex-column">
-                <h3>{{ ucwords($profile->nama_lengkap) }}</h3>
-                <p>{{ ucwords($profile->role) }}</p>
+                <h3>{{ ucwords($profile_surveyor->nama_lengkap) }}</h3>
+                <p>{{ ucwords($profile_surveyor->role) }}</p>
             </div>
         </div>
 
@@ -51,11 +51,13 @@
                                     <tbody class="isi-tabel">
                                         @foreach ($detailSurvey as $item)
                                             <tr>
-                                                <td>{{ $profile->nama_lengkap }}</td>
+                                                <td>{{ $profile_surveyor->nama_lengkap }}</td>
                                                 <td>{{ $item->kecamatan->nama }}</td>
                                                 <td>Per-Minggu</td>
-                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('j F Y') }}</td>
-                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('j F Y') }}</td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('j F Y') }}
+                                                </td>
+                                                <td>{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('j F Y') }}
+                                                </td>
 
                                                 <td>{{ $item->selesai }} dari {{ $item->target }} Gang dan Perumahan
                                                 </td>
@@ -84,7 +86,7 @@
                 <table class="bio">
                     <tr>
                         <td class="left-bio">Nama Lengkap</td>
-                        <td class="right-bio">: {{ ucwords($profile->nama_lengkap) }}</td>
+                        <td class="right-bio">: {{ ucwords($profile_surveyor->nama_lengkap) }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Wilayah Survei</td>
@@ -92,25 +94,25 @@
                     </tr>
                     <tr>
                         <td class="left-bio">Email</td>
-                        <td class="right-bio">: {{ $profile->email }}</td>
+                        <td class="right-bio">: {{ $profile_surveyor->email }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">No. Handphone</td>
-                        <td class="right-bio">: {{ $profile->nomor_telepon }}</td>
+                        <td class="right-bio">: {{ $profile_surveyor->nomor_telepon }}</td>
                     </tr>
                     <tr class="w-100">
                         <td class="left-bio">Alamat</td>
                         <td class="right-bio text-wrap">:
-                            {{ $profile->alamat }}</td>
+                            {{ $profile_surveyor->alamat }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Jenis Kelamin</td>
-                        <td class="right-bio">: {{ ucwords($profile->gender) }}</td>
+                        <td class="right-bio">: {{ ucwords($profile_surveyor->gender) }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Tanggal Lahir</td>
                         <td class="right-bio">:
-                            {{ $profile->tanggal_lahir === null ? $profile->tanggal_lahir : \Carbon\Carbon::parse($profile->tanggal_lahir)->format('j F, Y') }}
+                            {{ $profile_surveyor->tanggal_lahir === null ? $profile_surveyor->tanggal_lahir : \Carbon\Carbon::parse($profile_surveyor->tanggal_lahir)->format('j F, Y') }}
                         </td>
                     </tr>
                     <tr>
@@ -131,12 +133,12 @@
             </div>
         </div>
 
-         <!-- Btn Ubah Password -->
+        <!-- Btn Ubah Password -->
         <div class="ubah-password d-flex justify-content-center mt-5">
             <form action="/surveyor/edit" method="POST">
                 @csrf
                 @method('put')
-                <input type="hidden" name="id" value="{{ $profile->id }}">
+                <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
                 <input class="btn btn-primary ps-5 pe-5 mb-5" type="submit" value="Ubah Password">
             </form>
         </div>

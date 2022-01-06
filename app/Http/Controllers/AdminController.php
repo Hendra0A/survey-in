@@ -107,7 +107,8 @@ class AdminController extends Controller
         $detail = [
             'active' => 'surveyor',
             'title' => 'Surveyor - Profile',
-            'profile' => $data[0],
+            'profile' => User::where('role', 'admin')->get()[0],
+            'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
             'weekly_target' => $weekly_target,
