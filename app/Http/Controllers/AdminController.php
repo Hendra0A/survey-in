@@ -410,7 +410,7 @@ class AdminController extends Controller
     public function dataSurvei()
     {
         return view('admin.data-survei', [
-            'active' => 'data',
+            'active' => 'data survei',
             'title' => 'Data Survei',
             'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'kabupaten' => Kabupaten::get(['id', 'nama'])
