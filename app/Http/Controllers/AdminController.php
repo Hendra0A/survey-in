@@ -438,7 +438,7 @@ class AdminController extends Controller
 
     public function cetakResumeDataSurvei($id)
     {
-        $data = DataSurvey::with(['jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto'])->where('kecamatan_id', $id)->get();
+        $data = DataSurvey::with(['jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
         dd($data);
         // fasos
         if ($data[0]->fasos === 1) {
