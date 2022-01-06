@@ -11,6 +11,7 @@
 @import url("surveyor-profil.css");
 @import url("beranda-page.css");
 @import url("dasur-page.css");
+@import url("detail-data-survei.css");
 
 :root {
     --main-font: "Poppins", sans-serif;
