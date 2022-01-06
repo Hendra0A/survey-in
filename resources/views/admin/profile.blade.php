@@ -1,5 +1,5 @@
 @extends('admin.main')
-@section('title','Profile')
+@section('title', 'Profile')
 @section('main-content')
     @include('admin.header')
 
@@ -46,8 +46,10 @@
             </table>
         </div>
         <div class="submit d-flex justify-content-center mt-5">
-            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>
-            
+            <a href="/profile/edit-profile/admin"
+                class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none h-auto"
+                id="submit">Edit profil</a>
+
         </div>
     </div>
 @endsection
