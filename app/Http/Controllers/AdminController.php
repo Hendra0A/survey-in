@@ -43,6 +43,7 @@ class AdminController extends Controller
             'active' => 'profile',
             'profile' => User::where('role', 'admin')->get()[0]
         ];
+        // dd($data);
         return view('admin.profile', $data);
     }
     public function profileEdit()
@@ -456,8 +457,10 @@ class AdminController extends Controller
                 'allow_self_signed' => TRUE,
             ]
         ]);
-
-        $pdf = \PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        // jika erorr
+        // jalankan di terminal
+        // composer require barryvdh/laravel-dompdf
+        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
         $pdf->getDomPDF()->setHttpContext($contxt);
         //#################################################################################
 
