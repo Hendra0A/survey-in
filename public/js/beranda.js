@@ -42,12 +42,22 @@ $(document).ready(async function () {
             $("#jlnJelek").text("-");
             $("#jlnBaik").text("-");
         } else {
-            $("#jmlGang").text(dataS.jumlah);
-            $("#jmlRumah").text(dataS.jumlahRumah);
-            $("#pnjJalan").text(dataS.panjangJalan);
-            $("#lbrJalan").text(dataS.lebarJalan);
-            $("#jlnJelek").text(dataS.jalanJelek);
-            $("#jlnBaik").text(dataS.jalanBaik);
+            $("#jmlGang").text(Intl.NumberFormat("id-ID").format(dataS.jumlah));
+            $("#jmlRumah").text(
+                Intl.NumberFormat("id-ID").format(dataS.jumlahRumah)
+            );
+            $("#pnjJalan").text(
+                Intl.NumberFormat("id-ID").format(dataS.panjangJalan) + " m"
+            );
+            $("#lbrJalan").text(
+                Intl.NumberFormat("id-ID").format(dataS.lebarJalan) + " m"
+            );
+            $("#jlnJelek").text(
+                Intl.NumberFormat("id-ID").format(dataS.jalanJelek) + "%"
+            );
+            $("#jlnBaik").text(
+                Intl.NumberFormat("id-ID").format(dataS.jalanBaik) + "%"
+            );
         }
     };
     $("#kecamatan").change(function (e) {
