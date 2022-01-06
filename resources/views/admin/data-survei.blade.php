@@ -37,28 +37,10 @@
                     </div>
                 </div>
             </div>
-
-            {{-- <div class="select-sub d-flex flex-wrap gap-2 mb-5 justify-content-center" id="dasur-select">
-
-                <div class="group w-100 ps-5 pe-5 gap-3 d-flex justify-content-center" role="group"
-                    aria-label="Basic example" id="dasur-group">
-                    <button type="button" class="btn btn-primary p-2 shadow-none active btn-select"
-                        aria-pressed="true">Pontianak Barat</button>
-                    <button type="button" class="btn btn-primary p-2 shadow-none btn-select">Pontianak Kota</button>
-                    <button type="button" class="btn btn-primary p-2 shadow-none btn-select">Pontianak Selatan</button>
-                </div>
-
-                <div class="group w-100 ps-5 pe-5 gap-3 d-flex justify-content-center" role="group"
-                    aria-label="Basic example" id="dasur-group-dua">
-                    <button type="button" class="btn btn-primary p-2 shadow-none btn-select">Pontianak Tenggara</button>
-                    <button type="button" class="btn btn-primary p-2 shadow-none btn-select">Pontianak Timur</button>
-                    <button type="button" class="btn btn-primary p-2 shadow-none btn-select">Pontianak Utara</button>
-                </div>
-            </div> --}}
     </div>
 
     <div class="download d-flex justify-content-between ps-5 pe-5 mb-3">
-        <button type="button" class="btn btn-outline-primary download shadow-none" id="resume">Download Resume</button>
+        <a type="button" class="btn btn-outline-primary download shadow-none" id="resume">Download Resume</a>
         <form action="" method="post">
             <div class="pencarian d-flex align-items-center">
                 <div class="pencarian-input me-3">
@@ -69,7 +51,6 @@
             </div>
         </form>
     </div>
-
     <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
         <table class="table table-hover" id="dasur-table" style="width: 100%;">
             <thead>

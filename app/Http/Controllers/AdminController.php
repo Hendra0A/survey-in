@@ -436,6 +436,43 @@ class AdminController extends Controller
         ]);
     }
 
+    public function cetakResumeDataSurvei($id)
+    {
+        $data = DataSurvey::with(['jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto'])->where('kecamatan_id', $id)->get();
+        dd($data);
+        // fasos
+        if ($data[0]->fasos === 1) {
+            $fasos = $data[0]->jenisFasos;
+        } else {
+            $fasos = 0;
+        }
+        $pdf = app('dompdf.wrapper');
+
+        //############ if image are not loading execute this code ################################
+        $contxt = stream_context_create([
+            'ssl' => [
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                'allow_self_signed' => TRUE,
+            ]
+        ]);
+        // jika erorr
+        // jalankan di terminal
+        // composer require barryvdh/laravel-dompdf
+        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        $pdf->getDomPDF()->setHttpContext($contxt);
+        //#################################################################################
+
+        //Cargar vista/tabla html y enviar varibles con la data
+        $pdf->loadView('admin.data-survei.detail-data-survei', [
+            'title' => 'Data Survei',
+            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
+            'data' => $data[0],
+            'fasos' => $fasos,
+        ]);
+        //descargar la vista en formato pdf 
+        return $pdf->download($data[0]->nama_gang . ".pdf");
+    }
     public function cetakDetailDataSurvei($id)
     {
         $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto')->where('id', $id)->get();
