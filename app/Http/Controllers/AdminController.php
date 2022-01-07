@@ -431,7 +431,7 @@ class AdminController extends Controller
 
     public function detailDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
             // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
@@ -441,7 +441,7 @@ class AdminController extends Controller
 
     public function cetakResumeDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
         dd($data);
         // fasos
         if ($data[0]->fasos === 1) {
@@ -478,7 +478,7 @@ class AdminController extends Controller
     }
     public function cetakDetailDataSurvei($id)
     {
-        $data = DataSurvey::with(['kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+        $data = DataSurvey::with(['kecamatan', 'konstruksiJalan', 'konstruksiSaluran', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
 
         $pdf = app('dompdf.wrapper');
 

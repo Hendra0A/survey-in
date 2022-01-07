@@ -10,4 +10,8 @@ class JenisKonstruksiJalan extends Model
     use HasFactory;
     public $timestamps = false;
     protected $guarded = ['id'];
+    public function dataSurvey()
+    {
+        return $this->hasMany(DataSurvey::class);
+    }
 }

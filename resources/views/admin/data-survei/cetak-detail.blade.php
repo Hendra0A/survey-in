@@ -44,20 +44,21 @@
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
                     <td>:</td>
-                    <td>{{ $data->status_jalan }}</td>
+                    <td>{{$data->konstruksiJalan->jenis}} Kondisi {{ $data->status_jalan }}% {{ ($data->status_jalan>=50)? '(baik)':'(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
                     <td>:</td>
                     <td>
-                        Panjang = {{ $data->dimensi_jalan_panjang }}m <br>
-                        Lebar = {{ $data->dimensi_jalan_lebar }}m
+                        Panjang = {{ ($data->dimensi_saluran_panjang_kanan!=0)?$data->dimensi_saluran_panjang_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_panjang_kiri!=0)?$data->dimensi_saluran_panjang_kiri.' m' :'tidak ada'  }}  (kiri)<br>
+                        Lebar = {{ ($data->dimensi_saluran_lebar_kanan!=0)?$data->dimensi_saluran_lebar_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_lebar_kiri!=0)?$data->dimensi_saluran_lebar_kiri.' m' :'tidak ada'  }} (kiri)<br>
+                        Kedalaman = {{ ($data->dimensi_saluran_kedalaman_kanan!=0)?$data->dimensi_saluran_kedalaman_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_kedalaman_kiri!=0)?$data->dimensi_saluran_kedalaman_kiri.' m' :'tidak ada'  }} (kiri)<br>
                     </td>
                 </tr>
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
                     <td>:</td>
-                    <td>{{ $data->status_saluran }}</td>
+                    <td>{{$data->konstruksiSaluran->jenis}} Kondisi {{ $data->status_saluran }}% {{ ($data->status_saluran>=50)? '(baik)':'(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
@@ -79,19 +80,19 @@
                                 <td style="padding: 0 10px"></td>
                                 <td>Panjang</td>
                                 <td>=</td>
-                                <td>{{ $item->panjang }}</td>
+                                <td>{{ $item->panjang }} m</td>
                             </tr>
                             <tr>
                                 <td style="padding: 0 10px"></td>
                                 <td>Lebar</td>
                                 <td>=</td>
-                                <td>{{ $item->lebar }}</td>
+                                <td>{{ $item->lebar }} m</td>
                             </tr>
                             <tr>
                                 <td style="padding: 0 10px"></td>
                                 <td>Luas</td>
                                 <td>=</td>
-                                <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }}</td>
+                                <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }} m</td>
                             </tr>
                         </table>
                         @endforeach
@@ -106,17 +107,17 @@
                             <tr>
                                 <td>Layak </td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_layak }}</td>
+                                <td>{{ $data->jumlah_rumah_layak }} Unit</td>
                             </tr>
                             <tr>
                                 <td>Tidak Layak</td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_tak_layak }}</td>
+                                <td>{{ $data->jumlah_rumah_tak_layak }} Unit</td>
                             </tr>
                             <tr>
                                 <td>Kosong</td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_kosong }}</td>
+                                <td>{{ $data->jumlah_rumah_kosong }} Unit</td>
                             </tr>
                         </table>
                     </td>
@@ -129,12 +130,12 @@
                             <tr>
                                 <td>Developer</td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_developer }}</td>
+                                <td>{{ $data->jumlah_rumah_developer }} Unit</td>
                             </tr>
                             <tr>
                                 <td>Swadaya</td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_swadaya }}</td>
+                                <td>{{ $data->jumlah_rumah_swadaya }} Unit</td>
                             </tr>
                         </table>
                     </td>
@@ -178,7 +179,7 @@
                     <td>No IMB Pendahuluan</td>
                     <td>:</td>
                     <td>
-                        {{ $data->no_imb }}
+                        {{ ($data->no_imb!=0 )? $data->no_imb : '-' }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -192,7 +193,7 @@
                     <td>Lampiran Data</td>
                     <td>:</td>
                     <td>
-                        
+                        {{ (count($data->lampiranFoto) == 0 && count($data->fasosTable)==0)? '-':''  }}
                     </td>
                 </tr>
             </table>

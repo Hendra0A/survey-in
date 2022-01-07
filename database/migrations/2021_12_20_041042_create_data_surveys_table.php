@@ -62,7 +62,7 @@ class CreateDataSurveysTable extends Migration
             $table->integer('pos_jaga');
             $table->boolean('fasos');
             $table->boolean('ruko');
-            $table->string('no_imb');
+            $table->string('no_imb')->default(0);
 
             $table->text('catatan');
             // timestamps
