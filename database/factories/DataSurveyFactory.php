@@ -53,7 +53,8 @@ class DataSurveyFactory extends Factory
             'pos_jaga' => $this->faker->numberBetween(0, 100),
             'fasos' => $this->faker->numberBetween(0, 1),
             'ruko' => $this->faker->numberBetween(0, 1),
-            'no_imb' => $this->faker->postcode()
+            'no_imb' => $this->faker->postcode(),
+            'catatan' => $this->faker->paragraph()
         ];
     }
 }

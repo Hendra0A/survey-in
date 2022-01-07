@@ -161,6 +161,14 @@ i {
     letter-spacing: 0.02em;
 }
 
+.subhead-a {
+    flex: 1;
+}
+
+.subhead-b {
+    flex: 1;
+}
+
 #dropdownMenuLink {
     color: gray;
     background-color: #f3f5f7;
@@ -269,4 +277,8 @@ button#cancel {
 #exampleModal2 .choose a {
     text-decoration: none;
     color: white;
+}
+
+.form-control.is-invalid {
+    background: none;
 }
