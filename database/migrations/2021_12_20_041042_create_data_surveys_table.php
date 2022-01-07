@@ -64,6 +64,7 @@ class CreateDataSurveysTable extends Migration
             $table->boolean('ruko');
             $table->string('no_imb');
 
+            $table->text('catatan');
             // timestamps
             $table->timestamps();
             $table->softDeletes();

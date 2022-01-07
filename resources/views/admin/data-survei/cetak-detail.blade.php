@@ -6,56 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="/fontawesome5/css/all.css">
     <link rel="stylesheet" href="/css/custom.css">
-    <style>
-        .data{
-            width: 210mm;
-            margin: auto;
-            min-height: 100vh;
-            background-color: whitesmoke;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        }
-        body{
-            background-color: gray
-        }
-        .btn-download{
-            position: fixed;
-            top: 2%;
-            right:2%;
-            background: blueviolet;
-            padding: 10px 50px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        }
-        .btn-back{
-            position: fixed;
-            top: 2%;
-            left:3%;
-            background: rgb(137, 43, 226);
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            color: white
-        }.btn-back i{
-            color: white;
-            text-align: center
-        }
-        .btn-download a{
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-        }
-        table{
-            table-layout: fixed
-        }
-    </style>
-
 </head>
 
-
 <body>
-    <div class="data" >
+    <div class="data">
         <center><br>
             <h2 class="hh">DATA PRASARANA UTILITAS GANG DAN PERUMAHAN </h2>
             <h2>({{ $data->kecamatan->nama }})</h2>
@@ -65,22 +20,22 @@
             <table align="center"  cellspacing='0' cellpadding="7">
                 <tr valign='top'>
                     <td>Nama Gang atau Perumahan</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>{{ $data->nama_gang }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Lokasi</td>
-                    <td style="padding: 0 20px"> : </td>
+                    <td> : </td>
                     <td>{{ $data->lokasi }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Koordinat</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>{{ $data->no_gps }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Jalan Utama</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>
                         Panjang = {{ $data->dimensi_jalan_panjang }}m <br>
                         Lebar = {{ $data->dimensi_jalan_lebar }}m
@@ -88,12 +43,12 @@
                 </tr>
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>{{ $data->status_jalan }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>
                         Panjang = {{ $data->dimensi_jalan_panjang }}m <br>
                         Lebar = {{ $data->dimensi_jalan_lebar }}m
@@ -101,12 +56,12 @@
                 </tr>
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>{{ $data->status_saluran }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>
                     @if (count($data->fasosTable)==0)
                         Tidak ada
@@ -145,7 +100,7 @@
                 </tr>
                 <tr valign='top'>
                     <td>Jumlah Rumah</td>
-                    <td style="padding: 0 20px"> : </td>
+                    <td> : </td>
                     <td>
                         <table>
                             <tr>
@@ -168,7 +123,7 @@
                 </tr>
                 <tr valign='top'>
                     <td>Jenis Rumah</td>
-                    <td style="padding: 0 20px"> : </td>
+                    <td> : </td>
                     <td>
                         <table>
                             <tr>
@@ -186,21 +141,21 @@
                 </tr>
                 <tr valign='top'>
                     <td>Pos Jaga</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>
                         {{ $data->pos_jaga }}
                     </td>
                 </tr>
                 <tr valign='top'>
                     <td>Catatan</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td style="max-width: 30px">
                         {{ $data->catatan }}
                     </td>
                 </tr>
                 <tr valign='top'>
                     <td>Lampiran Data</td>
-                    <td style="padding: 0 20px">:</td>
+                    <td>:</td>
                     <td>
                         
                     </td>
@@ -214,7 +169,7 @@
                     @endif
                         <td align="center" style="padding: 10px">
                             <h3 style="text-align: center">{{$item->jenisLampiran->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="100%">
+                            <img src="{{$item->foto}}" width="50%">
                         </td>
                     @if ( ($loop->iteration % 2== 0))
                     </tr>
@@ -222,12 +177,5 @@
                 @endforeach
             </table>
         </center>
-    </div>
-    <div class="btn-download">
-        <a class="btn-cetak" href="/data-survei/print/{{ $data->id }}"><i class="fas fa-download"></i>Download</a>
-    </div>
-    <div class="btn-back">
-        <a class="btn-cetak" href="/data-survei"><i class="fas fa-arrow-left"></i></a>
-    </div>
 </body>
 </html>
