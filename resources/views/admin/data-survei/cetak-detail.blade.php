@@ -17,7 +17,7 @@
         </center><br>
 
         <center>
-            <table align="center"  cellspacing='0' cellpadding="7">
+            <table align="center"  cellspacing='0'>
                 <tr valign='top'>
                     <td>Nama Gang atau Perumahan</td>
                     <td>:</td>
@@ -143,7 +143,34 @@
                     <td>Pos Jaga</td>
                     <td>:</td>
                     <td>
-                        {{ $data->pos_jaga }}
+                        {{ ($data->pos_jaga==1)?'Ada' :'Tidak Ada' }}
+                    </td>
+                </tr>
+                <tr valign='top'>
+                    <td>Ruko di Bagian Depan</td>
+                    <td>:</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td>
+                                    Kanan =
+                                    {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} lantai
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Kiri =
+                                    {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} lantai
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr valign='top'>
+                    <td>No IMB Pendahuluan</td>
+                    <td>:</td>
+                    <td>
+                        {{ $data->no_imb }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -161,21 +188,37 @@
                     </td>
                 </tr>
             </table>
-            <table width='80%' align="center">
+            <table width='100%' align="center">
                 {{-- @dd($data->lampiranFoto) --}}
-                @foreach ($data->lampiranFoto as $item)
+                @foreach ($data->fasosTable as $item)
                     @if ( ($loop->iteration % 2== 1))
                     <tr>
                     @endif
                         <td align="center" style="padding: 10px">
-                            <h3 style="text-align: center">{{$item->jenisLampiran->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="50%">
+                            <h3 style="text-align: center">{{$item->jenisFasos->jenis}}</h3>
+                            <img src="{{$item->foto}}" width="300px" height="200px">
                         </td>
-                    @if ( ($loop->iteration % 2== 0))
+                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->fasosTable)+1))
+                    </tr>
+                    @endif
+                @endforeach
+            </table>
+            <table align='center' width="100%">
+                {{-- @dd($data->lampiranFoto) --}}
+                @foreach ($data->lampiranFoto as $item)
+                    @if ( ($loop->iteration % 2== 1) || ($loop->iteration == count($data->lampiranFoto)+1))
+                    <tr>
+                    @endif
+                        <td align="center" style="padding: 10px">
+                            <h3 style="text-align: center">{{$item->jenisLampiran->jenis}}</h3>
+                            <img src="{{$item->foto}}" width="300px" height="200px">
+                        </td>
+                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->lampiranFoto)+1))
                     </tr>
                     @endif
                 @endforeach
             </table>
         </center>
+    </div>
 </body>
 </html>
