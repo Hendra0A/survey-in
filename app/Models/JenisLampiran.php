@@ -15,4 +15,8 @@ class JenisLampiran extends Model
     {
         return $this->belongsToMany(DataSurvey::class, 'lampiran_fotos');
     }
+    public function lampiranFoto()
+    {
+        return $this->hasMany(LampiranFoto::class);
+    }
 }

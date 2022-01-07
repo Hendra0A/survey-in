@@ -16,6 +16,7 @@ class CreateLampiranFotosTable extends Migration
     public function up()
     {
         Schema::create('lampiran_fotos', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(DataSurvey::class);
             $table->foreignIdFor(JenisLampiran::class)->onDelete('cascade');
             $table->string('foto');

@@ -20,26 +20,15 @@ class DataSurvey extends Model
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,);
     }
 
     public function fasosTable()
     {
         return $this->hasMany(Fasos::class, 'data_survey_id');
     }
-
-    public function jenisFasos()
-    {
-        return $this->belongsToMany(JenisFasos::class, 'fasos');
-    }
-
     public function lampiranFoto()
     {
         return $this->hasMany(LampiranFoto::class, 'data_survey_id');
-    }
-
-    public function jenisLampiran()
-    {
-        return $this->belongsToMany(JenisLampiran::class, 'lampiran_fotos');
     }
 }

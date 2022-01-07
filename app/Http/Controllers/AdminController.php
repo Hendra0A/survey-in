@@ -419,26 +419,17 @@ class AdminController extends Controller
 
     public function detailDataSurvei($id)
     {
-        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto')->where('id', $id)->get();
-
-        // fasos
-        if ($data[0]->fasos === 1) {
-            $fasos = $data[0]->jenisFasos;
-        } else {
-            $fasos = 0;
-        }
-
+        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
             'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
-            'fasos' => $fasos,
         ]);
     }
 
     public function cetakResumeDataSurvei($id)
     {
-        $data = DataSurvey::with(['jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
+        $data = DataSurvey::with(['user', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
         dd($data);
         // fasos
         if ($data[0]->fasos === 1) {
@@ -475,7 +466,7 @@ class AdminController extends Controller
     }
     public function cetakDetailDataSurvei($id)
     {
-        $data = DataSurvey::with('user', 'jenisFasos', 'fasosTable', 'jenisLampiran', 'lampiranFoto')->where('id', $id)->get();
+        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
 
         // fasos
         if ($data[0]->fasos === 1) {
@@ -483,7 +474,6 @@ class AdminController extends Controller
         } else {
             $fasos = 0;
         }
-
         $pdf = app('dompdf.wrapper');
 
         //############ if image are not loading execute this code ################################

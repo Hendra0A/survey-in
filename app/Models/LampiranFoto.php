@@ -14,6 +14,10 @@ class LampiranFoto extends Model
 
     public function dataSurvey()
     {
-        return $this->belongsTo(DataSurvey::class);
+        return $this->belongsTo(DataSurvey::class, 'data_survey_id');
+    }
+    public function jenisLampiran()
+    {
+        return $this->belongsTo(JenisLampiran::class, 'jenis_lampiran_id');
     }
 }

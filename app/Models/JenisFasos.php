@@ -13,8 +13,12 @@ class JenisFasos extends Model
     public $timestamps = false;
     protected $guarded = ['id'];
 
-    public function dataSurvey()
+    // public function dataSurvey()
+    // {
+    //     return $this->belongsTo(DataSurvey::class, 'fa);
+    // }
+    public function fasos()
     {
-        return $this->belongsToMany(DataSurvey::class, 'fasos');
+        return $this->hasMany(Fasos::class, 'jenis_fasos_id');
     }
 }

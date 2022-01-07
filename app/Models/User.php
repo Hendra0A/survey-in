@@ -20,7 +20,7 @@ class User extends Model
 
     public function dataSurvey()
     {
-        return $this->hasMany(DataSurvey::class, 'users_id');
+        return $this->hasMany(DataSurvey::class, 'user_id');
     }
     public function detailSurvey()
     {

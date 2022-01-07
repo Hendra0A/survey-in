@@ -16,4 +16,8 @@ class Fasos extends Model
     {
         return $this->belongsTo(DataSurvey::class);
     }
+    public function jenisFasos()
+    {
+        return $this->belongsTo(JenisFasos::class);
+    }
 }

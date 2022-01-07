@@ -15,6 +15,7 @@ class CreateFasosTable extends Migration
     public function up()
     {
         Schema::create('fasos', function (Blueprint $table) {
+            $table->id();
             $table->foreignIdFor(DataSurvey::class);
             $table->foreignId('jenis_fasos_id');
             $table->string('koordinat_fasos');
