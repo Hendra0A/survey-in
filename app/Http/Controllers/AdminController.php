@@ -107,7 +107,8 @@ class AdminController extends Controller
         $detail = [
             'active' => 'surveyor',
             'title' => 'Surveyor - Profile',
-            'profile' => $data[0],
+            'profile' => User::where('role', 'admin')->get()[0],
+            'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
             'weekly_target' => $weekly_target,
@@ -410,7 +411,7 @@ class AdminController extends Controller
     public function dataSurvei()
     {
         return view('admin.data-survei', [
-            'active' => 'data',
+            'active' => 'data survei',
             'title' => 'Data Survei',
             'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'kabupaten' => Kabupaten::get(['id', 'nama'])
