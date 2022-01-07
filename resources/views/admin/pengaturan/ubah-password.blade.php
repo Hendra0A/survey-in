@@ -9,54 +9,61 @@
     </div>
 
     <div class="login-form d-flex flex-column w-100 justify-content-center mt-5" id="edit-pw-login">
-        <form action="/pengaturan/ubah-password" method="post" class="login d-flex flex-column ps-sm-3 ms-sm-3 ms-1 col-md-6 col-12" autocomplete="off">
+        <form action="/pengaturan/ubah-password" method="post"
+            class="login d-flex flex-column ps-sm-3 ms-sm-3 ms-1 col-md-6 col-12" autocomplete="off">
             {{-- <div class="login mb-3 ms-sm-5 w-75">
                 <label for="exampleInputEmail1" class="form-label login">Email :</label>
                 <input name="email" type="email" class="kolom form-control border-primary shadow-none" id="id_email"
                     aria-describedby="emailHelp">
             </div> --}}
             @csrf
-            <div class="login mb-3 ms-sm-5 w-75 position-relative">
+            <div class="login mb-3 ms-sm-5 w-75">
                 <label for="exampleInputPassword1" class="form-label login">Password Lama :</label>
-                <input name="kata_sandi_lama" type="password"
-                    class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_lama') is-invalid @enderror"
-                    id="id_password">
-                @error('kata_sandi_lama')
-                <div id="validationServer03Feedback" class="invalid-feedback">
-                    {{ $message }}
+                <div class="position-relative">
+                    <input name="kata_sandi_lama" type="password"
+                        class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_lama') is-invalid @enderror"
+                        id="id_password">
+                    <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
+                    @error('kata_sandi_lama')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                @enderror
 
-                <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
             </div>
-            <div class="login mb-3 ms-sm-5 w-75 position-relative">
+            <div class="login mb-3 ms-sm-5 w-75">
                 <label for="exampleInputPassword1" class="form-label login">Password Baru :</label>
-                <input name="kata_sandi_baru" type="password"
-                    class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru') is-invalid @enderror"
-                    id="id_password1">
-                @error('kata_sandi_baru')
-                <div id="validationServer03Feedback" class="invalid-feedback">
-                    {{ $message }}
+                <div class="position-relative">
+                    <input name="kata_sandi_baru" type="password"
+                        class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru') is-invalid @enderror"
+                        id="id_password1">
+                    <i class="far fa-eye position-absolute p-1" id="togglePassword1"></i>
+                    @error('kata_sandi_baru')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                @enderror
 
-                <i class="far fa-eye position-absolute p-1" id="togglePassword1"></i>
             </div>
-            <div class="login mb-3 ms-sm-5 mb-4 w-75 position-relative">
+            <div class="login mb-3 ms-sm-5 mb-4 w-75">
                 <label for="exampleInputPassword1" class="form-label login">Ulangi Password :</label>
-                <input name="kata_sandi_baru_confirmation" type="password"
-                    class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru_confirmation') is-invalid @enderror"
-                    id="id_password2">
-                @error('kata_sandi_baru_confirmation')
-                <div id="validationServer03Feedback" class="invalid-feedback">
-                    {{ $message }}
+                <div class="position-relative">
+                    <input name="kata_sandi_baru_confirmation" type="password"
+                        class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru_confirmation') is-invalid @enderror"
+                        id="id_password2">
+                    <i class="far fa-eye position-absolute p-1" id="togglePassword2"></i>
+                    @error('kata_sandi_baru_confirmation')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
-                @enderror
-
-                <i class="far fa-eye position-absolute p-1" id="togglePassword2"></i>
             </div>
 
-            <button type="submit" class="btn btn-primary w-75 ms-sm-5 mt-4 mb-5 h-auto ps-2 pe-2 align-items-start" id="edit-pw">Simpan</button>
+            <button type="submit" class="btn btn-primary w-75 ms-sm-5 mt-4 mb-5 h-auto ps-2 pe-2 align-items-start"
+                id="edit-pw">Simpan</button>
 
         </form>
     </div>
