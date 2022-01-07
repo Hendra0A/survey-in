@@ -15,30 +15,30 @@ class LoginController extends Controller
         ]);
     }
 
-    public Function authenticate(Request $request)
+    public function authenticate(Request $request)
     {
         $credentials = $request->validate([
             //'email' => 'required|email:dns',
-           'email' => 'required|email',
-           'password' =>  'required'
+            'email' => 'required|email',
+            'password' =>  'required'
         ]);
 
-        if(Auth::attempt($credentials)) {
-            if (Auth::user()->role == 'admin') { 
+        if (Auth::attempt($credentials)) {
+            if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
                 return redirect()->intended('/beranda');
                 //return view('/beranda');
-            } elseif (Auth::user()->role == 'surveyor') { 
+            } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
-                return redirect()->intended('/beranda-user');
+                return redirect()->intended('/user/beranda-surveyor');
                 //return view('murid.dahsboard');
-            } 
-            
+            }
+
             // dd($request);
-           
+
         }
 
-        return back()->with('loginError','Login failed!');
+        return back()->with('loginError', 'Login failed!');
     }
 
     public function logout(Request $request)
@@ -50,7 +50,5 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
-
     }
-
 }

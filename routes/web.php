@@ -7,7 +7,7 @@ use App\Models\Kabupaten;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\SurveyorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,4 +69,7 @@ Route::put('/data-survei', [AdminController::class, 'destroyDataSurvei']);
 
 
 // Halaman User
-Route::get('/beranda-user', [UserController::class, 'index']);
+Route::get('/user/beranda-surveyor', [SurveyorController::class, 'index']);
+Route::get('/user/riwayat-survei', [SurveyorController::class, 'riwayatSurvei']);
+Route::get('/user/profile', [SurveyorController::class, 'myProfile']);
+Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);

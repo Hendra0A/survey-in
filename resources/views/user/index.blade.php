@@ -1,1 +1,3 @@
-<h1>Ini Adalah Halaman User</h1>
+@dump($surveyor)
+@dump($area_survei)
+@dd($data)
