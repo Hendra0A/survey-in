@@ -401,10 +401,10 @@ class AdminController extends Controller
             'kata_sandi_baru_confirmation' => ['required', 'min:8']
         ]);
 
-        
-        $admin = User::where('role', 'admin')->where('id',auth()->user()->id)->get()[0];
+
+        $admin = User::where('role', 'admin')->where('id', auth()->user()->id)->get()[0];
         // dd($admin);
-        
+
         $currentPassword = $admin->password;
         $kata_sandi_lama = request('kata_sandi_lama');
 
@@ -478,14 +478,8 @@ class AdminController extends Controller
     }
     public function cetakDetailDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+        $data = DataSurvey::with(['kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
 
-        // fasos
-        if ($data[0]->fasos === 1) {
-            $fasos = $data[0]->jenisFasos;
-        } else {
-            $fasos = 0;
-        }
         $pdf = app('dompdf.wrapper');
 
         //############ if image are not loading execute this code ################################
@@ -504,11 +498,10 @@ class AdminController extends Controller
         //#################################################################################
 
         //Cargar vista/tabla html y enviar varibles con la data
-        $pdf->loadView('admin.data-survei.detail-data-survei', [
+        $pdf->loadView('admin.data-survei.cetak-detail', [
             'title' => 'Data Survei',
             'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
-            'fasos' => $fasos,
         ]);
         //descargar la vista en formato pdf 
         return $pdf->download($data[0]->nama_gang . ".pdf");

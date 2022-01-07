@@ -154,13 +154,21 @@
                             <tr>
                                 <td>
                                     Kanan =
-                                    {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} lantai
+                                    @if ($data->jumlah_ruko_kanan==0)
+                                        tidak ada
+                                    @else
+                                        {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} lantai
+                                    @endif
                                 </td>
                             </tr>
                             <tr>
                                 <td>
                                     Kiri =
-                                    {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} lantai
+                                    @if ($data->jumlah_ruko_kiri==0)
+                                        tidak ada
+                                    @else
+                                        {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} lantai
+                                    @endif
                                 </td>
                             </tr>
                         </table>
