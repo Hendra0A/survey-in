@@ -69,7 +69,7 @@ Route::put('/data-survei', [AdminController::class, 'destroyDataSurvei']);
 
 
 // Halaman User
-Route::get('/user/beranda-surveyor', [SurveyorController::class, 'index']);
+Route::get('/user/beranda', [SurveyorController::class, 'index']);
 Route::get('/user/riwayat-survei', [SurveyorController::class, 'riwayatSurvei']);
 Route::get('/user/profile', [SurveyorController::class, 'myProfile']);
 Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);

@@ -13,11 +13,14 @@
               <p class=" text-primary mb-2">Status : {{ $data['selesai'] }}/{{ $data['target'] }} Survei</p>
               <p class=" text-danger">Deadline :  {{ $data['tanggal_selesai'] }}</p>
           </div>
-          <div class="hero-beranda  bg-white">
+          <div class="hero-beranda bg-white">
               <img src="/img/beranda-hero.png" alt="" class=" p-3" style="width: 7em;">
           </div>
       </div>
-      <div class="pilih-kec mt-4 mb-2">
+      <div class="ms-2 me-2 mt-2 m-auto justify-content-center" style="background: #F3F8FF;">
+        <a href="/user/riwayat-survei" class="text-end text-decoration-none fs-6 d-block">Riwayat Survei</a>
+      </div>
+      <div class="pilih-kec mt-4 mb-2 p-2">
           <label for="" class=" ms-4" id="pilih-kec">Kecamatan :</label>
           <select id="kecamatan" class="form-select form-select-sm m-auto shadow-none border-primary mt-1" style="width: 92%;" aria-label=".form-select-sm example">
               @foreach ($area_survei->kecamatan as $kecamatan)    

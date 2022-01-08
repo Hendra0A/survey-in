@@ -170,7 +170,6 @@ class AdminController extends Controller
         $detail = DetailSurveys::where('user_id', $request->id)
             ->whereDate('tanggal_selesai', '>=', Carbon::now())
             ->get();
-        // dd($detail);
         if (count($detail) != 0) {
             $date1 = Carbon::now();
             $date2 = Carbon::createFromFormat('Y-m-d', $detail[0]->tanggal_selesai);
