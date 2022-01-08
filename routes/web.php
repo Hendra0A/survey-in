@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Kabupaten;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\SurveyorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,22 +20,18 @@ use App\Http\Controllers\AdminController;
 |
 */
 
-Route::get('/', function () {
-    return view('login');
-});
+Route::get('/', [LoginController::class, 'index'])->name('login');
+Route::post('/', [LoginController::class, 'authenticate']);
+Route::post('/logout', [LoginController::class, 'logout']);
+
 //beranda
 Route::get('/beranda', [AdminController::class, 'beranda']);
+// Route::get('/beranda', [AdminController::class, 'beranda'])->middleware('admin');
 // pengelolaan surveyor
 Route::get('/surveyor', [AdminController::class, 'surveyor']);
-Route::get('/surveyor/tambah', function () {
-    $data = [
-        'active' => 'surveyor',
-        'title' => 'Surveyor - Tambah Surveyor',
-        'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-        'kabupaten' => Kabupaten::all('id', 'nama')
-    ];
-    return view('admin.surveyor.tambah', $data);
-});
+
+Route::get('/surveyor/tambah', [AdminController::class, 'Surveyortambah']);
+
 Route::post('/surveyor/tambah', [AdminController::class, 'tambahSurveyor']);
 Route::put('/surveyor/hapus', [AdminController::class, 'destroySuyveyor']);
 Route::put('/surveyor/update', [AdminController::class, 'updateSurveyor']);
@@ -68,3 +66,10 @@ Route::get('/data-survei/print/resume/{id}', [AdminController::class, 'cetakResu
 Route::get('/data-survei/print/{id}', [AdminController::class, 'cetakDetailDataSurvei']);
 Route::get('/data-survei/{id}', [AdminController::class, 'detailDataSurvei']);
 Route::put('/data-survei', [AdminController::class, 'destroyDataSurvei']);
+
+
+// Halaman User
+Route::get('/user/beranda-surveyor', [SurveyorController::class, 'index']);
+Route::get('/user/riwayat-survei', [SurveyorController::class, 'riwayatSurvei']);
+Route::get('/user/profile', [SurveyorController::class, 'myProfile']);
+Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);

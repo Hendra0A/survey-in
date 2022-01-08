@@ -31,7 +31,7 @@ class AdminController extends Controller
         $data = [
             'title' => 'Beranda',
             'active' => 'beranda',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'gender', 'alamat', 'nomor_telepon', 'email', 'role', 'avatar'])[0],
+            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'gender', 'alamat', 'nomor_telepon', 'email', 'role', 'avatar']),
             'kabupaten' => Kabupaten::get(['id', 'nama']),
         ];
         return view('admin.beranda', $data);
@@ -41,7 +41,7 @@ class AdminController extends Controller
         $data = [
             'title' => 'Profile',
             'active' => 'profile',
-            'profile' => User::where('role', 'admin')->get()[0]
+            // 'profile' => User::where('role', 'admin')->get()
         ];
         // dd($data);
         return view('admin.profile', $data);
@@ -51,7 +51,7 @@ class AdminController extends Controller
         $data = [
             'active' => 'Profile - Edit',
             'title' => 'Profile-Page',
-            'profile' => User::where('role', 'admin')->get()[0]
+            // 'profile' => User::where('role', 'admin')->get()
         ];
         return view('admin.edit-profile', $data);
     }
@@ -81,10 +81,19 @@ class AdminController extends Controller
         return view('admin.surveyor', [
             'active' => 'surveyor',
             'title' => 'Surveyor',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'surveyors' => User::where('role', 'surveyor')->get()
         ]);
     }
+
+    public function surveyortambah()
+    {
+        return view('admin.surveyor.tambah', [
+            'active' => 'surveyor',
+            'title' => 'Surveyor - Tambah Surveyor',
+            'kabupaten' => Kabupaten::all('id', 'nama')
+        ]);
+    }
+
     public function surveyorProfile(Request $request)
     {
         $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $request->id)->where('role', 'surveyor')->get();
@@ -107,7 +116,8 @@ class AdminController extends Controller
         $detail = [
             'active' => 'surveyor',
             'title' => 'Surveyor - Profile',
-            'profile' => $data[0],
+            // 'profile' => User::where('role', 'admin')->get()[0],
+            'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
             'weekly_target' => $weekly_target,
@@ -170,7 +180,7 @@ class AdminController extends Controller
         $data = [
             'active' => 'surveyor',
             'title' => 'Surveyor - Tambah Target Surveyor',
-            'profile' => User::where('role', 'admin')->get()[0],
+            // 'profile' => User::where('role', 'admin')->get()[0],
             'profile_surveyor' => $user,
             'kecamatans' => $user->kabupaten->kecamatan
         ];
@@ -185,7 +195,7 @@ class AdminController extends Controller
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Target Surveyor',
-                'profile' => User::where('role', 'admin')->get()[0],
+                // 'profile' => User::where('role', 'admin')->get()[0],
                 'profile_surveyor' => $surveyor[0],
                 'detail_survey' => $surveyor[0]->detailSurvey[0],
                 'kecamatans' => $user->kabupaten->kecamatan
@@ -252,7 +262,7 @@ class AdminController extends Controller
         return view('admin.pengaturan', [
             'active' => 'pengaturan',
             'title' => 'Pengaturan',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0]
+            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0]
         ]);
     }
 
@@ -261,7 +271,7 @@ class AdminController extends Controller
         return view('admin.pengaturan.edit-data-survey', [
             'active' => 'pengaturan',
             'title' => 'Pengaturan-Edit Data',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
+            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'jalan' => JenisKonstruksiJalan::all(),
             'saluran' => JenisKonstruksiSaluran::all(),
             'sosial' => JenisFasos::all(),
@@ -380,7 +390,7 @@ class AdminController extends Controller
         return view('admin.pengaturan.ubah-password', [
             'active' => 'pengaturan',
             'title' => 'Pengaturan - Ubah Password',
-            'profile' => User::where('role', 'admin')->get()[0],
+            // 'profile' => User::where('role', 'admin')->get()[0],
         ]);
     }
     public function updatePassword(Request $request)
@@ -391,14 +401,16 @@ class AdminController extends Controller
             'kata_sandi_baru_confirmation' => ['required', 'min:8']
         ]);
 
-        $admin = User::where('role', 'admin')->get()[0];
+
+        $admin = User::where('role', 'admin')->where('id', auth()->user()->id)->get()[0];
+        // dd($admin);
 
         $currentPassword = $admin->password;
         $kata_sandi_lama = request('kata_sandi_lama');
 
         if (Hash::check($kata_sandi_lama, $currentPassword)) {
             $admin->update([
-                'password' => Hash::make($request->password)
+                'password' => Hash::make($request->kata_sandi_baru)
             ]);
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
@@ -410,26 +422,26 @@ class AdminController extends Controller
     public function dataSurvei()
     {
         return view('admin.data-survei', [
-            'active' => 'data',
+            'active' => 'data survei',
             'title' => 'Data Survei',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
+            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'kabupaten' => Kabupaten::get(['id', 'nama'])
         ]);
     }
 
     public function detailDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
+            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
         ]);
     }
 
     public function cetakResumeDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
         dd($data);
         // fasos
         if ($data[0]->fasos === 1) {
@@ -466,7 +478,8 @@ class AdminController extends Controller
     }
     public function cetakDetailDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+        $data = DataSurvey::with(['kecamatan', 'konstruksiJalan', 'konstruksiSaluran', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
+
         $pdf = app('dompdf.wrapper');
 
         //############ if image are not loading execute this code ################################

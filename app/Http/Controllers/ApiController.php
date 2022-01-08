@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kecamatan;
 use App\Models\Kabupaten;
 use App\Models\DataSurvey;
+use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -60,6 +61,16 @@ class ApiController extends Controller
             'jalanJelek' => round(($jalanJelek / ($jalanBaik + $jalanJelek)) * 100, 2),
             'jalanBaik' => round(($jalanBaik / ($jalanBaik + $jalanJelek)) * 100, 2)
         ];
+        return response()->json($response, Response::HTTP_OK);
+    }
+    public function myDataSurvey($id)
+    {
+        $data = DataSurvey::with(['user', 'kecamatan'])->where('user_id', $id)->get();
+        $response = [
+            'message' => 'Data Survey oleh ' . $data[0]->user->nama_lengkap,
+            'data' => $data,
+        ];
+        // dd($data);
         return response()->json($response, Response::HTTP_OK);
     }
 }

@@ -21,18 +21,25 @@
 
 <body>
     <div class="container-fluid d-flex w-100 p-0 m-0 vh-100">
-
         <div class="login-form d-flex flex-column w-100 justify-content-center" id="main-login">
+            
+            @if (session()->has('loginError'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('loginError') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        @endif
+
             <h1 class="login mb-5 ms-5 ps-3">Mari kita mulai</h1>
-            <form action="" class="login d-flex flex-column ps-3" autocomplete="off">
+            <form action="/" method="post" class="login d-flex flex-column ps-3">
+                @csrf
                 <div class="login mb-3 ms-5 w-75">
                     <label for="exampleInputEmail1" class="form-label login">Email</label>
-                    <input type="email" class="kolom form-control shadow-none" id="id_email"
-                        aria-describedby="emailHelp">
+                    <input type="email" name="email" class="kolom form-control shadow-none" id="email" aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
                 </div>
                 <div class="login mb-3 ms-5 mb-5 w-75 position-relative">
                     <label for="exampleInputPassword1" class="form-label login">Password</label>
-                    <input type="password" class="kolom form-control shadow-none pe-5" id="id_password">
+                    <input type="password" name="password" class="kolom form-control shadow-none pe-5" id="password">
                     <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
                 </div>
                 <button type="submit" class="btn btn-primary w-75 ms-5 mt-4">Masuk</button>

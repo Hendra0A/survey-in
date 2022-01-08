@@ -13,8 +13,8 @@
                 <img src="{{ $profile_surveyor->avatar }}" alt="" class="profile-img rounded-circle">
             </div>
             <div class="profile-status mt-3 d-flex flex-column">
-                <h3>{{ ucwords($profile_surveyor->nama_lengkap) }}</h3>
-                <p>{{ ucwords($profile_surveyor->role) }}</p>
+                <h3>{{ auth()->user()->nama_lengkap }}</h3>
+                <p>{{ auth()->user()->role }}</p>
             </div>
         </div>
 
