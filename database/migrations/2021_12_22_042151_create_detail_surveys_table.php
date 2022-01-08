@@ -20,9 +20,8 @@ class CreateDetailSurveysTable extends Migration
             $table->foreignId('kecamatan_id');
             $table->date('tanggal_mulai')->nullable();
             $table->date('tanggal_selesai')->nullable();
-            $table->integer('target')->nullable();
-            $table->integer('selesai')->nullable();
-
+            $table->integer('target')->default(0);
+            $table->integer('selesai')->default(0);
             $table->foreign('kecamatan_id')->references('id')->on('kecamatans');
         });
     }
