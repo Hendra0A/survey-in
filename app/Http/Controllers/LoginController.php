@@ -30,7 +30,7 @@ class LoginController extends Controller
                 //return view('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
-                return redirect()->intended('/user/beranda-surveyor');
+                return redirect()->intended('/user/beranda');
                 //return view('murid.dahsboard');
             }
 
