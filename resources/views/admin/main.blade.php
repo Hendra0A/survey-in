@@ -17,6 +17,7 @@
     </script>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 
