@@ -61,12 +61,13 @@
 
                                                 <td>{{ $item->selesai }} dari {{ $item->target }} Gang dan Perumahan
                                                 </td>
-                                                <td class="text-danger">
-                                                    @if ($item->selesai - $item->target == 0)
-                                                        <p style="color: rgb(0, 255, 0)">Survei Sukses</p>
-                                                    @else
-                                                        <p style="color: red">{{ $item->selesai - $item->target }} Gang
-                                                            dan Perumahan</p>
+                                                <td class="{{ ( $item->selesai - $item->target < 0)? 'text-danger':'text-success' }} fw-bold">
+                                                    @if (($item->selesai - $item->target) > 0)
+                                                        + {{$item->selesai - $item->target }} Gang dan Perumahan
+                                                    @elseif ($item->selesai - $item->target == 0)
+                                                        Survei Sukses
+                                                    @elseif(($item->selesai - $item->target) < 0)
+                                                        {{$item->selesai - $item->target }} Gang dan Perumahan
                                                     @endif
                                                 </td>
                                             </tr>
@@ -123,11 +124,19 @@
                     <tr>
                         <td class="left-bio">Target Tercapai</td>
                         <td class="right-bio">: {{ $selesai }} dari
-                            {{ $target }} Gang dan Perumahan</td>
+                            {{ $target }} Gang dan Perumahan    </td>
                     </tr>
                     <tr id="tr-akhir">
                         <td class="left-bio">Perhitungan Target</td>
-                        <td class="right-bio text-danger">: {{ $selesai - $target }} Gang dan Perumahan</td>
+                        <td class="right-bio {{ ( $selesai - $target < 0)? 'text-danger':'text-success' }} fw-bold">: 
+                            @if (($selesai - $target) > 0)
+                                + {{$selesai - $target }} Gang dan Perumahan
+                            @elseif ($selesai - $target == 0)
+                                Survei Komplit
+                            @elseif(($selesai - $target) < 0)
+                                {{$selesai - $target }} Gang dan Perumahan
+                            @endif
+                        </td>
                     </tr>
                 </table>
             </div>

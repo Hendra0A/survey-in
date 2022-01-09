@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,6 +18,7 @@
     </script>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 
@@ -98,6 +100,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
         integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous">
     </script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

@@ -14,14 +14,33 @@ class SurveyorController extends Controller
 {
     public function index()
     {
+        $data = DetailSurveys::with('kecamatan')->where('user_id', auth()->user()->id)
+            ->whereDate('tanggal_selesai', '>=', Carbon::now())
+            ->get();
+        if (count($data) == 0) {
+            $data = collect(
+                [
+                    'target' => '-',
+                    'selesai' => '-',
+                    'tanggal_selesai' => '',
+                    'kecamatan_id' => 0,
+                    'kecamatan' => collect(
+                        [
+                            'kecamatan_id' => 0,
+                            'nama' => '-',
+                        ]
+                    )
+                ]
+            );
+            $data = collect($data);
+        } else {
+            $data = $data[0];
+        }
         return view('user.index', [
             'title' => 'Beranda',
             'active' => 'beranda',
-            'surveyor' => auth()->user()->nama_lengkap,
             'area_survei' => Kabupaten::with('kecamatan')->where('id', auth()->user()->kabupaten_id)->get()[0],
-            'data' => DetailSurveys::with('kecamatan')->where('user_id', auth()->user()->id)
-                ->whereDate('tanggal_selesai', '>=', Carbon::now())
-                ->get()[0]
+            'data' => $data
         ]);
     }
     public function riwayatSurvei()
