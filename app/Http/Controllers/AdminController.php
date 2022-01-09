@@ -23,6 +23,8 @@ use Illuminate\Support\Facades\Validator;
 use Dompdf\Dompdf;
 use PDF;
 
+// jika erorr menggunakan alert
+// jalankan composer install
 class AdminController extends Controller
 {
     public function beranda()
@@ -65,16 +67,21 @@ class AdminController extends Controller
             'alamat' => ['required'],
             'tanggal_lahir' => ['required']
         ]);
-        User::where('id', $request->id)
-            ->update([
-                'nama_lengkap' => $request->nama_lengkap,
-                'gender' => $request->gender,
-                'email' => $request->email,
-                'tanggal_lahir' => $request->tanggal_lahir,
-                'nomor_telepon' => $request->nomor_telepon,
-                'alamat' => $request->alamat
-            ]);
-        return redirect('/profile')->withInput();
+        try {
+            User::where('id', $request->id)
+                ->update([
+                    'nama_lengkap' => $request->nama_lengkap,
+                    'gender' => $request->gender,
+                    'email' => $request->email,
+                    'tanggal_lahir' => $request->tanggal_lahir,
+                    'nomor_telepon' => $request->nomor_telepon,
+                    'alamat' => $request->alamat
+                ]);
+            return redirect('/profile')
+                ->with('success', 'Berhasil Mengubah Profile');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
     public function surveyor()
     {
@@ -101,7 +108,6 @@ class AdminController extends Controller
         $target = 0;
         $weekly_target = 0;
         $weekly_selesai = 0;
-        // dd($data);
         foreach ($data[0]->detailSurvey as $hasil) {
             $selesai = $selesai + $hasil->selesai;
             $target = $target + $hasil->target;
@@ -137,15 +143,19 @@ class AdminController extends Controller
         ]);
         $tanggal_selesai =  Carbon::createFromFormat('Y-m-d', $request->tanggal_mulai);
         $tanggal_selesai = $tanggal_selesai->addDays(6);
-        $simpan = [
-            'user_id' => $request->id,
-            'kecamatan_id' => $request->kecamatan,
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_selesai' => $tanggal_selesai,
-            'target' => $request->target
-        ];
-        DetailSurveys::create($simpan);
-        return redirect('/surveyor')->withInput();
+        try {
+            DetailSurveys::create([
+                'user_id' => $request->id,
+                'kecamatan_id' => $request->kecamatan,
+                'tanggal_mulai' => $request->tanggal_mulai,
+                'tanggal_selesai' => $tanggal_selesai,
+                'target' => $request->target
+            ]);
+            return redirect('/surveyor')
+                ->with('success', 'Berhasil Menambahkan Target Surveyor');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
     public function editSurveyorTarget(Request $request)
     {
@@ -155,14 +165,19 @@ class AdminController extends Controller
             'target' => ['required'],
             'tanggal_selesai' => ['required']
         ]);
-        DetailSurveys::where('id', $request->id)
-            ->update([
-                'kecamatan_id' => $request->kecamatan,
-                'tanggal_mulai' => $request->tanggal_selesai,
-                'tanggal_selesai' => $request->tanggal_selesai,
-                'target' => $request->target,
-            ]);
-        return redirect('/surveyor')->withInput();
+        try {
+            DetailSurveys::where('id', $request->id)
+                ->update([
+                    'kecamatan_id' => $request->kecamatan,
+                    'tanggal_mulai' => $request->tanggal_selesai,
+                    'tanggal_selesai' => $request->tanggal_selesai,
+                    'target' => $request->target,
+                ]);
+            return redirect('/surveyor')
+                ->with('success', 'Berhasil Mengubah Target Surveyor');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
     public function surveyorTarget(Request $request)
     {
@@ -199,7 +214,6 @@ class AdminController extends Controller
                 'detail_survey' => $surveyor[0]->detailSurvey[0],
                 'kecamatans' => $user->kabupaten->kecamatan
             ];
-            // dd($ta);
             return view('admin.surveyor.edit-surveyor-target', $data);
         }
     }
@@ -213,16 +227,20 @@ class AdminController extends Controller
             'email' => ['required', 'email:dns', 'unique:users'],
         ]);
 
-        User::create([
-            "nama_lengkap" => $request->nama_lengkap,
-            "nomor_telepon" => $request->nomor_telepon,
-            "email" => $request->email,
-            "kabupaten_id" => $request->area,
-            "password" => Hash::make('surveyor')
+        try {
+            User::create([
+                "nama_lengkap" => $request->nama_lengkap,
+                "nomor_telepon" => $request->nomor_telepon,
+                "email" => $request->email,
+                "kabupaten_id" => $request->area,
+                "password" => Hash::make('surveyor')
 
-        ]);
-
-        return redirect('/surveyor')->withInput();
+            ]);
+            return redirect('/surveyor')
+                ->with('success', 'Akun Surveyor berhasil dibuat !');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
 
     public function updateSurveyor(Request $request)
@@ -231,10 +249,17 @@ class AdminController extends Controller
             'password' => ['required', 'confirmed'],
             'password_confirmation' => ['required'],
         ]);
-        User::where('id', $request->id)
-            ->update([
-                'password' => Hash::make($request->password)
-            ]);
+        try {
+            User::where('id', $request->id)
+                ->update([
+                    'password' => Hash::make($request->password)
+                ]);
+            return redirect('/surveyor')
+                ->with('success', 'Berhasil Mengubah Password');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
+
         return redirect('/surveyor')->withInput();
     }
     public function getSurveyor(Request $request)
@@ -251,8 +276,13 @@ class AdminController extends Controller
     }
     public function destroySuyveyor(Request $request)
     {
-        User::destroy($request->id);
-        return redirect('/surveyor')->with('success', 'Akun has been deleted!');
+        try {
+            User::destroy($request->id);
+            return redirect()->back()
+                ->with('success', 'Berhasil Menghapus');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal Mengapus Akun Surveyor');
+        }
     }
 
     // Halaman Pengaturan Admin
@@ -294,10 +324,11 @@ class AdminController extends Controller
                 $data->validate([
                     'jalan' => ['required', 'unique:jenis_konstruksi_jalans,jenis', 'alpha']
                 ]);
-
                 JenisKonstruksiJalan::create([
                     "jenis" => $data->jalan,
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil menambah jenis kontruksi jalan');
                 break;
             case 'saluran':
                 $data->validate([
@@ -307,6 +338,8 @@ class AdminController extends Controller
                 JenisKonstruksiSaluran::create([
                     "jenis" => $data->saluran,
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil menambah jenis kontruksi saluran');
                 break;
             case 'fasos':
                 $data->validate([
@@ -316,16 +349,18 @@ class AdminController extends Controller
                 JenisFasos::create([
                     "jenis" => $data->fasos,
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil menambah jenis fasilitas sosial');
                 break;
             case 'lampiran':
                 $data->validate([
                     'lampiran' => ['required', 'unique:jenis_lampirans,jenis', 'alpha']
                 ]);
-
-                // if ($data->lampiran == '') return redirect('/pengaturan/edit-data-survey');
                 JenisLampiran::create([
                     "jenis" => $data->lampiran,
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil menambah jenis lampiran');
                 break;
             default:
                 return redirect('/pengaturan/edit-data-survey');
@@ -340,27 +375,33 @@ class AdminController extends Controller
                 JenisKonstruksiJalan::where('id', $request->id)->update([
                     'jenis' => $request->jenis
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil diubah');
                 break;
             case 'saluran':
                 JenisKonstruksiSaluran::where('id', $request->id)->update([
                     'jenis' => $request->jenis
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil diubah');
                 break;
             case 'fasos':
                 JenisFasos::where('id', $request->id)->update([
                     'jenis' => $request->jenis
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil diubah');
                 break;
             case 'lampiran':
                 JenisLampiran::where('id', $request->id)->update([
                     'jenis' => $request->jenis
                 ]);
+                return redirect()->back()
+                    ->with('success', 'Berhasil diubah');
                 break;
             default:
-                return redirect()->back();
+                return redirect()->back()->with('error', 'Gagal Mengubah');
         };
-
-        return redirect()->back();
     }
     public function destroy(Request $request)
     {
@@ -411,12 +452,11 @@ class AdminController extends Controller
             $admin->update([
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
+            return redirect('/pengaturan')
+                ->with('success', 'Password anda berhasil diubah');
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
-
-
-        return redirect('/pengaturan')->withInput();
     }
     public function dataSurvei()
     {
@@ -508,8 +548,12 @@ class AdminController extends Controller
 
     public function destroyDataSurvei(Request $request)
     {
-        DataSurvey::destroy($request->id);
-
-        return redirect('/data-survei')->with('success', 'Data has been deleted!');
+        try {
+            DataSurvey::destroy($request->id);
+            return redirect()->back()
+                ->with('success', 'Berhasil Menghapus Data Survei');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
+        }
     }
 }

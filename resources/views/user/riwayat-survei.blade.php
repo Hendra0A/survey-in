@@ -15,12 +15,13 @@
             <hr>
             <p class="mb-2">Kategori Target : perminggu</p>
             <p class="mb-2">Status : {{ $item->selesai}} dari {{ $item->target}} Gang dan perumahan</p>
-            <p class="mb-2">Perhitungan target : <span class="{{ ( $item->target - $item->selesai < 0)? 'text-danger':'text-success' }} fw-bold">@if ($item->target - $item->selesai < 0)
-                {$item->target - $item->selesai }} Gang dan Perumahan
-            @elseif ($item->target - $item->selesai == 0)
+            <p class="mb-2">Perhitungan target : <span class="{{ ( $item->selesai - $item->target < 0)? 'text-danger':'text-success' }} fw-bold">
+            @if (($item->selesai - $item->target) > 0)
+                + {{$item->selesai - $item->target }} Gang dan Perumahan
+            @elseif ($item->selesai - $item->target == 0)
                 Survei Sukses
-            @elseif($item->target - $item->selesai >0)
-             + {$item->target - $item->selesai }} Gang dan Perumahan
+            @elseif(($item->selesai - $item->target) < 0)
+                {{$item->selesai - $item->target }} Gang dan Perumahan
             @endif
           </div>
         @endforeach
