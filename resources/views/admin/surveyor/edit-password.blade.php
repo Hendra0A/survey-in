@@ -19,6 +19,7 @@
         <form action="/surveyor/update" method="post">  
             @csrf
             @method('put')
+            <input type="hidden" name="target" value="2">
             <div class="row justify-content-evenly">
                 <div class="col-5">
                     <input type="hidden" name="id" value="{{ $profile->id }}">

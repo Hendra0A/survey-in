@@ -43,9 +43,7 @@ class AdminController extends Controller
         $data = [
             'title' => 'Profile',
             'active' => 'profile',
-            // 'profile' => User::where('role', 'admin')->get()
         ];
-        // dd($data);
         return view('admin.profile', $data);
     }
     public function profileEdit()
@@ -53,7 +51,6 @@ class AdminController extends Controller
         $data = [
             'active' => 'Profile - Edit',
             'title' => 'Profile-Page',
-            // 'profile' => User::where('role', 'admin')->get()
         ];
         return view('admin.edit-profile', $data);
     }
@@ -100,6 +97,30 @@ class AdminController extends Controller
             'kabupaten' => Kabupaten::all('id', 'nama')
         ]);
     }
+    public function tambahSurveyor(Request $request)
+    {
+        $request->validate([
+            'nama_lengkap' => ['required', 'max:255'],
+            'nomor_telepon' => ['required', 'numeric', 'unique:users'],
+            'area' => ['required'],
+            'email' => ['required', 'email:dns', 'unique:users'],
+        ]);
+
+        try {
+            User::create([
+                "nama_lengkap" => $request->nama_lengkap,
+                "nomor_telepon" => $request->nomor_telepon,
+                "email" => $request->email,
+                "kabupaten_id" => $request->area,
+                "password" => Hash::make('surveyor')
+
+            ]);
+            return redirect('/surveyor')
+                ->with('success', 'Akun Surveyor berhasil dibuat !');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
+    }
 
     public function surveyorProfile(Request $request)
     {
@@ -121,8 +142,7 @@ class AdminController extends Controller
 
         $detail = [
             'active' => 'surveyor',
-            'title' => 'Surveyor - Profile',
-            // 'profile' => User::where('role', 'admin')->get()[0],
+            'title' => 'Surveyor - Profile', [0],
             'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
@@ -169,7 +189,7 @@ class AdminController extends Controller
             DetailSurveys::where('id', $request->id)
                 ->update([
                     'kecamatan_id' => $request->kecamatan,
-                    'tanggal_mulai' => $request->tanggal_selesai,
+                    'tanggal_mulai' => $request->tanggal_mulai,
                     'tanggal_selesai' => $request->tanggal_selesai,
                     'target' => $request->target,
                 ]);
@@ -193,8 +213,7 @@ class AdminController extends Controller
 
         $data = [
             'active' => 'surveyor',
-            'title' => 'Surveyor - Tambah Target Surveyor',
-            // 'profile' => User::where('role', 'admin')->get()[0],
+            'title' => 'Surveyor - Tambah Target Surveyor', [0],
             'profile_surveyor' => $user,
             'kecamatans' => $user->kabupaten->kecamatan
         ];
@@ -209,7 +228,7 @@ class AdminController extends Controller
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Target Surveyor',
-                // 'profile' => User::where('role', 'admin')->get()[0],
+                [0],
                 'profile_surveyor' => $surveyor[0],
                 'detail_survey' => $surveyor[0]->detailSurvey[0],
                 'kecamatans' => $user->kabupaten->kecamatan
@@ -217,62 +236,69 @@ class AdminController extends Controller
             return view('admin.surveyor.edit-surveyor-target', $data);
         }
     }
-
-    public function tambahSurveyor(Request $request)
-    {
-        $request->validate([
-            'nama_lengkap' => ['required', 'max:255'],
-            'nomor_telepon' => ['required', 'numeric', 'unique:users'],
-            'area' => ['required'],
-            'email' => ['required', 'email:dns', 'unique:users'],
-        ]);
-
-        try {
-            User::create([
-                "nama_lengkap" => $request->nama_lengkap,
-                "nomor_telepon" => $request->nomor_telepon,
-                "email" => $request->email,
-                "kabupaten_id" => $request->area,
-                "password" => Hash::make('surveyor')
-
-            ]);
-            return redirect('/surveyor')
-                ->with('success', 'Akun Surveyor berhasil dibuat !');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput();
-        }
-    }
-
     public function updateSurveyor(Request $request)
     {
-        $request->validate([
-            'password' => ['required', 'confirmed'],
-            'password_confirmation' => ['required'],
-        ]);
-        try {
-            User::where('id', $request->id)
-                ->update([
-                    'password' => Hash::make($request->password)
-                ]);
-            return redirect('/surveyor')
-                ->with('success', 'Berhasil Mengubah Password');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput();
-        }
+        if ($request->target == '1') {
+            $request->validate([
+                'nama_lengkap' => ['required'],
+                'area' => ['required'],
+                'nomor_telepon' => ['required'],
+                'email' => ['required'],
+            ]);
+            try {
+                User::where('id', $request->id)
+                    ->update([
+                        'nama_lengkap' => $request->nama_lengkap,
+                        'kabupaten_id' => $request->area,
+                        'nomor_telepon' => $request->nomor_telepon,
+                        'email' => $request->email,
+                    ]);
+                return redirect('/surveyor')
+                    ->with('success', 'Berhasil Update Profile Surveyor');
+            } catch (\Exception $e) {
+                return redirect()->back()->withInput();
+            }
+        } elseif ($request->target == '2') {
+            $request->validate([
+                'password' => ['required', 'confirmed'],
+                'password_confirmation' => ['required'],
+            ]);
+            try {
+                User::where('id', $request->id)
+                    ->update([
+                        'password' => Hash::make($request->password)
+                    ]);
+                return redirect('/surveyor')
+                    ->with('success', 'Berhasil Mengubah Password');
+            } catch (\Exception $e) {
+                return redirect()->back()->withInput();
+            }
 
-        return redirect('/surveyor')->withInput();
+            return redirect('/surveyor')->withInput();
+        }
     }
     public function getSurveyor(Request $request)
     {
-        $data = [
-            'active' => 'Surveyor - Edit',
-            'title' => 'Surveyor - Profile',
-            'profile' => User::where('id', $request->id)
-                ->where('role', 'surveyor')
-                ->get(['avatar', 'nama_lengkap', 'role', 'id'])[0]
-        ];
-        // dd($data);
-        return view('admin.surveyor.edit', $data);
+        if ($request->target == '1') {
+            $data = [
+                'active' => 'surveyor',
+                'title' => 'Surveyor - Edit Profile Surveyor',
+                'kabupaten' => Kabupaten::all(),
+                'profile' => User::where('id', $request->id)
+                    ->where('role', 'surveyor')
+                    ->get()[0]
+            ];
+            return view('admin.surveyor.edit-profile', $data);
+        } elseif ($request->target == '2') {
+            $data = [
+                'active' => 'surveyor',
+                'title' => 'Surveyor - Edit Password',
+                'profile' => User::where('id', $request->id)
+                    ->where('role', 'surveyor')
+                    ->get(['avatar', 'nama_lengkap', 'role', 'id'])[0]
+            ];
+            return view('admin.surveyor.edit-password', $data);
+        }
     }
     public function destroySuyveyor(Request $request)
     {
@@ -429,8 +455,7 @@ class AdminController extends Controller
     {
         return view('admin.pengaturan.ubah-password', [
             'active' => 'pengaturan',
-            'title' => 'Pengaturan - Ubah Password',
-            // 'profile' => User::where('role', 'admin')->get()[0],
+            'title' => 'Pengaturan - Ubah Password', [0],
         ]);
     }
     public function updatePassword(Request $request)

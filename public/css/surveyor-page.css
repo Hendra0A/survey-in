@@ -12,10 +12,6 @@
     background-color: black;
 }
 
-.admin-hl {
-    padding-left: 4em;
-}
-
 .admin-hl h1 {
     font-weight: 600;
     font-size: 1.5em;
@@ -24,7 +20,7 @@
 .admin-hl p {
     font-weight: 500;
     font-size: 1em;
-    color: #A5A5A5;
+    color: #a5a5a5;
 }
 
 .ad-status h3 {
@@ -33,7 +29,7 @@
     line-height: 26px;
 }
 
-.daftar-akun{
+.daftar-akun {
     width: 100%;
     padding: 20px;
     background-color: #fff;
@@ -41,54 +37,54 @@
     box-sizing: border-box;
 }
 
-.akun-surveyor{
+.akun-surveyor {
     margin: 30px;
     padding: 20px;
-    border: 1px solid #3F4FC8;
+    border: 1px solid #3f4fc8;
     border-radius: 10px;
 }
-
 
 .btn-tambah {
     width: max-content;
     padding: 15px 30px;
     border-radius: 10px;
-    background-color: #3F4FC8;
+    background-color: #3f4fc8;
     border: none;
 }
 
-.btn-tambah a, .btn-aksi a{ 
+.btn-tambah a,
+.btn-aksi a {
     color: #fff;
     text-decoration: none;
 }
 
-.btn-aksi{
+.btn-aksi {
     width: max-content;
-    padding: 10px 15px ;
+    padding: 10px 15px;
     margin: 0 5px;
     border-radius: 7px;
     border: none;
-    color: #F3F5F7;
+    color: #f3f5f7;
 }
 
-.btn-aksi.profil{
-    background-color: #3F4FC8;
+.btn-aksi.profil {
+    background-color: #3f4fc8;
 }
 
-.btn-aksi.target{
+.btn-aksi.target {
     background-color: orange;
 }
 
 .btn-aksi.hapus {
-    background-color: #F91F1F;
+    background-color: #f91f1f;
 }
 
 .btn-aksi.profil:hover {
     color: #fff;
-    background-color:#3f4ba8;
+    background-color: #3f4ba8;
 }
 
-.btn-aksi.target:hover{
+.btn-aksi.target:hover {
     color: #fff;
     background-color: rgb(233, 154, 6);
 }
@@ -96,6 +92,5 @@
 .btn-aksi.hapus:hover {
     background-color: #e73232;
 }
-
 
 /* content end */

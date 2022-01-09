@@ -32,16 +32,6 @@
                 </div>
                 @enderror
             </div>
-            {{-- <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">Password :</label>
-                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
-                    id="password">
-                @error('password')
-                <div id="validationServer03Feedback" class="invalid-feedback">
-                    {{ $message }}
-                </div>
-                @enderror
-            </div> --}}
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">No Handphone :</label>
                 <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon"
