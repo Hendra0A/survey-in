@@ -39,7 +39,7 @@
                 </div>
         </div>
 
-        <div class="download d-flex justify-content-between ps-5 pe-5 mb-3">
+        {{-- <div class="download d-flex justify-content-between ps-5 pe-5 mb-3">
             <a type="button" class="btn btn-outline-primary download shadow-none" id="resume">Download Resume</a>
             <form action="" method="post">
                 <div class="pencarian d-flex align-items-center">
@@ -50,11 +50,11 @@
                     <button type="submit" class="btn btn-primary shadow-none" id="btn-pencarian">Search</button>
                 </div>
             </form>
-        </div>
+        </div> --}}
         <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
-            <table class="table table-light table-hover" id="dasur-table" style="width: 100%;">
+            <table class="table bg-white table-hover shadow-sm" id="dasur-table" style="width: 100%;">
                 <thead>
-                    <tr>
+                    <tr style="vertical-align: middle">
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
                         <th scope="col" style="width: 21%;">Lokasi</th>
                         <th scope="col" style="width: 15%;">Koordinat</th>
@@ -84,10 +84,10 @@
                         </div>
 
                         <div class="choose d-flex justify-content-center gap-5 mb-5">
+                            <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
+                            data-bs-dismiss="modal">batal</button>
                             <button type="submit"
                                 class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
-                            <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
-                                data-bs-dismiss="modal">batal</button>
                         </div>
                     </div>
                 </form>
@@ -106,6 +106,7 @@
                 })
             });
         </script>
-        <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+        
+        {{-- <script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script> --}}
 
     @endsection

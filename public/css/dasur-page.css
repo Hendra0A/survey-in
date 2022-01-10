@@ -63,7 +63,11 @@ button#btn-pencarian {
     border: none;
     height: auto;
 }
-
+#dasur-table.table{
+    margin-bottom: .5em;
+    border-radius: .5em;
+    padding-bottom: 1.5em;
+}
 #dasur-table th {
     font-size: .8em;
 }
@@ -74,12 +78,6 @@ button#btn-pencarian {
     word-wrap: break-word;
     font-weight: 300;
 }
-
-/* Data Table */
-.table #dasur-table .dataTables_wrapper .dataTables_filter input {
-height: 20px;
-}
-/* Data Table End*/
 
 .btn-table {
     display: flex;
@@ -111,6 +109,7 @@ button#prf-btn {
     overflow: hidden;
     line-height: 1.2em;
 }
+
 
 
 /* content end */
