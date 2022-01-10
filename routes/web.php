@@ -36,7 +36,7 @@ Route::post('/surveyor/tambah', [AdminController::class, 'tambahSurveyor']);
 Route::put('/surveyor/hapus', [AdminController::class, 'destroySuyveyor']);
 Route::put('/surveyor/update', [AdminController::class, 'updateSurveyor']);
 Route::put('/surveyor/edit', [AdminController::class, 'getSurveyor']);
-Route::post('/surveyor/profile/', [AdminController::class, 'surveyorProfile']);
+Route::get('/surveyor/profile/{id}', [AdminController::class, 'surveyorProfile']);
 Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
 Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
 Route::post('/surveyor/target/', [AdminController::class, 'surveyorTarget']);

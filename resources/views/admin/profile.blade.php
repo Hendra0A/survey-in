@@ -29,7 +29,7 @@
                 <tr>
                     <td class="left-bio p-2">Tanggal Lahir</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->tanggal_lahir }}</td>
+                <td class="right-bio p-2">:{{ \Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->format('j F Y') }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Jenis Kelamin</td>
@@ -49,8 +49,7 @@
             </table>
         </div>
         <div class="submit d-flex justify-content-center mt-5">
-            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>
-            
+            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>   
         </div>
     </div>
 @endsection

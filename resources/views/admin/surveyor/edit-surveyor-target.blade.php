@@ -22,6 +22,7 @@
         <form action="/surveyor/edit-target" method="POST" class="bio-edit d-flex m-5" autocomplete="off">
             @csrf
             <div class="bio-left w-50">
+                <input type="hidden" name="surveyor_id" value="{{ $profile_surveyor->id }}">
                 <input type="hidden" name="id" value="{{ $detail_survey->id }}">
                 <div class="col-md-8 mb-3 w-100">
                     <label for="validationServer03" class="form-label">Kecamatan:</label>

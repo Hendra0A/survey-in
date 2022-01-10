@@ -26,11 +26,7 @@
                     </div>
                     <div class="tindakan d-flex flex-row">
                         {{-- <a href="/surveyor/profile/{{ $surveyor->id }}" class="btn-aksi profil text-decoration-none">Profil</a> --}}
-                        <form action="/surveyor/profile" method="post">
-                            @csrf
-                            <input type="hidden" name="id" value="{{ $surveyor->id }}">
-                            <input type="submit" value="Profil" class="btn-aksi profil">
-                        </form>
+                        <a href="/surveyor/profile/{{ $surveyor->id }}" class="btn-aksi profil text-decoration-none">Profil</a>
                         <form action="/surveyor/target" method="post">
                             @csrf   
                             <input type="hidden" name="id" value="{{ $surveyor->id }}">

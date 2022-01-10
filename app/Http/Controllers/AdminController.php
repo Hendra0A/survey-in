@@ -71,8 +71,8 @@ class AdminController extends Controller
             'avatar' => 'image|file|max:2048'
         ]);
 
-        if($request->file('avatar')) {
-            if($request->oldImage) {
+        if ($request->file('avatar')) {
+            if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
             $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
@@ -90,7 +90,8 @@ class AdminController extends Controller
                     'avatar' => $validateData['avatar'],
                 ]);
             return redirect('/profile')
-                ->with('success', 'Berhasil Mengubah Profile');
+                ->with('success', 'Profil admin telah berhasil di edit')
+                ->with('confirm', 'Kembali ke Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -131,15 +132,16 @@ class AdminController extends Controller
 
             ]);
             return redirect('/surveyor')
-                ->with('success', 'Akun Surveyor berhasil dibuat !');
+                ->with('success', 'Akun telah berhasil ditambahkan !')
+                ->with('confirm', 'Kembali ke Surveyor');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
     }
 
-    public function surveyorProfile(Request $request)
+    public function surveyorProfile($id)
     {
-        $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $request->id)->where('role', 'surveyor')->get();
+        $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $id)->where('role', 'surveyor')->get();
         $selesai = 0;
         $target = 0;
         $weekly_target = 0;
@@ -187,8 +189,9 @@ class AdminController extends Controller
                 'tanggal_selesai' => $tanggal_selesai,
                 'target' => $request->target
             ]);
-            return redirect('/surveyor')
-                ->with('success', 'Berhasil Menambahkan Target Surveyor');
+            return redirect('/surveyor/profile/' . $request->id)
+                ->with('success', 'Berhasil menambahkan target surveyor')
+                ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -209,8 +212,9 @@ class AdminController extends Controller
                     'tanggal_selesai' => $request->tanggal_selesai,
                     'target' => $request->target,
                 ]);
-            return redirect('/surveyor')
-                ->with('success', 'Berhasil Mengubah Target Surveyor');
+            return redirect('/surveyor/profile/' . $request->surveyor_id)
+                ->with('success', 'Berhasil mengubah target surveyor')
+                ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -244,7 +248,6 @@ class AdminController extends Controller
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Target Surveyor',
-                [0],
                 'profile_surveyor' => $surveyor[0],
                 'detail_survey' => $surveyor[0]->detailSurvey[0],
                 'kecamatans' => $user->kabupaten->kecamatan
@@ -269,8 +272,9 @@ class AdminController extends Controller
                         'nomor_telepon' => $request->nomor_telepon,
                         'email' => $request->email,
                     ]);
-                return redirect('/surveyor')
-                    ->with('success', 'Berhasil Update Profile Surveyor');
+                return redirect('/surveyor/profile/' . $request->id)
+                    ->with('success', 'Akun surveyor telah berhasil di edit')
+                    ->with('confirm', 'Kembali ke Surveyor Profil');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
@@ -284,13 +288,12 @@ class AdminController extends Controller
                     ->update([
                         'password' => Hash::make($request->password)
                     ]);
-                return redirect('/surveyor')
-                    ->with('success', 'Berhasil Mengubah Password');
+                return redirect('/surveyor/profile/' . $request->id)
+                    ->with('success', 'Password surveyor telah berhasil diubah')
+                    ->with('confirm', 'Kembali ke Surveyor Profil');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
-
-            return redirect('/surveyor')->withInput();
         }
     }
     public function getSurveyor(Request $request)
@@ -536,45 +539,6 @@ class AdminController extends Controller
     {
         return Excel::download(new DataSurveyExport($id), 'hola.xlsx');
     }
-
-    // public function cetakResumeDataSurvei($id)
-    // {
-    //     $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
-    //     dd($data);
-    //     // fasos
-    //     if ($data[0]->fasos === 1) {
-    //         $fasos = $data[0]->jenisFasos;
-    //     } else {
-    //         $fasos = 0;
-    //     }
-    //     $pdf = app('dompdf.wrapper');
-
-    //     //############ if image are not loading execute this code ################################
-    //     $contxt = stream_context_create([
-    //         'ssl' => [
-    //             'verify_peer' => FALSE,
-    //             'verify_peer_name' => FALSE,
-    //             'allow_self_signed' => TRUE,
-    //         ]
-    //     ]);
-    //     // jika erorr
-    //     // jalankan di terminal
-    //     // composer require barryvdh/laravel-dompdf
-    //     $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-    //     $pdf->getDomPDF()->setHttpContext($contxt);
-    //     //#################################################################################
-
-    //     //Cargar vista/tabla html y enviar varibles con la data
-    //     $pdf->loadView('admin.data-survei.detail-data-survei', [
-    //         'title' => 'Data Survei',
-    //         'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-    //         'data' => $data[0],
-    //         'fasos' => $fasos,
-    //     ]);
-    //     //descargar la vista en formato pdf 
-    //     return $pdf->download($data[0]->nama_gang . ".pdf");
-    // }
-
     public function cetakDetailDataSurvei($id)
     {
         $data = DataSurvey::with(['kecamatan', 'konstruksiJalan', 'konstruksiSaluran', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
