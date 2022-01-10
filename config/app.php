@@ -164,11 +164,8 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-<<<<<<< HEAD
         Maatwebsite\Excel\ExcelServiceProvider::class,
-=======
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
->>>>>>> f6a39024b6d5b75d3387cc201d5ec962debd6a0f
 
         /*
          * Package Service Providers...
