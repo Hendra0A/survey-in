@@ -21,6 +21,7 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
 use Dompdf\Dompdf;
+use Illuminate\Support\Facades\Storage;
 use PDF;
 
 // jika erorr menggunakan alert
@@ -51,19 +52,30 @@ class AdminController extends Controller
         $data = [
             'active' => 'Profile - Edit',
             'title' => 'Profile-Page',
+            'data' => auth()->user()
         ];
         return view('admin.edit-profile', $data);
     }
     public function profileUpdate(Request $request)
     {
-        $request->validate([
+        // ddd($request);
+        $validateData = $request->validate([
             'nama_lengkap' => ['required'],
             'nomor_telepon' => ['required'],
             'email' => ['required'],
             'nama_lengkap' => ['required'],
             'alamat' => ['required'],
-            'tanggal_lahir' => ['required']
+            'tanggal_lahir' => ['required'],
+            'avatar' => 'image|file|max:2048'
         ]);
+
+        if($request->file('avatar')) {
+            if($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+        }
+
         try {
             User::where('id', $request->id)
                 ->update([
@@ -72,7 +84,8 @@ class AdminController extends Controller
                     'email' => $request->email,
                     'tanggal_lahir' => $request->tanggal_lahir,
                     'nomor_telepon' => $request->nomor_telepon,
-                    'alamat' => $request->alamat
+                    'alamat' => $request->alamat,
+                    'avatar' => $validateData['avatar'],
                 ]);
             return redirect('/profile')
                 ->with('success', 'Berhasil Mengubah Profile');

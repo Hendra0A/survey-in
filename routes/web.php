@@ -72,4 +72,5 @@ Route::put('/data-survei', [AdminController::class, 'destroyDataSurvei']);
 Route::get('/user/beranda', [SurveyorController::class, 'index']);
 Route::get('/user/riwayat-survei', [SurveyorController::class, 'riwayatSurvei']);
 Route::get('/user/profile', [SurveyorController::class, 'myProfile']);
+Route::get('/profile/edit-profile/surveyor', [SurveyorController::class, 'profileEdit']);
 Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);

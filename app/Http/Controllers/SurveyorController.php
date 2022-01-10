@@ -70,4 +70,12 @@ class SurveyorController extends Controller
             'data' => auth()->user()
         ]);
     }
+    public function profileEdit()
+    {
+        $data = [
+            'active' => 'Profile-Edit',
+            'title' => 'Profile-Page',
+        ];
+        return view('user.edit-profile', $data);
+    }
 }
