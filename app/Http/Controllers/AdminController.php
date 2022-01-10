@@ -349,7 +349,7 @@ class AdminController extends Controller
         switch ($model) {
             case 'jalan':
                 $data->validate([
-                    'jalan' => ['required', 'unique:jenis_konstruksi_jalans,jenis', 'alpha']
+                    'jalan' => ['required', 'unique:jenis_konstruksi_jalans,jenis']
                 ]);
                 JenisKonstruksiJalan::create([
                     "jenis" => $data->jalan,
@@ -359,7 +359,7 @@ class AdminController extends Controller
                 break;
             case 'saluran':
                 $data->validate([
-                    'saluran' => ['required', 'unique:jenis_konstruksi_salurans,jenis', 'alpha']
+                    'saluran' => ['required', 'unique:jenis_konstruksi_salurans,jenis']
                 ]);
 
                 JenisKonstruksiSaluran::create([
@@ -370,7 +370,7 @@ class AdminController extends Controller
                 break;
             case 'fasos':
                 $data->validate([
-                    'fasos' => ['required', 'unique:jenis_fasos,jenis', 'alpha']
+                    'fasos' => ['required', 'unique:jenis_fasos,jenis']
                 ]);
 
                 JenisFasos::create([
@@ -381,7 +381,7 @@ class AdminController extends Controller
                 break;
             case 'lampiran':
                 $data->validate([
-                    'lampiran' => ['required', 'unique:jenis_lampirans,jenis', 'alpha']
+                    'lampiran' => ['required', 'unique:jenis_lampirans,jenis']
                 ]);
                 JenisLampiran::create([
                     "jenis" => $data->lampiran,
