@@ -19,8 +19,12 @@
         <!-- Header Section -->
         <div class="header d-flex justify-content-between align-items-centers p-2">
             <div class="logo d-flex align-items-center ms-2">
+              @hasSection ('header')
+                  @yield('header')
+              @else   
                 <img src="/img/logo-b.png" alt="" style="width: 3em;">
-                <p class=" m-0 ms-1">Survei</p>
+                <p class=" m-0 ms-1 text-warning ">Survei</p>
+              @endif
             </div>
             <div class="dropdown me-1">
                 <button class="btn btn-secondary shadow-none border-0"  style="background: #F3F8FF;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -45,7 +49,7 @@
             <ul class="navbar-nav nav-justified w-100">
               <li class="nav-item position-relative">
                 <i class="fas fa-home"></i>
-                <a href="#" class="nav-link text-white d-flex justify-content-center align-items-end">Beranda</a>
+                <a href="/user/beranda" class="nav-link text-white d-flex justify-content-center align-items-end">Beranda</a>
               </li>
               <li class="nav-item">
                 <i class="fas fa-folder-minus"></i>

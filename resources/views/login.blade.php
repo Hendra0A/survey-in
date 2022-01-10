@@ -20,29 +20,33 @@
 </head>
 
 <body>
-    <div class="container-fluid d-flex w-100 p-0 m-0 vh-100">
+    <div class="container-fluid d-flex justify-content-center w-100 p-0 m-0 vh-100">
         <div class="login-form d-flex flex-column w-100 justify-content-center" id="main-login">
             
-            @if (session()->has('loginError'))
-        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-            {{ session('loginError') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-        @endif
+            <div class="d-sm-block d-md-none">
+                <img src="{{ asset('/img/logo-b.png') }}" class="img-fluid d-block mx-auto">
+                <p class="text-center text-warning fw-bold fs-1">Survei</p>
+            </div>
 
-            <h1 class="login mb-5 ms-5 ps-3">Mari kita mulai</h1>
-            <form action="/" method="post" class="login d-flex flex-column ps-3">
+            <h1 class="login mb-5 px-3 text-center">Mari kita mulai</h1>
+            @if (session()->has('loginError'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('loginError') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            <form action="/" method="post" class="login d-flex flex-column px-3 px-5">
                 @csrf
-                <div class="login mb-3 ms-5 w-75">
+                <div class="login mb-3">
                     <label for="exampleInputEmail1" class="form-label login">Email</label>
                     <input type="email" name="email" class="kolom form-control shadow-none" id="email" aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
                 </div>
-                <div class="login mb-3 ms-5 mb-5 w-75 position-relative">
+                <div class="login mb-3 mb-5 position-relative">
                     <label for="exampleInputPassword1" class="form-label login">Password</label>
                     <input type="password" name="password" class="kolom form-control shadow-none pe-5" id="password">
                     <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
                 </div>
-                <button type="submit" class="btn btn-primary w-75 ms-5 mt-4">Masuk</button>
+                <button type="submit" class="btn btn-primary mt-4">Masuk</button>
             </form>
         </div>
 
@@ -70,7 +74,7 @@
     </script>
     <script>
         const togglePassword = document.querySelector('#togglePassword');
-        const password = document.querySelector('#id_password');
+        const password = document.querySelector('#password');
 
         togglePassword.addEventListener('click', function(e) {
             // toggle the type attribute

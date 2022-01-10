@@ -1,14 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-@import url('beranda-view.css');
-/* @import url('tambah-data-view.css'); */
+@import url("beranda-view.css");
+@import url("riwayat-survei-view.css");
 
 /* header section */
 .header {
     position: fixed;
     z-index: 9999;
     width: 100%;
-    background: #F3F8FF;
+    background: #f3f8ff;
     box-shadow: 3px 0px 7px gray;
 }
 
@@ -26,12 +26,12 @@ nav.navbar {
 }
 
 nav.navbar a {
-    font-size: .48em;
+    font-size: 0.48em;
     font-weight: 600;
     position: relative;
     padding: 0;
     margin-top: -2.7em;
-    padding-bottom: .3em;
+    padding-bottom: 0.3em;
     vertical-align: bottom;
     height: 5em;
 }

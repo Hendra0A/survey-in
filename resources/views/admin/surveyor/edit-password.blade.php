@@ -8,7 +8,7 @@
 
             <!-- avatar -->
             <div class="surveyor">
-                <img src="{{ $profile->avatar }}" alt="" class="profile-img rounded-circle" />
+                <img src="{{ $profile->avatar }}" alt="" class="profile-img rounded-circle"/>
             </div>
             <div class="profile-status mt-3 d-flex flex-column">
                 <h3>{{ $profile->nama_lengkap }}</h3>
@@ -16,20 +16,21 @@
             </div>
         </div>
         <!-- Form Edit -->
-        <form action="/surveyor/update" method="post">
+        <form action="/surveyor/update" method="post">  
             @csrf
             @method('put')
+            <input type="hidden" name="target" value="2">
             <div class="row justify-content-evenly">
                 <div class="col-5">
                     <input type="hidden" name="id" value="{{ $profile->id }}">
                     <div class="bio-left d-flex flex-column">
-                        <label for="password" class="form-label fw-bold">Password :</label>
+                        <label for="password" class="form-label fw-bold">Password Baru</label>
                         <input type="password" class="form-control" id="password" name="password" required />
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="bio-right w-100 d-flex flex-column">
-                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password :</label>
+                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password </label>
                         <input type="password" name="password_confirmation" class="form-control"
                             id="password_confirmation" required />
                     </div>
@@ -39,6 +40,7 @@
                         <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5">
                     </div>
                 </div>
+            </div>
         </form>
     </div>
 @endsection
