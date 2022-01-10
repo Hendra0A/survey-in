@@ -27,6 +27,11 @@
                     <td class="right-bio p-2">:{{ auth()->user()->email }}</td>
                 </tr>
                 <tr>
+                    <td class="left-bio p-2">Tanggal Lahir</td>
+                    {{-- <td class="bio-center">:</td> --}}
+                    <td class="right-bio p-2">:{{ auth()->user()->tanggal_lahir }}</td>
+                </tr>
+                <tr>
                     <td class="left-bio p-2">Jenis Kelamin</td>
                     {{-- <td class="bio-center">:</td> --}}
                     <td class="right-bio p-2">:{{ auth()->user()->gender }}</td>

@@ -4,7 +4,7 @@
     @include('admin.header')
     <!-- Content -->
     <div class="content d-flex flex-column">
-        <div class="admin-hl text-center">
+        <div class="admin-hl text-center ">
             <h1>Akun Surveyor</h1>
             <p>Dibawah ini merupakan kumpulan akun <br>surveyor yang ada pada saat ini:</p>
         </div>
