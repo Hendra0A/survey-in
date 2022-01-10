@@ -160,9 +160,10 @@ class AdminController extends Controller
             'kecamatan' => ['required'],
             'tanggal_mulai' => ['required'],
             'target' => ['required'],
+            'kategori' => ['required'],
         ]);
         $tanggal_selesai =  Carbon::createFromFormat('Y-m-d', $request->tanggal_mulai);
-        $tanggal_selesai = $tanggal_selesai->addDays(6);
+        $tanggal_selesai = $tanggal_selesai->addDays($request->kategori - 1);
         try {
             DetailSurveys::create([
                 'user_id' => $request->id,
@@ -564,7 +565,6 @@ class AdminController extends Controller
         //Cargar vista/tabla html y enviar varibles con la data
         $pdf->loadView('admin.data-survei.cetak-detail', [
             'title' => 'Data Survei',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
         ]);
         //descargar la vista en formato pdf 

@@ -24,7 +24,7 @@
                     @method('put')
                     <div class="bio-edit d-flex flex-sm-row flex-column flex mt-4">
                         <div class="bio-left w-100 d-flex flex-column align-items-start align-items-sm-center">
-                            <div class="col-12 mb-3">
+                            <div class="col-10 mb-3">
                                 <input type="hidden" name="target" value="1">
                                 <div class="mb-3">
                                     <input type="hidden" name="id" value="{{ $profile->id }}">
@@ -42,7 +42,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-10 mb-3">
                                 <div class="mb-3">
                                     <label class="form-label">Kabupaten/Kota:</label>
                                     <select class="form-control form-select @error('area') is-invalid @enderror py-2" id="area" name="area">
@@ -59,7 +59,7 @@
                             </div>
                         </div>
                         <div class="bio-right w-100 d-flex flex-column align-items-start align-items-sm-center">
-                            <div class="col-12 mb-3">
+                            <div class="col-10 mb-3">
                                 <div class="mb-3">
                                     <label for="nomor_telpon" class="form-label">Nomor Telepon</label>
                                     <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror"
@@ -75,7 +75,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="col-12 mb-3">
+                            <div class="col-10 mb-3">
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email address</label>
                                     <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"

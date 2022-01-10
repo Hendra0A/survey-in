@@ -24,13 +24,13 @@
                 <div class="col-5">
                     <input type="hidden" name="id" value="{{ $profile->id }}">
                     <div class="bio-left d-flex flex-column">
-                        <label for="password" class="form-label fw-bold">Password :</label>
+                        <label for="password" class="form-label fw-bold">Password Baru</label>
                         <input type="password" class="form-control" id="password" name="password" required />
                     </div>
                 </div>
                 <div class="col-5">
                     <div class="bio-right w-100 d-flex flex-column">
-                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password :</label>
+                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password </label>
                         <input type="password" name="password_confirmation" class="form-control"
                             id="password_confirmation" required />
                     </div>
