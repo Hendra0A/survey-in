@@ -75,6 +75,12 @@ button#btn-pencarian {
     font-weight: 300;
 }
 
+/* Data Table */
+.table #dasur-table .dataTables_wrapper .dataTables_filter input {
+height: 20px;
+}
+/* Data Table End*/
+
 .btn-table {
     display: flex;
 }
