@@ -143,10 +143,18 @@
         </div>
 
         <!-- Btn Ubah Password -->
-        <div class="ubah-password d-flex justify-content-center mt-5">
+        <div class="ubah-password d-flex justify-content-evenly mt-5">
             <form action="/surveyor/edit" method="POST">
                 @csrf
                 @method('put')
+                <input type="hidden" name="target" value="1">
+                <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
+                <input class="btn btn-primary ps-5 pe-5 mb-5" type="submit" value="Edit Profile">
+            </form>
+            <form action="/surveyor/edit" method="POST">
+                @csrf
+                @method('put')
+                <input type="hidden" name="target" value="2">
                 <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
                 <input class="btn btn-primary ps-5 pe-5 mb-5" type="submit" value="Ubah Password">
             </form>

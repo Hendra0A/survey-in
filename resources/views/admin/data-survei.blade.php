@@ -11,7 +11,7 @@
                 Pencarian Hasil Survei
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survei Gang dan Perumahan di Kecamatan <span class="text-kec">Pontianak Barat</span>
+                Temukan hasil Survei Gang dan Perumahan <br> di Kecamatan <span class="text-kec">Pontianak Barat</span>
             </p>
             <form action="" method="POST">
                 @csrf

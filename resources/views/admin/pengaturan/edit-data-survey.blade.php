@@ -75,7 +75,7 @@
         {{-- DISPLAY SALURAN --}}
         <div class="edit ms-sm-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Kondisi Saluran</h3>
+                <h3 class=" text-sm-center">Keadaan Saluran</h3>
                 @foreach ($saluran as $item)
                 <tr>
                     <td
@@ -163,7 +163,7 @@
         {{-- DISPLAY LAMPIRAN --}}
         <div class="edit ms-sm-5 mt-5 w-75">
             <table class="edit-td" style="width: 100%;">
-                <h3 class=" text-sm-center">Jenis Lampiran</h3>
+                <h3 class=" text-sm-center">Keterangan</h3>
                 @foreach ($lampiran as $item)
                 <tr>
                     <td

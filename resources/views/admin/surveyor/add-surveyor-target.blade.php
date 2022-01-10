@@ -42,9 +42,9 @@
                     <div class="target-kecamatan w-50 me-5">
                         <label for="validationServer03" class="form-label">Kategori:</label>
                         <select class="form-control form-control" id="validationServer03"
-                            aria-label="Default select example">
+                            aria-label="Default select example " name="kategori">
                             <option selected>--Kategori Target--</option>
-                            <option value="1">Perminggu</option>
+                            <option value="6">Perminggu</option>
                         </select>
                     </div>
 
