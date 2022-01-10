@@ -27,7 +27,7 @@
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="bio-left w-100 d-flex flex-column align-items-start align-items-sm-center">
                     <div class="col-8 mb-3">
-                        <label for="validationServer01" class="form-label">Nama Lengkap :</label>
+                        <label for="validationServer01" class="form-label">Nama Lengkap</label>
                         <input type="text" class="form-control border-primary @error('nama_lengkap') is-invalid @enderror"
                             id="validationServer01" aria-describedby="validationServer01Feedback"
                             value="{{ auth()->user()->nama_lengkap }}" name="nama_lengkap">
@@ -38,7 +38,7 @@
                         @enderror
                     </div>
                     <div class="col-8 mb-3">
-                        <label for="validationServer02" class="form-label">Tanggal Lahir :</label>
+                        <label for="validationServer02" class="form-label">Tanggal Lahir</label>
                         <input type="date" class="form-control border-primary @error('tanggal_lahir') is-invalid @enderror"
                             id="validationServer02" aria-describedby="validationServer02Feedback"
                             value="{{ auth()->user()->tanggal_lahir }}" name="tanggal_lahir">
@@ -49,7 +49,7 @@
                         @enderror
                     </div>
                     <div class="col-8 mb-3">
-                        <label for="validationServer03" class="form-label">Email :</label>
+                        <label for="validationServer03" class="form-label">Email</label>
                         <input type="text" class="form-control border-primary @error('email') is-invalid @enderror"
                             id="validationServer03" aria-describedby="validationServer03Feedback"
                             value="{{ auth()->user()->email }}" name="email">
@@ -62,7 +62,7 @@
                 </div>
                 <div class="bio-right w-100 d-flex flex-column align-items-start align-items-sm-center">
                     <div class="col-8 mb-3">
-                        <label for="validationServer04" class="form-label">Jenis Kelamin :</label>
+                        <label for="validationServer04" class="form-label">Jenis Kelamin</label>
 
                         <select class="form-select w-100 border-primary @error('gender') is-invalid @enderror"
                             id="validationServer04" aria-describedby="validationServer04Feedback" name="gender">
@@ -79,7 +79,7 @@
                         @enderror
                     </div>
                     <div class="col-8 mb-3 mt-2">
-                        <label for="validationServer05" class="form-label">No. Handphone :</label>
+                        <label for="validationServer05" class="form-label">No. Handphone</label>
                         <input type="text" class="form-control border-primary @error('nomor_telepon') is-invalid @enderror"
                             id="validationServer05" aria-describedby="validationServer05Feedback"
                             value="{{ auth()->user()->nomor_telepon }}" name="nomor_telepon">
@@ -90,7 +90,7 @@
                         @enderror
                     </div>
                     <div class="col-8 mb-3">
-                        <label for="validationServer06" class="form-label">Alamat :</label>
+                        <label for="validationServer06" class="form-label">Alamat</label>
                         <input type="text" class="form-control border-primary @error('alamat') is-invalid @enderror"
                             id="validationServer06" aria-describedby="validationServer06Feedback"
                             value="{{ auth()->user()->alamat }}" name="alamat">
