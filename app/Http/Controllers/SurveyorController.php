@@ -91,8 +91,8 @@ class SurveyorController extends Controller
     public function pengaturan()
     {
         $data = [
-            'active' => 'Profile-Edit',
-            'title' => 'Profile-Page',
+            'active' => 'pengaturan',
+            'title' => 'Pengaturan',
         ];
         return view('user.pengaturan', $data);
     }

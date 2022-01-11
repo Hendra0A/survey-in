@@ -178,5 +178,13 @@ class DatabaseSeeder extends Seeder
             'email' => 'selibitri@gmail.com',
             'password' => bcrypt('password')
         ]);
+        User::create([
+            'nama_lengkap' => 'Admin',
+            'avatar' => "https://source.unsplash.com/128x128",
+            'nomor_telepon' => '082252423199',
+            'role' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt('admin')
+        ]);
     }
 }
