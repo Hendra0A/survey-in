@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
     });
     Route::group(['middleware' => 'surveyor'], function () {
         Route::get('/surveyor/beranda', [SurveyorController::class, 'index']);
-          Route::get('/surveyor/riwayat-survei', [SurveyorController::class, 'history']);
+        Route::get('/surveyor/riwayat-survei', [SurveyorController::class, 'history']);
         Route::get('/surveyor/profile', [SurveyorController::class, 'show']);
         Route::get('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'update']);
         Route::get('/surveyor/data-survei', [SurveyorController::class, 'dataSurvei']);
