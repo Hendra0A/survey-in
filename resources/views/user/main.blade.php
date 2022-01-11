@@ -22,7 +22,6 @@
 <body>
 
   <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #F3F8FF;">
-
     <!-- Header Section -->
     <div class="header d-flex justify-content-between align-items-centers p-2">
       <div class="logo d-flex align-items-center ms-2">
@@ -39,20 +38,18 @@
           <i class="fas fa-ellipsis-v text-black"></i>
         </button>
         <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownMenu2">
-          <li><a href="/user/pengaturan" class="dropdown-item text-decoration-none text-black">Pengaturan</a></li>
+          <li><a href="/surveyor/pengaturan" class="dropdown-item text-decoration-none text-black">Pengaturan</a></li>
           <li><a class="dropdown-item text-decoration-none text-black">Tentang</a></li>
-          <li><a class="dropdown-item text-decoration-none text-black">Keluar</a></li>
+          <li>
+            <form action="/logout" method="post">
+              @csrf
+              <input type="submit" value="Keluar" class="dropdown-item text-decoration-none text-black">
+            </form>
+          </li>
         </ul>
       </div>
     </div>
-    <!-- Header Section -->
-
-    <!-- Content Section -->
     @yield('content')
-    <!-- Content Section -->
-
-
-        <!-- Navbar -->
        
 
   </div>

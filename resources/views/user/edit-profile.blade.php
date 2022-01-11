@@ -1,18 +1,22 @@
-<h1>Profile Surveyor</h1>
+@extends('user.main')
+@section('header')
+  <a href="/surveyor/profile" class="nav-link"><i class="fas fa-chevron-left text-black"></i></a>
+  <span class="fw-bold">Profil</span>
+@endsection
+@section('content')
+    <div class="content">
+        <div class="container">
 
+            <h1>Profile Edit</h1>
             <p>Profil Admin berisi data pribadi Surveyor.</p>
             <div class="admin d-sm-flex d-block">
-                <img src="/img/cat.png" alt="" class="hl-img rounded-circle">
+                <img src="/img/cat.png" alt="" class="hl-img rounded-circle img-fluid">
                 <div class="hl-upload ms-sm-4 d-flex flex-column justify-content-center">
                     {{-- <button type="submit" class="btn btn-primary mt-2 ms-sm-4 shadow-none" id="upload">Ubah foto
                         profile</button> --}}
                         <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
                     <p class="upload mt-1 ms-0 ms-sm-4">maks upload (2 Mb)</p>
                 </div>
-            </div>
-            <div class="hl-status mt-3 d-flex flex-column justify-content-center">
-                <h3>{{ auth()->user()->nama_lengkap }}</h3>
-                <p>{{ auth()->user()->role }}</p>
             </div>
         </div>
 
@@ -21,8 +25,8 @@
             @method('patch')
             <div class="bio-edit d-flex flex-sm-row flex-column flex mt-4">
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
-                <div class="bio-left w-100 d-flex flex-column align-items-start align-items-sm-center">
-                    <div class="col-8 mb-3">
+                <div class="bio-left row justify-content-center align-items-start align-items-sm-center">
+                    <div class="col-10 mb-3">
                         <label for="validationServer01" class="form-label">Nama Lengkap :</label>
                         <input type="text" class="form-control border-primary @error('nama_lengkap') is-invalid @enderror"
                             id="validationServer01" aria-describedby="validationServer01Feedback"
@@ -33,7 +37,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-8 mb-3">
+                    <div class="col-10 mb-3">
                         <label for="validationServer02" class="form-label">Tanggal Lahir :</label>
                         <input type="date" class="form-control border-primary @error('tanggal_lahir') is-invalid @enderror"
                             id="validationServer02" aria-describedby="validationServer02Feedback"
@@ -44,7 +48,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-8 mb-3">
+                    <div class="col-10 mb-3">
                         <label for="validationServer03" class="form-label">Email :</label>
                         <input type="text" class="form-control border-primary @error('email') is-invalid @enderror"
                             id="validationServer03" aria-describedby="validationServer03Feedback"
@@ -56,10 +60,9 @@
                         @enderror
                     </div>
                 </div>
-                <div class="bio-right w-100 d-flex flex-column align-items-start align-items-sm-center">
-                    <div class="col-8 mb-3">
+                <div class="bio-right row justify-content-center align-items-start align-items-sm-center">
+                    <div class="col-10 mb-3">
                         <label for="validationServer04" class="form-label">Jenis Kelamin :</label>
-
                         <select class="form-select w-100 border-primary @error('gender') is-invalid @enderror"
                             id="validationServer04" aria-describedby="validationServer04Feedback" name="gender">
                             <option disabled>Pilih...</option>
@@ -74,7 +77,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-8 mb-3 mt-2">
+                    <div class="col-10 mb-3 mt-2">
                         <label for="validationServer05" class="form-label">No. Handphone :</label>
                         <input type="text" class="form-control border-primary @error('nomor_telepon') is-invalid @enderror"
                             id="validationServer05" aria-describedby="validationServer05Feedback"
@@ -85,7 +88,7 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-8 mb-3">
+                    <div class="col-10 mb-3">
                         <label for="validationServer06" class="form-label">Alamat :</label>
                         <input type="text" class="form-control border-primary @error('alamat') is-invalid @enderror"
                             id="validationServer06" aria-describedby="validationServer06Feedback"
@@ -94,9 +97,12 @@
                             Harap berikan alamat yang valid.
                         </div>
                     </div>
+                    <div class="submit mt-5 col-10">
+                        <button type="submit" class="btn btn-lg btn-primary mb-5 h-auto container-fluid" id="submit">Simpan perubahan</button>
+                    </div>
                 </div>
             </div>
-            <div class="submit d-flex justify-content-center mt-5 col-8 col-sm-12">
-                <button type="submit" class="btn btn-lg btn-primary mb-5 h-auto" id="submit">Simpan perubahan</button>
-            </div>
         </form>
+        </div>
+    </div>
+@endsection

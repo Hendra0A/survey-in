@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="ms-2 me-2 mt-2 m-auto justify-content-center" style="background: #F3F8FF;">
-        <a href="/user/riwayat-survei" class="text-end text-decoration-none fs-6 d-block">Riwayat Survei</a>
+        <a href="/surveyor/riwayat-survei" class="text-end text-decoration-none fs-6 d-block">Riwayat Survei</a>
       </div>
       <div class="pilih-kec mt-4 mb-2 p-2">
           <label for="" class=" ms-4" id="pilih-kec">Kecamatan :</label>
