@@ -42,7 +42,11 @@ class DataSurveyController extends Controller
     }
     public function printResume($id)
     {
-        return Excel::download(new DataSurveyExport($id), 'hola.xlsx');
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan.kabupaten', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->get();
+        if (count($data) === 0) {
+            return back()->with('error', 'Data Kosong!');;
+        }
+        return Excel::download(new DataSurveyExport($id), 'Resume Perumahan ' . $data[0]->kecamatan->nama . '.xlsx');
     }
     public function previewResume($id)
     {
