@@ -48,6 +48,7 @@ class AdminController extends Controller
         $data = [
             'title' => 'Profile',
             'active' => 'profile',
+            'data' => auth()->user()
         ];
         return view('admin.profile', $data);
     }
@@ -77,7 +78,7 @@ class AdminController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images-admin');
         }
 
         try {
