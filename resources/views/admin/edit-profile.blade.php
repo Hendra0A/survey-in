@@ -18,16 +18,15 @@
                         <img class="img-preview img-fluid hl-img rounded-circle">
                     @endif
                     <div class="hl-upload ms-sm-4 d-flex flex-column justify-content-center">
-                        <label for="avatar" class="form-label">Image</label>
-                        <input class="form-control @error('avatar') is-invalid @enderror" type="file" id="avatar"
-                            name="avatar" onchange="previewImage()">
+                        <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar"
+                        name="avatar" onchange="previewImage()">
                         @error('avatar')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
                         @enderror
-
-                        <p class="upload mt-1 ms-0 ms-sm-4">maks upload (2 Mb)</p>
+                        <label for="avatar" class="form-label btn btn-primary px-4 py-3" style="border-radius: 0.5em">Ubah Foto Profile</label>
+                        <p class="upload mt-1 ms-0">maks upload (2 Mb)</p>
                     </div>
                 </div>
                 <div class="hl-status mt-3 d-flex flex-column justify-content-center">
