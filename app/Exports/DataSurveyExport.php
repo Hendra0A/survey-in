@@ -12,18 +12,13 @@ use Maatwebsite\Excel\Concerns\WithEvents;
 use PhpOffice\PhpSpreadsheet\Style\Border;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use Maatwebsite\Excel\Concerns\WithCustomStartCell;
 
-class DataSurveyExport implements FromView, ShouldAutoSize
+class DataSurveyExport implements FromView, ShouldAutoSize, WithEvents
 {
-
-    // 
-    // WithMapping,
-    // WithHeadings,
-    // WithEvents,
-    // WithCustomStartCell
     protected $id;
 
     function __construct($id)
@@ -35,59 +30,47 @@ class DataSurveyExport implements FromView, ShouldAutoSize
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $this->id)->get();
         $fasos = JenisFasos::all();
-        // $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->get();
-        // // dd($data);
         return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
             'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'datas' => $data,
             'fasos' => $fasos
         ]);
     }
 
-    // public function collection()
-    // {
-    //     return DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->get();
-    // }
-
-    // public function map($data): array
-    // {
-    //     return [
-    //         $data->nama_gang,
-    //         $data->lokasi,
-    //     ];
-    // }
-
-    // public function headings(): array
-    // {
-    //     return [
-    //         'Nama Perumahan dan Gang',
-    //         'Lokasi Perumahan',
-    //         ['Jenis Rumah', 'Developer', 'Swadaya'],
-    //     ];
-    // }
-
-    // public function registerEvents(): array
-    // {
-    //     return [
-    //         AfterSheet::class => function (AfterSheet $event) {
-    //             $event->sheet->getStyle('A3:D3')->applyFromArray([
-    //                 'font' => [
-    //                     'bold' => true
-    //                 ],
-    //                 'borders' => [
-    //                     'outline' => [
-    //                         'borderStyle' => Border::BORDER_THICK,
-    //                         'color' => ['argb' => 'FFFF0000'],
-    //                     ],
-    //                 ]
-    //             ]);
-    //         }
-    //     ];
-    // }
-
-    // public function startCell(): string
-    // {
-    //     return 'A3';
-    // }
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $event->sheet->getStyle('A:AH')->applyFromArray([
+                    'font' => [
+                        'size' => 12,
+                        'name'      =>  'Times New Roman'
+                    ],
+                    'alignment' => [
+                        'horizontal' => Alignment::HORIZONTAL_CENTER,
+                        'vertical' => Alignment::VERTICAL_CENTER,
+                    ],
+                ]);
+                $event->sheet->getStyle('A1')->applyFromArray([
+                    'font' => [
+                        'bold' => true,
+                        'size' => 14
+                    ],
+                ]);
+                $event->sheet->getStyle('B')->applyFromArray([
+                    'alignment' => [
+                        'horizontal' => Alignment::HORIZONTAL_LEFT,
+                    ]
+                ]);
+                $event->sheet->getStyle('A3:AH5')->applyFromArray([
+                    'font' => [
+                        'bold' => true
+                    ],
+                    'alignment' => [
+                        'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    ]
+                ]);
+            }
+        ];
+    }
 }

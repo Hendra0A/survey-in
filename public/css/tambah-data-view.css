@@ -1,0 +1,15 @@
+label {
+    font-size: .7em;
+}
+
+#form-tambahan {
+    display: none;
+}
+
+#tambah-lampiran {
+    display: none;
+}
+
+.form-tambah span {
+    font-size: .8em;
+}
