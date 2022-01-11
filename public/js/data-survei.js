@@ -27,8 +27,9 @@ $(document).ready(async function () {
             $(".text-kec").text(data.data[0].nama);
             $("#resume").attr(
                 "href",
-                `/data-survei/print/resume/${data.data[0].id}`
+                `/data-survei/resume/${data.data[0].id}`
             );
+
         } catch (error) { }
         $("#kecamatan").html("");
         data.data.forEach((element) => {
@@ -75,8 +76,10 @@ $(document).ready(async function () {
     $("#kecamatan").change(function (e) {
         e.preventDefault();
         $(".text-kec").text($(this).find("option:selected").text());
-        $("#resume").attr("href", `/data-survei/print/resume/` + $(this).val());
+        $("#resume").attr("href", `/data-survei/resume/` + $(this).val());
         setData($(this).val());
+
+
     });
 
     setKecamatan();
