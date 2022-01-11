@@ -66,5 +66,6 @@ Route::get('/user/pengaturan/edit-password', [SurveyorController::class, 'ubahPa
 Route::post('/user/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
 Route::get('/user/riwayat-survei', [SurveyorController::class, 'history']);
 Route::get('/user/profile', [SurveyorController::class, 'show']);
-Route::get('/profile/edit-profile/surveyor', [SurveyorController::class, 'update']);
+Route::get('/user/profile/edit-profile/surveyor', [SurveyorController::class, 'update']);
+Route::patch('/user/profile/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
 Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);

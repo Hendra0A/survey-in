@@ -69,7 +69,7 @@
         </li>
         <li class="nav-item">
           <i class="fas fa-user"></i>
-          <a href="#" class="nav-link text-white d-flex justify-content-center align-items-end">Profil</a>
+          <a href="/user/profile" class="nav-link text-white d-flex justify-content-center align-items-end">Profil</a>
         </li>
       </ul>
     </nav>

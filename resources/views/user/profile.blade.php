@@ -1,7 +1,7 @@
 <h1>Profil Surveyor</h1>
-            <p>Profil Admin berisi data pribadi Surveyor.</p>
+            <p>Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex">
-                <img src="{{ $data->avatar }}" alt="aw" class="hl-img rounded-circle">
+                <img src="{{ asset('storage/' . $data->avatar) }}" alt="aw" class="hl-img rounded-circle">
                 <div class="hl-status ms-4 d-flex flex-column justify-content-center">
                     <h3>{{ $data->nama_lengkap }}</h3>
                     <p>{{ $data->role }}</p>
@@ -43,7 +43,7 @@
             </table>
         </div>
         <div class="submit d-flex justify-content-center mt-5">
-          <a href="/profile/edit-profile/surveyor" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>
+          <a href="/user/profile/edit-profile/surveyor" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a>
           
       </div>
 {{-- @dd($data) --}}

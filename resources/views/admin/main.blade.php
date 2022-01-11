@@ -85,8 +85,11 @@
                     <div class="choose d-flex justify-content-center gap-5 mb-5">
                         <button type="button" class="btn btn-secondary btn-lg ps-4 pe-4 shadow-none border-0"
                         id="cancel" data-bs-dismiss="modal">Batal</button>
-                        <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
-                            id="exit"><a href="login.html">Keluar</a></button>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
+                                id="exit"><a>Keluar</a></button>
+                        </form>
                     </div>
                 </div>
             </div>
