@@ -191,7 +191,7 @@ class AdminController extends Controller
                 'tanggal_selesai' => $tanggal_selesai,
                 'target' => $request->target
             ]);
-            return redirect('/surveyor/profile/' . $request->id)
+            return redirect('/surveyor')
                 ->with('success', 'Berhasil menambahkan target surveyor')
                 ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
@@ -214,7 +214,7 @@ class AdminController extends Controller
                     'tanggal_selesai' => $request->tanggal_selesai,
                     'target' => $request->target,
                 ]);
-            return redirect('/surveyor/profile/' . $request->surveyor_id)
+            return redirect('/surveyor')
                 ->with('success', 'Berhasil mengubah target surveyor')
                 ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
@@ -326,7 +326,7 @@ class AdminController extends Controller
         try {
             User::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus');
+                ->with('success', 'Berhasil Menghapus')->with('confirm', 'Kembali ke Surveyor');;
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Mengapus Akun Surveyor');
         }
