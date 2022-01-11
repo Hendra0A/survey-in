@@ -64,6 +64,12 @@ button#btn-pencarian {
     height: auto;
 }
 
+#dasur-table.table{
+    margin-bottom: .5em;
+    border-radius: .5em;
+    padding-bottom: 1.5em;
+}
+
 #dasur-table th {
     font-size: .8em;
 }

@@ -50,14 +50,16 @@ $(document).ready(async function () {
                     { data: 'lokasi' },
                     { data: 'no_gps' },
                     { data: 'user.nama_lengkap' },
-                    { data: "id" , render : function ( data, type ) {
-                        return type === 'display'  ?
-                            `<div class="btn-table gap-1 justify-content-end">
-                            <a href="/data-survei/${data}" class="btn btn-primary btn-detail shadow-none" id="detail"" style="border-radius: .5em;"><i class="far fa-file"></i>Detail</a>
-                            <button class="btn btn-danger btn-hapus shadow-none fs-6" data-bs-toggle="modal" data-bs-target="#exampleModal3" value="${data}"><i class="far fa-trash-alt"></i>Hapus</button>
+                    {
+                        data: "id", render: function (data, type) {
+                            return type === 'display' ?
+                                `<div class="btn-table gap-1 justify-content-end">
+                            <a href="/data-survei/${data}" class="btn btn-primary btn-detail shadow-none" id="detail""><i class="far fa-file"></i>Detail</a>
+                            <button class="btn btn-danger btn-hapus shadow-none" style="font-size:16px; border-radius:5px;" data-bs-toggle="modal" data-bs-target="#exampleModal3" value="${data}"><i class="far fa-trash-alt"></i>Hapus</button>
                             </div>` :
-                            data;
-                    }},
+                                data;
+                        }, orderable: false, searchable: false
+                    },
                 ],
                 stateSave: true,
                 "bDestroy": true
