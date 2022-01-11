@@ -25,6 +25,8 @@ use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
 
+use function PHPUnit\Framework\isEmpty;
+
 // jika erorr menggunakan alert
 // jalankan composer install
 class AdminController extends Controller
@@ -508,7 +510,7 @@ class AdminController extends Controller
 
     public function viewCetakResumeDataSurvei($id)
     {
-        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->get();
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan.kabupaten', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->get();
         $fasos = JenisFasos::all();
         // dd($data);
         return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
@@ -521,46 +523,12 @@ class AdminController extends Controller
 
     public function cetakResumeDataSurvei($id)
     {
-        return Excel::download(new DataSurveyExport($id), 'hola.xlsx');
+        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan.kabupaten', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->get();
+        if (count($data) === 0) {
+            return back()->with('error', 'Data Kosong!');;
+        }
+        return Excel::download(new DataSurveyExport($id), 'Resume Perumahan ' . $data[0]->kecamatan->nama . '.xlsx');
     }
-
-    // public function cetakResumeDataSurvei($id)
-    // {
-    //     $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
-    //     dd($data);
-    //     // fasos
-    //     if ($data[0]->fasos === 1) {
-    //         $fasos = $data[0]->jenisFasos;
-    //     } else {
-    //         $fasos = 0;
-    //     }
-    //     $pdf = app('dompdf.wrapper');
-
-    //     //############ if image are not loading execute this code ################################
-    //     $contxt = stream_context_create([
-    //         'ssl' => [
-    //             'verify_peer' => FALSE,
-    //             'verify_peer_name' => FALSE,
-    //             'allow_self_signed' => TRUE,
-    //         ]
-    //     ]);
-    //     // jika erorr
-    //     // jalankan di terminal
-    //     // composer require barryvdh/laravel-dompdf
-    //     $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-    //     $pdf->getDomPDF()->setHttpContext($contxt);
-    //     //#################################################################################
-
-    //     //Cargar vista/tabla html y enviar varibles con la data
-    //     $pdf->loadView('admin.data-survei.detail-data-survei', [
-    //         'title' => 'Data Survei',
-    //         'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-    //         'data' => $data[0],
-    //         'fasos' => $fasos,
-    //     ]);
-    //     //descargar la vista en formato pdf 
-    //     return $pdf->download($data[0]->nama_gang . ".pdf");
-    // }
 
     public function cetakDetailDataSurvei($id)
     {
