@@ -29,6 +29,7 @@ $(document).ready(async function () {
                 "href",
                 `/data-survei/print/resume/${data.data[0].id}`
             );
+            
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {
@@ -75,6 +76,8 @@ $(document).ready(async function () {
         $(".text-kec").text($(this).find("option:selected").text());
         $("#resume").attr("href", `/data-survei/print/resume/` + $(this).val());
         setData($(this).val());
+
+        
     });
 
     setKecamatan();

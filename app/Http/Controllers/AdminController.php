@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use PDF;
 use Carbon\Carbon;
+use Dompdf\Dompdf;
 use App\Models\User;
 use App\Models\Fasos;
 use App\Models\Kabupaten;
@@ -14,14 +16,17 @@ use Illuminate\Http\Request;
 use App\Models\DetailSurveys;
 use App\Models\JenisLampiran;
 use App\Models\RiwayatSurvey;
+use App\Exports\DataSurveyExport;
 use App\Http\Controllers\Controller;
 use App\Models\JenisKonstruksiJalan;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Expr\AssignOp\Mod;
 use App\Models\JenisKonstruksiSaluran;
 use Illuminate\Support\Facades\Validator;
-use Dompdf\Dompdf;
-use PDF;
+use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 // jika erorr menggunakan alert
 // jalankan composer install
@@ -51,19 +56,30 @@ class AdminController extends Controller
         $data = [
             'active' => 'Profile - Edit',
             'title' => 'Profile-Page',
+            'data' => auth()->user()
         ];
         return view('admin.edit-profile', $data);
     }
     public function profileUpdate(Request $request)
     {
-        $request->validate([
+        // ddd($request);
+        $validateData = $request->validate([
             'nama_lengkap' => ['required'],
             'nomor_telepon' => ['required'],
             'email' => ['required'],
             'nama_lengkap' => ['required'],
             'alamat' => ['required'],
-            'tanggal_lahir' => ['required']
+            'tanggal_lahir' => ['required'],
+            'avatar' => 'image|file|max:2048'
         ]);
+
+        if ($request->file('avatar')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+        }
+
         try {
             User::where('id', $request->id)
                 ->update([
@@ -72,10 +88,12 @@ class AdminController extends Controller
                     'email' => $request->email,
                     'tanggal_lahir' => $request->tanggal_lahir,
                     'nomor_telepon' => $request->nomor_telepon,
-                    'alamat' => $request->alamat
+                    'alamat' => $request->alamat,
+                    'avatar' => $validateData['avatar'],
                 ]);
             return redirect('/profile')
-                ->with('success', 'Berhasil Mengubah Profile');
+                ->with('success', 'Profil admin telah berhasil di edit')
+                ->with('confirm', 'Kembali ke Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -116,15 +134,16 @@ class AdminController extends Controller
 
             ]);
             return redirect('/surveyor')
-                ->with('success', 'Akun Surveyor berhasil dibuat !');
+                ->with('success', 'Akun telah berhasil ditambahkan !')
+                ->with('confirm', 'Kembali ke Surveyor');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
     }
 
-    public function surveyorProfile(Request $request)
+    public function surveyorProfile($id)
     {
-        $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $request->id)->where('role', 'surveyor')->get();
+        $data = User::with(['detailSurvey.kecamatan', 'kabupaten'])->where('id', $id)->where('role', 'surveyor')->get();
         $selesai = 0;
         $target = 0;
         $weekly_target = 0;
@@ -160,9 +179,10 @@ class AdminController extends Controller
             'kecamatan' => ['required'],
             'tanggal_mulai' => ['required'],
             'target' => ['required'],
+            'kategori' => ['required'],
         ]);
         $tanggal_selesai =  Carbon::createFromFormat('Y-m-d', $request->tanggal_mulai);
-        $tanggal_selesai = $tanggal_selesai->addDays(6);
+        $tanggal_selesai = $tanggal_selesai->addDays($request->kategori - 1);
         try {
             DetailSurveys::create([
                 'user_id' => $request->id,
@@ -172,7 +192,8 @@ class AdminController extends Controller
                 'target' => $request->target
             ]);
             return redirect('/surveyor')
-                ->with('success', 'Berhasil Menambahkan Target Surveyor');
+                ->with('success', 'Berhasil menambahkan target surveyor')
+                ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -194,7 +215,8 @@ class AdminController extends Controller
                     'target' => $request->target,
                 ]);
             return redirect('/surveyor')
-                ->with('success', 'Berhasil Mengubah Target Surveyor');
+                ->with('success', 'Berhasil mengubah target surveyor')
+                ->with('confirm', 'Kembali ke Surveyor Profil');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -228,7 +250,6 @@ class AdminController extends Controller
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Target Surveyor',
-                [0],
                 'profile_surveyor' => $surveyor[0],
                 'detail_survey' => $surveyor[0]->detailSurvey[0],
                 'kecamatans' => $user->kabupaten->kecamatan
@@ -253,8 +274,9 @@ class AdminController extends Controller
                         'nomor_telepon' => $request->nomor_telepon,
                         'email' => $request->email,
                     ]);
-                return redirect('/surveyor')
-                    ->with('success', 'Berhasil Update Profile Surveyor');
+                return redirect('/surveyor/profile/' . $request->id)
+                    ->with('success', 'Akun surveyor telah berhasil di edit')
+                    ->with('confirm', 'Kembali ke Surveyor Profil');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
@@ -268,13 +290,12 @@ class AdminController extends Controller
                     ->update([
                         'password' => Hash::make($request->password)
                     ]);
-                return redirect('/surveyor')
-                    ->with('success', 'Berhasil Mengubah Password');
+                return redirect('/surveyor/profile/' . $request->id)
+                    ->with('success', 'Password surveyor telah berhasil diubah')
+                    ->with('confirm', 'Kembali ke Surveyor Profil');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
-
-            return redirect('/surveyor')->withInput();
         }
     }
     public function getSurveyor(Request $request)
@@ -305,7 +326,7 @@ class AdminController extends Controller
         try {
             User::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus');
+                ->with('success', 'Berhasil Menghapus')->with('confirm', 'Kembali ke Surveyor');;
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Mengapus Akun Surveyor');
         }
@@ -320,7 +341,6 @@ class AdminController extends Controller
             // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0]
         ]);
     }
-
     public function editDataSurvey()
     {
         return view('admin.pengaturan.edit-data-survey', [
@@ -333,22 +353,12 @@ class AdminController extends Controller
             'lampiran' => JenisLampiran::all(),
         ]);
     }
-    public function tambahJenisJalan(Request $request)
-    {
-        if ($request->jalan != '') {
-            JenisKonstruksiJalan::create([
-                "jenis" => $request->jalan,
-            ]);
-            return redirect('/pengaturan/edit-data-survey')->withInput();
-        } else {
-        }
-    }
     public function createData($model, Request $data)
     {
         switch ($model) {
             case 'jalan':
                 $data->validate([
-                    'jalan' => ['required', 'unique:jenis_konstruksi_jalans,jenis', 'alpha']
+                    'jalan' => ['required', 'unique:jenis_konstruksi_jalans,jenis']
                 ]);
                 JenisKonstruksiJalan::create([
                     "jenis" => $data->jalan,
@@ -358,7 +368,7 @@ class AdminController extends Controller
                 break;
             case 'saluran':
                 $data->validate([
-                    'saluran' => ['required', 'unique:jenis_konstruksi_salurans,jenis', 'alpha']
+                    'saluran' => ['required', 'unique:jenis_konstruksi_salurans,jenis']
                 ]);
 
                 JenisKonstruksiSaluran::create([
@@ -369,7 +379,7 @@ class AdminController extends Controller
                 break;
             case 'fasos':
                 $data->validate([
-                    'fasos' => ['required', 'unique:jenis_fasos,jenis', 'alpha']
+                    'fasos' => ['required', 'unique:jenis_fasos,jenis']
                 ]);
 
                 JenisFasos::create([
@@ -380,7 +390,7 @@ class AdminController extends Controller
                 break;
             case 'lampiran':
                 $data->validate([
-                    'lampiran' => ['required', 'unique:jenis_lampirans,jenis', 'alpha']
+                    'lampiran' => ['required', 'unique:jenis_lampirans,jenis']
                 ]);
                 JenisLampiran::create([
                     "jenis" => $data->lampiran,
@@ -450,7 +460,6 @@ class AdminController extends Controller
 
         return redirect('/pengaturan/edit-data-survey')->with('success', 'Data has been deleted!');
     }
-
     public function ubahPassword(Request $request)
     {
         return view('admin.pengaturan.ubah-password', [
@@ -466,10 +475,7 @@ class AdminController extends Controller
             'kata_sandi_baru_confirmation' => ['required', 'min:8']
         ]);
 
-
         $admin = User::where('role', 'admin')->where('id', auth()->user()->id)->get()[0];
-        // dd($admin);
-
         $currentPassword = $admin->password;
         $kata_sandi_lama = request('kata_sandi_lama');
 
@@ -483,16 +489,6 @@ class AdminController extends Controller
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
     }
-    public function dataSurvei()
-    {
-        return view('admin.data-survei', [
-            'active' => 'data survei',
-            'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-            'kabupaten' => Kabupaten::get(['id', 'nama'])
-        ]);
-    }
-
     public function detailDataSurvei($id)
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
@@ -502,75 +498,6 @@ class AdminController extends Controller
             'data' => $data[0],
         ]);
     }
-
-    public function cetakResumeDataSurvei($id)
-    {
-        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasos.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->groupBy('lokasi')->get();
-        dd($data);
-        // fasos
-        if ($data[0]->fasos === 1) {
-            $fasos = $data[0]->jenisFasos;
-        } else {
-            $fasos = 0;
-        }
-        $pdf = app('dompdf.wrapper');
-
-        //############ if image are not loading execute this code ################################
-        $contxt = stream_context_create([
-            'ssl' => [
-                'verify_peer' => FALSE,
-                'verify_peer_name' => FALSE,
-                'allow_self_signed' => TRUE,
-            ]
-        ]);
-        // jika erorr
-        // jalankan di terminal
-        // composer require barryvdh/laravel-dompdf
-        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        $pdf->getDomPDF()->setHttpContext($contxt);
-        //#################################################################################
-
-        //Cargar vista/tabla html y enviar varibles con la data
-        $pdf->loadView('admin.data-survei.detail-data-survei', [
-            'title' => 'Data Survei',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-            'data' => $data[0],
-            'fasos' => $fasos,
-        ]);
-        //descargar la vista en formato pdf 
-        return $pdf->download($data[0]->nama_gang . ".pdf");
-    }
-    public function cetakDetailDataSurvei($id)
-    {
-        $data = DataSurvey::with(['kecamatan', 'konstruksiJalan', 'konstruksiSaluran', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
-
-        $pdf = app('dompdf.wrapper');
-
-        //############ if image are not loading execute this code ################################
-        $contxt = stream_context_create([
-            'ssl' => [
-                'verify_peer' => FALSE,
-                'verify_peer_name' => FALSE,
-                'allow_self_signed' => TRUE,
-            ]
-        ]);
-        // jika erorr
-        // jalankan di terminal
-        // composer require barryvdh/laravel-dompdf
-        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        $pdf->getDomPDF()->setHttpContext($contxt);
-        //#################################################################################
-
-        //Cargar vista/tabla html y enviar varibles con la data
-        $pdf->loadView('admin.data-survei.cetak-detail', [
-            'title' => 'Data Survei',
-            'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-            'data' => $data[0],
-        ]);
-        //descargar la vista en formato pdf 
-        return $pdf->download($data[0]->nama_gang . ".pdf");
-    }
-
     public function destroyDataSurvei(Request $request)
     {
         try {

@@ -11,7 +11,7 @@
                 Pencarian Hasil Survei
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survei Gang dan Perumahan di Kecamatan <span class="text-kec">Pontianak Barat</span>
+                Temukan hasil Survei Gang dan Perumahan <br> di Kecamatan <span class="text-kec">Pontianak Barat</span>
             </p>
             <form action="" method="POST">
                 @csrf
@@ -40,7 +40,8 @@
         </div>
 
         <div class="download d-flex justify-content-between ps-5 pe-5 mb-3">
-            <a type="button" class="btn btn-outline-primary download shadow-none" id="resume">Download Resume</a>
+            <a id="resume" class="btn btn-outline-primary download shadow-none">Download
+                Resume</a>
             <form action="" method="post">
                 <div class="pencarian d-flex align-items-center">
                     <div class="pencarian-input me-3">

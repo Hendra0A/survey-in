@@ -58,7 +58,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="bio-right w-100 d-flex flex-column align-items-start align-items-sm-center">
+                        <div class="bio-right w-100 d-flex flex-column align-items-start align-items-sm-center"
                             <div class="col-12 mb-3">
                                 <div class="mb-3 m-3">
                                     <label for="nomor_telpon" class="form-label">Nomor Telepon</label>

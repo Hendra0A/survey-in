@@ -15,11 +15,11 @@ class Controller extends BaseController
     {
         $this->middleware(function ($request, $next) {
             if (session('success')) {
-                Alert::success(session('success'));
+                Alert::success('', session('success'))->showConfirmButton(session('confirm'), '#3085d6');;
             }
 
             if (session('error')) {
-                Alert::error(session('error'));
+                Alert::error('', session('error'));
             }
 
             return $next($request);
