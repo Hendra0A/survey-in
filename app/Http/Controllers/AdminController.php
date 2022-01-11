@@ -82,15 +82,7 @@ class AdminController extends Controller
 
         try {
             User::where('id', $request->id)
-                ->update([
-                    'nama_lengkap' => $request->nama_lengkap,
-                    'gender' => $request->gender,
-                    'email' => $request->email,
-                    'tanggal_lahir' => $request->tanggal_lahir,
-                    'nomor_telepon' => $request->nomor_telepon,
-                    'alamat' => $request->alamat,
-                    'avatar' => $validateData['avatar'],
-                ]);
+                ->update($validateData);
             return redirect('/profile')
                 ->with('success', 'Profil admin telah berhasil di edit')
                 ->with('confirm', 'Kembali ke Profil');
