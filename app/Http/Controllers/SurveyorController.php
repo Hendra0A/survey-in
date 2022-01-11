@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\DetailSurveys;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class SurveyorController extends Controller
 {
@@ -65,20 +66,28 @@ class SurveyorController extends Controller
     }
     public function show()
     {
-        return view('user.profile', [
-            'title' => 'Riwayat Target',
+        $data = [
+            'title' => 'Profile',
             'active' => 'profile',
             'data' => auth()->user()
-        ]);
+        ];
+        return view('user.profile', $data);
     }
     public function update()
     {
         $data = [
-            'active' => 'Profile-Edit',
+            'active' => 'Profile - Edit',
             'title' => 'Profile-Page',
+            'data' => auth()->user()
         ];
         return view('user.edit-profile', $data);
     }
+
+    public function updateProfile(Request $request)
+    {
+        // ddd($request);
+    }
+
     public function pengaturan()
     {
         $data = [

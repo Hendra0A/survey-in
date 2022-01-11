@@ -30,7 +30,7 @@
                         <label for="validationServer01" class="form-label">Nama Lengkap :</label>
                         <input type="text" class="form-control border-primary @error('nama_lengkap') is-invalid @enderror"
                             id="validationServer01" aria-describedby="validationServer01Feedback"
-                            value="{{ auth()->user()->nama_lengkap }}" name="nama_lengkap">
+                            value="{{ $data->nama_lengkap }}" name="nama_lengkap">
                         @error('nama_lengkap')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -41,7 +41,7 @@
                         <label for="validationServer02" class="form-label">Tanggal Lahir :</label>
                         <input type="date" class="form-control border-primary @error('tanggal_lahir') is-invalid @enderror"
                             id="validationServer02" aria-describedby="validationServer02Feedback"
-                            value="{{ auth()->user()->tanggal_lahir }}" name="tanggal_lahir">
+                            value="{{ $data->tanggal_lahir }}" name="tanggal_lahir">
                         @error('tanggal_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -52,7 +52,7 @@
                         <label for="validationServer03" class="form-label">Email :</label>
                         <input type="text" class="form-control border-primary @error('email') is-invalid @enderror"
                             id="validationServer03" aria-describedby="validationServer03Feedback"
-                            value="{{ auth()->user()->email }}" name="email">
+                            value="{{ $data->email }}" name="email">
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -66,9 +66,11 @@
                         <select class="form-select w-100 border-primary @error('gender') is-invalid @enderror"
                             id="validationServer04" aria-describedby="validationServer04Feedback" name="gender">
                             <option disabled>Pilih...</option>
-                            <option value="laki-laki" {{ auth()->user()->gender == 'laki-laki' ? 'selected' : '' }}>Laki-laki
+                            <option value="laki-laki" {{ $data->gender == 'laki-laki' ? 'selected' : '' }}>
+                                Laki-laki
                             </option>
-                            <option value="perempuan" {{ auth()->user()->gender == 'perempuan' ? 'selected' : '' }}>Perempuan
+                            <option value="perempuan" {{ $data->gender == 'perempuan' ? 'selected' : '' }}>
+                                Perempuan
                             </option>
                         </select>
                         @error('gender')
@@ -81,7 +83,7 @@
                         <label for="validationServer05" class="form-label">No. Handphone :</label>
                         <input type="text" class="form-control border-primary @error('nomor_telepon') is-invalid @enderror"
                             id="validationServer05" aria-describedby="validationServer05Feedback"
-                            value="{{ auth()->user()->nomor_telepon }}" name="nomor_telepon">
+                            value="{{ $data->nomor_telepon }}" name="nomor_telepon">
                         @error('nomor_telepon')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -92,7 +94,7 @@
                         <label for="validationServer06" class="form-label">Alamat :</label>
                         <input type="text" class="form-control border-primary @error('alamat') is-invalid @enderror"
                             id="validationServer06" aria-describedby="validationServer06Feedback"
-                            value="{{ auth()->user()->alamat }}" name="alamat">
+                            value="{{ $data->alamat }}" name="alamat">
                         <div id="validationServer06Feedback" class="invalid-feedback">
                             Harap berikan alamat yang valid.
                         </div>

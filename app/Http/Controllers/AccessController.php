@@ -27,7 +27,7 @@ class AccessController extends Controller
                 //return view('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
-                return redirect()->intended('/user/beranda');
+                return redirect()->intended('/surveyor/beranda');
                 //return view('murid.dahsboard');
             }
         }

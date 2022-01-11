@@ -7,10 +7,10 @@
             <h1>Profil Admin</h1>
             <p>Profil Admin berisi data pribadi Admin.</p>
             <div class="admin d-flex">
-                <img src="{{ auth()->user()->avatar }}" alt="aw" class="hl-img rounded-circle">
+                <img src="{{ $data->avatar }}" alt="aw" class="hl-img rounded-circle">
                 <div class="hl-status ms-4 d-flex flex-column justify-content-center">
-                    <h3>{{ auth()->user()->nama_lengkap }}</h3>
-                    <p>{{ auth()->user()->role }}</p>
+                    <h3>{{ $data->nama_lengkap }}</h3>
+                    <p>{{ $data->role }}</p>
                 </div>
             </div>
         </div>
@@ -19,32 +19,32 @@
                 <tr>
                     <td class="left-bio p-2">Nama Lengkap</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->nama_lengkap }}</td>
+                    <td class="right-bio p-2">:{{ $data->nama_lengkap }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Email</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->email }}</td>
+                    <td class="right-bio p-2">:{{ $data->email }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Tanggal Lahir</td>
                     {{-- <td class="bio-center">:</td> --}}
-                <td class="right-bio p-2">:{{ \Carbon\Carbon::parse(auth()->user()->tanggal_lahir)->format('j F Y') }}</td>
+                <td class="right-bio p-2">:{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('j F Y') }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">Jenis Kelamin</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->gender }}</td>
+                    <td class="right-bio p-2">:{{ $data->gender }}</td>
                 </tr>
                 <tr>
                     <td class="left-bio p-2">No. Handphone</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->nomor_telepon }}</td>
+                    <td class="right-bio p-2">:{{ $data->nomor_telepon }}</td>
                 </tr>
                 <tr style="border: none;">
                     <td class="left-bio p-2">Alamat</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ auth()->user()->alamat }}</td>
+                    <td class="right-bio p-2">:{{ $data->alamat }}</td>
                 </tr>
             </table>
         </div>
