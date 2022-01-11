@@ -21,6 +21,12 @@ class Controller extends BaseController
             if (session('error')) {
                 Alert::error('', session('error'));
             }
+            if (session('tsuccess')) {
+                toast(session('tsuccess', 'success'))->autoClose(3000)->position('bottom-end');
+            }
+            if (session('terror')) {
+                toast(session('tsuccess', 'error'))->autoClose(3000)->position('bottom-end');
+            }
 
             return $next($request);
         });
