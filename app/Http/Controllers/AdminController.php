@@ -339,7 +339,6 @@ class AdminController extends Controller
             // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0]
         ]);
     }
-
     public function editDataSurvey()
     {
         return view('admin.pengaturan.edit-data-survey', [
@@ -351,16 +350,6 @@ class AdminController extends Controller
             'sosial' => JenisFasos::all(),
             'lampiran' => JenisLampiran::all(),
         ]);
-    }
-    public function tambahJenisJalan(Request $request)
-    {
-        if ($request->jalan != '') {
-            JenisKonstruksiJalan::create([
-                "jenis" => $request->jalan,
-            ]);
-            return redirect('/pengaturan/edit-data-survey')->withInput();
-        } else {
-        }
     }
     public function createData($model, Request $data)
     {
@@ -469,7 +458,6 @@ class AdminController extends Controller
 
         return redirect('/pengaturan/edit-data-survey')->with('success', 'Data has been deleted!');
     }
-
     public function ubahPassword(Request $request)
     {
         return view('admin.pengaturan.ubah-password', [
@@ -485,10 +473,7 @@ class AdminController extends Controller
             'kata_sandi_baru_confirmation' => ['required', 'min:8']
         ]);
 
-
         $admin = User::where('role', 'admin')->where('id', auth()->user()->id)->get()[0];
-        // dd($admin);
-
         $currentPassword = $admin->password;
         $kata_sandi_lama = request('kata_sandi_lama');
 
@@ -502,16 +487,6 @@ class AdminController extends Controller
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
     }
-    public function dataSurvei()
-    {
-        return view('admin.data-survei', [
-            'active' => 'data survei',
-            'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-            'kabupaten' => Kabupaten::get(['id', 'nama'])
-        ]);
-    }
-
     public function detailDataSurvei($id)
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
@@ -521,54 +496,6 @@ class AdminController extends Controller
             'data' => $data[0],
         ]);
     }
-
-    public function viewCetakResumeDataSurvei($id)
-    {
-        $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $id)->get();
-        $fasos = JenisFasos::all();
-        // dd($data);
-        return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
-            'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
-            'datas' => $data,
-            'fasos' => $fasos
-        ]);
-    }
-
-    public function cetakResumeDataSurvei($id)
-    {
-        return Excel::download(new DataSurveyExport($id), 'hola.xlsx');
-    }
-    public function cetakDetailDataSurvei($id)
-    {
-        $data = DataSurvey::with(['kecamatan', 'konstruksiJalan', 'konstruksiSaluran', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
-
-        $pdf = app('dompdf.wrapper');
-
-        //############ if image are not loading execute this code ################################
-        $contxt = stream_context_create([
-            'ssl' => [
-                'verify_peer' => FALSE,
-                'verify_peer_name' => FALSE,
-                'allow_self_signed' => TRUE,
-            ]
-        ]);
-        // jika erorr
-        // jalankan di terminal
-        // composer require barryvdh/laravel-dompdf
-        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
-        $pdf->getDomPDF()->setHttpContext($contxt);
-        //#################################################################################
-
-        //Cargar vista/tabla html y enviar varibles con la data
-        $pdf->loadView('admin.data-survei.cetak-detail', [
-            'title' => 'Data Survei',
-            'data' => $data[0],
-        ]);
-        //descargar la vista en formato pdf 
-        return $pdf->download($data[0]->nama_gang . ".pdf");
-    }
-
     public function destroyDataSurvei(Request $request)
     {
         try {

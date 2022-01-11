@@ -43,7 +43,7 @@ class SurveyorController extends Controller
             'data' => $data
         ]);
     }
-    public function riwayatSurvei()
+    public function history()
     {
         return view('user.riwayat-survei', [
             'title' => 'Riwayat Target',
@@ -62,7 +62,7 @@ class SurveyorController extends Controller
                 ->orderBy('id', 'ASC')->get(['id', 'nama'])
         ]);
     }
-    public function myProfile()
+    public function show()
     {
         return view('user.profile', [
             'title' => 'Riwayat Target',
@@ -70,7 +70,7 @@ class SurveyorController extends Controller
             'data' => auth()->user()
         ]);
     }
-    public function profileEdit()
+    public function update()
     {
         $data = [
             'active' => 'Profile-Edit',
