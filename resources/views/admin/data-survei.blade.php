@@ -42,20 +42,11 @@
         <div class="download d-flex justify-content-between ps-5 pe-5 mb-3">
             <a id="resume" class="btn btn-outline-primary download shadow-none">Download
                 Resume</a>
-            <form action="" method="post">
-                <div class="pencarian d-flex align-items-center">
-                    <div class="pencarian-input me-3">
-                        <input type="text" class="form-control pencarian shadow-none" id="search"
-                            placeholder="cari gang dan perumahan disni..." name="search">
-                    </div>
-                    <button type="submit" class="btn btn-primary shadow-none" id="btn-pencarian">Search</button>
-                </div>
-            </form>
         </div>
         <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
-            <table class="table table-hover" id="dasur-table" style="width: 100%;">
+            <table class="table table-hover bg-white shadow-sm" id="dasur-table" style="width: 100%;">
                 <thead>
-                    <tr>
+                    <tr style="vertical-align: middle">
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
                         <th scope="col" style="width: 21%;">Lokasi</th>
                         <th scope="col" style="width: 15%;">Koordinat</th>
@@ -86,7 +77,7 @@
 
                         <div class="choose d-flex justify-content-center gap-5 mb-5">
                             <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
-                            data-bs-dismiss="modal">batal</button>
+                                data-bs-dismiss="modal">batal</button>
                             <button type="submit"
                                 class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
                         </div>
