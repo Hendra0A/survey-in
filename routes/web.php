@@ -61,6 +61,9 @@ Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF'])
 
 // Halaman User
 Route::get('/user/beranda', [SurveyorController::class, 'index']);
+Route::get('/user/pengaturan', [SurveyorController::class, 'pengaturan']);
+Route::get('/user/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
+Route::post('/user/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
 Route::get('/user/riwayat-survei', [SurveyorController::class, 'history']);
 Route::get('/user/profile', [SurveyorController::class, 'show']);
 Route::get('/profile/edit-profile/surveyor', [SurveyorController::class, 'update']);
