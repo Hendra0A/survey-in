@@ -4,30 +4,20 @@ namespace App;
 
 use App\Models\User;
 use App\Models\Kabupaten;
+use Illuminate\Routing\RouteGroup;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AccessController;
 use App\Http\Controllers\SurveyorController;
+use App\Http\Controllers\DataSurveyController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', [LoginController::class, 'index'])->name('login');
-Route::post('/', [LoginController::class, 'authenticate']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/', [AccessController::class, 'index'])->name('login');
+Route::post('/', [AccessController::class, 'authenticate']);
+Route::post('/logout', [AccessController::class, 'logout']);
 
 //beranda
 Route::get('/beranda', [AdminController::class, 'beranda']);
-// Route::get('/beranda', [AdminController::class, 'beranda'])->middleware('admin');
-// pengelolaan surveyor
 Route::get('/surveyor', [AdminController::class, 'surveyor']);
 
 Route::get('/surveyor/tambah', [AdminController::class, 'Surveyortambah']);
@@ -36,7 +26,7 @@ Route::post('/surveyor/tambah', [AdminController::class, 'tambahSurveyor']);
 Route::put('/surveyor/hapus', [AdminController::class, 'destroySuyveyor']);
 Route::put('/surveyor/update', [AdminController::class, 'updateSurveyor']);
 Route::put('/surveyor/edit', [AdminController::class, 'getSurveyor']);
-Route::post('/surveyor/profile/', [AdminController::class, 'surveyorProfile']);
+Route::get('/surveyor/profile/{id}', [AdminController::class, 'surveyorProfile']);
 Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
 Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
 Route::post('/surveyor/target/', [AdminController::class, 'surveyorTarget']);
@@ -59,18 +49,19 @@ Route::get('/pengaturan/ubah-password', [AdminController::class, 'ubahPassword']
 Route::post('/pengaturan/ubah-password', [AdminController::class, 'updatePassword']);
 
 // Halaman Data Survei
-Route::get('/data-survei', [AdminController::class, 'dataSurvei'])->name('data-survei');
+Route::get('/data-survei', [DataSurveyController::class, 'index'])->name('data-survei');
+Route::get('/data-survei/{id}', [DataSurveyController::class, 'detail']);
+Route::put('/data-survei', [DataSurveyController::class, 'destroy']);
+Route::get('/data-survei/print/resume/{id}', [DataSurveyController::class, 'printResume']);
+Route::get('/data-survei/resume/{id}', [DataSurveyController::class, 'previewResume']);
+Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
 // Route::post('data-survei', [AdminController::class, 'getData'])->name('get-data');
 
-Route::get('/data-survei/print/resume/{id}', [AdminController::class, 'cetakResumeDataSurvei']);
-Route::get('/data-survei/resume/{id}', [AdminController::class, 'viewCetakResumeDataSurvei']);
-Route::get('/data-survei/print/{id}', [AdminController::class, 'cetakDetailDataSurvei']);
-Route::get('/data-survei/{id}', [AdminController::class, 'detailDataSurvei']);
-Route::put('/data-survei', [AdminController::class, 'destroyDataSurvei']);
 
 
 // Halaman User
 Route::get('/user/beranda', [SurveyorController::class, 'index']);
-Route::get('/user/riwayat-survei', [SurveyorController::class, 'riwayatSurvei']);
-Route::get('/user/profile', [SurveyorController::class, 'myProfile']);
+Route::get('/user/riwayat-survei', [SurveyorController::class, 'history']);
+Route::get('/user/profile', [SurveyorController::class, 'show']);
+Route::get('/profile/edit-profile/surveyor', [SurveyorController::class, 'update']);
 Route::get('/user/data-survei', [SurveyorController::class, 'dataSurvei']);
