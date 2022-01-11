@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 
-class IsAdmin
+class Surveyor
 {
     /**
      * Handle an incoming request.
@@ -18,8 +18,8 @@ class IsAdmin
     {
         if (!auth()->check()) {
             return redirect('/');
-        } elseif (auth()->user()->role !== 'admin') {
-            return redirect('/surveyor/beranda');
+        } elseif (auth()->user()->role !== 'surveyor') {
+            return redirect('/beranda');
         }
         return $next($request);
     }

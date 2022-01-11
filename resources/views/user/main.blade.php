@@ -22,7 +22,6 @@
 <body>
 
   <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #F3F8FF;">
-
     <!-- Header Section -->
     <div class="header d-flex justify-content-between align-items-centers p-2">
       <div class="logo d-flex align-items-center ms-2">
@@ -39,40 +38,19 @@
           <i class="fas fa-ellipsis-v text-black"></i>
         </button>
         <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownMenu2">
-          <li><a href="/user/pengaturan" class="dropdown-item text-decoration-none text-black">Pengaturan</a></li>
+          <li><a href="/surveyor/pengaturan" class="dropdown-item text-decoration-none text-black">Pengaturan</a></li>
           <li><a class="dropdown-item text-decoration-none text-black">Tentang</a></li>
-          <li><a class="dropdown-item text-decoration-none text-black">Keluar</a></li>
+          <li>
+            <form action="/logout" method="post">
+              @csrf
+              <input type="submit" value="Keluar" class="dropdown-item text-decoration-none text-black">
+            </form>
+          </li>
         </ul>
       </div>
     </div>
-    <!-- Header Section -->
-
-    <!-- Content Section -->
     @yield('content')
-    <!-- Content Section -->
-
-
-    <!-- Navbar -->
-    <nav class="navbar navbar-dark navbar-expand fixed-bottom pb-0" style="background: #3F4FC8;">
-      <ul class="navbar-nav nav-justified w-100">
-        <li class="nav-item position-relative">
-          <i class="fas fa-home"></i>
-          <a href="/user/beranda" class="nav-link text-white d-flex justify-content-center align-items-end">Beranda</a>
-        </li>
-        <li class="nav-item">
-          <i class="fas fa-folder-minus"></i>
-          <a href="#" class="nav-link text-white d-flex justify-content-center align-items-end">Data Survei</a>
-        </li>
-        <li class="nav-item">
-          <i class="fas fa-folder-plus"></i>
-          <a href="#" class="nav-link text-white d-flex justify-content-center align-items-end">Tambah Data</a>
-        </li>
-        <li class="nav-item">
-          <i class="fas fa-user"></i>
-          <a href="/user/profile" class="nav-link text-white d-flex justify-content-center align-items-end">Profil</a>
-        </li>
-      </ul>
-    </nav>
+       
 
   </div>
 

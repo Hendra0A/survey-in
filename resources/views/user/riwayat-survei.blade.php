@@ -1,6 +1,6 @@
 @extends('user.main')
 @section('header')
-  <a href="/user/beranda" class="nav-link"><i class="fas fa-chevron-left text-black"></i></a>
+  <a href="/surveyor/beranda" class="nav-link"><i class="fas fa-chevron-left text-black"></i></a>
   <span class="fw-bold">Riwayat Survei</span>
 @endsection
 @section('content')

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -18,7 +17,8 @@
     </script>
     <script src="/js/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
-    <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="/css/jquery.dataTables.css">
+    {{-- <link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css"> --}}
     <link rel="stylesheet" href="/css/custom.css">
 </head>
 
@@ -54,6 +54,7 @@
                             class="fas fa-cog"></i>Pengaturan</a>
                 </li>
                 <li class="nav-item w-100">
+
                     <a href="login.html" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                             class="fas fa-sign-out-alt"></i>Keluar</a>
                 </li>
@@ -69,7 +70,7 @@
             @yield('main-content')
             <!-- Footer -->
             <div class="footer pt-4 d-flex justify-content-center">
-                <p class="copyright pt-2 pb-2">&copy; Website Survei 2021</p>
+                <p class="copyright pt-2 pb-2">&copy; Website Survei 2022</p>
             </div>
 
         </section>
@@ -103,6 +104,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.min.js"
         integrity="sha384-5h4UG+6GOuV9qXh6HqOLwZMY4mnLPraeTrjT5v07o347pj6IkfuoASuGBhfDsp3d" crossorigin="anonymous">
     </script>
+    <script src="/js/jquery.dataTables.js"></script>
     @include('sweetalert::alert')
 </body>
 

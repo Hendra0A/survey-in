@@ -61,13 +61,14 @@
 
                                                 <td>{{ $item->selesai }} dari {{ $item->target }} Gang dan Perumahan
                                                 </td>
-                                                <td class="{{ ( $item->selesai - $item->target < 0)? 'text-danger':'text-success' }} fw-bold">
-                                                    @if (($item->selesai - $item->target) > 0)
-                                                        + {{$item->selesai - $item->target }} Gang dan Perumahan
+                                                <td
+                                                    class="{{ $item->selesai - $item->target < 0 ? 'text-danger' : 'text-success' }} fw-bold">
+                                                    @if ($item->selesai - $item->target > 0)
+                                                        + {{ $item->selesai - $item->target }} Gang dan Perumahan
                                                     @elseif ($item->selesai - $item->target == 0)
                                                         Survei Sukses
-                                                    @elseif(($item->selesai - $item->target) < 0)
-                                                        {{$item->selesai - $item->target }} Gang dan Perumahan
+                                                    @elseif($item->selesai - $item->target < 0)
+                                                        {{ $item->selesai - $item->target }} Gang dan Perumahan
                                                     @endif
                                                 </td>
                                             </tr>
@@ -117,24 +118,24 @@
                         </td>
                     </tr>
                     <tr>
-                        <td class="left-bio">Target Mingguan Tercapai</td>
+                        <td class="left-bio">Target Mingguan</td>
                         <td class="right-bio">: {{ $weekly_selesai }} dari
                             {{ $weekly_target }} Gang dan Perumahan</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Target Tercapai</td>
                         <td class="right-bio">: {{ $selesai }} dari
-                            {{ $target }} Gang dan Perumahan    </td>
+                            {{ $target }} Gang dan Perumahan </td>
                     </tr>
                     <tr id="tr-akhir">
                         <td class="left-bio">Perhitungan Target</td>
-                        <td class="right-bio {{ ( $selesai - $target < 0)? 'text-danger':'text-success' }} fw-bold">: 
-                            @if (($selesai - $target) > 0)
-                                + {{$selesai - $target }} Gang dan Perumahan
+                        <td class="right-bio {{ $selesai - $target < 0 ? 'text-danger' : 'text-success' }} fw-bold">:
+                            @if ($selesai - $target > 0)
+                                + {{ $selesai - $target }} Gang dan Perumahan
                             @elseif ($selesai - $target == 0)
                                 Survei Komplit
-                            @elseif(($selesai - $target) < 0)
-                                {{$selesai - $target }} Gang dan Perumahan
+                            @elseif($selesai - $target < 0)
+                                {{ $selesai - $target }} Gang dan Perumahan
                             @endif
                         </td>
                     </tr>
