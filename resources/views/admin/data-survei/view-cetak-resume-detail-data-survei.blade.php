@@ -213,7 +213,7 @@
                 </tr>
             @endforeach
             <tr>
-                <td colspan="3">Jumlah</td>
+                <td colspan="3">JUMLAH</td>
                 <td>{{ $sumDeveloper }}</td>
                 <td>{{ $sumSwadaya }}</td>
                 @foreach ($fasos as $item)

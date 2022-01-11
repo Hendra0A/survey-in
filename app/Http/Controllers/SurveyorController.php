@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use App\Models\User;
 use App\Models\Kabupaten;
+use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Models\DetailSurveys;
 use App\Http\Controllers\Controller;
-use App\Models\Kecamatan;
+use Illuminate\Support\Facades\Hash;
 
 class SurveyorController extends Controller
 {
@@ -77,5 +78,44 @@ class SurveyorController extends Controller
             'title' => 'Profile-Page',
         ];
         return view('user.edit-profile', $data);
+    }
+    public function pengaturan()
+    {
+        $data = [
+            'active' => 'Profile-Edit',
+            'title' => 'Profile-Page',
+        ];
+        return view('user.pengaturan', $data);
+    }
+
+    public function ubahPassword(Request $request)
+    {
+        return view('user.edit-password', [
+            'active' => 'pengaturan',
+            'title' => 'Pengaturan - Ubah Password', [0],
+        ]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'kata_sandi_lama' => ['required', 'min:8'],
+            'kata_sandi_baru' => ['required', 'min:8', 'confirmed'],
+            'kata_sandi_baru_confirmation' => ['required', 'min:8']
+        ]);
+
+        // $user = User::where('id', auth()->user()->id)->get()[0];
+        $currentPassword = auth()->user()->password;
+        $kata_sandi_lama = request('kata_sandi_lama');
+
+        if (Hash::check($kata_sandi_lama, $currentPassword)) {
+            User::where('id', auth()->user()->id)->update([
+                'password' => Hash::make($request->kata_sandi_baru)
+            ]);
+            return redirect('/user/pengaturan')
+                ->with('success', 'Password anda berhasil diubah');
+        } else {
+            return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
+        }
     }
 }
