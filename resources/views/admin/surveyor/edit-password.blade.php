@@ -23,24 +23,56 @@
             <div class="row justify-content-evenly">
                 <div class="col-5">
                     <input type="hidden" name="id" value="{{ $profile->id }}">
-                    <div class="bio-left d-flex flex-column">
-                        <label for="password" class="form-label fw-bold">Password :</label>
-                        <input type="password" class="form-control" id="password" name="password" required />
+                    <div class="bio-left d-flex flex-column position-relative">
+                        <label for="password" class="form-label fw-bold">Password</label>
+                        <input type="password" class="form-control pe-5" id="password" name="password" placeholder="masukkan password" required />
+                        <i class="far fa-eye position-absolute p-1 mata-zaky" id="togglePassword" style="top: 3.2em; right: 0; transform: scale(1.4);"></i>
                     </div>
                 </div>
                 <div class="col-5">
-                    <div class="bio-right w-100 d-flex flex-column">
-                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password :</label>
-                        <input type="password" name="password_confirmation" class="form-control"
-                            id="password_confirmation" required />
+                    <div class="bio-right w-100 d-flex flex-column position-relative">
+                        <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password</label>
+                        <input type="password" name="password_confirmation" class="form-control pe-5"
+                            id="password_confirmation" placeholder="konfirmasi password" required />
+                            <i class="far fa-eye position-absolute p-1 mata-zaky" id="togglePassword2" style="top: 3.2em; right: 0; transform: scale(1.4);"></i>
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-5 mt-5">
+                    <div class="col-5 mt-5 justify-content-center d-flex">
                         <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5">
                     </div>
                 </div>
             </div>
         </form>
     </div>
+
+    <!-- =========== SCRIPT ============ -->
+    <script>
+        const togglePassword = document.querySelector('#togglePassword');
+        const password = document.querySelector('#password');
+
+        togglePassword.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
+
+    <script>
+        const togglePassword2 = document.querySelector('#togglePassword2');
+        const password2 = document.querySelector('#password_confirmation');
+
+        togglePassword2.addEventListener('click', function(e) {
+            // toggle the type attribute
+            const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+            password2.setAttribute('type', type);
+            // toggle the eye slash icon
+            this.classList.toggle('fa-eye-slash');
+        });
+    </script>
 @endsection
+
+    
+    

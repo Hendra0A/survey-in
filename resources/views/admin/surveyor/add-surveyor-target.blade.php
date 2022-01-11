@@ -24,7 +24,7 @@
             <div class="bio-left w-50">
                 <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
                 <div class="col-md-8 mb-3 w-100">
-                    <label for="validationServer03" class="form-label">Kecamatan:</label>
+                    <label for="validationServer03" class="form-label">Kecamatan</label>
                     <select class="form-select form-control @error('kecamatan') is-invalid @enderror" name="kecamatan"
                         id="kecamatan">
                         <option value="" selected>--Pilih Kecamatan--</option>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="mb-3 w-100 d-flex justify-content-between">
                     <div class="target-kecamatan w-50 me-5">
-                        <label for="validationServer03" class="form-label">Kategori:</label>
+                        <label for="validationServer03" class="form-label">Kategori</label>
                         <select class="form-control form-control" id="validationServer03"
                             aria-label="Default select example">
                             <option selected>--Kategori Target--</option>
@@ -59,7 +59,7 @@
                 </div>
                 <div class="col-md-8 mb-3 w-75 d-flex align-items-end">
                     <div class="jumlah-target w-75 me-4">
-                        <label for="validationServer03" class="form-label">Jumlah Target :</label>
+                        <label for="validationServer03" class="form-label">Jumlah Target</label>
                         <input type="text" class="form-control @error('target') is-invalid @enderror"
                             id="validationServer03" name="target" value="10" required>
                         @error('target')

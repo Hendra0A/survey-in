@@ -12,13 +12,13 @@
         <form action="/pengaturan/ubah-password" method="post"
             class="login d-flex flex-column ps-sm-3 ms-sm-3 ms-1 col-md-6 col-12" autocomplete="off">
             {{-- <div class="login mb-3 ms-sm-5 w-75">
-                <label for="exampleInputEmail1" class="form-label login">Email :</label>
+                <label for="exampleInputEmail1" class="form-label login">Email</label>
                 <input name="email" type="email" class="kolom form-control border-primary shadow-none" id="id_email"
                     aria-describedby="emailHelp">
             </div> --}}
             @csrf
             <div class="login mb-3 ms-sm-5 w-75">
-                <label for="exampleInputPassword1" class="form-label login">Password Lama :</label>
+                <label for="exampleInputPassword1" class="form-label login">Password Lama</label>
                 <div class="position-relative">
                     <input name="kata_sandi_lama" type="password"
                         class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_lama') is-invalid @enderror"
@@ -33,7 +33,7 @@
 
             </div>
             <div class="login mb-3 ms-sm-5 w-75">
-                <label for="exampleInputPassword1" class="form-label login">Password Baru :</label>
+                <label for="exampleInputPassword1" class="form-label login">Password Baru</label>
                 <div class="position-relative">
                     <input name="kata_sandi_baru" type="password"
                         class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru') is-invalid @enderror"
@@ -48,7 +48,7 @@
 
             </div>
             <div class="login mb-3 ms-sm-5 mb-4 w-75">
-                <label for="exampleInputPassword1" class="form-label login">Ulangi Password :</label>
+                <label for="exampleInputPassword1" class="form-label login">Ulangi Password</label>
                 <div class="position-relative">
                     <input name="kata_sandi_baru_confirmation" type="password"
                         class="kolom form-control border-primary shadow-none pe-5 @error('kata_sandi_baru_confirmation') is-invalid @enderror"

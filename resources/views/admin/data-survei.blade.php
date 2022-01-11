@@ -84,10 +84,10 @@
                         </div>
 
                         <div class="choose d-flex justify-content-center gap-5 mb-5">
+                            <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
+                            data-bs-dismiss="modal">batal</button>
                             <button type="submit"
                                 class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
-                            <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
-                                data-bs-dismiss="modal">batal</button>
                         </div>
                     </div>
                 </form>

@@ -13,9 +13,9 @@
         @csrf
         <div class="bio-left w-50">
             <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">Nama Lengkap :</label>
+                <label for="validationServer03" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
-                    name="nama_lengkap" value="{{ old('nama_lengkap') }}">
+                    name="nama_lengkap" value="{{ old('nama_lengkap') }}" placeholder="masukkan nama">
                 @error('nama_lengkap')
                 <div id="validationServer03Feedback" class="invalid-feedback">
                     {{ $message }}
@@ -23,9 +23,9 @@
                 @enderror
             </div>
             <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">Email :</label>
+                <label for="validationServer03" class="form-label">Email</label>
                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email"
-                    value="{{ old('email') }}">
+                    value="{{ old('email') }}" placeholder="masukkan email">
                 @error('email')
                 <div id="validationServer03Feedback" class="invalid-feedback">
                     {{ $message }}
@@ -33,9 +33,9 @@
                 @enderror
             </div>
             <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">No Handphone :</label>
+                <label for="validationServer03" class="form-label">No Handphone</label>
                 <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" id="nomor_telepon"
-                    name="nomor_telepon" value="{{ old('nomor_telepon') }}">
+                    name="nomor_telepon" value="{{ old('nomor_telepon') }}" placeholder="+62/08 xxx xxx xxx">
                 @error('nomor_telepon')
                 <div id="validationServer03Feedback" class="invalid-feedback">
                     {{ $message }}
@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">Kabupaten/Kota:</label>
+                <label for="validationServer03" class="form-label">Kabupaten/Kota</label>
                 <select class="form-select @error('area') is-invalid @enderror" id="area" name="area">
                     <option selected>--Pilih Kabupaten/Kota--</option>
                     @foreach ($kabupaten as $item)
