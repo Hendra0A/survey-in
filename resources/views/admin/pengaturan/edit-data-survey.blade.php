@@ -14,7 +14,7 @@
             @csrf
             <div class="data d-flex ms-sm-5 align-items-start flex-column flex-sm-row justify-content-start">
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Kondisi Jalan :</label>
+                    <label for="validationServer01" class="form-label">Kondisi Jalan</label>
                     <input type="text" class="form-control @error('jalan') is-invalid @enderror" name="jalan" id="jalan"
                         aria-describedby="validationServer01Feedback" required>
                     @error('jalan')
@@ -59,7 +59,7 @@
             @csrf
             <div class="data d-flex ms-sm-5 align-items-start flex-column flex-sm-row justify-content-start">
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Kondisi Saluran :</label>
+                    <label for="validationServer01" class="form-label">Kondisi Saluran</label>
                     <input type="text" class="form-control @error('saluran') is-invalid @enderror" name="saluran"
                         id="saluran" aria-describedby="validationServer01Feedback" required>
                     @error('saluran')
@@ -103,7 +103,7 @@
             @csrf
             <div class="data d-flex ms-sm-5 align-items-start flex-column flex-sm-row justify-content-start">
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Kondisi Fasos :</label>
+                    <label for="validationServer01" class="form-label">Kondisi Fasos</label>
                     <input type="text" class="form-control @error('fasos') is-invalid @enderror" name="fasos" id="fasos"
                         aria-describedby="validationServer01Feedback" required>
                     @error('fasos')
@@ -147,7 +147,7 @@
             @csrf
             <div class="data d-flex ms-sm-5 align-items-start flex-column flex-sm-row justify-content-start">
                 <div class="col-md-6">
-                    <label for="validationServer01" class="form-label">Lampiran Data :</label>
+                    <label for="validationServer01" class="form-label">Lampiran Data</label>
                     <input type="text" class="form-control @error('lampiran') is-invalid @enderror" name="lampiran"
                         id="lampiran" aria-describedby="validationServer01Feedback" required>
                     @error('lampiran')
@@ -225,9 +225,9 @@
                 </div>
 
                 <div class="choose d-flex justify-content-center gap-5 mb-5">
-                    <button type="submit" class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
                     <button type="button" class="btn btn-secondary btn-lg ps-3 pe-3 shadow-none border-0"
-                        data-bs-dismiss="modal">batal</button>
+                    data-bs-dismiss="modal">batal</button>
+                    <button type="submit" class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0">Hapus</button>
                 </div>
             </div>
         </form>
