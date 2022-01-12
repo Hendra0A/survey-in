@@ -72,8 +72,8 @@
             </div>
         </div>
 
+        @include('sweetalert::alert')
     </div>
-    @include('sweetalert::alert')
 </body>
 
 </html>

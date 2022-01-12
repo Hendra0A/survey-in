@@ -17,7 +17,6 @@ class DataSurveyController extends Controller
         return view('admin.data-survei', [
             'active' => 'data survei',
             'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'kabupaten' => Kabupaten::get(['id', 'nama'])
         ]);
     }
@@ -26,7 +25,6 @@ class DataSurveyController extends Controller
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
         ]);
     }
@@ -55,7 +53,6 @@ class DataSurveyController extends Controller
         // dd($data);
         return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
             'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'datas' => $data,
             'fasos' => $fasos
         ]);

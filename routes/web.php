@@ -53,19 +53,20 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/data-survei/resume/{id}', [DataSurveyController::class, 'previewResume']);
         Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
     });
-    Route::group(['middleware' => 'surveyor'], function () {
-        Route::get('/surveyor/beranda', [SurveyorController::class, 'index']);
-        Route::get('/surveyor/riwayat-survei', [SurveyorController::class, 'history']);
-        Route::get('/surveyor/profile', [SurveyorController::class, 'show']);
-        Route::get('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'update']);
-        Route::patch('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
-        Route::get('/surveyor/data-survei', [SurveyorController::class, 'dataSurvei']);
-        Route::get('/surveyor/pengaturan', [SurveyorController::class, 'pengaturan']);
-        Route::get('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
-        Route::post('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
-        Route::get('/surveyor/tentang', [SurveyorController::class, 'tentang']);
-        Route::get('/surveyor/tambah-data', [SurveyorController::class, 'tambah']);
-        Route::post('/surveyor/tambah-data', [SurveyorController::class, 'tambahData']);
+    Route::group(['middleware' => 'surveyor', 'prefix' => 'surveyor'], function () {
+        Route::get('/beranda', [SurveyorController::class, 'index']);
+        Route::get('/riwayat-survei', [SurveyorController::class, 'history']);
+        Route::get('/profile', [SurveyorController::class, 'show']);
+        Route::get('/edit-profile/surveyor', [SurveyorController::class, 'update']);
+        Route::patch('/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
+        Route::get('/data-survei', [SurveyorController::class, 'dataSurvei']);
+        Route::get('/data-survei/detail/{id}', [DataSurveyController::class, 'detail']);
+        Route::get('/pengaturan', [SurveyorController::class, 'pengaturan']);
+        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
+        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
+        Route::get('/tentang', [SurveyorController::class, 'tentang']);
+        Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
+        Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);
     });
     Route::post('/logout', [AccessController::class, 'logout']);
 });

@@ -50,8 +50,15 @@ $(document).ready(async function () {
         } else {
             $(".list-data").html("");
             data.forEach((element) => {
-                let card = document.createElement("div");
-                card.setAttribute("class", "card shadow-sm mb-2");
+                let card = document.createElement("a");
+                card.setAttribute(
+                    "class",
+                    "card shadow-sm mb-2 text-dark text-decoration-none"
+                );
+                card.setAttribute(
+                    "href",
+                    `/surveyor/data-survei/detail/${element.id}`
+                );
                 card.innerHTML = `
                 <div class="card-body">
                     <h5>${element.nama_gang}</h5>

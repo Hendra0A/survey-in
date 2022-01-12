@@ -44,7 +44,7 @@
                 Resume</a>
         </div>
         <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
-            <table class="table table-hover bg-white shadow-sm" id="dasur-table" style="width: 100%;">
+            <table class="table table-hover bg-white shadow-sm table-responsive" id="dasur-table" style="width: 100%;">
                 <thead>
                     <tr style="vertical-align: middle">
                         <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
