@@ -40,7 +40,7 @@
                 </table>
             </div>
             <div class="submit d-flex justify-content-center mt-5">
-                <a href="/surveyor/edit-profile/surveyor" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a> 
+                <a href="/surveyor/profile/edit-profile" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none" id="submit">Edit profil</a> 
             </div>
         </div>
     </div>

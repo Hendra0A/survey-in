@@ -8,8 +8,9 @@
         <div class="container">
             <h1 class="fw-bold">Profile Edit</h1>
             <p>Edit profile Anda untuk melengkapi data pribadi.</p>  
-        <form action="/surveyor/edit-profile/surveyor" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
+        <form action="/surveyor/profile/edit-profile" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
             @csrf
+            @method('patch')
             <div class="admin row">
                 <input type="hidden" name="oldImage" value="{{ $data->avatar }}">
                 <div class="form-group d-flex align-items-center mb-5">
@@ -31,7 +32,6 @@
                     </div>
                 </div>
             </div>
-            @method('patch')
             <div class="bio-edit d-flex flex-md-row flex-column flex mt-4">
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="bio-left row justify-content-center align-items-start align-items-sm-center m-2">

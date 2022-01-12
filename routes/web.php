@@ -14,6 +14,22 @@ use App\Http\Controllers\DataSurveyController;
 
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['middleware' => 'surveyor', 'prefix' => 'surveyor'], function () {
+        Route::get('/beranda', [SurveyorController::class, 'index']);
+        Route::get('/riwayat-survei', [SurveyorController::class, 'history']);
+        Route::get('/profile', [SurveyorController::class, 'show']);
+        Route::get('/profile/edit-profile', [SurveyorController::class, 'update']);
+        Route::patch('/profile/edit-profile', [SurveyorController::class, 'updateProfile']);
+        Route::get('/data-survei', [SurveyorController::class, 'dataSurvei']);
+        Route::get('/data-survei/detail/{id}', [DataSurveyController::class, 'detail']);
+        Route::get('/pengaturan', [SurveyorController::class, 'pengaturan']);
+        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
+        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
+        Route::get('/tentang', [SurveyorController::class, 'tentang']);
+        Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
+        Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);
+    });
     Route::group(['middleware' => 'admin'], function () {
         //beranda
         Route::get('/beranda', [AdminController::class, 'beranda']);
@@ -27,8 +43,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
         Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
         Route::get('/surveyor/target/{id}', [AdminController::class, 'surveyorTarget']);
-
-
 
         // Profile Admin
         Route::get('/profile/{User:id}', [AdminController::class, 'profile']);
@@ -52,21 +66,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/data-survei/print/resume/{id}', [DataSurveyController::class, 'printResume']);
         Route::get('/data-survei/resume/{id}', [DataSurveyController::class, 'previewResume']);
         Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
-    });
-    Route::group(['middleware' => 'surveyor', 'prefix' => 'surveyor'], function () {
-        Route::get('/beranda', [SurveyorController::class, 'index']);
-        Route::get('/riwayat-survei', [SurveyorController::class, 'history']);
-        Route::get('/profile', [SurveyorController::class, 'show']);
-        Route::get('/edit-profile/surveyor', [SurveyorController::class, 'update']);
-        Route::patch('/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
-        Route::get('/data-survei', [SurveyorController::class, 'dataSurvei']);
-        Route::get('/data-survei/detail/{id}', [DataSurveyController::class, 'detail']);
-        Route::get('/pengaturan', [SurveyorController::class, 'pengaturan']);
-        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
-        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
-        Route::get('/tentang', [SurveyorController::class, 'tentang']);
-        Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
-        Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);
     });
     Route::post('/logout', [AccessController::class, 'logout']);
 });
