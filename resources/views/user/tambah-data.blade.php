@@ -12,32 +12,49 @@
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
                     lengkap dan benar di bawah ini</p>
 
-                <form class="form-tambah" autocomplete="off">
-
+                <form method="POST" action="tambah-data" class="form-tambah" autocomplete="off">
+                    @csrf
                     <!-- Nama gang & lokasi & koordinat -->
                     <div class="row row-cols-3">
                         <div class="col-12 col-sm-6 mb-3">
-                            <label for="input-gang" class="form-label fw-bold">Nama Gang dan Perumahan</label>
-                            <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                id="input-gang">
+                            <label for="nama_gang" class="form-label fw-bold">Nama Gang dan Perumahan</label>
+                            <input type="text" class="form-control border-primary @error('nama_gang') is-invalid @enderror"
+                                style="border-radius: .5em;" id="nama_gang" name="nama_gang"
+                                value="{{ old('nama_gang') }}">
+                            @error('nama_gang')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="col-12 col-sm-6 mb-3">
-                            <label for="input-lokasi" class="form-label fw-bold">Lokasi</label>
-                            <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                id="input-lokasi">
+                            <label for="lokasi" class="form-label fw-bold">Lokasi</label>
+                            <input type="text" class="form-control border-primary @error('lokasi') is-invalid @enderror"
+                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ old('lokasi') }}">
+                            @error('lokasi')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="input-gang" class="form-label fw-bold d-block m-0 mb-2">Koordinat</label>
+                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat</label>
                         <div class="col-12 d-flex">
                             <button type="button" onclick="getLocation()" id="koordinat"
                                 class="lokasi btn btn-primary d-flex align-items-center me-2 border-0"
                                 style="border-radius: .5em; background: #3F4FC8;"><i
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
-                            <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                id="input-koordinat">
+                            <input type="text" class="form-control border-primary @error('no_gps') is-invalid @enderror"
+                                style="border-radius: .5em;" id="input-koordinat" name="no_gps"
+                                value="{{ old('lokasi') }}">
+                            @error('no_gps')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
@@ -81,9 +98,9 @@
                                     <select class="form-select form-select border-primary" autocomplete="off"
                                         style="border-radius: .5em;" aria-label=".form-select example">
                                         <option selected disabled></option>
-                                        <option value="1">Aspal</option>
-                                        <option value="2">Beton</option>
-                                        <option value="3">Tanah</option>
+                                        @foreach ($jalan as $item)
+                                            <option value="{{ $item->id }}">{{ $item->jenis }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -213,9 +230,9 @@
                                     <select class="form-select form-select border-primary" autocomplete="off"
                                         style="border-radius: .5em;" aria-label=".form-select example">
                                         <option selected disabled></option>
-                                        <option value="1">Cor Beton</option>
-                                        <option value="2">Tanah</option>
-                                        <option value="3">Berbatu</option>
+                                        @foreach ($saluran as $item)
+                                            <option value="{{ $item->id }}">{{ $item->jenis }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -258,9 +275,9 @@
                                 <select class="form-select form-select border-primary" autocomplete="off"
                                     style="border-radius: .5em;" aria-label=".form-select example">
                                     <option selected disabled>-Pilih fasos-</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    @foreach ($fasos as $item)
+                                        <option value="{{ $item->id }}">{{ $item->jenis }}</option>
+                                    @endforeach
                                 </select>
                             </div>
 
@@ -497,8 +514,9 @@
                             <select class="form-select form-select border-primary" autocomplete="off"
                                 style="border-radius: .5em;" aria-label=".form-select example">
                                 <option selected disabled>-Pilih kategori-</option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
+                                @foreach ($lampiran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->jenis }}</option>
+                                @endforeach
                             </select>
                         </div>
 
@@ -516,7 +534,7 @@
 
                     <!-- simpan tombol -->
                     <div class="col-12 ps-2 mb-3 mt-5 d-flex justify-content-center">
-                        <button type="button" id="simpan-lampiran" class="btn btn-primary col-6 border-0"
+                        <button type="submit" id="simpan-lampiran" class="btn btn-primary col-6 border-0"
                             style="border-radius: .5em; background: #3F4FC8;">Simpan</button>
                     </div>
                     <!-- simpan tombol -->

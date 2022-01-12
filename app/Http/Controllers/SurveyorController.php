@@ -9,6 +9,12 @@ use App\Models\Kecamatan;
 use Illuminate\Http\Request;
 use App\Models\DetailSurveys;
 use App\Http\Controllers\Controller;
+use App\Models\DataSurvey;
+use App\Models\Fasos;
+use App\Models\JenisFasos;
+use App\Models\JenisKonstruksiJalan;
+use App\Models\JenisKonstruksiSaluran;
+use App\Models\JenisLampiran;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
@@ -164,9 +170,37 @@ class SurveyorController extends Controller
 
     public function tambah()
     {
+
         return view('user.tambah-data', [
             'active' => 'tambah data',
-            'title' => 'Tambah Data'
+            'title' => 'Tambah Data',
+            'jalan' => JenisKonstruksiJalan::all(),
+            'saluran' => JenisKonstruksiSaluran::all(),
+            'fasos' => JenisFasos::all(),
+            'lampiran' => JenisLampiran::all()
         ]);
+    }
+
+    public function tambahData(Request $request)
+    {
+        $request->validate([
+            'nama_gang' => ['required', 'max:255'],
+            'lokasi' => ['required'],
+            'no_gps' => ['required'],
+        ]);
+
+        try {
+            DataSurvey::create([
+                'nama_gang' => $request->nama_gang,
+                'lokasi' => $request->lokasi,
+                'no_gps' => $request->no_gps
+
+            ]);
+            return redirect('/surveyor')
+                ->with('success', 'Data telah berhasil ditambahkan !')
+                ->with('confirm', 'Kembali ke Surveyor');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
 }

@@ -65,6 +65,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
         Route::get('/surveyor/tentang', [SurveyorController::class, 'tentang']);
         Route::get('/surveyor/tambah-data', [SurveyorController::class, 'tambah']);
+        Route::post('/surveyor/tambah-data', [SurveyorController::class, 'tambahData']);
     });
     Route::post('/logout', [AccessController::class, 'logout']);
 });
