@@ -10,7 +10,7 @@
 
         <!-- avatar -->
         <div class="surveyor">
-            <img src="{{ $profile_surveyor->avatar }}" class="profile-img rounded-circle">
+            <img src="{{ asset('storage/' . $profile_surveyor->avatar) }}" class="profile-img rounded-circle">
         </div>
         <div class="profile-status mt-3 d-flex flex-column">
             <h3>{{ ucwords($profile_surveyor->nama_lengkap) }}</h3>

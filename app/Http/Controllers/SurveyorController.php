@@ -100,7 +100,7 @@ class SurveyorController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images-surveyor');
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
         }
         try {
             User::where('id', $request->id)

@@ -5,7 +5,7 @@
             <h1>Profil Surveyor</h1>
             <p>Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex">
-                <img src="{{ asset('storage/' . $data->avatar) }}" alt="aw" class="hl-img rounded-circle">
+                <img src="{{ asset('storage/' . $data->avatar)}}" alt="aw" class="hl-img rounded-circle">
                 <div class="hl-status ms-4 d-flex flex-column justify-content-center">
                     <h3>{{ $data->nama_lengkap }}</h3>
                     <p>{{ $data->role }}</p>

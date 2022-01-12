@@ -18,25 +18,10 @@ $(document).ready(async function () {
             .catch((error) => console.log("error", error));
     };
     let setResumeSurvey = async (idKec) => {
-        let dataS = await getData("/data-survei", idKec);
+        let data = await getData("/data-survei", idKec);
         console.log(dataS);
-        if (dataS.data.length == 0) {
-            $(".list-data").html(`Data Kecamatan Belum Tersedia`);
-        } else {
-            $(".list-data").html("");
-            dataS.data.forEach((element) => {
-                let card = document.createElement("div");
-                card.setAttribute("class", "card shadow-sm");
-                card.innerHTML = `
-                <div class="card-body">
-                    <h5>${element.nama_gang}</h5>
-                    <p>${element.lokasi}</p>
-                </div>
-            `;
-                $(".list-data").append(card);
-            });
-        }
     };
+    let render = (data) => {};
     setResumeSurvey($("#kecamatan").val());
     $("#kecamatan").change(function (e) {
         $(".text-kec").text($(this).find("option:selected").text());
