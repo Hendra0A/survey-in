@@ -45,13 +45,13 @@
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Kabupaten/Kota</label>
                 <select class="form-select @error('area') is-invalid @enderror" id="area" name="area">
-                    <option selected>--Pilih Kabupaten/Kota--</option>
+                    <option selected disabled>--Pilih Kabupaten/Kota--</option>
                     @foreach ($kabupaten as $item)
                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach
                 </select>
                 @error('area')
-                <div class="alert alert-danger">
+                <div id="validationServer03Feedback" class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror

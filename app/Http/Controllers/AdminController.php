@@ -207,23 +207,23 @@ class AdminController extends Controller
             }
         }
     }
-    public function getSurveyor(Request $request)
+    public function getSurveyor($action, $id)
     {
-        if ($request->target == '1') {
+        if ($action == 'profile') {
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Profile Surveyor',
                 'kabupaten' => Kabupaten::all(),
-                'profile' => User::where('id', $request->id)
+                'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')
                     ->get()[0]
             ];
             return view('admin.surveyor.edit-profile', $data);
-        } elseif ($request->target == '2') {
+        } elseif ($action == 'password') {
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Password',
-                'profile' => User::where('id', $request->id)
+                'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')
                     ->get(['avatar', 'nama_lengkap', 'role', 'id'])[0]
             ];
