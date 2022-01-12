@@ -57,7 +57,7 @@
                 @enderror
             </div>
             <div class="tambah-akun d-flex justify-content-end mt-4">
-                <a href="/surveyor" class="btn btn-lg btn-outline-primary mb-5 fs-6" id="batal">Batal</a>
+                <a href="/surveyor" class="btn btn-lg mb-5 fs-6" id="batal">Batal</a>
 
                 <button type="submit" class="btn btn-lg btn-primary mb-5 ms-3 fs-6"
                     id="tambah-akun-surveyor">Tambahkan</button>
