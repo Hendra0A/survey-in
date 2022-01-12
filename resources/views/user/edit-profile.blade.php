@@ -8,9 +8,15 @@
         <div class="container">
             <h1 class="fw-bold">Profile Edit</h1>
             <p>Edit profile Anda untuk melengkapi data pribadi.</p>  
-        <form action="" id="prf-edit-form" autocomplete="off" method="POST">
+        <form action="/surveyor/edit-profile/surveyor" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="admin row align-items-center">
-                <img src="/img/cat.png" class="hl-img rounded-circle col-4 col-lg-2" >
+                <input type="hidden" name="oldImage" value="{{ $data->avatar }}">
+                @if ($data->avatar)
+                    <img src="{{ asset('storage/' . $data->avatar) }}" class="img-preview hl-img rounded-circle">
+                @else
+                    <img class="img-preview img-fluid hl-img rounded-circle">
+                @endif
                 <div class="hl-upload col-8">
                     <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar"
                     name="avatar" onchange="previewImage()">
@@ -36,7 +42,6 @@
                     }
                 </style>
             </div>
-            @csrf
             @method('patch')
             <div class="bio-edit d-flex flex-md-row flex-column flex mt-4">
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
@@ -123,4 +128,19 @@
         </form>
         </div>
     </div>
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#avatar');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        }
+    </script>
 @endsection
