@@ -1,8 +1,10 @@
 $(document).ready(async function () {
-    let getData = async (path, id) => {
+    let getData = async (path, method, kecamatan_id, id) => {
         let url = "http://survey-in.test/api";
         let fd = new FormData();
         fd.append("id", id);
+        fd.append("kecamatan_id", kecamatan_id);
+        fd.append("method", method);
         let requestOptions = {
             method: "POST",
             Headers: {
@@ -19,6 +21,7 @@ $(document).ready(async function () {
     };
     var data = [];
     var searchValue;
+    var method = "all";
     function delay(callback, ms) {
         var timer = 0;
         return function () {
@@ -30,15 +33,17 @@ $(document).ready(async function () {
             }, ms || 0);
         };
     }
-    let setResumeSurvey = async (idKec) => {
+    let setResumeSurvey = async (method, kecamatan_id, id = 0) => {
+        console.log(method, kecamatan_id, id);
         try {
-            data = await getData("/data-survei", idKec);
+            data = await getData("/data-survei-saya", method, kecamatan_id, id);
             data = data.data;
             render(data);
         } catch (error) {
             console.log("data gagal didapatkan");
         }
     };
+    setResumeSurvey(method, $("#kecamatan").val());
     let render = (data) => {
         if (data.length == 0) {
             $(".list-data").html(`Data Kecamatan Belum Tersedia`);
@@ -72,10 +77,17 @@ $(document).ready(async function () {
             });
         }, 500)
     );
-    setResumeSurvey($("#kecamatan").val());
     $("#kecamatan").change(function (e) {
         $(".text-kec").text($(this).find("option:selected").text());
         e.preventDefault();
-        setResumeSurvey($(this).val());
+        let id = $(".active").data("id");
+        setResumeSurvey(method, $(this).val(), id);
+    });
+    $(".page").click(function (e) {
+        e.preventDefault();
+        $(".page").toggleClass("active");
+        method = $(this).data("method");
+        let id = $(".active").data("id");
+        setResumeSurvey(method, $("#kecamatan").val(), id);
     });
 });

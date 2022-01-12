@@ -5,8 +5,8 @@
       <h1 class="text-center mb-5">Data Survei</h1>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
-          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Seluruh Data</a>
-          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Survei Saya</a>
+          <span class="nav-item nav-link active page" data-id="0" data-method="all" aria-selected="true" >Seluruh Data</span>
+          <span class="nav-item nav-link page" data-method="single" data-id="{{ auth()->user()->id }}" aria-selected="false">Survei Saya</span>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
