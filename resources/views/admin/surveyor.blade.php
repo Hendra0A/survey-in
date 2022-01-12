@@ -25,7 +25,7 @@
             </div>
             <div class="tindakan d-flex flex-row">
                 <a href="/surveyor/profile/{{ $surveyor->id }}" class="btn-aksi profil text-decoration-none">Profil</a>
-                <a href="/surveyor/target/{{ $surveyor->id }}" class="btn-aksi target">Target</a>
+                <a href="/surveyor/target/{{ $surveyor->id }}" class="btn-aksi target  text-decoration-none">Target</a>
                 <button class="btn-aksi hapus btn-hapus-surveyor" data-bs-toggle="modal" data-bs-target="#hapusSurveyor"
                     value="{{ $surveyor->id }}">Hapus</button>
             </div>
