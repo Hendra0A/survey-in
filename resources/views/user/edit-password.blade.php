@@ -11,7 +11,7 @@
             <p class="col-12" style="font-size: .9em; color: #A5A5A5;">Edit password anda demi keamanan privasi Anda
             </p>
 
-            <form action="/user/pengaturan/edit-password" method="post" class="edit-password mt-5"
+            <form action="/surveyor/pengaturan/edit-password" method="post" class="edit-password mt-5"
                 autocomplete="off">
                 @csrf
                 <div class="kata-sandi col-12 mb-3 position-relative">
