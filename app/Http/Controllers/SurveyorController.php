@@ -128,4 +128,20 @@ class SurveyorController extends Controller
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
     }
+
+    public function tentang()
+    {
+        return view('user.tentang', [
+            'active' => 'tentang',
+            'title' => 'Tentang'
+        ]);
+    }
+
+    public function tambah()
+    {
+        return view('user.tambah-data', [
+            'active' => 'tambah data',
+            'title' => 'Tambah Data'
+        ]);
+    }
 }

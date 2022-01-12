@@ -41,23 +41,63 @@
                     <li><a href="/surveyor/pengaturan"
                             class="dropdown-item text-decoration-none {{ $active == 'pengaturan' ? 'text-primary' : '' }}">Pengaturan</a>
                     </li>
-                    <li><a
+                    <li><a href="/surveyor/tentang"
                             class="dropdown-item text-decoration-none {{ $active == 'tentang' ? 'text-primary' : '' }}">Tentang</a>
                     </li>
                     <li>
-                        <form action="/logout" method="post">
-                            @csrf
-                            <input type="submit" value="Keluar" class="dropdown-item text-decoration-none text-black">
-                        </form>
+                        <input type="submit" value="Keluar" class="dropdown-item text-decoration-none text-black"
+                            data-bs-toggle="modal" data-bs-target="#modal-keluar">
                     </li>
                 </ul>
             </div>
         </div>
         @yield('content')
 
+        {{-- modal --}}
+        <div class="modal fade" id="modal-keluar" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true" style="margin-top: 12em;">
+            <div class="modal-dialog">
+                <div class="modal-content border-0 p-4 ps-0 pe-0" style="border-radius: .5em;">
+                    <p class="text-center">Anda yakin ingin<br>keluar dari aplikasi ini?</p>
+                    <div class="modal-footer border-0 d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary m-2" data-bs-dismiss="modal"
+                            style="border-radius: .5em;">Batal</button>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-danger m-2"
+                                style="border-radius: .5em;">Keluar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     </div>
     @include('sweetalert::alert')
+
+    <!-- ===================  SCRIPT ====================== -->
+    <script>
+        function myForm() {
+            var x = document.getElementById("form-tambahan");
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
+
+    <script>
+        function myLampiran() {
+            var x = document.getElementById("tambah-lampiran");
+
+            if (x.style.display === "block") {
+                x.style.display = "none";
+            } else {
+                x.style.display = "block";
+            }
+        }
+    </script>
 </body>
 
 </html>
