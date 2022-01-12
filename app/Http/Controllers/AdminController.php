@@ -123,7 +123,7 @@ class AdminController extends Controller
                 "nomor_telepon" => $request->nomor_telepon,
                 "email" => $request->email,
                 "kabupaten_id" => $request->area,
-                "password" => Hash::make('surveyor')
+                "password" => Hash::make('password')
 
             ]);
             return redirect('/surveyor')

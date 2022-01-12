@@ -1,0 +1,48 @@
+h6.detail {
+    font-size: .8em;
+}
+
+.detail th {
+    width: 40%;
+    font-size: .55em;
+    font-weight: 500;
+    vertical-align: top;
+    padding: .3em 0;
+    margin: 0;
+    line-height: 2.5em;
+}
+
+.detail td {
+    width: 60%;
+    font-size: .55em;
+    vertical-align: middle;
+    padding: .3em 0;
+    margin: 0;
+    line-height: 2em;
+    word-wrap: break-word;
+}
+
+table.detail, th, td, tr {
+    border: none !important;
+    border-collapse: collapse !important;
+    outline: none !important;
+}
+
+.gambar-detail h6 {
+    font-size: .6em;
+}
+
+@media only screen and (min-width: 800px) {
+    h6.detail {
+        font-size: 1.2em;
+    }
+    .detail th {
+        width: 50%;
+        font-size: 1em;
+    }
+
+    .detail td {
+        width: 50%;
+        font-size: .9em;
+    }
+}

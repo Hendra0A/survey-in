@@ -24,11 +24,9 @@ class AccessController extends Controller
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
                 return redirect()->intended('/beranda');
-                //return view('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
                 return redirect()->intended('/surveyor/beranda');
-                //return view('murid.dahsboard');
             }
         }
         return back()->with('loginError', 'Login failed!');

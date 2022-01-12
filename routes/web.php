@@ -15,7 +15,7 @@ use App\Http\Controllers\DataSurveyController;
 
 Route::group(['middleware' => 'auth'], function () {
 
-    Route::group(['middleware' => 'surveyor', 'prefix' => 'surveyor'], function () {
+    Route::group(['middleware' => ['defaultPassword', 'surveyor'], 'prefix' => 'surveyor'], function () {
         Route::get('/beranda', [SurveyorController::class, 'index']);
         Route::get('/riwayat-survei', [SurveyorController::class, 'history']);
         Route::get('/profile', [SurveyorController::class, 'show']);
@@ -24,8 +24,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/data-survei', [SurveyorController::class, 'dataSurvei']);
         Route::get('/data-survei/detail/{id}', [DataSurveyController::class, 'detail']);
         Route::get('/pengaturan', [SurveyorController::class, 'pengaturan']);
-        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
-        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
+        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword'])->withoutMiddleware('defaultPassword');
+        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword'])->withoutMiddleware('defaultPassword');;
         Route::get('/tentang', [SurveyorController::class, 'tentang']);
         Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
         Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);

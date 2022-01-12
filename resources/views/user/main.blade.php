@@ -16,7 +16,7 @@
 
     <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #F3F8FF;">
         <!-- Header Section -->
-        <div class="header d-flex justify-content-between align-items-centers p-2">
+        <div class="header d-flex justify-content-between align-items-centers p-2 text-dark">
             <div class="logo d-flex align-items-center ms-2">
                 @hasSection('header')
                     @yield('header')
@@ -28,7 +28,7 @@
             <div class="dropdown me-1">
                 <button class="btn btn-secondary shadow-none border-0" style="background: #F3F8FF;" type="button"
                     id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-ellipsis-v text-black"></i>
+                    <i class="fas fa-ellipsis-v text-dark"></i>
                 </button>
                 <ul class="dropdown-menu shadow-sm" aria-labelledby="dropdownMenu2">
                     <li><a href="/surveyor/pengaturan"
