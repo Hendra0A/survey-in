@@ -230,10 +230,10 @@ class AdminController extends Controller
             return view('admin.surveyor.edit-password', $data);
         }
     }
-    public function surveyorTarget(Request $request)
+    public function surveyorTarget($id)
     {
-        $user = User::with('kabupaten.kecamatan')->find($request->id);
-        $detail = DetailSurveys::where('user_id', $request->id)
+        $user = User::with('kabupaten.kecamatan')->find($id);
+        $detail = DetailSurveys::where('user_id', $id)
             ->whereDate('tanggal_selesai', '>=', Carbon::now())
             ->get();
         if (count($detail) != 0) {
@@ -255,7 +255,7 @@ class AdminController extends Controller
         } else {
             $surveyor = User::with(['detailSurvey' => function ($query) {
                 $query->whereDate('tanggal_selesai', '>=', Carbon::now());
-            }])->where('id', $request->id)->get();
+            }])->where('id', $id)->get();
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Target Surveyor',

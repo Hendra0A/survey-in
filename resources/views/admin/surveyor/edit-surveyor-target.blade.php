@@ -26,8 +26,7 @@
             <input type="hidden" name="id" value="{{ $detail_survey->id }}">
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Kecamatan:</label>
-                <select class="form-select form-control @error('kecamatan') is-invalid @enderror" name="kecamatan"
-                    id="kecamatan" required>
+                <select class="form-select @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
                     <option value="" selected disabled>--Pilih Kecamatan--</option>
                     @foreach ($kecamatans as $kecamatan)
                     <option value="{{ $kecamatan->id }}" {{ ($kecamatan->id==$detail_survey->kecamatan_id) ?
@@ -43,13 +42,23 @@
             <div class="mb-3 w-100 d-flex justify-content-between">
                 <div class="target-tanggal">
                     <label for="validationServer03" class="form-label date-target">Tanggal Mulai</label>
-                    <input type="date" class="form-control" name="tanggal_mulai"
-                        value="{{ $detail_survey->tanggal_mulai }}">
+                    <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror"
+                        name="tanggal_mulai" value="{{ $detail_survey->tanggal_mulai }}">
+                    @error('tanggal_mulai')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
                 <div class="target-tanggal">
                     <label for="validationServer03" class="form-label date-target">Tanggal Selesai</label>
-                    <input type="date" class="form-control" name="tanggal_selesai"
-                        value="{{ $detail_survey->tanggal_selesai }}">
+                    <input type="date" class="form-control @error('tanggal_selesai') is-invalid @enderror"
+                        name="tanggal_selesai" value="{{ $detail_survey->tanggal_selesai }}">
+                    @error('tanggal_selesai')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
 
@@ -57,7 +66,7 @@
                 <div class="jumlah-target w-75 me-4">
                     <label for="validationServer03" class="form-label">Jumlah Target :</label>
                     <input type="text" class="form-control @error('target') is-invalid @enderror"
-                        id="validationServer03" name="target" value="{{ $detail_survey->target}}" required>
+                        id="validationServer03" name="target" value="{{ $detail_survey->target}}">
                     @error('target')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{ $message }}
