@@ -58,6 +58,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surveyor/riwayat-survei', [SurveyorController::class, 'history']);
         Route::get('/surveyor/profile', [SurveyorController::class, 'show']);
         Route::get('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'update']);
+        Route::patch('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
         Route::get('/surveyor/data-survei', [SurveyorController::class, 'dataSurvei']);
         Route::get('/surveyor/pengaturan', [SurveyorController::class, 'pengaturan']);
         Route::get('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);

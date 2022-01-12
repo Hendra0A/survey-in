@@ -66,11 +66,11 @@ class AdminController extends Controller
         // ddd($request);
         $validateData = $request->validate([
             'nama_lengkap' => ['required'],
-            'nomor_telepon' => ['required'],
             'email' => ['required'],
-            'nama_lengkap' => ['required'],
-            'alamat' => ['required'],
             'tanggal_lahir' => ['required'],
+            'gender' => ['required'],
+            'nomor_telepon' => ['required'],
+            'alamat' => ['required'],
             'avatar' => 'image|file|max:2048'
         ]);
 
