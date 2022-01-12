@@ -5,16 +5,16 @@
             <h1>Profil Surveyor</h1>
             <p>Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex">
-                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="aw" class="hl-img rounded-circle">
-                <div class="hl-status ms-4 d-flex flex-column justify-content-center">
+                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="aw" class="hl-img rounded-circle col-3 col-md-1">
+                <div class="hl-status ms-4 d-flex flex-column justify-content-center col-9">
                     <h3>{{ $data->nama_lengkap }}</h3>
                     <p>{{ $data->role }}</p>
                 </div>
             </div>
-            <div class="biodata mt-5 m-auto">
-                <table class="bio m-auto" style="width: 90%;">
+            <div class="biodata mt-5 mx-auto bg-white p-1   ">
+                <table class="bio mx-auto" style="width: 100%;">
                     <tr>
-                        <td class="left-bio p-2">Nama Lengkap</td>
+                        <td class="left-bio p-2" style="width: 40%">Nama Lengkap</td>
                         <td class="right-bio p-2">:{{ $data->nama_lengkap }}</td>
                     </tr>
                     <tr>
