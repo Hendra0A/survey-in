@@ -32,10 +32,19 @@ button#tambah-akun-surveyor {
 }
 
 
-button#batal {
+.tambah-akun a#batal.btn {
+    color: #3F4FC8;
+    font-weight: 400;
     border: 1px solid #3F4FC8;
     background-color: initial;
     border-radius: 10px;
     width: max-content;
 }
 
+button#tambah-akun-surveyor:hover{
+    background-color: #313e99;
+}
+
+.tambah-akun a#batal.btn:hover{
+    background-color: #fff;
+}

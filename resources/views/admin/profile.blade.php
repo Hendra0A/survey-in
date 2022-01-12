@@ -7,7 +7,7 @@
             <h1>Profil Admin</h1>
             <p>Profil Admin berisi data pribadi Admin.</p>
             <div class="admin d-flex">
-                <img src="{{ $data->avatar }}" alt="aw" class="hl-img rounded-circle">
+                <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="aw" class="hl-img rounded-circle">
                 <div class="hl-status ms-4 d-flex flex-column justify-content-center">
                     <h3>{{ $data->nama_lengkap }}</h3>
                     <p>{{ $data->role }}</p>

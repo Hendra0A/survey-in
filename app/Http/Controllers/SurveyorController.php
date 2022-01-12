@@ -86,6 +86,31 @@ class SurveyorController extends Controller
     public function updateProfile(Request $request)
     {
         // ddd($request);
+        $validateData = $request->validate([
+            'nama_lengkap' => ['required'],
+            'email' => ['required'],
+            'tanggal_lahir' => ['required'],
+            'gender' => ['required'],
+            'nomor_telepon' => ['required'],
+            'alamat' => ['required'],
+            'avatar' => 'image|file|max:2048'
+        ]);
+
+        if ($request->file('avatar')) {
+            if ($request->oldImage) {
+                Storage::delete($request->oldImage);
+            }
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+        }
+        try {
+            User::where('id', $request->id)
+                ->update($validateData);
+            return redirect('/surveyor/profile')
+                ->with('success', 'Profil admin telah berhasil di edit')
+                ->with('confirm', 'Kembali ke Profil');
+        } catch (\Exception $e) {
+            return redirect()->back()->withInput();
+        }
     }
 
     public function pengaturan()

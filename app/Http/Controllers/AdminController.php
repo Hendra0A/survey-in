@@ -66,11 +66,11 @@ class AdminController extends Controller
         // ddd($request);
         $validateData = $request->validate([
             'nama_lengkap' => ['required'],
-            'nomor_telepon' => ['required'],
             'email' => ['required'],
-            'nama_lengkap' => ['required'],
-            'alamat' => ['required'],
             'tanggal_lahir' => ['required'],
+            'gender' => ['required'],
+            'nomor_telepon' => ['required'],
+            'alamat' => ['required'],
             'avatar' => 'image|file|max:2048'
         ]);
 
@@ -78,7 +78,7 @@ class AdminController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images-admin');
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
         }
 
         try {
@@ -207,23 +207,23 @@ class AdminController extends Controller
             }
         }
     }
-    public function getSurveyor(Request $request)
+    public function getSurveyor($action, $id)
     {
-        if ($request->target == '1') {
+        if ($action == 'profile') {
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Profile Surveyor',
                 'kabupaten' => Kabupaten::all(),
-                'profile' => User::where('id', $request->id)
+                'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')
                     ->get()[0]
             ];
             return view('admin.surveyor.edit-profile', $data);
-        } elseif ($request->target == '2') {
+        } elseif ($action == 'password') {
             $data = [
                 'active' => 'surveyor',
                 'title' => 'Surveyor - Edit Password',
-                'profile' => User::where('id', $request->id)
+                'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')
                     ->get(['avatar', 'nama_lengkap', 'role', 'id'])[0]
             ];

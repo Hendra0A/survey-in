@@ -45,19 +45,19 @@
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Kabupaten/Kota</label>
                 <select class="form-select @error('area') is-invalid @enderror" id="area" name="area">
-                    <option selected>--Pilih Kabupaten/Kota--</option>
+                    <option selected disabled>--Pilih Kabupaten/Kota--</option>
                     @foreach ($kabupaten as $item)
                     <option value="{{ $item->id }}">{{ $item->nama }}</option>
                     @endforeach
                 </select>
                 @error('area')
-                <div class="alert alert-danger">
+                <div id="validationServer03Feedback" class="invalid-feedback">
                     {{ $message }}
                 </div>
                 @enderror
             </div>
             <div class="tambah-akun d-flex justify-content-end mt-4">
-                <a href="/surveyor" class="btn btn-lg btn-outline-primary mb-5 fs-6" id="batal">Batal</a>
+                <a href="/surveyor" class="btn btn-lg mb-5 fs-6" id="batal">Batal</a>
 
                 <button type="submit" class="btn btn-lg btn-primary mb-5 ms-3 fs-6"
                     id="tambah-akun-surveyor">Tambahkan</button>
