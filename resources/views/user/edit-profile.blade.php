@@ -4,26 +4,41 @@
   <span class="fw-bold">Profil</span>
 @endsection
 @section('content')
-    <div class="content">
+    <div class="content bg-white">
         <div class="container">
-
-            <h1>Profile Edit</h1>
-            <p>Profil Admin berisi data pribadi Surveyor.</p>
-            <div class="admin d-sm-flex d-block">
-                <img src="/img/cat.png" alt="" class="hl-img rounded-circle img-fluid">
-                <div class="hl-upload ms-sm-4 d-flex flex-column justify-content-center">
-                    {{-- <button type="submit" class="btn btn-primary mt-2 ms-sm-4 shadow-none" id="upload">Ubah foto
-                        profile</button> --}}
-                        <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-                    <p class="upload mt-1 ms-0 ms-sm-4">maks upload (2 Mb)</p>
+            <h1 class="fw-bold">Profile Edit</h1>
+            <p>Edit profile Anda untuk melengkapi data pribadi.</p>  
+        <form action="" id="prf-edit-form" autocomplete="off" method="POST">
+            <div class="admin row align-items-center">
+                <img src="/img/cat.png" class="hl-img rounded-circle col-4 col-lg-2" >
+                <div class="hl-upload col-8">
+                    <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar"
+                    name="avatar" onchange="previewImage()">
+                    @error('avatar')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    <label for="avatar" class="form-label btn btn-primary px-4 py-2" style="border-radius: 0.5em">Ubah Foto Profile</label>
+                    <p class="upload mt-1 ms-0">maks upload (2 Mb)</p>
                 </div>
+                <style>
+                    .inputfile {
+                        width: 0.1px;
+                        height: 0.1px;
+                        opacity: 0;
+                        overflow: hidden;
+                        position: absolute;
+                        z-index: -1;
+                    }
+                    .inputfile + label {
+                        cursor: pointer; /* "hand" cursor */
+                    }
+                </style>
             </div>
-        </div>
-
-        <form action="/profile/edit-profile/admin" id="prf-edit-form" autocomplete="off" method="POST">
             @csrf
             @method('patch')
-            <div class="bio-edit d-flex flex-sm-row flex-column flex mt-4">
+            <div class="bio-edit d-flex flex-md-row flex-column flex mt-4">
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="bio-left row justify-content-center align-items-start align-items-sm-center">
                     <div class="col-10 mb-3">
@@ -99,10 +114,11 @@
                             Harap berikan alamat yang valid.
                         </div>
                     </div>
-                    <div class="submit mt-5 col-10">
-                        <button type="submit" class="btn btn-lg btn-primary mb-5 h-auto container-fluid" id="submit">Simpan perubahan</button>
-                    </div>
+                    
                 </div>
+            </div>
+            <div class="submit mt-5">
+                <button type="submit" class="btn btn-md-lg btn-primary mb-5 h-auto mx-auto d-block px-5 py-3" style="border-radius: 0.5rem" id="submit">Simpan perubahan</button>
             </div>
         </form>
         </div>

@@ -43,7 +43,6 @@
                         <label for="validationServer03" class="form-label">Kategori</label>
                         <select class="form-control form-control" id="validationServer03"
                             aria-label="Default select example " name="kategori">
-                            <option selected>--Kategori Target--</option>
                             <option value="6">Perminggu</option>
                         </select>
                     </div>
@@ -52,10 +51,6 @@
                         <label for="validationServer03" class="form-label date-target">Tanggal Mulai</label>
                         <input type="date" class="form-control" name="tanggal_mulai" value="{{ date('Y-m-d') }}">
                     </div>
-                    {{-- <div class="target-tanggal w-50 ms-5">
-                        <label for="validationServer03" class="form-label date-target">Tanggal Selesai</label>
-                        <input type="date" class="form-control" name="tanggal_selesai">
-                    </div> --}}
                 </div>
                 <div class="col-md-8 mb-3 w-75 d-flex align-items-end">
                     <div class="jumlah-target w-75 me-4">

@@ -1,1 +1,48 @@
-@dd($data)
+@extends('user.main')
+@section('content')
+<div class="content">
+    <div class="container">
+      <h1 class="text-center mb-5">Data Survei</h1>
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Seluruh Data</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Survei Saya</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <p class="my-3">Kecamatan :</p>
+          <div class="input-group mb-3">
+            <select id="kecamatan" class="form-select form-select-sm m-auto shadow-none border-primary mt-1" style="width: 92%;" aria-label=".form-select-sm example">
+                @foreach ($data as $kecamatan)    
+                    <option value="{{ $kecamatan->id}}" {{ ($kecamatan->id == auth()->user()->kabupaten_id)?'selected':''}}">{{ $kecamatan->nama }}</option>
+                @endforeach
+            </select>
+          </div>
+          <div class="input-group mb-3 position-relative">
+            <input type="text" class="form-control" placeholder="Cari nama gang dan perumahan.." aria-label="Recipient's username" aria-describedby="button-addon2">
+            <i class="fas fa-search position-absolute text-secondary end-0" style="top: 30%; right:50px;"></i>
+          </div>
+          <div class="list-data">
+              <div class = "card shadow-sm">
+                <div class="card-body">
+                  <h5>Bersama 1A</h5>
+                  <p>Jl. Tebu</p>
+                </div>
+              </div><br>
+    
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h5>Rambutan 2</h5>
+                  <p>Jl. Komyos Sudarso</p>
+                </div>
+              </div><br>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <script src="/js/data-survei-user.js"></script>
+@include('user.navigation')
+@endsection

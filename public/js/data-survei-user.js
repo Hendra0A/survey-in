@@ -20,29 +20,19 @@ $(document).ready(async function () {
     let setResumeSurvey = async (idKec) => {
         let dataS = await getData("/data-survey", idKec);
         if (dataS.length == 0) {
-            $("#jmlGang").text("-");
-            $("#jmlRumah").text("-");
-            $("#pnjJalan").text("-");
-            $("#lbrJalan").text("-");
-            $("#jlnJelek").text("-");
-            $("#jlnBaik").text("-");
+            $(".list-data").html(`Data Kecamatan Belum Tersedia`);
         } else {
-            $("#jmlGang").text(Intl.NumberFormat("id-ID").format(dataS.jumlah));
-            $("#jmlRumah").text(
-                Intl.NumberFormat("id-ID").format(dataS.jumlahRumah)
-            );
-            $("#pnjJalan").text(
-                Intl.NumberFormat("id-ID").format(dataS.panjangJalan) + " m"
-            );
-            $("#lbrJalan").text(
-                Intl.NumberFormat("id-ID").format(dataS.lebarJalan) + " m"
-            );
-            $("#jlnJelek").text(
-                Intl.NumberFormat("id-ID").format(dataS.jalanJelek) + "%"
-            );
-            $("#jlnBaik").text(
-                Intl.NumberFormat("id-ID").format(dataS.jalanBaik) + "%"
-            );
+            dataS.forEach((element) => {
+                let card = document.createElement("div");
+                card.setAttribute("class", "card shadow-sm");
+                card.innerHTML = `
+                <div class="card-body">
+                    <h5>Bersama 1A</h5>
+                    <p>Jl. Tebu</p>
+                </div>
+            `;
+                $(".list-data").append(card);
+            });
         }
     };
     setResumeSurvey($("#kecamatan").val());
