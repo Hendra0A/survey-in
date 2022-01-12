@@ -63,14 +63,23 @@ class ApiController extends Controller
         ];
         return response()->json($response, Response::HTTP_OK);
     }
-    public function myDataSurvey($id)
+    public function myDataSurvey(Request $request)
     {
-        $data = DataSurvey::with(['user', 'kecamatan'])->where('user_id', $id)->get();
+
+        $data = [];
+        if ($request->method == 'all') {
+            $data = DataSurvey::with(['kecamatan', 'user'])
+                ->where('kecamatan_id', 160)
+                ->get();
+        } elseif ($request->method == 'single') {
+            $data = DataSurvey::with(['user', 'kecamatan'])
+                ->where('user_id', $request->id)
+                ->where('kecamatan_id', $request->kecamatan_id)
+                ->get();
+        }
         $response = [
-            'message' => 'Data Survey oleh ' . $data[0]->user->nama_lengkap,
             'data' => $data,
         ];
-        // dd($data);
         return response()->json($response, Response::HTTP_OK);
     }
 }
