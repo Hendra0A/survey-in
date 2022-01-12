@@ -26,7 +26,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/surveyor/profile/{id}', [AdminController::class, 'surveyorProfile']);
         Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
         Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
-        Route::post('/surveyor/target/', [AdminController::class, 'surveyorTarget']);
+        Route::get('/surveyor/target/{id}', [AdminController::class, 'surveyorTarget']);
 
 
 

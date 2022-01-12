@@ -25,8 +25,7 @@
             <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Kecamatan</label>
-                <select class="form-select form-control @error('kecamatan') is-invalid @enderror" name="kecamatan"
-                    id="kecamatan">
+                <select class="form-select @error('kecamatan') is-invalid @enderror" name="kecamatan" id="kecamatan">
                     <option value="" selected disabled>--Pilih Kecamatan--</option>
                     @foreach ($kecamatans as $kecamatan)
                     <option value="{{ $kecamatan->id }}">{{ $kecamatan->nama }}</option>
@@ -49,14 +48,20 @@
 
                 <div class="target-tanggal w-50 ms-5">
                     <label for="validationServer03" class="form-label date-target">Tanggal Mulai</label>
-                    <input type="date" class="form-control" name="tanggal_mulai" value="{{ date('Y-m-d') }}">
+                    <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror"
+                        name="tanggal_mulai" value="{{ date('Y-m-d') }}">
+                    @error('tanggal_mulai')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                    @enderror
                 </div>
             </div>
             <div class="col-md-8 mb-3 w-75 d-flex align-items-end">
                 <div class="jumlah-target w-75 me-4">
                     <label for="validationServer03" class="form-label">Jumlah Target</label>
                     <input type="text" class="form-control @error('target') is-invalid @enderror"
-                        id="validationServer03" name="target" value="10" required>
+                        id="validationServer03" name="target" value="10">
                     @error('target')
                     <div id="validationServer03Feedback" class="invalid-feedback">
                         {{ $message }}
