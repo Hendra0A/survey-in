@@ -28,6 +28,19 @@
                         <label for="avatar" class="form-label btn btn-primary px-4 py-3" style="border-radius: 0.5em">Ubah Foto Profile</label>
                         <p class="upload mt-1 ms-0">maks upload (2 Mb)</p>
                     </div>
+                    <style>
+                        .inputfile {
+                            width: 0.1px;
+                            height: 0.1px;
+                            opacity: 0;
+                            overflow: hidden;
+                            position: absolute;
+                            z-index: -1;
+                        }
+                        .inputfile + label {
+                            cursor: pointer; /* "hand" cursor */
+                        }
+                    </style>
                 </div>
                 <div class="hl-status mt-3 d-flex flex-column justify-content-center">
                     <h3>{{ $data->nama_lengkap }}</h3>
