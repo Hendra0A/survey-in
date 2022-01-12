@@ -100,7 +100,7 @@ class SurveyorController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images-surveyor');
+            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
         }
         try {
             User::where('id', $request->id)
@@ -152,5 +152,21 @@ class SurveyorController extends Controller
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
+    }
+
+    public function tentang()
+    {
+        return view('user.tentang', [
+            'active' => 'tentang',
+            'title' => 'Tentang'
+        ]);
+    }
+
+    public function tambah()
+    {
+        return view('user.tambah-data', [
+            'active' => 'tambah data',
+            'title' => 'Tambah Data'
+        ]);
     }
 }
