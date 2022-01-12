@@ -74,30 +74,6 @@
 
     </div>
     @include('sweetalert::alert')
-
-    <!-- ===================  SCRIPT ====================== -->
-    <script>
-        function myForm() {
-            var x = document.getElementById("form-tambahan");
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-    </script>
-
-    <script>
-        function myLampiran() {
-            var x = document.getElementById("tambah-lampiran");
-
-            if (x.style.display === "block") {
-                x.style.display = "none";
-            } else {
-                x.style.display = "block";
-            }
-        }
-    </script>
 </body>
 
 </html>

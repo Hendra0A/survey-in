@@ -32,8 +32,8 @@
                     <div class="col-12 mb-3">
                         <label for="input-gang" class="form-label fw-bold d-block m-0 mb-2">Koordinat</label>
                         <div class="col-12 d-flex">
-                            <button type="button" id="koordinat"
-                                class="btn btn-primary d-flex align-items-center me-2 border-0"
+                            <button type="button" onclick="getLocation()" id="koordinat"
+                                class="lokasi btn btn-primary d-flex align-items-center me-2 border-0"
                                 style="border-radius: .5em; background: #3F4FC8;"><i
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary" style="border-radius: .5em;"
@@ -289,8 +289,8 @@
                             <label for="input-koordinat-fasos" class="form-label d-block fw-bold">Koordinat Fasos</label>
                             <div class="col-12 d-flex">
                                 <button type="button" id="koordinat-fasos"
-                                    class="btn btn-primary d-flex align-items-center me-2 border-0"
-                                    style="border-radius: .5em; background: #3F4FC8;"><i
+                                    class="lokasi btn btn-primary d-flex align-items-center me-2 border-0"
+                                    style="border-radius: .5em; background: #3F4FC8;" onclick="getLocation()"><i
                                         class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                                 <input type="text" class="form-control border-primary" style="border-radius: .5em;"
                                     id="input-koordinat-fasos">
@@ -315,7 +315,7 @@
                                 Gambar</button>
                             <div class="img-keterangan mt-2 p-2 text-sm-center"
                                 style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                                <img src="img/kartu-empat.png" alt="" style="width: 9em;">
+                                <img src="/img/kartu-empat.png" alt="" style="width: 9em;">
                             </div>
                         </div>
                     </div>
@@ -508,7 +508,7 @@
                                 Gambar</button>
                             <div class="img-keterangan mt-2 p-2 text-sm-center"
                                 style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                                <img src="img/kartu-empat.png" alt="" style="width: 9em;">
+                                <img src="/img/kartu-empat.png" alt="" style="width: 9em;">
                             </div>
                         </div>
                     </div>
@@ -527,5 +527,6 @@
             <!-- good luck have fun :) -->
         </div>
     </div>
+    <script src="/js/tambah-data-user.js"></script>
     @include('user.navigation')
 @endsection
