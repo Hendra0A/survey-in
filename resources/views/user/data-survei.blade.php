@@ -23,20 +23,7 @@
             <input type="text" class="form-control" placeholder="Cari nama gang dan perumahan.." aria-label="Recipient's username" aria-describedby="button-addon2">
             <i class="fas fa-search position-absolute text-secondary end-0" style="top: 30%; right:50px;"></i>
           </div>
-          <div class="list-data">
-              <div class = "card shadow-sm">
-                <div class="card-body">
-                  <h5>Bersama 1A</h5>
-                  <p>Jl. Tebu</p>
-                </div>
-              </div><br>
-    
-              <div class="card shadow-sm">
-                <div class="card-body">
-                  <h5>Rambutan 2</h5>
-                  <p>Jl. Komyos Sudarso</p>
-                </div>
-              </div><br>
+          <div class="list-data mb-5">
           </div>
         </div>
         

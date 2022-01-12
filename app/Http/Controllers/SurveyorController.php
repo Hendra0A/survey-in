@@ -146,8 +146,9 @@ class SurveyorController extends Controller
             User::where('id', auth()->user()->id)->update([
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
-            return redirect('/user/pengaturan')
-                ->with('success', 'Password anda berhasil diubah');
+            return redirect('/surveyor/pengaturan')
+                ->with('success', 'Password anda berhasil diubah')
+                ->with('confirm', 'Kembali ke pengaturan');;
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }

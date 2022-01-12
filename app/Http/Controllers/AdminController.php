@@ -314,8 +314,6 @@ class AdminController extends Controller
             return redirect()->back()->withInput();
         }
     }
-
-
     public function destroySuyveyor(Request $request)
     {
         try {
