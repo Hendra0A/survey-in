@@ -14,18 +14,21 @@
                     <input type="hidden" name="oldImage" value="{{ $data->avatar }}">
                     @if ($data->avatar)
                         <img src="{{ asset('storage/' . $data->avatar) }}" class="img-preview hl-img rounded-circle">
+                    @elseif($data->avatar)
+                        <img class="img-preview img-fluid hl-img rounded-circle " style="width: 30%">
                     @else
-                        <img class="img-preview img-fluid hl-img rounded-circle">
+                        <img src="/img/profile.png" alt="" class="img-preview hl-img rounded-circle">
                     @endif
                     <div class="hl-upload ms-sm-4 d-flex flex-column justify-content-center">
-                        <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar"
-                        name="avatar" onchange="previewImage()">
+                        <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar" name="avatar"
+                            onchange="previewImage()">
                         @error('avatar')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
                         @enderror
-                        <label for="avatar" class="form-label btn btn-primary px-4 py-3" style="border-radius: 0.5em">Ubah Foto Profile</label>
+                        <label for="avatar" class="form-label btn btn-primary px-4 py-3" style="border-radius: 0.5em">Ubah
+                            Foto Profile</label>
                         <p class="upload mt-1 ms-0">maks upload (2 Mb)</p>
                     </div>
                     <style>
@@ -37,9 +40,12 @@
                             position: absolute;
                             z-index: -1;
                         }
-                        .inputfile + label {
-                            cursor: pointer; /* "hand" cursor */
+
+                        .inputfile+label {
+                            cursor: pointer;
+                            /* "hand" cursor */
                         }
+
                     </style>
                 </div>
                 <div class="hl-status mt-3 d-flex flex-column justify-content-center">
@@ -53,9 +59,10 @@
                 <div class="bio-left w-100 d-flex flex-column align-items-start align-items-sm-center">
                     <div class="col-8 mb-3">
                         <label for="validationServer01" class="form-label">Nama Lengkap</label>
-                        <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer01" aria-describedby="validationServer01Feedback"
-                            value="{{ $data->nama_lengkap }}" name="nama_lengkap">
+                        <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer01"
+                            aria-describedby="validationServer01Feedback" value="{{ $data->nama_lengkap }}"
+                            name="nama_lengkap">
                         @error('nama_lengkap')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -64,9 +71,10 @@
                     </div>
                     <div class="col-8 mb-3">
                         <label for="validationServer02" class="form-label">Tanggal Lahir</label>
-                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer02" aria-describedby="validationServer02Feedback"
-                            value="{{ $data->tanggal_lahir }}" name="tanggal_lahir">
+                        <input type="date" class="form-control @error('tanggal_lahir') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer02"
+                            aria-describedby="validationServer02Feedback" value="{{ $data->tanggal_lahir }}"
+                            name="tanggal_lahir">
                         @error('tanggal_lahir')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -75,9 +83,9 @@
                     </div>
                     <div class="col-8 mb-3">
                         <label for="validationServer03" class="form-label">Email</label>
-                        <input type="text" class="form-control @error('email') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer03" aria-describedby="validationServer03Feedback"
-                            value="{{ $data->email }}" name="email">
+                        <input type="text" class="form-control @error('email') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer03"
+                            aria-describedby="validationServer03Feedback" value="{{ $data->email }}" name="email">
                         @error('email')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -89,8 +97,9 @@
                     <div class="col-8 mb-3">
                         <label for="validationServer04" class="form-label">Jenis Kelamin</label>
 
-                        <select class="form-select w-100 @error('gender') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer04" aria-describedby="validationServer04Feedback" name="gender">
+                        <select class="form-select w-100 @error('gender') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer04"
+                            aria-describedby="validationServer04Feedback" name="gender">
                             <option disabled>Pilih...</option>
                             <option value="laki-laki" {{ $data->gender == 'laki-laki' ? 'selected' : '' }}>
                                 Laki-laki
@@ -107,9 +116,10 @@
                     </div>
                     <div class="col-8 mb-3 mt-2">
                         <label for="validationServer05" class="form-label">No. Handphone</label>
-                        <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer05" aria-describedby="validationServer05Feedback"
-                            value="{{ $data->nomor_telepon }}" name="nomor_telepon">
+                        <input type="text" class="form-control @error('nomor_telepon') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer05"
+                            aria-describedby="validationServer05Feedback" value="{{ $data->nomor_telepon }}"
+                            name="nomor_telepon">
                         @error('nomor_telepon')
                             <div class="invalid-feedback">
                                 {{ $message }}
@@ -118,9 +128,9 @@
                     </div>
                     <div class="col-8 mb-3">
                         <label for="validationServer06" class="form-label">Alamat</label>
-                        <input type="text" class="form-control @error('alamat') is-invalid @enderror" style="border: 1px solid #3f4fc8;"
-                            id="validationServer06" aria-describedby="validationServer06Feedback"
-                            value="{{ $data->alamat }}" name="alamat">
+                        <input type="text" class="form-control @error('alamat') is-invalid @enderror"
+                            style="border: 1px solid #3f4fc8;" id="validationServer06"
+                            aria-describedby="validationServer06Feedback" value="{{ $data->alamat }}" name="alamat">
                         <div id="validationServer06Feedback" class="invalid-feedback">
                             Harap berikan alamat yang valid.
                         </div>

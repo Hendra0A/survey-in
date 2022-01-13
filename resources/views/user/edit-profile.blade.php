@@ -16,9 +16,12 @@
                 <div class="form-group d-flex align-items-center mb-5">
                     @if ($data->avatar)
                         <img src="{{ asset('storage/' . $data->avatar) }}" class="img-preview hl-img rounded-circle col-4 col-md-2">
-                    @else
+                    @elseif($data->avatar)
                         <img class="img-preview img-fluid hl-img rounded-circle " style="width: 30%">
+                    @else
+                        <img src="/img/profile.png" alt="" class="hl-img rounded-circle col-3 col-md-2">
                     @endif
+                    
                     <div class="hl-upload col-9 ms-3">
                         <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar"
                         name="avatar" onchange="previewImage()">

@@ -5,7 +5,11 @@
             <h1 class="mt-2">Profil Surveyor</h1>
             <p style="color: #a5a5a5;">Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex mt-4">
+                @if (auth()->user()->avatar)
                 <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="aw" class="hl-img rounded-circle col-3 col-md-2">
+                  @else
+                  <img src="/img/profile.png" alt="" class="hl-img rounded-circle col-3 col-md-2">
+                  @endif
                 <div class="hl-status ms-4 d-flex flex-column justify-content-center col-9">
                     <h3>{{ $data->nama_lengkap }}</h3>
                     <p style="color: #a5a5a5; font-size: 1.2em;">{{ $data->role }}</p>
