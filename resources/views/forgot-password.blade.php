@@ -14,7 +14,7 @@
 
 <body>
   <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #f3f8ff; min-height: 100vh;">
-    <div class="header d-flex justify-content-between align-items-centers -md-py-3 md-px-5 p-2">
+    <div class="header d-flex justify-content-between align-items-centers py-md-3 px-md-5 p-2">
       <div class="logo d-flex align-items-center">
         <img src="img/logo-b.png" alt="" style="width: 3em" />
         <p class="m-0 ms-1 fw-bold" style="color: #f8b94a">Survei</p>
