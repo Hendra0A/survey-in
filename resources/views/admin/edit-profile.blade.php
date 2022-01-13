@@ -3,8 +3,7 @@
 @section('main-content')
     <div class="content d-flex flex-column" id="prf-edit-content">
 
-        <form action="/profile/edit-profile/admin" id="prf-edit-form" autocomplete="off" method="post"
-            enctype="multipart/form-data">
+        <form action="/profile/edit-profile/admin" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
             @csrf
             <div class="admin-hl mt-4 ps-sm-5 ms-sm-2 ps-1">
                 <h1>Profile Admin</h1>
@@ -19,6 +18,7 @@
                     @else
                         <img src="/img/profile.png" alt="" class="img-preview hl-img rounded-circle">
                     @endif
+
                     <div class="hl-upload ms-sm-4 d-flex flex-column justify-content-center">
                         <input class="inputfile @error('avatar') is-invalid @enderror" type="file" id="avatar" name="avatar"
                             onchange="previewImage()">
