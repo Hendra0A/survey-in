@@ -6,7 +6,11 @@
         <p class="prf-p m-0 me-4">{{ auth()->user()->nama_lengkap }}</p>
         <!-- avatar -->
         <!-- <div class="prf-img me-4 rounded-circle"></div> -->
+        @if (auth()->user()->avatar)
         <img src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="" class="prf-img rounded-circle">
+        @else
+        <img src="/img/profile.png" class="prf-img rounded-circle">
+        @endif
         <!-- avatar end -->
         <div class="dropdown me-4">
             <a class="btn btn-secondary dropdown-toggle me-2" href="#" role="button" id="dropdownMenuLink"

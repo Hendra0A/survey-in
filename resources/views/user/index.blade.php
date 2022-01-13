@@ -3,7 +3,11 @@
 <div class="content">   
     <div class="container">
       <div class="admin-hl-andro d-flex align-items-center mt-4 ms-3">
-          <img src="{{ asset('storage/'.auth()->user()->avatar) }}" alt="" class=" rounded-circle ms-2" style="width: 3em;">
+        @if (auth()->user()->avatar)
+        <img src="{{ asset('storage/'.auth()->user()->avatar) }}" alt="" class=" rounded-circle ms-2" style="width: 3em;">
+          @else
+          <img src="/img/profile.png" alt="" class=" rounded-circle ms-2" style="width: 3em;">
+          @endif
           <h6 class=" d-flex align-items-center m-0 ms-2">Halo, {{ auth()->user()->nama_lengkap }} <img src="/img/hello.png" alt="" style="width: 1.5em;" class=" ms-1"> </h6>
       </div>
       <div class="row justify-content-center">
