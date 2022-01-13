@@ -163,14 +163,13 @@ class DatabaseSeeder extends Seeder
             'jenis' => 'Tanah Berbatu'
         ]);
 
-        DataSurvey::factory(1000)->create();
+        DataSurvey::factory(100)->create();
         LampiranFoto::factory(30)->create();
         Fasos::factory(30)->create();
 
         User::create([
             'nama_lengkap' => 'Seli bitri',
             'gender' => 'perempuan',
-            'avatar' => "https://source.unsplash.com/128x128",
             'nomor_telepon' => '082252423199',
             'alamat' => 'Sungai Raya Dalam Arah Kubu Raya ',
             'role' => 'admin',
@@ -180,7 +179,6 @@ class DatabaseSeeder extends Seeder
         ]);
         User::create([
             'nama_lengkap' => 'Admin',
-            'avatar' => "https://source.unsplash.com/128x128",
             'nomor_telepon' => '082252423199',
             'role' => 'admin',
             'email' => 'admin@gmail.com',
