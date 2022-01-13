@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
             $table->date('tanggal_lahir')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();
         });

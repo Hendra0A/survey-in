@@ -15,12 +15,13 @@ class AccessController extends Controller
     }
     public function authenticate(Request $request)
     {
+        $isRemember = $request->remember;
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' =>  'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $isRemember)) {
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
                 return redirect()->intended('/beranda');

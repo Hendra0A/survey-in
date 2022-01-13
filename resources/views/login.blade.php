@@ -51,7 +51,7 @@
                     <div class="remember-me">
                         <a href="/forgot-password" class=" text-primary text-decoration-none float-end pt-1" style="color: gray; font-size: .9em;">Lupa password?</a> 
                         <label class="checkbox fw-normal d-flex align-items-start p-0" style="font-size: .9em">
-                            <input type="checkbox" value="remember-me" id="remember_me" class="me-2 mt-2 m-0 h-auto" style="vertical-align: top;"> Remember me
+                            <input type="checkbox" value="remember-me" id="remember_me" name="remember" class="me-2 mt-2 m-0 h-auto" style="vertical-align: top;"> Remember me
                         </label>       
                     </div>
                 </div>
