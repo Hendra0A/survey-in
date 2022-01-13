@@ -8,6 +8,7 @@
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/custom-view.css">
     <script src="/js/jquery-3.6.0.min.js"></script>
 </head>

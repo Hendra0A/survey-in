@@ -2,17 +2,17 @@
 @section('content')
 <div class="content">   
     <div class="container">
-      <div class="admin-hl-andro d-flex align-items-center mt-4 ms-3">
+      <div class="admin-hl-andro d-flex align-items-center mt-4 ms-3 mb-3">
         @if (auth()->user()->avatar)
-        <img src="{{ asset('storage/'.auth()->user()->avatar) }}" alt="" class=" rounded-circle ms-2" style="width: 3em;">
+        <img src="{{ asset('storage/'.auth()->user()->avatar) }}" alt="" class=" rounded-circle ms-2" style="width: 4em; height: 4em; object-fit: cover;">
           @else
-          <img src="/img/profile.png" alt="" class=" rounded-circle ms-2" style="width: 3em;">
+          <img src="/img/profile.png" alt="" class=" rounded-circle ms-2" style="width: 4em; height: 4em; object-fit: cover;">
           @endif
-          <h6 class=" d-flex align-items-center m-0 ms-2">Halo, {{ auth()->user()->nama_lengkap }} <img src="/img/hello.png" alt="" style="width: 1.5em;" class=" ms-1"> </h6>
+          <h6 class=" d-flex align-items-center m-0 ms-2" style="font-size: clamp(1rem, 2.5vw, 1.2rem);">Halo, {{ auth()->user()->nama_lengkap }} <img src="/img/hello.png" alt="" style="width: 1.5em;" class=" ms-1"> </h6>
       </div>
       <div class="row justify-content-center">
         <div class="col-12 ">
-          <div class="d-flex ms-2 me-2 mt-2 m-auto justify-content-center shadow-sm bg-white p-3 justify-content-md-between">
+          <div class="d-flex ms-2 me-2 mt-2 m-auto justify-content-center shadow-sm bg-white p-3 justify-content-md-between" style="border-radius: 1em;">
               <div class="pe-1 d-flex flex-column justify-content-center">
                   <h4>Ayo selesaikan target surveimu!</h4>
                   <p class="mb-2">Kecamatan {{ $data['kecamatan']['nama'] }}</p>
@@ -40,7 +40,7 @@
         <div class="col-6 col-md-4">
           <div class="kartu satu p-1" style=" background: #6E86B4;">
             <div class="kartu-hero d-flex justify-content-center align-items-center ">
-              <img src="/img/kartu-satu.png" alt="" style="width: 30%;">
+              <img src="/img/kartu-satu.png" alt="" style="width: 28%;">
               <p class="m-0 ms-2" id="jmlGang">-</p>
             </div>
             <h6 class=" m-0 mb-1">Gang dan Perumahan</h6>
@@ -70,7 +70,7 @@
         <div class="col-6 col-md-4">
           <div class="kartu empat p-1" style=" background: #648360;">
             <div class="kartu-hero d-flex justify-content-center align-items-center">
-              <img src="/img/kartu-empat.png" alt="" style="width: 30%;">
+              <img src="/img/kartu-empat.png" alt="" style="width: 27%;">
               <p class="m-0 ms-2" id="jmlRumah">-</p>
             </div>
             <h6 class=" m-0 mb-1 mt-2">Jumlah Rumah</h6>
