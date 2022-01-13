@@ -23,10 +23,20 @@ class DataSurveyController extends Controller
     public function detail($id)
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
-        return view('admin.data-survei.detail-data-survei', [
-            'title' => 'Data Survei',
-            'data' => $data[0],
-        ]);
+        if (auth()->user()->role == 'admin') {
+
+            return view('admin.data-survei.detail-data-survei', [
+                'active' => 'data-survei',
+                'title' => 'Data Survei',
+                'data' => $data[0],
+            ]);
+        } elseif (auth()->user()->role == 'surveyor') {
+            return view('user.detail-data-survei', [
+                'active' => 'data-survei',
+                'title' => 'Data Survei',
+                'data' => $data[0],
+            ]);
+        }
     }
     public function destroy(Request $request)
     {
@@ -74,7 +84,7 @@ class DataSurveyController extends Controller
         // jika erorr
         // jalankan di terminal
         // composer require barryvdh/laravel-dompdf
-        $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
+        // $pdf = PDF::setOptions(['isHTML5ParserEnabled' => true, 'isRemoteEnabled' => true]);
         $pdf->getDomPDF()->setHttpContext($contxt);
         //#################################################################################
 
