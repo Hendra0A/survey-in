@@ -22,7 +22,7 @@
 <body>
     <div class="container-fluid d-flex justify-content-center w-100 p-0 m-0 vh-100">
         <div class="login-form d-flex flex-column w-100 justify-content-center" id="main-login">
-            
+
             <div class="d-sm-block d-md-none">
                 <img src="{{ asset('/img/logo-b.png') }}" class="img-fluid d-block mx-auto">
                 <p class="text-center text-warning fw-bold fs-1">Survei</p>
@@ -39,7 +39,8 @@
                 @csrf
                 <div class="login mb-3">
                     <label for="exampleInputEmail1" class="form-label login">Email</label>
-                    <input type="email" name="email" class="kolom form-control shadow-none" id="email" aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
+                    <input type="email" name="email" class="kolom form-control shadow-none" id="email"
+                        aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
                 </div>
                 <div class="login mb-3 mb-5">
                     <label for="exampleInputPassword1" class="form-label login">Password</label>
@@ -54,12 +55,12 @@
                         </label>       
                     </div>
                 </div>
-                
+                <a href="/forgot-password">Lupa password?</a>
                 <button type="submit" class="btn btn-primary mt-4">Masuk</button>
             </form>
         </div>
 
-        <div class="hero flex-column position-relative justify-content-center" id="hero"> 
+        <div class="hero flex-column position-relative justify-content-center" id="hero">
             <div class="logo position-absolute d-flex flex-column align-items-center">
                 <img src="img/logo.png" alt="" class="logo-img text-center">
                 <h4 class="logo w-75 text-center p-0 mt-2">Survei</h4>
