@@ -41,7 +41,7 @@ nav.navbar a {
 
 nav i {
     color: white;
-    font-size: 1em;
+    font-size: 1.3em;
 }
 .inputfile {
     width: 0.1px;
@@ -53,4 +53,8 @@ nav i {
 }
 .inputfile + label {
     cursor: pointer; /* "hand" cursor */
+}
+
+input.form-control, select.form-select {
+    border: 1px solid #3F4FC8 !important;
 }

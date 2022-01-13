@@ -8,13 +8,14 @@
     <title>{{ $title }}</title>
     <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="/css/custom-view.css">
     <script src="/js/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
 
-    <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #F3F8FF;">
+    <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0 overflow-hidden" style="background: #F3F8FF;">
         <!-- Header Section -->
         <div class="header d-flex justify-content-between align-items-center py-md-3 px-md-5 p-2 text-dark">
             <div class="logo d-flex align-items-center ms-2 ">
