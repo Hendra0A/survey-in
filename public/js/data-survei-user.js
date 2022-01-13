@@ -1,6 +1,7 @@
 $(document).ready(async function () {
     let getData = async (path, method, kecamatan_id, id) => {
-        let url = "http://survey-in.test/api";
+        let url = "http://10.80.0.46:8000/api";
+        // let url = "http://survey-in.test//api";
         let fd = new FormData();
         fd.append("id", id);
         fd.append("kecamatan_id", kecamatan_id);
@@ -34,7 +35,6 @@ $(document).ready(async function () {
         };
     }
     let setResumeSurvey = async (method, kecamatan_id, id = 0) => {
-        console.log(method, kecamatan_id, id);
         try {
             data = await getData("/data-survei-saya", method, kecamatan_id, id);
             data = data.data;

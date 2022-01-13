@@ -69,7 +69,7 @@ class ApiController extends Controller
         $data = [];
         if ($request->method == 'all') {
             $data = DataSurvey::with(['kecamatan', 'user'])
-                ->where('kecamatan_id', 160)
+                ->where('kecamatan_id', $request->kecamatan_id)
                 ->get();
         } elseif ($request->method == 'single') {
             $data = DataSurvey::with(['user', 'kecamatan'])
