@@ -43,7 +43,7 @@
                 @enderror
             </div>
             <div class="col-md-8 mb-3 w-100">
-                <label for="validationServer03" class="form-label">Kabupaten/Kota</label>
+                <label for="validationServer03" class="form-label">Area Survei</label>
                 <select class="form-select @error('area') is-invalid @enderror" id="area" name="area">
                     <option selected disabled>--Pilih Kabupaten/Kota--</option>
                     @foreach ($kabupaten as $item)
