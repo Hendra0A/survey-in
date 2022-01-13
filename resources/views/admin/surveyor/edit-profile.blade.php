@@ -40,7 +40,7 @@
                         </div>
                         <div class="col-10 mb-3 m-3">
                             <div class="mb-3">
-                                <label class="form-label">Kabupaten/Kota</label>
+                                <label class="form-label">Area Survei</label>
                                 <select class="form-control form-select @error('area') is-invalid @enderror py-2"
                                     id="area" name="area">
                                     @foreach ($kabupaten as $item)
