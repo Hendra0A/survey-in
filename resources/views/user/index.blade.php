@@ -38,7 +38,7 @@
       </div>
       <div class="row justify-content-evenly mt-5 mb-4">
         <div class="col-6 col-md-4">
-          <div class="kartu satu p-2" style=" background: #6E86B4;">
+          <div class="kartu satu p-1" style=" background: #6E86B4;">
             <div class="kartu-hero d-flex justify-content-center align-items-center ">
               <img src="/img/kartu-satu.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2" id="jmlGang">-</p>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="col-6 col-md-4">
-          <div class="kartu dua p-2" style=" background: #849C95;">
+          <div class="kartu dua p-1" style=" background: #849C95;">
             <div class="kartu-hero d-flex justify-content-center align-items-center pt-1">
               <img src="/img/kartu-dua.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2" id="jlnBaik">-</p>
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="col-6 col-md-4">
-          <div class="kartu tiga p-2" style=" background: #EB7A7A;">
+          <div class="kartu tiga p-1" style=" background: #EB7A7A;">
             <div class="kartu-hero d-flex justify-content-center align-items-center pt-1">
               <img src="/img/kartu-tiga.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2" id="jlnJelek">-</p>
@@ -68,7 +68,7 @@
           </div>
         </div>
         <div class="col-6 col-md-4">
-          <div class="kartu empat p-2" style=" background: #648360;">
+          <div class="kartu empat p-1" style=" background: #648360;">
             <div class="kartu-hero d-flex justify-content-center align-items-center">
               <img src="/img/kartu-empat.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2" id="jmlRumah">-</p>
@@ -78,7 +78,7 @@
           </div>
         </div>
         <div class="col-6 col-md-4 ">
-          <div class="kartu lima p-2" style=" background: #9E82A8;">
+          <div class="kartu lima p-1" style=" background: #9E82A8;">
             <div class="kartu-hero d-flex justify-content-center align-items-center ps-1">
               <img src="/img/kartu-lima.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2 text-wrap" id="pnjJalan">-</p>
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="col-6 col-md-4">
-          <div class="kartu enam p-2" style=" background: #9AA55C;">
+          <div class="kartu enam p-1" style=" background: #9AA55C;">
             <div class="kartu-hero d-flex justify-content-center align-items-center ps-1">
               <img src="/img/kartu-enam.png" alt="" style="width: 30%;">
               <p class="m-0 ms-2 text-wrap" id="lbrJalan">-</p>
