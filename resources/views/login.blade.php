@@ -49,13 +49,12 @@
                         <i class="far fa-eye position-absolute p-0" style="top: 1.15em; right: 0;" id="togglePassword"></i>
                     </div>
                     <div class="remember-me">
-                        <a href="#" class="text-decoration-none float-end pt-1" style="color: gray; font-size: .9em;">Lupa password?</a> 
+                        <a href="/forgot-password" class=" text-primary text-decoration-none float-end pt-1" style="color: gray; font-size: .9em;">Lupa password?</a> 
                         <label class="checkbox fw-normal d-flex align-items-start p-0" style="font-size: .9em">
                             <input type="checkbox" value="remember-me" id="remember_me" class="me-2 mt-2 m-0 h-auto" style="vertical-align: top;"> Remember me
                         </label>       
                     </div>
                 </div>
-                <a href="/forgot-password">Lupa password?</a>
                 <button type="submit" class="btn btn-primary mt-4">Masuk</button>
             </form>
         </div>
