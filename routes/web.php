@@ -11,7 +11,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\SurveyorController;
 use App\Http\Controllers\DataSurveyController;
-
+use App\Http\Controllers\ForgotPasswordController;
+use App\Models\ForgotPassword;
 
 Route::group(['middleware' => 'auth'], function () {
 
@@ -73,3 +74,8 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AccessController::class, 'index'])->name('login');
     Route::post('/', [AccessController::class, 'authenticate']);
 });
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotPasswordForm']);
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
