@@ -14,7 +14,7 @@
 
 <body>
 
-    <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0" style="background: #F3F8FF;">
+    <div class="container-fluid d-flex flex-column ps-0 pe-0 m-0 overflow-hidden" style="background: #F3F8FF;">
         <!-- Header Section -->
         <div class="header d-flex justify-content-between align-items-centers p-2 text-dark">
             <div class="logo d-flex align-items-center ms-2">
