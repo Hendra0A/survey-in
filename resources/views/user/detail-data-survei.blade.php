@@ -107,7 +107,7 @@
                   <tr>
                       <th>Jenis rumah</th>
                       <td>: Developer = {{ $data->jumlah_rumah_developer }} Unit<br>
-                          : Swadaya = { $data->jumlah_rumah_swadaya }}  Unit
+                          : Swadaya = {{ $data->jumlah_rumah_swadaya }}  Unit
                       </td>
                   </tr>
 
@@ -179,7 +179,6 @@
                 @endif
             @endforeach
         </table>
-
           <div class="tombol-detail col-12 d-flex justify-content-center">
               @if (auth()->user()->id == $data->user->id)
                 <a href="" class="text-decoration-none btn btn-warning m-2 text-white" style="border-radius: .5em;"><i class="far fa-edit pe-2"></i>Edit</a>
