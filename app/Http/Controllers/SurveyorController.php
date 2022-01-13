@@ -172,8 +172,8 @@ class SurveyorController extends Controller
     {
 
         return view('user.tambah-data', [
-            'active' => 'tambah data',
-            'title' => 'Tambah Data',
+            'active' => 'tambah-data',
+            'title' => 'Tambah Data Survei',
             'jalan' => JenisKonstruksiJalan::all(),
             'saluran' => JenisKonstruksiSaluran::all(),
             'fasos' => JenisFasos::all(),
