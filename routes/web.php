@@ -66,8 +66,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/data-survei', [DataSurveyController::class, 'destroy']);
         Route::get('/data-survei/print/resume/{id}', [DataSurveyController::class, 'printResume']);
         Route::get('/data-survei/resume/{id}', [DataSurveyController::class, 'previewResume']);
-        Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
     });
+    Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
     Route::post('/logout', [AccessController::class, 'logout']);
 });
 Route::group(['middleware' => 'guest'], function () {
