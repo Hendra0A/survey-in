@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
             'jenis' => 'Tanah Berbatu'
         ]);
 
-        DataSurvey::factory(100)->create();
+        DataSurvey::factory(10)->create();
         LampiranFoto::factory(30)->create();
         Fasos::factory(30)->create();
 
@@ -183,6 +183,17 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => bcrypt('admin')
+        ]);
+        User::create([
+            'nama_lengkap' => 'Hendra',
+            'gender' => 'laki-laki',
+            'kabupaten_id' => 13,
+            'nomor_telepon' => '082252423199',
+            'alamat' => 'DK',
+            'tanggal_lahir' => '1994-06-22',
+            'role' => 'surveyor',
+            'email' => 'hendra@gmail.com',
+            'password' => bcrypt('123')
         ]);
         User::create([
             'nama_lengkap' => 'Haris',
