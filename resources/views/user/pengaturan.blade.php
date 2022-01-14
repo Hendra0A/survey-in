@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="container">
+        <div class="container p-2">
 
             <div class="pengaturan-menu col-12 d-flex mt-3 justify-content-center">
                 <div class="card bg-white p-4 col-10 col-sm-8 d-flex flex-column align-items-sm-center"

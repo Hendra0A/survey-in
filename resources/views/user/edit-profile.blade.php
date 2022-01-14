@@ -4,8 +4,8 @@
   <span class="fw-bold">Profil</span>
 @endsection
 @section('content')
-    <div class="content bg-white">
-        <div class="container">
+    <div class="content">
+        <div class="container mt-3">
             <h1 class="fw-bold">Profile Edit</h1>
             <p>Edit profile Anda untuk melengkapi data pribadi.</p>  
         <form action="/surveyor/profile/edit-profile" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
@@ -39,7 +39,7 @@
                 <input type="hidden" name="id" value="{{ auth()->user()->id }}">
                 <div class="bio-left row justify-content-center align-items-start align-items-sm-center m-2">
                     <div class="col-12 mb-3">
-                        <label for="validationServer01" class="form-label fw-bold fs-6">Nama Lengkap :</label>
+                        <label for="validationServer01" class="form-label fw-bold fs-6">Nama Lengkap</label>
                         <input type="text" class="form-control border-primary @error('nama_lengkap') is-invalid @enderror"
                             id="validationServer01" aria-describedby="validationServer01Feedback"
                             value="{{ $data->nama_lengkap }}" name="nama_lengkap">
@@ -50,7 +50,7 @@
                         @enderror
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="validationServer02" class="form-label fw-bold fs-6">Tanggal Lahir :</label>
+                        <label for="validationServer02" class="form-label fw-bold fs-6">Tanggal Lahir</label>
                         <input type="date" class="form-control border-primary @error('tanggal_lahir') is-invalid @enderror"
                             id="validationServer02" aria-describedby="validationServer02Feedback"
                             value="{{ $data->tanggal_lahir }}" name="tanggal_lahir">
@@ -60,8 +60,8 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-12 mb-3">
-                        <label for="validationServer03" class="form-label fw-bold fs-6">Email :</label>
+                    <!-- <div class="col-12 mb-3">
+                        <label for="validationServer03" class="form-label fw-bold fs-6">Email</label>
                         <input type="text" class="form-control border-primary @error('email') is-invalid @enderror"
                             id="validationServer03" aria-describedby="validationServer03Feedback"
                             value="{{ $data->email }}" name="email">
@@ -70,11 +70,11 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> -->
                 </div>
                 <div class="bio-right row justify-content-center align-items-start align-items-sm-center m-2">
                     <div class="col-12 mb-3">
-                        <label for="validationServer04" class="form-label fw-bold fs-6">Jenis Kelamin :</label>
+                        <label for="validationServer04" class="form-label fw-bold fs-6">Jenis Kelamin</label>
                         <select class="form-select w-100 border-primary @error('gender') is-invalid @enderror"
                             id="validationServer04" aria-describedby="validationServer04Feedback" name="gender">
                             <option disabled>Pilih...</option>
@@ -91,8 +91,8 @@
                             </div>
                         @enderror
                     </div>
-                    <div class="col-12 mb-3 mt-2">
-                        <label for="validationServer05" class="form-label fw-bold fs-6">No. Handphone :</label>
+                    <!-- <div class="col-12 mb-3 mt-2">
+                        <label for="validationServer05" class="form-label fw-bold fs-6">No. Handphone</label>
                         <input type="text" class="form-control border-primary @error('nomor_telepon') is-invalid @enderror"
                             id="validationServer05" aria-describedby="validationServer05Feedback"
                             value="{{ $data->nomor_telepon }}" name="nomor_telepon">
@@ -101,9 +101,9 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div>
+                    </div> -->
                     <div class="col-12 mb-3">
-                        <label for="validationServer06" class="form-label fw-bold fs-6">Alamat :</label>
+                        <label for="validationServer06" class="form-label fw-bold fs-6">Alamat</label>
                         <input type="text" class="form-control border-primary @error('alamat') is-invalid @enderror"
                             id="validationServer06" aria-describedby="validationServer06Feedback"
                             value="{{ $data->alamat }}" name="alamat">
