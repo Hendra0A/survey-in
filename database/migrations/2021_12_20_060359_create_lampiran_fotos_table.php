@@ -17,9 +17,9 @@ class CreateLampiranFotosTable extends Migration
     {
         Schema::create('lampiran_fotos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(DataSurvey::class);
-            $table->foreignIdFor(JenisLampiran::class)->onDelete('cascade');
-            $table->string('foto');
+            $table->foreignIdFor(DataSurvey::class)->nullable();
+            $table->foreignIdFor(JenisLampiran::class)->onDelete('cascade')->nullable();
+            $table->string('foto')->nullable();
 
             // $table->foreign('jenis_lampirans_id')->references('id')->on('jenis_lampirans')->onDelete('cascade');
             $table->softDeletes();

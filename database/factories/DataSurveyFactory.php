@@ -27,8 +27,6 @@ class DataSurveyFactory extends Factory
             'nama_gang' => $this->faker->streetName(),
             'lokasi' => $this->faker->address(),
             'no_gps' => $this->faker->latitude() . " " . $this->faker->latitude(),
-            'no_gps_fasos' => $this->faker->latitude() . " " . $this->faker->latitude(),
-            'no_gps_lainnya' => $this->faker->latitude() . " " . $this->faker->latitude(),
             'jenis_konstruksi_jalan_id' => $this->faker->randomElement($jenis_konstruksi_jalan_id),
             'dimensi_jalan_panjang' => mt_rand(1000, 2000),
             'dimensi_jalan_lebar' => mt_rand(1000, 2000),
@@ -50,9 +48,8 @@ class DataSurveyFactory extends Factory
             'lantai_ruko_kiri' => $this->faker->numberBetween(0, 5),
             'jumlah_ruko_kanan' => $this->faker->numberBetween(0, 100),
             'lantai_ruko_kanan' => $this->faker->numberBetween(0, 5),
-            'pos_jaga' => $this->faker->numberBetween(0, 100),
+            'pos_jaga' => $this->faker->numberBetween(0, 1),
             'fasos' => $this->faker->numberBetween(0, 1),
-            'ruko' => $this->faker->numberBetween(0, 1),
             'no_imb' => $this->faker->postcode(),
             'catatan' => $this->faker->paragraph()
         ];

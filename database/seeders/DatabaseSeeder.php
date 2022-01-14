@@ -163,7 +163,7 @@ class DatabaseSeeder extends Seeder
             'jenis' => 'Tanah Berbatu'
         ]);
 
-        DataSurvey::factory(1000)->create();
+        DataSurvey::factory(10)->create();
         LampiranFoto::factory(30)->create();
         Fasos::factory(30)->create();
 

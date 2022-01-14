@@ -15,8 +15,12 @@ use App\Models\JenisFasos;
 use App\Models\JenisKonstruksiJalan;
 use App\Models\JenisKonstruksiSaluran;
 use App\Models\JenisLampiran;
+use App\Models\LampiranFoto;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+
+use function PHPUnit\Framework\isEmpty;
 
 class SurveyorController extends Controller
 {
@@ -174,6 +178,8 @@ class SurveyorController extends Controller
         return view('user.tambah-data', [
             'active' => 'tambah data',
             'title' => 'Tambah Data',
+            'data' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
+                ->orderBy('id', 'ASC')->get(['id', 'nama']),
             'jalan' => JenisKonstruksiJalan::all(),
             'saluran' => JenisKonstruksiSaluran::all(),
             'fasos' => JenisFasos::all(),
@@ -184,23 +190,194 @@ class SurveyorController extends Controller
     public function tambahData(Request $request)
     {
         $request->validate([
+            'kecamatan_id' => ['required'],
             'nama_gang' => ['required', 'max:255'],
             'lokasi' => ['required'],
             'no_gps' => ['required'],
+            'jenis_konstruksi_jalan_id' => ['required'],
+            'status_jalan' => ['required'],
+            'dimensi_jalan_panjang' => ['required'],
+            'dimensi_jalan_lebar' => ['required'],
+        ]);
+        // dd($request->only('jenis_fasos_id', 'panjang_fasos', 'lebar_fasos', 'koordinat_fasos', 'fotoFasos'));
+        // try {
+        $dataSurvey = DataSurvey::create([
+            'user_id' => auth()->user()->id,
+            'kecamatan_id' => $request->kecamatan_id,
+            'nama_gang' => $request->nama_gang,
+            'lokasi' => $request->lokasi,
+            'no_gps' => $request->no_gps,
+            'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
+            'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
+            'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
+            'status_jalan' => $request->status_jalan,
+            'dimensi_saluran_panjang_kanan' => $request->dimensi_saluran_panjang_kanan,
+            'dimensi_saluran_panjang_kiri' => $request->dimensi_saluran_panjang_kiri,
+            'dimensi_saluran_lebar_kanan' => $request->dimensi_saluran_lebar_kanan,
+            'dimensi_saluran_lebar_kiri' => $request->dimensi_saluran_lebar_kiri,
+            'dimensi_saluran_kedalaman_kanan' => $request->dimensi_saluran_kedalaman_kanan,
+            'dimensi_saluran_kedalaman_kiri' => $request->dimensi_saluran_kedalaman_kiri,
+            'jenis_konstruksi_saluran_id' => $request->jenis_konstruksi_saluran_id,
+            'status_saluran' => $request->status_saluran,
+            'jumlah_rumah_layak' => $request->jumlah_rumah_layak === null ? 0 : $request->jumlah_rumah_layak,
+            'jumlah_rumah_tak_layak' => $request->jumlah_rumah_tak_layak === null ? 0 : $request->jumlah_rumah_tak_layak,
+            'jumlah_rumah_kosong' => $request->jumlah_rumah_kosong === null ? 0 : $request->jumlah_rumah_kosong,
+            'jumlah_rumah_developer' => $request->jumlah_rumah_developer === null ? 0 : $request->jumlah_rumah_developer,
+            'jumlah_rumah_swadaya' => $request->jumlah_rumah_swadaya === null ? 0 : $request->jumlah_rumah_swadaya,
+            'jumlah_ruko_kiri' => $request->jumlah_ruko_kiri,
+            'lantai_ruko_kiri' => $request->lantai_ruko_kiri,
+            'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
+            'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
+            'pos_jaga' => $request->pos_jaga,
+            'fasos' => $request->addmore[0]['jenis_fasos_id'] === null ? 0 : 1,
+            'no_imb' => $request->no_imb,
+            'catatan' => $request->catatan
         ]);
 
-        try {
-            DataSurvey::create([
-                'nama_gang' => $request->nama_gang,
-                'lokasi' => $request->lokasi,
-                'no_gps' => $request->no_gps
+        // // image
+        // $fotoFasos_nameWithExt = $request->fotoFasos->getClientOriginalName();
+        // $fotoLampiran_nameWithExt = $request->fotoLampiran->getClientOriginalName();
 
-            ]);
-            return redirect('/surveyor')
-                ->with('success', 'Data telah berhasil ditambahkan !')
-                ->with('confirm', 'Kembali ke Surveyor');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput();
+        // // get filename
+        // $fotoFasos_name = pathinfo($fotoFasos_nameWithExt, PATHINFO_FILENAME);
+        // $fotoLampiran_name = pathinfo($fotoLampiran_nameWithExt, PATHINFO_FILENAME);
+
+        // // get just extension
+        // $fotoFasos_extension = $request->fotoFasos->getClientOriginalExtension();
+        // $fotoLampiran_extension = $request->fotoLampiran->getClientOriginalExtension();
+
+        // // filename to store
+        // $fotoFasosStore = $fotoFasos_name . '_' . time() . '.' . $fotoFasos_extension;
+        // $fotoLampiranStore = $fotoLampiran_name . '_' . time() . '.' . $fotoLampiran_extension;
+
+        // // upload store
+        // $fotoFasos = $request->fotoFasos->storeAs('foto-fasos', $fotoFasosStore);
+        // $fotoLampiran = $request->fotoLampiran->storeAs('foto-lampiran', $fotoLampiranStore);
+
+        // $jenis_fasos_id = $request->jenis_fasos_id;
+        // $jenis_lampiran_id = $request->jenis_lampiran_id;
+
+        // if ($jenis_fasos_id !== null || $jenis_lampiran_id !== null) {
+        //     $request->validate([
+        //         'koordinat_fasos' => ['required'],
+        //         'foto' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+        //     ]);
+        // }
+
+
+        // if ($request->$jenis_fasos_id !== null) {
+        // Fasos::create([
+        //     'data_survey_id' => $dataSurvey->id,
+        //     'jenis_fasos_id' => $request->jenis_fasos_id,
+        //     'koordinat_fasos' => $request->koordinat_fasos,
+        //     'foto' => $fotoFasos,
+        //     'panjang' => $request->panjang_fasos,
+        //     'lebar' => $request->lebar_fasos,
+        // ]);
+        // $options = $request->only('jenis_fasos_id', 'panjang_fasos', 'lebar_fasos', 'koordinat_fasos', 'fotoFasos');
+
+        // fasos
+        $datasFasos = [];
+        if ($request->addmore[0]['jenis_fasos_id'] !== null) {
+            // $request->validate([
+            //     "addmore[0]['jenis_fasos_id']" => ['required'],
+            //     "addmore[0]['koordinat_fasos']" => ['required'],
+            //     "addmore[0]['foto']" => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            // ]);
+            // dd($request->addmore);
+            foreach ($request->addmore as $key => $value) {
+                if (!empty($request->addmore[0]['foto'])) {
+                    // image
+                    $fotoFasos_nameWithExt = $value['foto']->getClientOriginalName();
+
+                    // get filename
+                    $fotoFasos_name = pathinfo($fotoFasos_nameWithExt, PATHINFO_FILENAME);
+
+                    // encrypt
+                    $fotoFasos_encrypt_name = encrypt($fotoFasos_name);
+
+                    // get just extension
+                    $fotoFasos_extension = $value['foto']->getClientOriginalExtension();
+
+                    // filename to store
+                    $fotoFasosStore = $fotoFasos_encrypt_name . '_' . time() . '.' . $fotoFasos_extension;
+
+                    // upload store
+                    $fotoFasos = $value['foto']->storeAs('foto-fasos', $fotoFasosStore);
+
+                    // add element array
+                    $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+
+                    // change element array
+                    $data_fasos['foto'] = $fotoFasos;
+                    $datasFasos[] = $data_fasos;
+                }
+            }
+
+            foreach ($datasFasos as $dataFasos) {
+                Fasos::create($dataFasos);
+            }
         }
+        // dd($options_data);
+        // $request->options()->createMany($options_data);
+        // }
+
+        // if ($jenis_lampiran_id !== null) {
+        // LampiranFoto::create([
+        //     'data_survey_id' => $dataSurvey->id,
+        //     'jenis_lampiran_id' => $request->jenis_lampiran,
+        //     'foto' => $fotoLampiran
+        // ]);
+        // }
+
+        // lampiran
+        $datasLampiran = [];
+        if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
+            // $request->validate([
+            //     'jenis_lampiran_id' => ['required'],
+            //     'foto' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
+            // ]);
+            // dd($request->addmoreLampiran);
+            foreach ($request->addmoreLampiran as $key => $value) {
+
+                if (!empty($request->addmoreLampiran[0]['foto'])) {
+                    // image
+                    $fotoLampiran_nameWithExt = $value['foto']->getClientOriginalName();
+
+                    // get filename
+                    $fotoLampiran_name = pathinfo($fotoLampiran_nameWithExt, PATHINFO_FILENAME);
+
+                    // encrypt
+                    $fotoLampiran_encrypt_name = encrypt($fotoLampiran_name);
+
+                    // get just extension
+                    $fotoLampiran_extension = $value['foto']->getClientOriginalExtension();
+
+                    // filename to store
+                    $fotoLampiranStore = $fotoLampiran_encrypt_name . '_' . time() . '.' . $fotoLampiran_extension;
+
+                    // upload store
+                    $fotoLampiran = $value['foto']->storeAs('foto-lampiran', $fotoLampiranStore);
+
+                    // add element array
+                    $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+
+                    // change element array
+                    $data_lampiran['foto'] = $fotoLampiran;
+                    $datasLampiran[] = $data_lampiran;
+                }
+            }
+            // dd($datasLampiran);
+            foreach ($datasLampiran as $dataLampiran) {
+                LampiranFoto::create($dataLampiran);
+            }
+        }
+
+        return redirect('/surveyor')
+            ->with('success', 'Data telah berhasil ditambahkan !')
+            ->with('confirm', 'Kembali ke Surveyor');
+        // } catch (\Exception $e) {
+        //     return redirect()->back()->withInput();
+        // }
     }
 }

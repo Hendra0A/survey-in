@@ -10,6 +10,7 @@ class Fasos extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $guarded = ['id'];
     public $timestamps = false;
 
     public function dataSurvey()

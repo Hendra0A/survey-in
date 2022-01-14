@@ -16,12 +16,12 @@ class CreateFasosTable extends Migration
     {
         Schema::create('fasos', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(DataSurvey::class);
-            $table->foreignId('jenis_fasos_id');
-            $table->string('koordinat_fasos');
-            $table->string('foto');
-            $table->string('panjang');
-            $table->string('lebar');
+            $table->foreignIdFor(DataSurvey::class)->nullable();
+            $table->foreignId('jenis_fasos_id')->nullable();
+            $table->string('koordinat_fasos')->nullable();
+            $table->string('foto')->nullable();
+            $table->string('panjang')->nullable();
+            $table->string('lebar')->nullable();
             $table->foreign('jenis_fasos_id')->references('id')->on('jenis_fasos');
             $table->softDeletes();
         });
