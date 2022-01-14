@@ -78,7 +78,7 @@
 
             </div>
             <div class="tambah-akun mt-4">
-                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100"
+                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100 border-0"
                     id="tambah-akun-surveyor">Simpan</button>
             </div>
         </div>

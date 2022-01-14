@@ -53,7 +53,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-5 mt-5 justify-content-center d-flex">
-                    <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5">
+                    <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5 border-0 h-auto" style="border-radius: .5em; background: #3f4fc8;">
                 </div>
             </div>
         </div>

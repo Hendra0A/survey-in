@@ -85,7 +85,7 @@
                 <div class="row justify-content-center">
                     <div class="col-5 mt-5">
                         <input type="submit" value="Simpan Perubahan"
-                            class="btn btn-lg btn-primary mb-5 container-fluid">
+                            class="btn btn-lg btn-primary mb-5 container-fluid h-auto border-0" style="border-radius: .5em; background: #3f4fc8;">
                     </div>
                 </div>
             </form>
