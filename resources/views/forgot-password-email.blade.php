@@ -1,0 +1,1 @@
+<a href="http://survey-in.test/reset-password/{{ $token }}">Klik untuk mengatur ulang password</a>

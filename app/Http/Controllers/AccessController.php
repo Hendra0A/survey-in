@@ -15,20 +15,19 @@ class AccessController extends Controller
     }
     public function authenticate(Request $request)
     {
+        $isRemember = $request->remember;
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' =>  'required'
         ]);
 
-        if (Auth::attempt($credentials)) {
+        if (Auth::attempt($credentials, $isRemember)) {
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
                 return redirect()->intended('/beranda');
-                //return view('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
                 return redirect()->intended('/surveyor/beranda');
-                //return view('murid.dahsboard');
             }
         }
         return back()->with('loginError', 'Login failed!');

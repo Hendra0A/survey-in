@@ -22,7 +22,7 @@ $(document).ready(async function () {
         try {
             data = await getData(`/kecamatan`, idKab);
             setResumeSurvey(data.data[0].id);
-            $(".text-kec").text(data.data[0].nama);
+            $(".text-kec").text($("#kecamatan").find("option:selected").text());
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {

@@ -1,5 +1,6 @@
 $(document).ready(async function () {
     let getData = async (path, method, kecamatan_id, id) => {
+        // let url = "http://10.80.0.46:8000/api";
         let url = "http://survey-in.test/api";
         let fd = new FormData();
         fd.append("id", id);
@@ -34,7 +35,6 @@ $(document).ready(async function () {
         };
     }
     let setResumeSurvey = async (method, kecamatan_id, id = 0) => {
-        console.log(method, kecamatan_id, id);
         try {
             data = await getData("/data-survei-saya", method, kecamatan_id, id);
             data = data.data;
@@ -50,8 +50,15 @@ $(document).ready(async function () {
         } else {
             $(".list-data").html("");
             data.forEach((element) => {
-                let card = document.createElement("div");
-                card.setAttribute("class", "card shadow-sm mb-2");
+                let card = document.createElement("a");
+                card.setAttribute(
+                    "class",
+                    "card shadow-sm mb-2 text-dark text-decoration-none"
+                );
+                card.setAttribute(
+                    "href",
+                    `/surveyor/data-survei/detail/${element.id}`
+                );
                 card.innerHTML = `
                 <div class="card-body">
                     <h5>${element.nama_gang}</h5>

@@ -1,0 +1,65 @@
+h6.detail {
+    font-size: 0.8em;
+}
+
+.detail th {
+    width: 40%;
+    font-size: 0.55em;
+    font-weight: 500;
+    vertical-align: top;
+    padding: 0.3em 0;
+    margin: 0;
+    line-height: 2.5em;
+}
+
+.detail td {
+    width: 60%;
+    font-size: 0.55em;
+    vertical-align: middle;
+    padding: 0.3em 0;
+    margin: 0;
+    line-height: 2em;
+    word-wrap: break-word;
+}
+
+table.detail,
+th,
+td,
+tr {
+    border: none !important;
+    border-collapse: collapse !important;
+    outline: none !important;
+}
+
+.gambar-detail h6 {
+    font-size: 0.6em;
+}
+
+table.layak td {
+    width: 30%;
+    font-size: 1em;
+    text-align: left;
+}
+table.layak th {
+    width: 30%;
+    font-size: 0.9em;
+}
+table.fasos th {
+    padding-left: 10px;
+    width: 15%;
+}
+
+@media only screen and (min-width: 800px) {
+    h6.detail {
+        font-size: 1.2em;
+    }
+    .detail th {
+        width: 50%;
+        font-size: 1em;
+    }
+
+    .detail td {
+        width: 50%;
+        font-size: 0.9em;
+    }
+}

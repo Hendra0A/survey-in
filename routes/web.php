@@ -11,9 +11,26 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AccessController;
 use App\Http\Controllers\SurveyorController;
 use App\Http\Controllers\DataSurveyController;
-
+use App\Http\Controllers\ForgotPasswordController;
+use App\Models\ForgotPassword;
 
 Route::group(['middleware' => 'auth'], function () {
+
+    Route::group(['middleware' => ['defaultPassword', 'surveyor'], 'prefix' => 'surveyor'], function () {
+        Route::get('/beranda', [SurveyorController::class, 'index']);
+        Route::get('/riwayat-survei', [SurveyorController::class, 'history']);
+        Route::get('/profile', [SurveyorController::class, 'show']);
+        Route::get('/profile/edit-profile', [SurveyorController::class, 'update']);
+        Route::patch('/profile/edit-profile', [SurveyorController::class, 'updateProfile']);
+        Route::get('/data-survei', [SurveyorController::class, 'dataSurvei']);
+        Route::get('/data-survei/detail/{id}', [DataSurveyController::class, 'detail']);
+        Route::get('/pengaturan', [SurveyorController::class, 'pengaturan']);
+        Route::get('/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword'])->withoutMiddleware('defaultPassword');
+        Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword'])->withoutMiddleware('defaultPassword');;
+        Route::get('/tentang', [SurveyorController::class, 'tentang']);
+        Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
+        Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);
+    });
     Route::group(['middleware' => 'admin'], function () {
         //beranda
         Route::get('/beranda', [AdminController::class, 'beranda']);
@@ -27,8 +44,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/surveyor/tambah-target', [AdminController::class, 'addSurveyorTarget']);
         Route::post('/surveyor/edit-target', [AdminController::class, 'editSurveyorTarget']);
         Route::get('/surveyor/target/{id}', [AdminController::class, 'surveyorTarget']);
-
-
 
         // Profile Admin
         Route::get('/profile/{User:id}', [AdminController::class, 'profile']);
@@ -51,25 +66,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/data-survei', [DataSurveyController::class, 'destroy']);
         Route::get('/data-survei/print/resume/{id}', [DataSurveyController::class, 'printResume']);
         Route::get('/data-survei/resume/{id}', [DataSurveyController::class, 'previewResume']);
-        Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
     });
-    Route::group(['middleware' => 'surveyor'], function () {
-        Route::get('/surveyor/beranda', [SurveyorController::class, 'index']);
-        Route::get('/surveyor/riwayat-survei', [SurveyorController::class, 'history']);
-        Route::get('/surveyor/profile', [SurveyorController::class, 'show']);
-        Route::get('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'update']);
-        Route::patch('/surveyor/edit-profile/surveyor', [SurveyorController::class, 'updateProfile']);
-        Route::get('/surveyor/data-survei', [SurveyorController::class, 'dataSurvei']);
-        Route::get('/surveyor/pengaturan', [SurveyorController::class, 'pengaturan']);
-        Route::get('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'ubahPassword']);
-        Route::post('/surveyor/pengaturan/edit-password', [SurveyorController::class, 'updatePassword']);
-        Route::get('/surveyor/tentang', [SurveyorController::class, 'tentang']);
-        Route::get('/surveyor/tambah-data', [SurveyorController::class, 'tambah']);
-        Route::post('/surveyor/tambah-data', [SurveyorController::class, 'tambahData']);
-    });
+    Route::get('/data-survei/print/{id}', [DataSurveyController::class, 'printPDF']);
     Route::post('/logout', [AccessController::class, 'logout']);
 });
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AccessController::class, 'index'])->name('login');
     Route::post('/', [AccessController::class, 'authenticate']);
 });
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm']);
+Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotPasswordForm']);
+Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
+Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);

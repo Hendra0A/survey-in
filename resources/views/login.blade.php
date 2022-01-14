@@ -22,7 +22,7 @@
 <body>
     <div class="container-fluid d-flex justify-content-center w-100 p-0 m-0 vh-100">
         <div class="login-form d-flex flex-column w-100 justify-content-center" id="main-login">
-            
+
             <div class="d-sm-block d-md-none">
                 <img src="{{ asset('/img/logo-b.png') }}" class="img-fluid d-block mx-auto">
                 <p class="text-center text-warning fw-bold fs-1">Survei</p>
@@ -39,18 +39,27 @@
                 @csrf
                 <div class="login mb-3">
                     <label for="exampleInputEmail1" class="form-label login">Email</label>
-                    <input type="email" name="email" class="kolom form-control shadow-none" id="email" aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
+                    <input type="email" name="email" class="kolom form-control shadow-none" id="email"
+                        aria-describedby="emailHelp" autofocus value="{{ old('email') }}">
                 </div>
-                <div class="login mb-3 mb-5 position-relative">
+                <div class="login mb-3 mb-5">
                     <label for="exampleInputPassword1" class="form-label login">Password</label>
-                    <input type="password" name="password" class="kolom form-control shadow-none pe-5" id="password">
-                    <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
+                    <div class="position-relative">
+                        <input type="password" name="password" class="kolom form-control shadow-none pe-5" id="password">
+                        <i class="far fa-eye position-absolute p-0" style="top: 1.15em; right: 0;" id="togglePassword"></i>
+                    </div>
+                    <div class="remember-me">
+                        <a href="/forgot-password" class=" text-primary text-decoration-none float-end pt-1" style="color: gray; font-size: .9em;">Lupa password?</a> 
+                        <label class="checkbox fw-normal d-flex align-items-start p-0" style="font-size: .9em">
+                            <input type="checkbox" value="remember-me" id="remember_me" name="remember" class="me-2 mt-2 m-0 h-auto" style="vertical-align: top;"> Remember me
+                        </label>       
+                    </div>
                 </div>
                 <button type="submit" class="btn btn-primary mt-4">Masuk</button>
             </form>
         </div>
 
-        <div class="hero flex-column position-relative justify-content-center" id="hero"> 
+        <div class="hero flex-column position-relative justify-content-center" id="hero">
             <div class="logo position-absolute d-flex flex-column align-items-center">
                 <img src="img/logo.png" alt="" class="logo-img text-center">
                 <h4 class="logo w-75 text-center p-0 mt-2">Survei</h4>

@@ -1,5 +1,6 @@
 $(document).ready(async function () {
     let getData = async (path, id) => {
+        // let url = "http://10.80.0.46:8000/api";
         let url = "http://survey-in.test/api";
         let fd = new FormData();
         fd.append("id", id);

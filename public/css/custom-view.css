@@ -4,6 +4,7 @@
 @import url("tambah-data-view.css");
 @import url("pengaturan-view.css");
 @import url("edit-password.css");
+@import url("seluruh-data-detail.css");
 
 /* header section */
 .header {
@@ -40,5 +41,20 @@ nav.navbar a {
 
 nav i {
     color: white;
-    font-size: 1em;
+    font-size: 1.3em;
+}
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.inputfile + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+input.form-control, select.form-select {
+    border: 1px solid #3F4FC8 !important;
 }

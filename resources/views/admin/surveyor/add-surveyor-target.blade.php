@@ -10,7 +10,11 @@
 
         <!-- avatar -->
         <div class="surveyor">
-            <img src="{{ $profile_surveyor->avatar }}" alt="" class="profile-img rounded-circle">
+            @if ($profile_surveyor->avatar)
+                <img src="{{ asset('storage/' . $profile_surveyor->avatar) }} " class="profile-img rounded-circle">
+                @else
+                <img src="/img/profile.png" class="profile-img rounded-circle">
+                @endif
         </div>
         <div class="profile-status mt-3 d-flex flex-column">
             <h3>{{ ucwords($profile_surveyor->nama_lengkap) }}</h3>

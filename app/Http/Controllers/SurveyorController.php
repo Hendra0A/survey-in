@@ -156,7 +156,7 @@ class SurveyorController extends Controller
             User::where('id', auth()->user()->id)->update([
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
-            return redirect('/surveyor/pengaturan')
+            return redirect('/surveyor/beranda')
                 ->with('success', 'Password anda berhasil diubah')
                 ->with('confirm', 'Kembali ke pengaturan');;
         } else {
@@ -177,7 +177,7 @@ class SurveyorController extends Controller
 
         return view('user.tambah-data', [
             'active' => 'tambah data',
-            'title' => 'Tambah Data',
+            'title' => 'Tambah Data Survei',
             'data' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
                 ->orderBy('id', 'ASC')->get(['id', 'nama']),
             'jalan' => JenisKonstruksiJalan::all(),
