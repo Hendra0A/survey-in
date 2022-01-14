@@ -1,15 +1,32 @@
 label {
-    font-size: .7em;
+    font-size: 0.7em;
 }
-
+/* 
 #form-tambahan {
     display: none;
 }
 
 #tambah-lampiran {
     display: none;
+} */
+
+.imageFasos {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+.imageFasos + label {
+    cursor: pointer; /* "hand" cursor */
+}
+
+input.form-control,
+select.form-select {
+    border: 1px solid #3f4fc8 !important;
 }
 
 .form-tambah span {
-    font-size: .8em;
+    font-size: 0.8em;
 }

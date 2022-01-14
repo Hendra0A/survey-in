@@ -14,7 +14,7 @@ use App\Http\Controllers\DataSurveyController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Models\ForgotPassword;
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['middleware' => ['defaultPassword', 'surveyor'], 'prefix' => 'surveyor'], function () {
         Route::get('/beranda', [SurveyorController::class, 'index']);
@@ -79,3 +79,5 @@ Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPass
 Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotPasswordForm']);
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
 Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
+
+Route::view('/test', '/forgot-password-email', ['token' => 'lasdjflsadfsdajl']);

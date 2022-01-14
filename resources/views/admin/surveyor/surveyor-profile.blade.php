@@ -149,9 +149,9 @@
 
         <!-- Btn Ubah Password -->
         <div class="ubah-password d-flex justify-content-evenly mt-5">
-            <a href="/surveyor/edit/profile/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5">Edit
+            <a href="/surveyor/edit/profile/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5 border-0" style="border-radius: .5em; background: #3f4fc8;">Edit
                 Profile</a>
-            <a href="/surveyor/edit/password/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5">Edit
+            <a href="/surveyor/edit/password/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5 border-0" style="border-radius: .5em; background: #3f4fc8;">Edit
                 Password</a>
         </div>
     </div>

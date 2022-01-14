@@ -23,7 +23,7 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-jalan" type="submit">+
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end border-0" form="form-jalan" type="submit">+
                     Tambah</button>
             </div>
         </form>
@@ -38,12 +38,12 @@
                         <span>{{ $item->jenis }}</span>
                         <div id="jalan" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2  btn-edit text-light" data-bs-toggle="modal"
-                                data-bs-target="#modal-edit" data-model="jalan" value="{{ $item->id }}">
+                                data-bs-target="#modal-edit" data-model="jalan" value="{{ $item->id }}" style="border-radius: .5em;">
                                 <i class="far fa-edit"></i>Edit
                             </button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal3" data-model="jalan" value="{{ $item->id }}"
-                                class=" text-white text-decoration-none">
+                                class=" text-white text-decoration-none" style="border-radius: .5em;">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -68,7 +68,7 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-saluran" type="submit">+
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end border-0" form="form-saluran" type="submit">+
                     Tambah</button>
             </div>
         </form>
@@ -83,11 +83,11 @@
                         <span>{{ $item->jenis }}</span>
                         <div id="saluran" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
-                                data-bs-target="#modal-edit" data-model="saluran" value="{{ $item->id }}"><i
+                                data-bs-target="#modal-edit" data-model="saluran" value="{{ $item->id }}" style="border-radius: .5em;"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal3" data-model="saluran" value="{{ $item->id }}"
-                                class=" text-white text-decoration-none">
+                                class=" text-white text-decoration-none" style="border-radius: .5em;">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -112,7 +112,7 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end border-0" form="form-fasos" type="submit">+
                     Tambah</button>
             </div>
         </form>
@@ -127,11 +127,11 @@
                         <span>{{ $item->jenis }}</span>
                         <div id="fasos" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
-                                data-bs-target="#modal-edit" data-model="fasos" value="{{ $item->id }}"><i
+                                data-bs-target="#modal-edit" data-model="fasos" value="{{ $item->id }}" style="border-radius: .5em;"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal3" data-model="fasos" value="{{ $item->id }}"
-                                class=" text-white text-decoration-none">
+                                class=" text-white text-decoration-none" style="border-radius: .5em;">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -156,7 +156,7 @@
                     </div>
                     @enderror
                 </div>
-                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end" form="form-fasos" type="submit">+
+                <button class="btn btn-primary ms-sm-5 mt-2 submit align-self-end border-0" form="form-fasos" type="submit">+
                     Tambah</button>
             </div>
         </form>
@@ -171,11 +171,11 @@
                         <span>{{ $item->jenis }}</span>
                         <div id="lampiran" class=" d-flex flex-wrap gap-1 justify-content-center">
                             <button class="btn btn-warning me-2 text-light  btn-edit" data-bs-toggle="modal"
-                                data-bs-target="#modal-edit" data-model="lampiran" value="{{ $item->id }}"><i
+                                data-bs-target="#modal-edit" data-model="lampiran" value="{{ $item->id }}" style="border-radius: .5em;"><i
                                     class="far fa-edit"></i>Edit</button>
                             <button class="btn btn-danger btn-hapus" data-bs-toggle="modal"
                                 data-bs-target="#exampleModal3" data-model="lampiran" value="{{ $item->id }}"
-                                class=" text-white text-decoration-none">
+                                class=" text-white text-decoration-none" style="border-radius: .5em;">
                                 <i class="far fa-trash-alt"></i>Hapus
                             </button>
                         </div>
@@ -202,9 +202,9 @@
                 </div>
                 <div class="choose d-flex justify-content-center gap-5 mb-5">
                     <button type="button" class="btn btn-danger btn-lg ps-4 pe-4 shadow-none border-0"
-                        data-bs-dismiss="modal">Batal</button>
+                        data-bs-dismiss="modal" style="border-radius: .5em;">Batal</button>
                     <button type="submit" class="btn btn-primary btn-lg ps-3 pe-3 shadow-none border-0"
-                        id="simpan">Simpan</button>
+                        id="simpan" style="border-radius: .5em;">Simpan</button>
                 </div>
             </div>
         </form>

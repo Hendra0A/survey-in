@@ -21,39 +21,39 @@
         <div class="biodata mt-5 m-auto">
             <table class="bio m-auto" style="width: 90%;">
                 <tr>
-                    <td class="left-bio p-2">Nama Lengkap</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">Nama Lengkap</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $data->nama_lengkap }}</td>
+                    <td class="right-bio p-2">: {{ $data->nama_lengkap }}</td>
                 </tr>
                 <tr>
-                    <td class="left-bio p-2">Email</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">Email</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $data->email }}</td>
+                    <td class="right-bio p-2">: {{ $data->email }}</td>
                 </tr>
                 <tr>
-                    <td class="left-bio p-2">Tanggal Lahir</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">Tanggal Lahir</td>
                     {{-- <td class="bio-center">:</td> --}}
-                <td class="right-bio p-2">:{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('j F Y') }}</td>
+                <td class="right-bio p-2">: {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('j F Y') }}</td>
                 </tr>
                 <tr>
-                    <td class="left-bio p-2">Jenis Kelamin</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">Jenis Kelamin</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $data->gender }}</td>
+                    <td class="right-bio p-2">: {{ $data->gender }}</td>
                 </tr>
                 <tr>
-                    <td class="left-bio p-2">No. Handphone</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">No. Handphone</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $data->nomor_telepon }}</td>
+                    <td class="right-bio p-2">: {{ $data->nomor_telepon }}</td>
                 </tr>
                 <tr style="border: none;">
-                    <td class="left-bio p-2">Alamat</td>
+                    <td class="left-bio p-2" style="vertical-align: top;">Alamat</td>
                     {{-- <td class="bio-center">:</td> --}}
-                    <td class="right-bio p-2">:{{ $data->alamat }}</td>
+                    <td class="right-bio p-2">: {{ $data->alamat }}</td>
                 </tr>
             </table>
         </div>
         <div class="submit d-flex justify-content-center mt-5">
-            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none h-auto" id="submit">Edit profil</a>
+            <a href="/profile/edit-profile/admin" class="text-light text-decoration-none btn btn-lg btn-primary active mb-5 shadow-none h-auto border-0" id="submit">Edit profil</a>
         </div>
     </div>
 @endsection

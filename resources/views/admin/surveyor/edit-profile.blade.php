@@ -10,7 +10,11 @@
 
                 <!-- avatar -->
                 <div class="surveyor">
-                    <img src="{{ $profile->avatar }}" alt="" class="profile-img rounded-circle" />
+                    @if ($profile->avatar)
+                    <img src="{{ asset('storage/' . $profile->avatar) }} " class="profile-img rounded-circle">
+                    @else
+                    <img src="/img/profile.png" class="profile-img rounded-circle">
+                    @endif
                 </div>
                 <div class="profile-status mt-3 d-flex flex-column">
                     <h3>{{ $profile->nama_lengkap }}</h3>
@@ -85,7 +89,7 @@
                 <div class="row justify-content-center">
                     <div class="col-5 mt-5">
                         <input type="submit" value="Simpan Perubahan"
-                            class="btn btn-lg btn-primary mb-5 container-fluid">
+                            class="btn btn-lg btn-primary mb-5 container-fluid h-auto border-0" style="border-radius: .5em; background: #3f4fc8;">
                     </div>
                 </div>
             </form>
