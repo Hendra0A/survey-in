@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AccessController extends Controller
 {
@@ -24,9 +27,17 @@ class AccessController extends Controller
         if (Auth::attempt($credentials, $isRemember)) {
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
+                User::find(auth()->user()->id)
+                    ->update([
+                        'session_id' => Session::getId()
+                    ]);
                 return redirect()->intended('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
+                User::find(auth()->user()->id)
+                    ->update([
+                        'session_id' => Session::getId()
+                    ]);
                 return redirect()->intended('/surveyor/beranda');
             }
         }
@@ -37,7 +48,6 @@ class AccessController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-
         return redirect('/');
     }
 }
