@@ -1,6 +1,6 @@
 <div class="header w-100 row align-items-center justify-content-between py-3" id="prf-edit-header">
     <div class="subhead-a align-items-center col-4">
-        <h1 class="h1 ms-5">@yield('title')</h1>
+        <h1 class="h1 ms-5 d-none d-sm-block">@yield('title')</h1>
     </div>
     <div class="subhead-b d-flex justify-content-end align-items-center col-8">
         <p class="prf-p m-0 me-4">{{ auth()->user()->nama_lengkap }}</p>
