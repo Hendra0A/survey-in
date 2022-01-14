@@ -21,9 +21,9 @@ class IsPasswoodDefault
             return redirect('/');
         } elseif (Hash::check('password', auth()->user()->getAuthPassword())) {
             if (auth()->user()->role == 'surveyor') {
-                return redirect('/surveyor/pengaturan/edit-password');
+                return redirect('/surveyor/pengaturan/edit-password')->with('info', 'Wajib Ganti Password Akun Surveyor saat login pertama kali');
             } elseif (auth()->user()->role == 'admin') {
-                return redirect('/pengaturan/ubah-password')->with('info', 'Wajib Ganti Password Akun Surveyor saat login pertama kali');
+                return redirect('/pengaturan/ubah-password');
             }
         }
         return $next($request);

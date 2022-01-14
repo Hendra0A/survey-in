@@ -28,7 +28,10 @@ class Controller extends BaseController
                 toast(session('tsuccess', 'error'))->autoClose(3000)->position('bottom-end');
             }
             if (session('info')) {
-                Alert::info('', session('info'))->autoClose(3000);;
+                Alert::info('', session('info'))->showConfirmButton('Ok', '#3085d6');
+            }
+            if (session('singleLogin')) {
+                Alert::error('Akun Sedang Login di Perangkat Lain', session('singleLogin'))->showConfirmButton('ok', '#3085d6');;
             }
 
 
