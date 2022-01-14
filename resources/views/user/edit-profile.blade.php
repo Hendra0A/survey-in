@@ -60,7 +60,7 @@
                             </div>
                         @enderror
                     </div>
-                    <!-- <div class="col-12 mb-3">
+                    <div class="col-12 mb-3">
                         <label for="validationServer03" class="form-label fw-bold fs-6">Email</label>
                         <input type="text" class="form-control border-primary @error('email') is-invalid @enderror"
                             id="validationServer03" aria-describedby="validationServer03Feedback"
@@ -70,7 +70,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div> -->
+                    </div>
                 </div>
                 <div class="bio-right row justify-content-center align-items-start align-items-sm-center m-2">
                     <div class="col-12 mb-3">
@@ -91,7 +91,7 @@
                             </div>
                         @enderror
                     </div>
-                    <!-- <div class="col-12 mb-3 mt-2">
+                    <div class="col-12 mb-3 mt-2">
                         <label for="validationServer05" class="form-label fw-bold fs-6">No. Handphone</label>
                         <input type="text" class="form-control border-primary @error('nomor_telepon') is-invalid @enderror"
                             id="validationServer05" aria-describedby="validationServer05Feedback"
@@ -101,7 +101,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                    </div> -->
+                    </div>
                     <div class="col-12 mb-3">
                         <label for="validationServer06" class="form-label fw-bold fs-6">Alamat</label>
                         <input type="text" class="form-control border-primary @error('alamat') is-invalid @enderror"
