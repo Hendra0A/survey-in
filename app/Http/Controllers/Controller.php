@@ -30,6 +30,9 @@ class Controller extends BaseController
             if (session('info')) {
                 Alert::info('', session('info'))->showConfirmButton('Ok', '#3085d6');
             }
+            if (session('singleLogin')) {
+                Alert::error('Akun Sedang Login di Perangkat Lain', session('singleLogin'))->showConfirmButton('ok', '#3085d6');;
+            }
 
 
             return $next($request);
