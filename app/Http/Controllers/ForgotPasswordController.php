@@ -55,10 +55,9 @@ class ForgotPasswordController extends Controller
 
         $updatedPassword  = ForgotPassword::where(['email' => $request->email, 'token' => $request->token])->get();
         if (!$updatedPassword) {
-            return back()->withInput()->with('error', 'Invalid token!');
+            return back()->withInput()->with('message', 'Invalid token!');
         } else {
             User::where('email', $request->email)->update(['password' => Hash::make($request->password)]);
-
             ForgotPassword::where(['email' => $request->email])->delete();
 
             return redirect('/')->with('message', 'Your password has been changed!');
