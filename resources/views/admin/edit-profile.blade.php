@@ -27,7 +27,7 @@
                                 {{ $message }}
                             </div>
                         @enderror
-                        <label for="avatar" class="form-label btn btn-primary px-4 py-3" style="border-radius: 0.5em">Ubah
+                        <label for="avatar" class="form-label btn btn-primary px-4 py-3 border-0" style="border-radius: 0.5em; background: #3f4fc8;">Ubah
                             Foto Profile</label>
                         <p class="upload mt-1 ms-0">maks upload (2 Mb)</p>
                     </div>
@@ -138,7 +138,7 @@
                 </div>
             </div>
             <div class="submit d-flex justify-content-center mt-5 col-8 col-sm-12">
-                <button type="submit" class="btn btn-lg btn-primary mb-5 h-auto" id="submit">Simpan perubahan</button>
+                <button type="submit" class="btn btn-lg btn-primary mb-5 h-auto border-0" id="submit">Simpan perubahan</button>
             </div>
         </form>
     </div>
