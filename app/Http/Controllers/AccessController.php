@@ -27,12 +27,12 @@ class AccessController extends Controller
         if (Auth::attempt($credentials, $isRemember)) {
             if (!Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
-                Auth::logoutOtherDevices($request->password
+                Auth::logoutOtherDevices($request->password);
 
                 return redirect()->intended('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
-                Auth::logoutOtherDevices($request->password
+                Auth::logoutOtherDevices($request->password);
                 return redirect()->intended('/surveyor/beranda');
             }
         }
