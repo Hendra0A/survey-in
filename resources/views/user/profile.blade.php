@@ -1,8 +1,8 @@
 @extends('user.main')
 @section('content')
     <div class="content">
-        <div class="container">
-            <h1 class="mt-2">Profil Surveyor</h1>
+        <div class="container mt-3">
+            <h1 class="mt-2 fw-bold">Profil Surveyor</h1>
             <p style="color: #a5a5a5;">Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex mt-4">
                 @if (auth()->user()->avatar)
@@ -23,35 +23,35 @@
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Nama Lengkap
                             </td>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2" style="vertical-align: top;">{{ $data->nama_lengkap }}</td>
                     </tr>
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Email</td>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2" style="vertical-align: top;">{{ $data->email }}</td>
                     </tr>
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Tanggal Lahir
                             </td>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2" style="vertical-align: top;">{{ $data->tanggal_lahir }}</td>
                     </tr>
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Jenis Kelamin
                         </th>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2" style="vertical-align: top;">{{ $data->gender }}</td>
                     </tr>
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">No. Handphone
                             </td>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2" style="vertical-align: top;">{{ $data->nomor_telepon }}</td>
                     </tr>
                     <tr style="border: none;">
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Alamat</th>
-                        <td style="vertical-align: top; width: max-content;" class="pt-2">:</td>
+                        <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
                         <td class="right-bio p-2">{{ $data->alamat }}</td>
                     </tr>
                 </table>

@@ -2,7 +2,7 @@
 @section('title', 'Surveyor')
 @section('main-content')
 <div class="content d-flex flex-column">
-    <div class="surveyor-hl ms-5">
+    <div class="surveyor-hl ms-0 ms-sm-5">
         <h1>Edit Profile Surveyor</h1>
         <p class="mb-5">Edit akun surveyor di bawah ini dengan benar</p>
 
@@ -24,8 +24,8 @@
         @csrf
         @method('put')
         <input type="hidden" name="target" value="2">
-        <div class="row justify-content-evenly">
-            <div class="col-5">
+        <div class="row justify-content-evenly d-flex flex-column flex-sm-row">
+            <div class="col-12 col-sm-5 mb-3">
                 <input type="hidden" name="id" value="{{ $profile->id }}">
                 <div class="bio-left d-flex flex-column position-relative">
                     <label for="password" class="form-label fw-bold">Password</label>
@@ -40,7 +40,7 @@
                     @enderror
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-12 col-sm-5">
                 <div class="bio-right w-100 d-flex flex-column position-relative">
                     <label for="konfimasiPass" class="form-label fw-bold">Konfirmasi Password</label>
                     <input type="password" name="password_confirmation"
@@ -54,12 +54,13 @@
                     </div>
                     @enderror
                 </div>
-            </div>
-            <div class="row justify-content-center">
+            </div>          
+        </div>
+
+        <div class="row justify-content-center">
                 <div class="col-5 mt-5 justify-content-center d-flex">
                     <input type="submit" value="Simpan Perubahan" class="btn btn-lg btn-primary mb-5 border-0 h-auto" style="border-radius: .5em; background: #3f4fc8;">
                 </div>
-            </div>
         </div>
     </form>
 </div>
