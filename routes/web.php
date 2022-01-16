@@ -80,4 +80,4 @@ Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotP
 Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
 Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
 
-Route::view('/test', '/forgot-password-email', ['token' => 'lasdjflsadfsdajl']);
+Route::view('/test', '/forgot-password-notification');

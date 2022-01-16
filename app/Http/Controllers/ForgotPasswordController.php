@@ -25,6 +25,9 @@ class ForgotPasswordController extends Controller
         ]);
 
         $token = Str::random(32);
+        $user = User::where('email', $request->email)->get()[0];
+        // dd($user);
+        $name = $user->nama_lengkap;
 
         ForgotPassword::create([
             'email' => $request->email,
@@ -32,7 +35,7 @@ class ForgotPasswordController extends Controller
             'created_at' => Carbon::now()
         ]);
 
-        Mail::send('forgot-password-email', ['token' => $token], function ($message) use ($request) {
+        Mail::send('forgot-password-email', ['token' => $token, 'name' => $name], function ($message) use ($request) {
             $message->to($request->email);
             $message->subject('Reset Password');
         });

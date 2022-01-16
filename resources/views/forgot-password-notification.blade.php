@@ -54,12 +54,12 @@
 		<div class="container">
 			<img
 				class="logo"
-				src="{{ $message->embed(asset('img/logo-2.png')) }}"
+				src="{{ asset('img/logo-2.png') }}"
 				alt="logo"
 			/>
 			<h2 class="title">Survei</h2>
 			<div class="content">
-				<h3>Hai {{ $name }}</h3>
+				<h3>Hai {{ $message-> }}</h3>
 				<p>
 					Password Survei kamu dapat di atur ulang dengan mengklik
 					tombol dibawah. Jika kamu merasa tidak meminta pengaturan
@@ -67,7 +67,7 @@
 				</p>
 				<a
 					class="btn"
-					href="http://survey-in.test/reset-password/{{ $token }}"
+					href="http://survey-in.test/reset-password/ "
 					>Atur Ulang Password</a
 				>
 			</div>

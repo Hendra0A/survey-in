@@ -31,7 +31,7 @@
                 <!-- jika ingin pakai yg icon lepas comment bagian dalam ini -->
 
                 <!-- Header Judul -->
-                <a href="beranda-view.html" class="nav-link"><i class="fas fa-chevron-left text-black"></i></a>
+                <a href="/" class="nav-link"><i class="fas fa-chevron-left text-black"></i></a>
                 <!-- jika ingin pakai yg judul lepas comment bagian dalam ini -->
             </div>
 
