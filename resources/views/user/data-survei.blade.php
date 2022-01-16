@@ -21,7 +21,7 @@
           </div>
           <div class="input-group mb-3 position-relative">
             <input type="search" id="search" class="form-control" placeholder="Cari nama gang dan perumahan.." aria-label="Recipient's username" aria-describedby="button-addon2" autocomplete="off">
-            <i class="fas fa-search position-absolute text-secondary end-0" style="top: 30%; right:50px;"></i>
+            <i class="fas fa-search position-absolute text-secondary end-0 me-2" style="top: 30%; right:50px;"></i>
           </div>
           <div class="list-data mb-5">
           </div>
