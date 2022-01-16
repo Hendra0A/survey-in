@@ -157,7 +157,7 @@ class SurveyorController extends Controller
             User::where('id', auth()->user()->id)->update([
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
-            $request->session('success', 'Password anda berhasil diubah');
+            Auth::logoutOtherDevices($request->kata_sandi_baru);
             return redirect('/surveyor/beranda')
                 ->with('success', 'Password anda berhasil diubah')
                 ->with('confirm', 'Kembali ke pengaturan');;
