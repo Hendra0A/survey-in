@@ -365,10 +365,12 @@
 
                     <input type="hidden" name="jmlFasos" id="jmlFasos">
                     <!-- form-tambahan -->
-                    <div class="tambah-fasos col-12 p-2 bg-white mb-4" id="form-tambahan"
+                    <div class="tambah-fasos col-12 p-2 bg-white mb-4" id="form-tambahan" class="form-tambahan"
                         style="border-radius: .5em; box-shadow: 0px 0px 5px gray;">
                         <button type="button" name="add" id="add" class="btn btn-primary border-0 mt-2 mb-3"
                             style="border-radius: .5em; background: #3F4FC8;">Tambah Fasos</button>
+                        <div class="form-fasos mt-3">
+                        </div>
                     </div>
                     <!-- form-tambahan -->
 
@@ -610,10 +612,13 @@
                     <!-- Lampiran Data -->
 
                     <!-- tambah lampiran -->
+                    <input type="hidden" name="jmlLampiran" id="jmlLampiran">
                     <div class="tambah-lampiran col-12 p-2 bg-white mb-5" id="tambah-lampiran"
                         style="border-radius: .5em; box-shadow: 0px 0px 5px gray;">
                         <button type="button" name="addLampiran" id="addLampiran" class="btn btn-primary border-0"
                             style="border-radius: .5em; background: #3F4FC8;">Tambah Lampiran</button>
+                        <div class="form-lampiran mt-3">
+                        </div>
                     </div>
                     <!-- tambah lampiran -->
 
@@ -634,18 +639,30 @@
     <script>
         $(document).ready(function() {
             // fasos
-            var i = 0;
 
-            $('#add').click(function() {
+            if (typeof Storage !== "undefined") {
+                if (sessionStorage.getItem("jmlFasos") === null) {
+                    sessionStorage.setItem("jmlFasos", 0);
+                }
+                if (sessionStorage.getItem("jmlLampiran") === null) {
+                    sessionStorage.setItem("jmlLampiran", 0);
+                }
+            } else {
+                alert("Browser yang Anda gunakan tidak mendukung Web Storage");
+            }
 
-                $('#form-tambahan').append(`
-                <div class="form-fasos mt-3">
+            let renderFasos = (count) => {
+                $(".form-fasos").empty();
+                for (let x = 0; x < count; x++) {
+                    console.log(x);
+                    $('.form-fasos').append(`
+                <div class="single-form-fasos mt-3">
                 <div class="d-flex flex-wrap mb-3">
                     <div class="col-12 col-sm-6 mt-sm-1">
                         <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
                             Sosial(Fasos)</label>
                         <select class="form-select form-select border-primary" autocomplete="off"
-                            style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${i}][jenis_fasos_id]"
+                            style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
                             value="{{ old('jenis_fasos_id') }}">
                             <option value="" selected disabled>-Pilih fasos-</option>
                             @foreach ($fasos as $item)
@@ -660,7 +677,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${i}][panjang]"
+                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]"
                                     value="{{ old('panjang') }}">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
@@ -671,7 +688,7 @@
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${i}][lebar]"
+                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]"
                                     value="{{ old('lebar') }}">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
@@ -690,7 +707,7 @@
                                     <input type="text"
                                         class="lokasi-fasos form-control border-primary @error('koordinat_fasos') is-invalid @enderror"
                                         style="border-radius: .5em;" id="input-koordinat-fasos"
-                                        name="addmore[${i}][koordinat_fasos]" value="{{ old('koordinat_fasos') }}">
+                                        name="addmore[${x}][koordinat_fasos]" value="{{ old('koordinat_fasos') }}">
                                     @error('koordinat_fasos')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
@@ -712,41 +729,47 @@
                 </div>
 
                 <div class="col-12">
-                    <input type="file" name="addmore[${i}][foto]" class="imageFasos btn btn-primary border-0"
-                        @error('fotoFasos') is-invalid
-                        @enderror>
-                    @error('fotoFasos')
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
+                    <input type="file" name="addmore[${x}][foto]" class="imageFasos btn btn-primary border-0" style="border-radius: .5em; background: #3F4FC8;" id="fasos-${x}">
+                    <label for="fasos-${x}">
                     <div class="img-keterangan mt-2 p-2 text-sm-center"
                         style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
                         <img src="/img/kartu-empat.png" class="imageFasosView" style="width: 9em;">
                     </div>
+                </label>
                 </div>
                 <button type="button" id="close" class="btn btn-primary border-0 mt-3"
             style="border-radius: .5em; background: #3F4FC8;">Exit Fasos</button>
             </div>
             `);
-                ++i;
+                }
+            };
+
+            renderFasos(sessionStorage.getItem("jmlFasos"));
+
+            $('#add').click(function() {
+                var i = sessionStorage.getItem("jmlFasos");
+                i++;
+                sessionStorage.setItem("jmlFasos", i);
+                $("jmlFasos").val(i);
+                renderFasos(sessionStorage.getItem("jmlFasos"));
             });
 
             $(document).on('click', '#close', function() {
-                $(this).parents('.form-fasos').remove();
+                $(this).parents('.single-form-fasos').remove();
             });
 
             // lampiran
-            var j = 0;
 
-            $('#addLampiran').click(function() {
-                $('#tambah-lampiran').append(`
-            <div class="form-lampiran">
+            let renderLampiran = (count) => {
+                $(".form-lampiran").empty();
+                for (let y = 0; y < count; y++) {
+                    $('.form-lampiran').append(`
+            <div class="single-form-lampiran">
                     <label for="" class="fw-bold">Keterangan</label>
                     <div class="input-group mb-3">
                         <select class="form-select form-select border-primary" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example"
-                            name="addmoreLampiran[${j}][jenis_lampiran_id]" value="{{ old('jenis_lampiran_id') }}">
+                            name="addmoreLampiran[${y}][jenis_lampiran_id]" value="{{ old('jenis_lampiran_id') }}">
                             <option value="" selected disabled>-Pilih kategori-</option>
                             @foreach ($lampiran as $item)
                                 <option value="{{ $item->id }}">{{ $item->jenis }}</option>
@@ -755,28 +778,35 @@
                     </div>
 
                     <div class="col-12">
-                            <input type="file" name="addmoreLampiran[${j}][foto]"
-                            class="imageLampiran btn btn-primary border-0 @error('fotoLampiran') is-invalid @enderror"
-                            style="border-radius: .5em; background: #3F4FC8;">
-                        @error('fotoLampiran')
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                            <input type="file" name="addmoreLampiran[${y}][foto]"
+                            class="imageLampiran btn btn-primary border-0"
+                            style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}">
+                            <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"
                             style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
                             <img src="/img/kartu-empat.png" id="imageLampiran" style="width: 9em;">
                         </div>
+                        </label>
                     </div>
                     <button type="button" id="closeLampiran" class="btn btn-primary border-0 mt-3"
                         style="border-radius: .5em; background: #3F4FC8;">Exit Lampiran</button>
                 </div>
             `);
-                ++j;
+                }
+            };
+
+            renderLampiran(sessionStorage.getItem("jmlLampiran"));
+
+            $('#addLampiran').click(function() {
+                var j = sessionStorage.getItem("jmlLampiran");
+                j++;
+                sessionStorage.setItem("jmlLampiran", j);
+                $("jmlLampiran").val(j);
+                renderLampiran(sessionStorage.getItem("jmlLampiran"));
             });
 
             $(document).on('click', '#closeLampiran', function() {
-                $(this).parents('.form-lampiran').remove();
+                $(this).parents('.single-form-lampiran').remove();
             });
         });
     </script>
