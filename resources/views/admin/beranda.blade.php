@@ -4,8 +4,8 @@
     @include('admin.header')
     <div class="content d-flex flex-column" id="beranda-content">
         <div class="pilih w-100 d-flex flex-column container-fluid ">
-            <div class="row justify-content-center my-3">
-                <div class="col-6">
+            <div class=" justify-content-around my-3 col-12 d-flex flex-column flex-sm-row">
+                <div class="col-sm-5 col-12 ">
                     <div class="input-group mb-3">
                         <label class="input-group-text fw-bold" for="kabupaten">Kabupaten/Kota</label>
                         <select class="form-select" id="kabupaten" name="kabupaten">
@@ -16,7 +16,7 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-sm-5 col-12">
                     <div class="input-group mb-3">
                         <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                         <select class="form-select" id="kecamatan" name="kecamatan">

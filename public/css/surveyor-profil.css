@@ -50,13 +50,13 @@
     padding: 10px 0;
 }
 
-#surveyor-profile table td.left-bio {
+#surveyor-profile table tr td.left-bio {
     font-weight: 600;
     font-size: 20px;
     line-height: 30px;
 }
 
-#surveyor-profile table td.right-bio {
+#surveyor-profile table tr td.right-bio {
     font-weight: normal;
     width: fit-content;
     font-size: 20px;
@@ -107,4 +107,19 @@ table tr {
  /* Button */
  #surveyor-profile .ubah-password .btn{
      background-color: #3F4FC8;
+ }
+
+ @media (max-width: 500px) {
+    #surveyor-profile table tr td.left-bio {
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 20px;
+    }
+    
+    #surveyor-profile table tr td.right-bio {
+        font-weight: normal;
+        width: fit-content;
+        font-size: 12px;
+        line-height: 20px;
+    }
  }
