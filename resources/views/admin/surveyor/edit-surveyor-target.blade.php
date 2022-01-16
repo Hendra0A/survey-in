@@ -4,7 +4,7 @@
 @include('admin.header')
 <!-- content -->
 <div class="content d-flex flex-column">
-    <div class="surveyor-hl ms-5">
+    <div class="surveyor-hl ms-0 ms-sm-5">
         <h1>Edit Target Surveyor</h1>
         <p class="mb-5">Tentukan targer survei per surveyor di bawah ini </p>
 
