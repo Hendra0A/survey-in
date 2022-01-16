@@ -1,5 +1,4 @@
-
-
+$(document).ready(function () {
         // koordinat
         $('#koordinat').click(function(){
             if (navigator.geolocation) {
@@ -14,55 +13,44 @@
                 " " + position.coords.longitude);
         }
 
+
         // koordinat fasos
-        $(".koordinat-fasos").each(function(){
-            $(this).on("click", function(e){
-                $(e.target).next().val('ok');
+            $('#form-tambahan').on("click", ".koordinat-fasos", function(e){
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPositionFasos);
+                navigator.geolocation.getCurrentPosition(function(position){
+                    $(e.target).next().val(position.coords.latitude +
+                        " " + position.coords.longitude);
+                });
             } else {
-                $('#input-koordinat-fasos').val("Geolocation is not supported by this browser.");
+                $(e.target).next().val("Geolocation is not supported by this browser.");
             }
             });
-        });
-        // $('.koordinat-fasos').click(function(e){
-        //     console.log(e);
-        //     if (navigator.geolocation) {
-        //         navigator.geolocation.getCurrentPosition(showPositionFasos);
-        //     } else {
-        //         $('#input-koordinat-fasos').val("Geolocation is not supported by this browser.");
-        //     }
-        // });
-
-        function showPositionFasos(position) {
-            $(this).val(position.coords.latitude +
-                " " + position.coords.longitude);
-        }
 
 
-        // image
-        $('.imageFasos').change(function(){
-            console.log('ok');
+        // image fasos
+        $('#form-tambahan').on("change", ".imageFasos", function(e){
             try{
                 let reader = new FileReader();
+                let img = $(e.target).next().find('img');
                 reader.onload = (e) => { 
-                $('#imageFasos').attr('src', e.target.result); 
+                    img.attr('src', e.target.result); 
                 }
                 reader.readAsDataURL(this.files[0]); 
             }catch (error) {}
-            
         });
 
-        $('.imageLampiran').change(function(){
+        // image lampiran
+        $('#tambah-lampiran').on("change", ".imageLampiran", function(e){
             try{
                 let reader = new FileReader();
+                let img = $(e.target).next().find('img');
                 reader.onload = (e) => { 
-                $('#imageLampiran').attr('src', e.target.result); 
+                    img.attr('src', e.target.result); 
                 }
                 reader.readAsDataURL(this.files[0]); 
             }catch (error) {}
-            
         });
+
 
 
         // form fasos
@@ -87,5 +75,5 @@
             }
         });
 
-
         
+    });

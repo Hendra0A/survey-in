@@ -4,7 +4,7 @@
     @include('admin.header')
     <!-- content -->
     <div class="content d-flex flex-column" id="surveyor-profile">
-        <div class="surveyor-hl ms-5">
+        <div class="surveyor-hl ms-0 ms-sm-5">
             <h1>Profil Surveyor</h1>
             <p class="mb-5">Dibawah ini adalah informasi lengkap <br> dari surveyor</p>
 
@@ -22,7 +22,7 @@
             </div>
         </div>
 
-        <div class="data-surveyor p-5">
+        <div class="data-surveyor p-0 p-sm-5">
             <!-- Riwayat -->
             <div class="riwayat d-flex justify-content-end mb-2" data-bs-toggle="modal" data-bs-target="#riwayatModal">
                 Riwayat Survei
@@ -88,53 +88,63 @@
             <!-- Riwayat -->
 
             <!--  Data Profil Surveyor -->
-            <div class="biodata">
+            <div class="biodata p-0 p-sm-3">
 
                 <table class="bio">
                     <tr>
                         <td class="left-bio">Nama Lengkap</td>
-                        <td class="right-bio">: {{ ucwords($profile_surveyor->nama_lengkap) }}</td>
+                        <td style="width: 3%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ ucwords($profile_surveyor->nama_lengkap) }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Wilayah Survei</td>
-                        <td class="right-bio">: Kabupaten {{ ucwords($area->nama) }}</td>
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">Kabupaten {{ ucwords($area->nama) }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Email</td>
-                        <td class="right-bio">: {{ $profile_surveyor->email }}</td>
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ $profile_surveyor->email }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">No. Handphone</td>
-                        <td class="right-bio">: {{ $profile_surveyor->nomor_telepon }}</td>
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ $profile_surveyor->nomor_telepon }}</td>
                     </tr>
                     <tr class="w-100">
                         <td class="left-bio">Alamat</td>
-                        <td class="right-bio text-wrap">:
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio text-wrap align-top">
                             {{ $profile_surveyor->alamat }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Jenis Kelamin</td>
-                        <td class="right-bio">: {{ ucwords($profile_surveyor->gender) }}</td>
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ ucwords($profile_surveyor->gender) }}</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Tanggal Lahir</td>
-                        <td class="right-bio">:
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">
                             {{                             $profile_surveyor->tanggal_lahir === null ? $profile_surveyor->tanggal_lahir : \Carbon\Carbon::parse($profile_surveyor->tanggal_lahir)->format('j F, Y') }}
                         </td>
                     </tr>
                     <tr>
                         <td class="left-bio">Target Mingguan</td>
-                        <td class="right-bio">: {{ $weekly_selesai }} dari
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ $weekly_selesai }} dari
                             {{ $weekly_target }} Gang dan Perumahan</td>
                     </tr>
                     <tr>
                         <td class="left-bio">Target Tercapai</td>
-                        <td class="right-bio">: {{ $selesai }} dari
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio align-top">{{ $selesai }} dari
                             {{ $target }} Gang dan Perumahan </td>
                     </tr>
                     <tr id="tr-akhir">
                         <td class="left-bio">Perhitungan Target</td>
-                        <td class="right-bio {{ $selesai - $target < 0 ? 'text-danger' : 'text-success' }} fw-bold">:
+                        <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
+                        <td class="right-bio {{ $selesai - $target < 0 ? 'text-danger' : 'text-success' }} fw-bold align-top">
                             @if ($selesai - $target > 0)
                                 + {{ $selesai - $target }} Gang dan Perumahan
                             @elseif ($selesai - $target == 0)
@@ -149,9 +159,9 @@
 
         <!-- Btn Ubah Password -->
         <div class="ubah-password d-flex justify-content-evenly mt-5">
-            <a href="/surveyor/edit/profile/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5">Edit
+            <a href="/surveyor/edit/profile/{{ $profile_surveyor->id }}" class="btn btn-primary ps-2 pe-2 ps-sm-5 pe-sm-5 mb-5 border-0 h-auto" style="border-radius: .5em; background: #3f4fc8;">Edit
                 Profile</a>
-            <a href="/surveyor/edit/password/{{ $profile_surveyor->id }}" class="btn btn-primary ps-5 pe-5 mb-5">Edit
+            <a href="/surveyor/edit/password/{{ $profile_surveyor->id }}" class="btn btn-primary ps-2 pe-2 ps-sm-5 pe-sm-5 mb-5 border-0 h-auto" style="border-radius: .5em; background: #3f4fc8;">Edit
                 Password</a>
         </div>
     </div>

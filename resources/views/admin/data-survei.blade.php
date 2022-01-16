@@ -15,8 +15,8 @@
             </p>
             <form action="" method="POST">
                 @csrf
-                <div class="row justify-content-center my-3">
-                    <div class="col-6">
+                <div class="row justify-content-around my-3 col-12 d-flex flex-column flex-sm-row">
+                    <div class="col-sm-5 col-12">
                         <div class="input-group mb-3">
                             <label class="input-group-text fw-bold" for="kabupaten">Kabupaten/Kota</label>
                             <select class="form-select" id="kabupaten" name="kabupaten">
@@ -28,7 +28,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-sm-5 col-12">
                         <div class="input-group mb-3">
                             <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                             <select class="form-select" id="kecamatan" name="kecamatan">
@@ -51,7 +51,7 @@
                         <th scope="col" style="width: 21%;">Lokasi</th>
                         <th scope="col" style="width: 15%;">Koordinat</th>
                         <th scope="col" style="width: 20%;">Surveyor</th>
-                        <th scope="col" style="width: 25%;"></th>
+                        <th scope="col" style="width: 25%;">Aktivitas</th>
                     </tr>
                 </thead>
                 <tbody id="data" class="data">

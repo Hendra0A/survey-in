@@ -15,7 +15,7 @@
                 <div class="card-body p-4 pt-0">
                     <h5 class="card-title mb-2">Edit Input Data Survei</h5>
                     <p class="card-text mb-5">Ubah inputan data survei</p>
-                    <a href="/pengaturan/edit-data-survey" class="btn btn-primary kartu">Edit Data Survei</a>
+                    <a href="/pengaturan/edit-data-survey" class="btn btn-primary kartu border-0">Edit Data Survei</a>
                 </div>
             </div>
 
@@ -25,7 +25,7 @@
                 <div class="card-body p-4 pt-0">
                     <h5 class="card-title mb-2">Ubah Password</h5>
                     <p class="card-text mb-5">Ubah password Admin</p>
-                    <a href="/pengaturan/ubah-password" class="btn btn-primary kartu">Ubah Password</a>
+                    <a href="/pengaturan/ubah-password" class="btn btn-primary kartu border-0">Ubah Password</a>
 
                 </div>
             </div>

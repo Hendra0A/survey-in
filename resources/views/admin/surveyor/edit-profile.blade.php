@@ -4,7 +4,7 @@
 <div class="content">
     <div class="row justify-content-start">
         <div class="col-10">
-            <div class="surveyor-hl ms-5">
+            <div class="surveyor-hl ms-0 ms-sm-5">
                 <h1>Edit Profile Surveyor</h1>
                 <p class="mb-5">Edit akun surveyor di bawah ini dengan benar</p>
 
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12  p-5">
+        <div class="col-12  p-0 p-sm-5">
             <form method="POST" action="/surveyor/update">
                 @csrf
                 @method('put')
@@ -86,10 +86,10 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center">
-                    <div class="col-5 mt-5">
+                <div class="row justify-content-center col-12">
+                    <div class="col-10 col-sm-5 mt-5 ps-0 pe-0">
                         <input type="submit" value="Simpan Perubahan"
-                            class="btn btn-lg btn-primary mb-5 container-fluid">
+                            class="btn btn-lg btn-primary mb-5 h-auto h-auto border-0 col-11" style="border-radius: .5em; background: #3f4fc8;">
                     </div>
                 </div>
             </form>

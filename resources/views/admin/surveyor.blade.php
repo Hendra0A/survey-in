@@ -11,15 +11,15 @@
 
     <!-- Button Tambah -->
     {{-- <button class="btn-tambah shadow"></button> --}}
-    <div class="btn-content text-end  me-5 mb-5 ">
+    <div class="btn-content text-end  me-5 mb-5 mt-3">
         <a href="/surveyor/tambah" class="btn-tambah shadow text-decoration-none text-white ">+Tambah Akun</a>
     </div>
 
     <!-- Daftar AKun -->
-    <div class="daftar-akun">
+    <div class="daftar-akun p-0 m-0">
         <!-- Akun Surveyor 1 -->
         @foreach ($surveyors as $surveyor)
-        <div class="akun-surveyor d-flex justify-content-between align-items-center flex-md-row flex-column">
+        <div class="akun-surveyor d-flex justify-content-between align-items-center flex-md-row flex-column p-2 m-0 pb-2 mb-2 p-sm-3 m-sm-3">
             <div class="nama-akun">
                 {{ $surveyor->nama_lengkap }}
             </div>

@@ -4,7 +4,7 @@
 @include('admin.header')
 <!-- content -->
 <div class="content d-flex flex-column">
-    <div class="surveyor-hl ms-5">
+    <div class="surveyor-hl ms-0 ms-sm-5">
         <h1>Tambah Target Surveyor</h1>
         <p class="mb-5">Tentukan targer survei per surveyor di bawah ini </p>
 
@@ -23,9 +23,9 @@
     </div>
 
     <!-- Form -->
-    <form action="/surveyor/tambah-target" method="POST" class="bio-edit d-flex m-5" autocomplete="off">
+    <form action="/surveyor/tambah-target" method="POST" class="bio-edit d-flex m-0 m-sm-5" autocomplete="off">
         @csrf
-        <div class="bio-left w-50">
+        <div class="bio-left col-12 col-sm-6 d-flex flex-column">
             <input type="hidden" name="id" value="{{ $profile_surveyor->id }}">
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Kecamatan</label>
@@ -41,8 +41,8 @@
                 </div>
                 @enderror
             </div>
-            <div class="mb-3 w-100 d-flex justify-content-between">
-                <div class="target-kecamatan w-50 me-5">
+            <div class="mb-3 w-100 d-flex flex-column flex-sm-row justify-content-between">
+                <div class="target-kecamatan col-12 col-sm-5 me-5">
                     <label for="validationServer03" class="form-label">Kategori</label>
                     <select class="form-control form-control" id="validationServer03"
                         aria-label="Default select example " name="kategori">
@@ -50,7 +50,7 @@
                     </select>
                 </div>
 
-                <div class="target-tanggal w-50 ms-5">
+                <div class="target-tanggal col-12 col-sm-5 ms-0 ms-sm-4">
                     <label for="validationServer03" class="form-label date-target">Tanggal Mulai</label>
                     <input type="date" class="form-control @error('tanggal_mulai') is-invalid @enderror"
                         name="tanggal_mulai" value="{{ date('Y-m-d') }}">
@@ -78,7 +78,7 @@
 
             </div>
             <div class="tambah-akun mt-4">
-                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100"
+                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100 border-0"
                     id="tambah-akun-surveyor">Simpan</button>
             </div>
         </div>

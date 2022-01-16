@@ -58,3 +58,7 @@ nav i {
 input.form-control, select.form-select {
     border: 1px solid #3F4FC8 !important;
 }
+
+#nav-tab .nav-link{
+    cursor: pointer;
+}

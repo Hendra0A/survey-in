@@ -4,7 +4,7 @@
 @include('admin.header')
 <!-- content -->
 <div class="content d-flex flex-column">
-    <div class="surveyor-hl ms-5">
+    <div class="surveyor-hl ms-0 ms-sm-5">
         <h1>Edit Target Surveyor</h1>
         <p class="mb-5">Tentukan targer survei per surveyor di bawah ini </p>
 
@@ -83,7 +83,7 @@
             </div>
 
             <div class="tambah-akun mt-4">
-                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100"
+                <button type="submit" class="btn btn-lg btn-primary mb-5 fs-6 w-100 h-auto border-0"
                     id="tambah-akun-surveyor">Simpan</button>
             </div>
         </div>

@@ -5,7 +5,7 @@
 @endsection
 @section('content')
     <div class="content">
-        <div class="container">
+        <div class="container vh-100">
 
             <div class="about mt-5 p-3 pt-5 bg-white d-flex flex-column align-items-center col-12"
                 style="border-radius: 1em; box-shadow: 0px 0px 4px gray;">

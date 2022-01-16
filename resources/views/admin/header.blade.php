@@ -19,12 +19,8 @@
             <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
                 <li><a class="dropdown-item" href="/profile">Profile Admin</a></li>
                 <li>
-                    <form action="/logout" method="post">
-                        @csrf
-                        <button type="submit" class="dropdown-item"><i class="bi bi-box-arrow-right"
-                                data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-                            Keluar</button>
-                    </form>
+                        <button  class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Keluar</button>
+
                 </li>
             </ul>
         </div>
