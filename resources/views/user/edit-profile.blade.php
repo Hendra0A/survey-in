@@ -7,7 +7,7 @@
     <div class="content">
         <div class="container mt-3">
             <h1 class="fw-bold">Profile Edit</h1>
-            <p>Edit profile Anda untuk melengkapi data pribadi.</p>  
+            <p style="color: #a5a5a5;">Edit profile Anda untuk melengkapi data pribadi.</p>  
         <form action="/surveyor/profile/edit-profile" id="prf-edit-form" autocomplete="off" method="post" enctype="multipart/form-data">
             @csrf
             @method('patch')

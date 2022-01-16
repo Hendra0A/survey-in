@@ -1,8 +1,8 @@
 @extends('user.main')
 @section('content')
     <div class="content">
-        <div class="container">
-            <h1 class="mt-2">Profil Surveyor</h1>
+        <div class="container mt-3">
+            <h1 class="mt-2 fw-bold">Profil Surveyor</h1>
             <p style="color: #a5a5a5;">Profil User berisi data pribadi Surveyor.</p>
             <div class="admin d-flex mt-4">
                 @if (auth()->user()->avatar)
