@@ -12,64 +12,40 @@
 				box-sizing: 0;
 			}
 			.container {
-				width: 100%;
-				padding: 1rem 0;
+				position: relative;
+				height: 100vh;
 				text-align: center;
-			}
-			.logo {
-				margin: 0 auto;
-			}
-			.title {
-				margin: 1rem;
-				color: orange;
+				font-size: 1em;
 			}
 			.content {
-				margin: 0 auto;
-				max-height: fit-content;
-				max-width: 512px;
-				padding: 1rem 2rem;
-				background-color: #fafafa;
-			}
-			.content h3 {
-				text-align: center;
-                color: black;
+				inset: 0;
+				margin: auto;
+				position: absolute;
+				max-width: 360px;
+				height: fit-content;
+				padding: 1rem;
 			}
 			.content p {
-				text-align: justify;
+				text-align: center;
 				margin: 1rem 0;
-                color: black;
 			}
-			.content .btn {
-				display: inline-block;
-				width: fit-content;
-				padding: 0.5rem 1rem;
-				background-color: #0d6efd;
-				color: white;
-				border-radius: 0.3rem;
-				text-decoration: none;
+			.content a {
+				color: #0d6efd;
+			}
+			.content a:hover {
+				color: #33f;
 			}
 		</style>
 	</head>
 	<body>
 		<div class="container">
-			<img
-				class="logo"
-				src="{{ asset('img/logo-2.png') }}"
-				alt="logo"
-			/>
-			<h2 class="title">Survei</h2>
 			<div class="content">
-				<h3>Hai {{ $message-> }}</h3>
+				<img src="{{ asset('img/logo-2.png') }}" alt="logo" />
 				<p>
-					Password Survei kamu dapat di atur ulang dengan mengklik
-					tombol dibawah. Jika kamu merasa tidak meminta pengaturan
-					ulang password, kamu dapat mengabaikan email ini.
+					Email untuk mengatur ulang password telah dikirim, harap cek
+					email anda.
 				</p>
-				<a
-					class="btn"
-					href="http://survey-in.test/reset-password/ "
-					>Atur Ulang Password</a
-				>
+				<a href="http://survey-in.test/">Kembali ke halaman login</a>
 			</div>
 		</div>
 	</body>
