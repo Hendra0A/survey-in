@@ -27,17 +27,16 @@ class AccessController extends Controller
         if (Auth::attempt($credentials, $isRemember)) {
             if (Auth::user()->role == 'admin') {
                 $request->session()->regenerate();
-                User::find(auth()->user()->id)
-                    ->update([
-                        'session_id' => Session::getId()
-                    ]);
+                if (!Auth::logoutOtherDevices('password')) {
+                    $request->session()->flash('singleLogin', 'Silahkan login ulang / ganti password');
+                }
+
                 return redirect()->intended('/beranda');
             } elseif (Auth::user()->role == 'surveyor') {
                 $request->session()->regenerate();
-                User::find(auth()->user()->id)
-                    ->update([
-                        'session_id' => Session::getId()
-                    ]);
+                if (Auth::logoutOtherDevices('password')) {
+                    $request->session()->flash('singleLogin', 'Silahkan login ulang / ganti password');
+                }
                 return redirect()->intended('/surveyor/beranda');
             }
         }
@@ -45,6 +44,7 @@ class AccessController extends Controller
     }
     public function logout(Request $request)
     {
+
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();

@@ -93,6 +93,7 @@
             this.classList.toggle('fa-eye-slash');
         });
     </script>
+    @include('sweetalert::alert')
 </body>
 
 </html>
