@@ -10,7 +10,7 @@ label {
     display: none;
 } */
 
-.imageFasos {
+.imageFasos, .imageLampiran {
     width: 0.1px;
     height: 0.1px;
     opacity: 0;
@@ -18,7 +18,7 @@ label {
     position: absolute;
     z-index: -1;
 }
-.imageFasos + label {
+.imageFasos + label, .imageLampiran + label {
     cursor: pointer; /* "hand" cursor */
 }
 
