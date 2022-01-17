@@ -326,7 +326,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="kolom-data m-1" style="width: 30%;">
                                 <label for="" class="ms-2">Persentase :</label>
                                 <div class="input-group m-1">
@@ -745,9 +744,9 @@
             };
 
             renderFasos(sessionStorage.getItem("jmlFasos"));
-
+            var i = sessionStorage.getItem("jmlFasos");
             $('#add').click(function() {
-                var i = sessionStorage.getItem("jmlFasos");
+                i = sessionStorage.getItem("jmlFasos");
                 i++;
                 sessionStorage.setItem("jmlFasos", i);
                 $("jmlFasos").val(i);
@@ -756,6 +755,8 @@
 
             $(document).on('click', '#close', function() {
                 $(this).parents('.single-form-fasos').remove();
+                i--;
+                sessionStorage.setItem("jmlFasos", i);
             });
 
             // lampiran
