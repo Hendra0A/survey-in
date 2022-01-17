@@ -45,7 +45,8 @@ class ForgotPasswordController extends Controller
 
     public function showResetPasswordForm($token)
     {
-        return view('reset-password', ['token' => $token]);
+        $email = ForgotPassword::where('token', $token)->get()[0]->email;
+        return view('reset-password', ['token' => $token, 'email' => $email]);
     }
 
     public function submitResetPasswordForm(Request $request)
