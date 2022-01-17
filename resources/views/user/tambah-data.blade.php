@@ -600,8 +600,9 @@
                     <!-- catatan -->
                     <div class="col-12 ps-2 mb-3">
                         <label for="input-catatan" class="form-label fw-bold">Catatan</label>
-                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;" id="input-catatan"
-                            style="height: 9em" name="catatan" value="{{ old('catatan') }}"></textarea>
+                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;"
+                            id="input-catatan" style="height: 9em" name="catatan"
+                            value="{{ old('catatan') }}"></textarea>
                     </div>
                     <!-- catatan -->
 

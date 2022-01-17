@@ -58,22 +58,11 @@
                     mudah di ingat</p>
 
                 <form action="/reset-password" method="post" id="form-password"
-                    class="edit-password mt-5 col-12 d-flex flex-wrap justify-content-around" autocomplete="off">
+                    class="edit-password mt-5 col-12 d-flex flex-column align-items-center" autocomplete="off">
                     @csrf
+                    <input type="hidden" name="email" value="{{ $email }}">
 
-                    <div class="kata-sandi col-12 col-sm-5 mb-3 position-relative">
-                        <label for="validationServer03" class="form-label fs-6" style="font-weight: 500;">Email</label>
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror pe-5"
-                            id="id_email" style="border-radius: .5em; border: 1px solid #3F4FC8;"
-                            placeholder="masukan email" aria-describedby="validationServer03Feedback">
-                        @error('email')
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                        @enderror
-                    </div>
-
-                    <div class="kata-sandi col-12 col-sm-5 mb-3 position-relative">
+                    <div class="kata-sandi col-12 w-100 col-sm-5 mb-3  position-relative">
                         <label for="validationServer03" class="form-label fs-6" style="font-weight: 500;">Password
                             Baru</label>
                         <input type="password" name="password"
@@ -88,7 +77,7 @@
                         @enderror
                     </div>
 
-                    <div class="kata-sandi col-12 col-sm-5 mb-3 position-relative">
+                    <div class="kata-sandi col-12 w-100 col-sm-5 mb-3 position-relative">
                         <label for="validationServer03" class="form-label fs-6" style="font-weight: 500;">Konfirmasi
                             Password</label>
                         <input type="password" name="password_confirmation"
@@ -102,11 +91,12 @@
                         </div>
                         @enderror
                     </div>
+                    
 
 
                 </form>
-                <div class="tombol-konfirmasi col-12 d-flex justify-content-center">
-                    <button type="button" class="btn btn-primary col-8 col-sm-5"
+                <div class="tombol-konfirmasi col-12 d-flex justify-content-center mt-3">
+                    <button type="button" class="btn btn-primary col-12 w-100 col-sm-5"
                         style="border: none; border-radius: .5em; background: #3F4FC8;" data-bs-toggle="modal"
                         data-bs-target="#modal-konfirmasi">Simpan</button>
                 </div>
