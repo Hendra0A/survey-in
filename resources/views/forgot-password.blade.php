@@ -34,7 +34,7 @@
           <div class="inputan d-flex col-12 col-md-10 flex-column justify-content-between">
             <form action="/forgot-password" method="post">
               @csrf
-              <input class="input-email rounded-3 w-100 p-2 mb-4" type="text" name="email" placeholder="Masukan Email"
+              <input class="input-email rounded-3 w-100 p-2 mb-3" type="text" name="email" placeholder="Masukan Email"
                 autofocus>
               <button type="submit" class="py-2 btn btn-email btn-primary w-100">Kirim</button>
             </form>
