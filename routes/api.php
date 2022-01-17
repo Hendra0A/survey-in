@@ -22,3 +22,5 @@ Route::post('/kecamatan', [ApiController::class, 'getKecamatan']);
 Route::post('/data-survey', [ApiController::class, 'DataSurveys']);
 Route::post('/data-survei', [ApiController::class, 'getData']);
 Route::post('/data-survei-saya', [ApiController::class, 'myDataSurvey']);
+Route::post('/data-survei-saya', [ApiController::class, 'myDataSurvey']);
+Route::get('/option-form', [ApiController::class, 'getOption']);

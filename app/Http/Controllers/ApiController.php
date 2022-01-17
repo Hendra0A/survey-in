@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Kecamatan;
 use App\Models\Kabupaten;
 use App\Models\DataSurvey;
+use App\Models\Fasos;
+use App\Models\JenisFasos;
+use App\Models\JenisLampiran;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,6 +31,16 @@ class ApiController extends Controller
         $response = [
             'message' => 'List of kecamatan',
             'data' => $kecamatan,
+        ];
+        return response()->json($response, Response::HTTP_OK);
+    }
+    public function getOption()
+    {
+        $response = [
+            'message' => 'List of option',
+            'fasos' => JenisFasos::get((['id', 'jenis'])),
+            'lampiran' => JenisLampiran::get(['id', 'jenis'])
+
         ];
         return response()->json($response, Response::HTTP_OK);
     }

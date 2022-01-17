@@ -1,5 +1,19 @@
-$(document).ready(function () {
-    // fasos
+$(document).ready(async function () {
+    let getData = () => {
+        let url = "http://survey-in.test/api/option-form";
+        let requestOptions = {
+            method: "GET",
+            Headers: {
+                "Content-Type": "application/json",
+            },
+        };
+        return fetch(`${url}`, requestOptions)
+            .then((response) => response.text())
+            .then((result) => {
+                return JSON.parse(result);
+            })
+            .catch((error) => console.log("error", error));
+    };
 
     if (typeof Storage !== "undefined") {
         if (sessionStorage.getItem("jmlFasos") === null) {
@@ -11,8 +25,8 @@ $(document).ready(function () {
     } else {
         alert("Browser yang Anda gunakan tidak mendukung Web Storage");
     }
-    console.log(sessionStorage.getItem("jmlFasos"));
-    console.log(sessionStorage.getItem("jmlLampiran"));
+    var data = await getData();
+    // console.log(data);
     var x = 1;
     var y = 1;
     let renderFasos = () => {
@@ -26,6 +40,17 @@ $(document).ready(function () {
                             style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
                             value="{{ old('jenis_fasos_id') }}">
                             <option value="" selected disabled>-Pilih fasos-</option>
+                            ${Object.keys(data.fasos)
+                                .map(function (key) {
+                                    return (
+                                        "<option value='" +
+                                        key +
+                                        "'>" +
+                                        data.fasos[key]["jenis"] +
+                                        "</option>"
+                                    );
+                                })
+                                .join("")}
                         </select>
                     </div>
 
@@ -84,22 +109,30 @@ $(document).ready(function () {
                 style="border-radius: .5em; background: #3F4FC8;">Exit Fasos</button>
                 </div>
         `);
+        console.log(data);
         x++;
     };
     let renderLampiran = () => {
         $(".form-lampiran").append(`
-            <div class="single-form-lampiran">
+                <div class="single-form-lampiran">
                     <label for="" class="fw-bold">Keterangan</label>
                     <div class="input-group mb-3">
                         <select class="form-select form-select border-primary @error('addmoreLampiran[${y}][jenis_lampiran_id]') is-invalid @enderror" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example"
                             name="addmoreLampiran[${y}][jenis_lampiran_id]" value="">
                             <option value="" selected disabled>-Pilih kategori-</option>
-                            @foreach ($lampiran as $item)
-                                <option value="{{ $item->id }}">{{ $item->jenis }}</option>
-                            @endforeach
-                        </select>
-                       
+                            ${Object.keys(data.lampiran)
+                                .map(function (key) {
+                                    return (
+                                        "<option value='" +
+                                        key +
+                                        "'>" +
+                                        data.lampiran[key]["jenis"] +
+                                        "</option>"
+                                    );
+                                })
+                                .join("")}
+                            </select>
                     </div>
 
                     <div class="col-12">
@@ -113,10 +146,12 @@ $(document).ready(function () {
                         </div>
                         </label>
                     </div>
-                    <button type="button" id="closeLampiran" class="btn btn-primary border-0 mt-3"
-                        style="border-radius: .5em; background: #3F4FC8;">Exit Lampiran</button>
+                    <button type="button" id="closeLampiran" class="btn btn-primary border-0 mt-3"style="border-radius: .5em; background: #3F4FC8;">Exit Lampiran</button>
                 </div>
+        
+
         `);
+
         y++;
     };
     function onReloadWindow() {
@@ -146,8 +181,6 @@ $(document).ready(function () {
         j++;
         sessionStorage.setItem("jmlLampiran", j);
         $("jmlLampiran").val(j);
-        console.log(sessionStorage.getItem("jmlFasos"));
-        console.log(sessionStorage.getItem("jmlLampiran"));
         renderLampiran();
     });
     $("#add").click(function () {
@@ -155,8 +188,6 @@ $(document).ready(function () {
         i++;
         sessionStorage.setItem("jmlFasos", i);
         $("jmlFasos").val(i);
-        console.log(sessionStorage.getItem("jmlFasos"));
-        console.log(sessionStorage.getItem("jmlLampiran"));
         renderFasos();
     });
 
@@ -166,8 +197,6 @@ $(document).ready(function () {
             j--;
             sessionStorage.setItem("jmlLampiran", j);
         }
-        console.log(sessionStorage.getItem("jmlFasos"));
-        console.log(sessionStorage.getItem("jmlLampiran"));
     });
     $(document).on("click", "#close", function () {
         $(this).parents(".single-form-fasos").remove();
@@ -175,7 +204,5 @@ $(document).ready(function () {
             i--;
             sessionStorage.setItem("jmlFasos", i);
         }
-        console.log(sessionStorage.getItem("jmlFasos"));
-        console.log(sessionStorage.getItem("jmlLampiran"));
     });
 });
