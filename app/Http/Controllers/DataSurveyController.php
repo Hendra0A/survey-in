@@ -257,7 +257,10 @@ class DataSurveyController extends Controller
                 }
             }
 
-            return redirect('/surveyor')
+            $request->session()->forget('jmlFasos');
+            $request->session()->forget('jmlLampiran');
+
+            return redirect('/')
                 ->with('success', 'Data telah berhasil ditambahkan !')
                 ->with('confirm', 'Kembali ke Surveyor');
         } catch (\Exception $e) {
