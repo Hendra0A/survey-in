@@ -64,9 +64,8 @@
                     <div class="kata-sandi col-12 col-sm-5 mb-3 position-relative">
                         <label for="validationServer03" class="form-label fs-6" style="font-weight: 500;">Email</label>
                         <input type="email" name="email" class="form-control @error('email') is-invalid @enderror pe-5"
-                            id="id_password" style="border-radius: .5em; border: 1px solid #3F4FC8;"
+                            id="id_email" style="border-radius: .5em; border: 1px solid #3F4FC8;"
                             placeholder="masukan email" aria-describedby="validationServer03Feedback">
-                        <i class="far fa-eye position-absolute p-1" id="togglePassword"></i>
                         @error('email')
                         <div id="validationServer03Feedback" class="invalid-feedback">
                             {{ $message }}
