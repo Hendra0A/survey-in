@@ -7,11 +7,6 @@
                 <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survei</h1>
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
                     lengkap dan benar di bawah ini</p>
-                @error('addmore[0][jenis_fasos_id]')
-                    <div id="validationServer03Feedback" class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
                 <form method="POST" action="tambah-data" enctype="multipart/form-data" class="form-tambah"
                     autocomplete="off">
                     @csrf

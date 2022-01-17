@@ -27,8 +27,8 @@ $(document).ready(async function () {
     }
     var data = await getData();
     // console.log(data);
-    var x = 1;
-    var y = 1;
+    var x = 0;
+    var y = 0;
     let renderFasos = () => {
         $(".form-fasos").append(`
                 <div class="single-form-fasos mt-3">
@@ -44,7 +44,7 @@ $(document).ready(async function () {
                                 .map(function (key) {
                                     return (
                                         "<option value='" +
-                                        key +
+                                        data.fasos[key]["id"] +
                                         "'>" +
                                         data.fasos[key]["jenis"] +
                                         "</option>"
@@ -60,8 +60,7 @@ $(document).ready(async function () {
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]"
-                                    value="">
+                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
                         </div>
@@ -117,7 +116,7 @@ $(document).ready(async function () {
                 <div class="single-form-lampiran">
                     <label for="" class="fw-bold">Keterangan</label>
                     <div class="input-group mb-3">
-                        <select class="form-select form-select border-primary @error('addmoreLampiran[${y}][jenis_lampiran_id]') is-invalid @enderror" autocomplete="off"
+                        <select class="form-select form-select border-primary" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example"
                             name="addmoreLampiran[${y}][jenis_lampiran_id]" value="">
                             <option value="" selected disabled>-Pilih kategori-</option>
@@ -125,7 +124,7 @@ $(document).ready(async function () {
                                 .map(function (key) {
                                     return (
                                         "<option value='" +
-                                        key +
+                                        data.lampiran[key]["id"] +
                                         "'>" +
                                         data.lampiran[key]["jenis"] +
                                         "</option>"
