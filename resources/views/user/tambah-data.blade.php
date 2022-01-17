@@ -600,8 +600,9 @@
                     <!-- catatan -->
                     <div class="col-12 ps-2 mb-3">
                         <label for="input-catatan" class="form-label fw-bold">Catatan</label>
-                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;" id="input-catatan"
-                            style="height: 9em" name="catatan" value="{{ old('catatan') }}"></textarea>
+                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;"
+                            id="input-catatan" style="height: 9em" name="catatan"
+                            value="{{ old('catatan') }}"></textarea>
                     </div>
                     <!-- catatan -->
 
@@ -756,7 +757,7 @@
                 </label>
                 </div>
                 <button type="button" id="close" class="btn btn-primary border-0 mt-3"
-            style="border-radius: .5em; background: #3F4FC8;">Exit Fasos</button>
+            style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
             </div>
             `);
                 }
@@ -819,7 +820,7 @@
                         @enderror
                     </div>
                     <button type="button" id="closeLampiran" class="btn btn-primary border-0 mt-3"
-                        style="border-radius: .5em; background: #3F4FC8;">Exit Lampiran</button>
+                        style="border-radius: .5em; background: #3F4FC8;">Hapus Lampiran</button>
                 </div>
             `);
                 }
