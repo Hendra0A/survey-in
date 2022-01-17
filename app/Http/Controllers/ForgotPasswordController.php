@@ -40,7 +40,8 @@ class ForgotPasswordController extends Controller
             $message->subject('Reset Password');
         });
 
-        return view('forgot-password-notification');
+
+        return redirect("/")->with('verifiedEmail', 'yes');
     }
 
     public function showResetPasswordForm($token)

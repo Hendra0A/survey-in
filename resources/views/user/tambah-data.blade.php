@@ -330,7 +330,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="kolom-data m-1" style="width: 30%;">
                                 <label for="" class="ms-2">Persentase :</label>
                                 <div class="input-group m-1">
@@ -601,7 +600,7 @@
                     <!-- catatan -->
                     <div class="col-12 ps-2 mb-3">
                         <label for="input-catatan" class="form-label fw-bold">Catatan</label>
-                        <textarea class="form-control border-primary" style="border-radius: .5em;" id="input-catatan"
+                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;" id="input-catatan"
                             style="height: 9em" name="catatan" value="{{ old('catatan') }}"></textarea>
                     </div>
                     <!-- catatan -->
@@ -764,9 +763,9 @@
             };
 
             renderFasos(sessionStorage.getItem("jmlFasos"));
-
+            var i = sessionStorage.getItem("jmlFasos");
             $('#add').click(function() {
-                var i = sessionStorage.getItem("jmlFasos");
+                i = sessionStorage.getItem("jmlFasos");
                 i++;
                 sessionStorage.setItem("jmlFasos", i);
                 $("jmlFasos").val(i);
@@ -775,6 +774,8 @@
 
             $(document).on('click', '#close', function() {
                 $(this).parents('.single-form-fasos').remove();
+                i--;
+                sessionStorage.setItem("jmlFasos", i);
             });
 
             // lampiran

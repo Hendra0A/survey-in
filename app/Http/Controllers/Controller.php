@@ -31,8 +31,12 @@ class Controller extends BaseController
                 Alert::info('', session('info'))->showConfirmButton('Ok', '#3085d6');
             }
             if (session('singleLogin')) {
-                Alert::error('Akun Sedang Login di Perangkat Lain', session('singleLogin'))->showConfirmButton('ok', '#3085d6');;
+                Alert::error('Akun Sedang Login di Perangkat Lain', session('singleLogin'))->showConfirmButton('ok', '#3085d6');
             }
+            if (session('verifiedEmail')) {
+                alert()->image('Email Verifikasi Telah Terkirim', 'periksa email anda pada folder pesan/spam.', 'img/logo-2.png', '100px', '75px', 'image')->showConfirmButton('Kembali ke halaman login', '#3085d6');
+            }
+
 
 
             return $next($request);
