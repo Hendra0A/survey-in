@@ -17,7 +17,7 @@
         </center><br>
 
         <center>
-            <table align="center"  cellspacing='0'>
+            <table align="center" cellspacing='0'>
                 <tr valign='top'>
                     <td>Nama Gang atau Perumahan</td>
                     <td>:</td>
@@ -44,59 +44,73 @@
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
                     <td>:</td>
-                    <td>{{$data->konstruksiJalan->jenis}} Kondisi {{ $data->status_jalan }}% {{ ($data->status_jalan>=50)? '(baik)':'(buruk)' }}</td>
+                    <td>{{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
+                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
                     <td>:</td>
                     <td>
-                        Panjang = {{ ($data->dimensi_saluran_panjang_kanan!=0)?$data->dimensi_saluran_panjang_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_panjang_kiri!=0)?$data->dimensi_saluran_panjang_kiri.' m' :'tidak ada'  }}  (kiri)<br>
-                        Lebar = {{ ($data->dimensi_saluran_lebar_kanan!=0)?$data->dimensi_saluran_lebar_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_lebar_kiri!=0)?$data->dimensi_saluran_lebar_kiri.' m' :'tidak ada'  }} (kiri)<br>
-                        Kedalaman = {{ ($data->dimensi_saluran_kedalaman_kanan!=0)?$data->dimensi_saluran_kedalaman_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_kedalaman_kiri!=0)?$data->dimensi_saluran_kedalaman_kiri.' m' :'tidak ada'  }} (kiri)<br>
+                        Panjang =
+                        {{ $data->dimensi_saluran_panjang_kanan != 0 ? $data->dimensi_saluran_panjang_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_panjang_kiri != 0 ? $data->dimensi_saluran_panjang_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
+                        Lebar =
+                        {{ $data->dimensi_saluran_lebar_kanan != 0 ? $data->dimensi_saluran_lebar_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_lebar_kiri != 0 ? $data->dimensi_saluran_lebar_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
+                        Kedalaman =
+                        {{ $data->dimensi_saluran_kedalaman_kanan != 0 ? $data->dimensi_saluran_kedalaman_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_kedalaman_kiri != 0 ? $data->dimensi_saluran_kedalaman_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
                     </td>
                 </tr>
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
                     <td>:</td>
-                    <td>{{$data->konstruksiSaluran->jenis}} Kondisi {{ $data->status_saluran }}% {{ ($data->status_saluran>=50)? '(baik)':'(buruk)' }}</td>
+                    <td>{{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
+                        {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
                     <td>:</td>
                     <td>
-                    @if (count($data->fasosTable)==0)
-                        Tidak ada
-                    @else
-                        @foreach ($data->fasosTable as $item)
-                        <b>{{ $item->jenisFasos->jenis }} :</b>
-                        <table>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Koordinat</td>
-                                <td>=</td>
-                                <td>{{ $item->koordinat_fasos }}</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Panjang</td>
-                                <td>=</td>
-                                <td>{{ $item->panjang }} m</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Lebar</td>
-                                <td>=</td>
-                                <td>{{ $item->lebar }} m</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Luas</td>
-                                <td>=</td>
-                                <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }} m</td>
-                            </tr>
-                        </table>
-                        @endforeach
-                    @endif
+                        @if (count($data->fasosTable) == 0)
+                            Tidak ada
+                        @else
+                            @foreach ($data->fasosTable as $item)
+                                <b>{{ $item->jenisFasos->jenis }} :</b>
+                                <table>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Koordinat</td>
+                                        <td>=</td>
+                                        <td>{{ $item->koordinat_fasos }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Panjang</td>
+                                        <td>=</td>
+                                        <td>{{ $item->panjang }} m</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Lebar</td>
+                                        <td>=</td>
+                                        <td>{{ $item->lebar }} m</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Luas</td>
+                                        <td>=</td>
+                                        <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }} m</td>
+                                    </tr>
+                                </table>
+                            @endforeach
+                        @endif
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -144,7 +158,7 @@
                     <td>Pos Jaga</td>
                     <td>:</td>
                     <td>
-                        {{ ($data->pos_jaga==1)?'Ada' :'Tidak Ada' }}
+                        {{ $data->pos_jaga == 1 ? 'Ada' : 'Tidak Ada' }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -155,7 +169,7 @@
                             <tr>
                                 <td>
                                     Kanan =
-                                    @if ($data->jumlah_ruko_kanan==0)
+                                    @if ($data->jumlah_ruko_kanan == 0)
                                         tidak ada
                                     @else
                                         {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} lantai
@@ -165,7 +179,7 @@
                             <tr>
                                 <td>
                                     Kiri =
-                                    @if ($data->jumlah_ruko_kiri==0)
+                                    @if ($data->jumlah_ruko_kiri == 0)
                                         tidak ada
                                     @else
                                         {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} lantai
@@ -179,7 +193,7 @@
                     <td>No IMB Pendahuluan</td>
                     <td>:</td>
                     <td>
-                        {{ ($data->no_imb!=0 )? $data->no_imb : '-' }}
+                        {{ $data->no_imb != 0 ? $data->no_imb : '-' }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -193,41 +207,42 @@
                     <td>Lampiran Data</td>
                     <td>:</td>
                     <td>
-                        {{ (count($data->lampiranFoto) == 0 && count($data->fasosTable)==0)? '-':''  }}
+                        {{ count($data->lampiranFoto) == 0 && count($data->fasosTable) == 0 ? '-' : '' }}
                     </td>
                 </tr>
             </table>
             <table width='100%' align="center">
                 {{-- @dd($data->lampiranFoto) --}}
                 @foreach ($data->fasosTable as $item)
-                    @if ( ($loop->iteration % 2== 1))
-                    <tr>
+                    @if ($loop->iteration % 2 == 1)
+                        <tr>
                     @endif
-                        <td align="center" style="padding: 10px">
-                            <h3 style="text-align: center">{{$item->jenisFasos->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="300px" height="200px">
-                        </td>
-                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->fasosTable)+1))
-                    </tr>
+                    <td align="center" style="padding: 10px">
+                        <h3 style="text-align: center">{{ $item->jenisFasos->jenis }}</h3>
+                        <img src="{{ asset('storage/' . $item->foto) }}" width="300px" height="200px">
+                    </td>
+                    @if ($loop->iteration % 2 == 0 || $loop->iteration == count($data->fasosTable) + 1)
+                        </tr>
                     @endif
                 @endforeach
             </table>
             <table align='center' width="100%">
                 {{-- @dd($data->lampiranFoto) --}}
                 @foreach ($data->lampiranFoto as $item)
-                    @if ( ($loop->iteration % 2== 1) || ($loop->iteration == count($data->lampiranFoto)+1))
-                    <tr>
+                    @if ($loop->iteration % 2 == 1 || $loop->iteration == count($data->lampiranFoto) + 1)
+                        <tr>
                     @endif
-                        <td align="center" style="padding: 10px">
-                            <h3 style="text-align: center">{{$item->jenisLampiran->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="300px" height="200px">
-                        </td>
-                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->lampiranFoto)+1))
-                    </tr>
+                    <td align="center" style="padding: 10px">
+                        <h3 style="text-align: center">{{ $item->jenisLampiran->jenis }}</h3>
+                        <img src="{{ asset('storage/' . $item->foto) }}" width="300px" height="200px">
+                    </td>
+                    @if ($loop->iteration % 2 == 0 || $loop->iteration == count($data->lampiranFoto) + 1)
+                        </tr>
                     @endif
                 @endforeach
             </table>
         </center>
     </div>
 </body>
+
 </html>

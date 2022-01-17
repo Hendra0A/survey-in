@@ -9,61 +9,69 @@
     <link rel="stylesheet" href="/fontawesome5/css/all.css">
     <link rel="stylesheet" href="/css/custom.css">
     <style>
-        .data{
+        .data {
             width: 210mm;
             margin: auto;
             min-height: 100vh;
             background-color: whitesmoke;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             padding-bottom: 100px
         }
-        body{
+
+        body {
             background-color: gray
         }
-        .btn-download{
+
+        .btn-download {
             position: fixed;
             top: 2%;
-            right:2%;
+            right: 2%;
             background: blueviolet;
             padding: 10px 50px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
         }
-        .btn-back{
+
+        .btn-back {
             position: fixed;
             top: 2%;
-            left:3%;
+            left: 3%;
             background: rgb(137, 43, 226);
             padding: 10px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
             color: white
-        }.btn-back i{
+        }
+
+        .btn-back i {
             color: white;
             text-align: center
         }
-        .btn-download a{
+
+        .btn-download a {
             text-decoration: none;
             color: white;
             font-weight: bold;
         }
-        table{
+
+        table {
             table-layout: fixed
         }
+
     </style>
 
 </head>
 
 
 <body>
-    <div class="data" >
+    <div class="data">
         <center><br>
             <h2 class="hh">DATA PRASARANA UTILITAS GANG DAN PERUMAHAN </h2>
             <h2>({{ $data->kecamatan->nama }})</h2>
         </center><br>
 
         <center>
-            <table align="center"  cellspacing='0' cellpadding="7">
+            <table align="center" cellspacing='0' cellpadding="7">
                 <tr valign='top'>
                     <td>Nama Gang atau Perumahan</td>
                     <td style="padding: 0 20px">:</td>
@@ -90,59 +98,73 @@
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
                     <td style="padding: 0 20px">:</td>
-                    <td>{{$data->konstruksiJalan->jenis}} Kondisi {{ $data->status_jalan }}% {{ ($data->status_jalan>=50)? '(baik)':'(buruk)' }}</td>
+                    <td>{{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
+                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
                     <td style="padding: 0 20px">:</td>
                     <td>
-                        Panjang = {{ ($data->dimensi_saluran_panjang_kanan!=0)?$data->dimensi_saluran_panjang_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_panjang_kiri!=0)?$data->dimensi_saluran_panjang_kiri.' m' :'tidak ada'  }}  (kiri)<br>
-                        Lebar = {{ ($data->dimensi_saluran_lebar_kanan!=0)?$data->dimensi_saluran_lebar_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_lebar_kiri!=0)?$data->dimensi_saluran_lebar_kiri.' m' :'tidak ada'  }} (kiri)<br>
-                        Kedalaman = {{ ($data->dimensi_saluran_kedalaman_kanan!=0)?$data->dimensi_saluran_kedalaman_kanan.' m' :'tidak ada' }} (kanan) dan {{ ($data->dimensi_saluran_kedalaman_kiri!=0)?$data->dimensi_saluran_kedalaman_kiri.' m' :'tidak ada'  }} (kiri)<br>
+                        Panjang =
+                        {{ $data->dimensi_saluran_panjang_kanan != 0 ? $data->dimensi_saluran_panjang_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_panjang_kiri != 0 ? $data->dimensi_saluran_panjang_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
+                        Lebar =
+                        {{ $data->dimensi_saluran_lebar_kanan != 0 ? $data->dimensi_saluran_lebar_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_lebar_kiri != 0 ? $data->dimensi_saluran_lebar_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
+                        Kedalaman =
+                        {{ $data->dimensi_saluran_kedalaman_kanan != 0 ? $data->dimensi_saluran_kedalaman_kanan . ' m' : 'tidak ada' }}
+                        (kanan) dan
+                        {{ $data->dimensi_saluran_kedalaman_kiri != 0 ? $data->dimensi_saluran_kedalaman_kiri . ' m' : 'tidak ada' }}
+                        (kiri)<br>
                     </td>
                 </tr>
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
                     <td style="padding: 0 20px">:</td>
-                    <td>{{$data->konstruksiSaluran->jenis}} Kondisi {{ $data->status_saluran }}% {{ ($data->status_saluran>=50)? '(baik)':'(buruk)' }}</td>
+                    <td>{{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
+                        {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}</td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
                     <td style="padding: 0 20px">:</td>
                     <td>
-                    @if (count($data->fasosTable)==0)
-                        Tidak ada
-                    @else
-                        @foreach ($data->fasosTable as $item)
-                        <b>{{ $item->jenisFasos->jenis }} :</b>
-                        <table>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Koordinat</td>
-                                <td>=</td>
-                                <td>{{ $item->koordinat_fasos }}</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Panjang</td>
-                                <td>=</td>
-                                <td>{{ $item->panjang }} m</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Lebar</td>
-                                <td>=</td>
-                                <td>{{ $item->lebar }} m</td>
-                            </tr>
-                            <tr>
-                                <td style="padding: 0 10px"></td>
-                                <td>Luas</td>
-                                <td>=</td>
-                                <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }} m</td>
-                            </tr>
-                        </table>
-                        @endforeach
-                    @endif
+                        @if (count($data->fasosTable) == 0)
+                            Tidak ada
+                        @else
+                            @foreach ($data->fasosTable as $item)
+                                <b>{{ $item->jenisFasos->jenis }} :</b>
+                                <table>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Koordinat</td>
+                                        <td>=</td>
+                                        <td>{{ $item->koordinat_fasos }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Panjang</td>
+                                        <td>=</td>
+                                        <td>{{ $item->panjang }} m</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Lebar</td>
+                                        <td>=</td>
+                                        <td>{{ $item->lebar }} m</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="padding: 0 10px"></td>
+                                        <td>Luas</td>
+                                        <td>=</td>
+                                        <td>{{ $item->lebar * $data->fasosTable[$loop->index]->panjang }} m</td>
+                                    </tr>
+                                </table>
+                            @endforeach
+                        @endif
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -181,7 +203,7 @@
                             <tr>
                                 <td>Swadaya</td>
                                 <td>=</td>
-                                <td>{{ $data->jumlah_rumah_swadaya }}  Unit</td>
+                                <td>{{ $data->jumlah_rumah_swadaya }} Unit</td>
                             </tr>
                         </table>
                     </td>
@@ -190,7 +212,7 @@
                     <td>Pos Jaga</td>
                     <td style="padding: 0 20px">:</td>
                     <td>
-                        {{ ($data->pos_jaga==1)?"Ada" : "Tidak Ada" }}
+                        {{ $data->pos_jaga == 1 ? 'Ada' : 'Tidak Ada' }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -201,7 +223,7 @@
                             <tr>
                                 <td>
                                     Kanan =
-                                    @if ($data->jumlah_ruko_kanan==0)
+                                    @if ($data->jumlah_ruko_kanan == 0)
                                         tidak ada
                                     @else
                                         {{ $data->jumlah_ruko_kanan }} unit {{ $data->lantai_ruko_kanan }} lantai
@@ -211,7 +233,7 @@
                             <tr>
                                 <td>
                                     Kiri =
-                                    @if ($data->jumlah_ruko_kiri==0)
+                                    @if ($data->jumlah_ruko_kiri == 0)
                                         tidak ada
                                     @else
                                         {{ $data->jumlah_ruko_kiri }} unit {{ $data->lantai_ruko_kiri }} lantai
@@ -225,7 +247,7 @@
                     <td>No IMB Pendahuluan</td>
                     <td style="padding: 0 20px">:</td>
                     <td>
-                        {{ ($data->no_imb!=0 )? $data->no_imb : '-' }}
+                        {{ $data->no_imb != 0 ? $data->no_imb : '-' }}
                     </td>
                 </tr>
                 <tr valign='top'>
@@ -246,47 +268,49 @@
                     <td>Lampiran Data</td>
                     <td style="padding: 0 20px">:</td>
                     <td>
-                        {{ (count($data->lampiranFoto) == 0 && count($data->fasosTable)==0)? '-':''  }}
+                        {{ count($data->lampiranFoto) == 0 && count($data->fasosTable) == 0 ? '-' : '' }}
                     </td>
                 </tr>
             </table>
             <table width='100%' align="center">
                 {{-- @dd($data->lampiranFoto) --}}
                 @foreach ($data->fasosTable as $item)
-                    @if ( ($loop->iteration % 2== 1))
-                    <tr>
+                    @if ($loop->iteration % 2 == 1)
+                        <tr>
                     @endif
-                        <td align="center" style="padding: 10px">
-                            <h3 style="text-align: center">{{$item->jenisFasos->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="300px" height="200px">
-                        </td>
-                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->fasosTable)+1))
-                    </tr>
+                    <td align="center" style="padding: 10px">
+                        <h3 style="text-align: center">{{ $item->jenisFasos->jenis }}</h3>
+                        <img src="{{ asset('storage/' . $item->foto) }}" width="300px" height="200px">
+                    </td>
+                    @if ($loop->iteration % 2 == 0 || $loop->iteration == count($data->fasosTable) + 1)
+                        </tr>
                     @endif
                 @endforeach
             </table>
             <table width='100%' align="center">
                 {{-- @dd($data->lampiranFoto) --}}
                 @foreach ($data->lampiranFoto as $item)
-                    @if ( ($loop->iteration % 2== 1))
-                    <tr>
+                    @if ($loop->iteration % 2 == 1)
+                        <tr>
                     @endif
-                        <td align="center" style="padding: 10px">
-                            <h3 style="text-align: center">{{$item->jenisLampiran->jenis}}</h3>
-                            <img src="{{$item->foto}}" width="300px" height="200px">
-                        </td>
-                    @if ( ($loop->iteration % 2 == 0) || ($loop->iteration == count($data->lampiranFoto)+1))
-                    </tr>
+                    <td align="center" style="padding: 10px">
+                        <h3 style="text-align: center">{{ $item->jenisLampiran->jenis }}</h3>
+                        <img src="{{ asset('storage/' . $item->foto) }}" width="300px" height="200px">
+                    </td>
+                    @if ($loop->iteration % 2 == 0 || $loop->iteration == count($data->lampiranFoto) + 1)
+                        </tr>
                     @endif
                 @endforeach
             </table>
         </center>
     </div>
     <div class="btn-download">
-        <a class="btn-cetak" href="/data-survei/print/{{ $data->id }}"><i class="fas fa-download"></i>Download</a>
+        <a class="btn-cetak" href="/data-survei/print/{{ $data->id }}"><i
+                class="fas fa-download"></i>Download</a>
     </div>
     <div class="btn-back">
         <a class="btn-cetak" href="/data-survei"><i class="fas fa-arrow-left"></i></a>
     </div>
 </body>
+
 </html>
