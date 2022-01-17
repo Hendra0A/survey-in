@@ -7,7 +7,11 @@
                 <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survei</h1>
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
                     lengkap dan benar di bawah ini</p>
-
+                @error('addmore[0][jenis_fasos_id]')
+                    <div id="validationServer03Feedback" class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
                 <form method="POST" action="tambah-data" enctype="multipart/form-data" class="form-tambah"
                     autocomplete="off">
                     @csrf
@@ -326,7 +330,6 @@
                                     </select>
                                 </div>
                             </div>
-
                             <div class="kolom-data m-1" style="width: 30%;">
                                 <label for="" class="ms-2">Persentase :</label>
                                 <div class="input-group m-1">
@@ -597,7 +600,7 @@
                     <!-- catatan -->
                     <div class="col-12 ps-2 mb-3">
                         <label for="input-catatan" class="form-label fw-bold">Catatan</label>
-                        <textarea class="form-control border-primary" style="border-radius: .5em;" id="input-catatan"
+                        <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;" id="input-catatan"
                             style="height: 9em" name="catatan" value="{{ old('catatan') }}"></textarea>
                     </div>
                     <!-- catatan -->
@@ -661,7 +664,7 @@
                     <div class="col-12 col-sm-6 mt-sm-1">
                         <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
                             Sosial(Fasos)</label>
-                        <select class="form-select form-select border-primary" autocomplete="off"
+                        <select class="form-select form-select border-primary @error('addmore[${x}][jenis_fasos_id]') is-invalid @enderror" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
                             value="{{ old('jenis_fasos_id') }}">
                             <option value="" selected disabled>-Pilih fasos-</option>
@@ -669,29 +672,44 @@
                                 <option value="{{ $item->id }}">{{ $item->jenis }}</option>
                             @endforeach
                         </select>
+                        @error('addmore[${x}][jenis_fasos_id]')
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="d-flex col-sm-6 justify-content-evenly">
                         <div class="kolom-data col-5">
                             <label for="" class="ms-2">Panjang :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control border-primary"
+                                <input type="text" class="form-control border-primary @error('addmore[${x}][panjang]') is-invalid @enderror"
                                     style="border-radius: .5em;" aria-label="Username"
                                     aria-describedby="basic-addon1" name="addmore[${x}][panjang]"
                                     value="{{ old('panjang') }}">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
+                            @error('addmore[${x}][panjang]')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
 
                         <div class="kolom-data col-5">
                             <label for="" class="ms-2">Lebar :</label>
                             <div class="input-group">
-                                <input type="text" class="form-control border-primary"
+                                <input type="text" class="form-control border-primary @error('addmore[${x}][lebar]') is-invalid @enderror"
                                     style="border-radius: .5em;" aria-label="Username"
                                     aria-describedby="basic-addon1" name="addmore[${x}][lebar]"
                                     value="{{ old('lebar') }}">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
+                            @error('addmore[${x}][lebar]')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                     </div>
                 </div>
@@ -745,9 +763,9 @@
             };
 
             renderFasos(sessionStorage.getItem("jmlFasos"));
-
+            var i = sessionStorage.getItem("jmlFasos");
             $('#add').click(function() {
-                var i = sessionStorage.getItem("jmlFasos");
+                i = sessionStorage.getItem("jmlFasos");
                 i++;
                 sessionStorage.setItem("jmlFasos", i);
                 $("jmlFasos").val(i);
@@ -756,6 +774,8 @@
 
             $(document).on('click', '#close', function() {
                 $(this).parents('.single-form-fasos').remove();
+                i--;
+                sessionStorage.setItem("jmlFasos", i);
             });
 
             // lampiran
@@ -767,7 +787,7 @@
             <div class="single-form-lampiran">
                     <label for="" class="fw-bold">Keterangan</label>
                     <div class="input-group mb-3">
-                        <select class="form-select form-select border-primary" autocomplete="off"
+                        <select class="form-select form-select border-primary @error('addmoreLampiran[${y}][jenis_lampiran_id]') is-invalid @enderror" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example"
                             name="addmoreLampiran[${y}][jenis_lampiran_id]" value="{{ old('jenis_lampiran_id') }}">
                             <option value="" selected disabled>-Pilih kategori-</option>
@@ -775,11 +795,16 @@
                                 <option value="{{ $item->id }}">{{ $item->jenis }}</option>
                             @endforeach
                         </select>
+                        @error('addmoreLampiran[${y}][jenis_lampiran_id]')
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
 
                     <div class="col-12">
                             <input type="file" name="addmoreLampiran[${y}][foto]"
-                            class="imageLampiran btn btn-primary border-0"
+                            class="imageLampiran btn btn-primary border-0 @error('addmoreLampiran[${y}][foto]') is-invalid @enderror"
                             style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}">
                             <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"
@@ -787,6 +812,11 @@
                             <img src="/img/kartu-empat.png" id="imageLampiran" style="width: 9em;">
                         </div>
                         </label>
+                        @error('addmoreLampiran[${y}][foto]')
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
                     </div>
                     <button type="button" id="closeLampiran" class="btn btn-primary border-0 mt-3"
                         style="border-radius: .5em; background: #3F4FC8;">Exit Lampiran</button>

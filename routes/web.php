@@ -29,7 +29,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/pengaturan/edit-password', [SurveyorController::class, 'updatePassword'])->withoutMiddleware('defaultPassword');;
         Route::get('/tentang', [SurveyorController::class, 'tentang']);
         Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
-        Route::post('/tambah-data', [SurveyorController::class, 'tambahData']);
+        Route::post('/tambah-data', [DataSurveyController::class, 'tambahData']);
     });
     Route::group(['middleware' => 'admin'], function () {
         //beranda
