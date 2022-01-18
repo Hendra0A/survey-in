@@ -1,7 +1,7 @@
 $(document).ready(async function () {
 
     let getData = async (path, id) => {
-        let url = "http://survey-in.test/api";
+        let url = "https://survey-kite.000webhostapp.com/api";
         let fd = new FormData();
         fd.append("id", id);
         let requestOptions = {

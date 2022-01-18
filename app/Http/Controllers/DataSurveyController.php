@@ -103,6 +103,7 @@ class DataSurveyController extends Controller
 
     public function tambahData(Request $request)
     {
+        // dd($request);
         $request->validate([
             'kecamatan_id' => ['required'],
             'nama_gang' => ['required', 'max:255'],
@@ -169,8 +170,12 @@ class DataSurveyController extends Controller
             if ($request->addmore[0]['jenis_fasos_id'] !== null) {
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
-       
-                        $fotoFasos = $value['foto']->store('foto-fasos');
+
+                        $image = $value['foto'];
+                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
+                        $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
@@ -192,9 +197,11 @@ class DataSurveyController extends Controller
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         // // image
-
-                        // upload store
-                        $fotoLampiran = $value['foto']->store('foto-lampiran');
+                        $image = $value['foto'];
+                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
+                        $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
