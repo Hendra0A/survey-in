@@ -164,29 +164,23 @@ class DataSurveyController extends Controller
                 'catatan' => $request->catatan
             ]);
 
-            // if ($jenis_fasos_id !== null || $jenis_lampiran_id !== null) {
-            //     $request->validate([
-            //         'koordinat_fasos' => ['required'],
-            //         'foto' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
-            //     ]);
-            // }
-
-
             // fasos
             $datasFasos = [];
             if ($request->addmore[0]['jenis_fasos_id'] !== null) {
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
                         // image
-
-                        // upload store
-                        $fotoFasos = $value['foto']->store('foto-fasos');
+                        $image = $value['foto'];
+                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
+                        $image_path = "foto-fasos/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_fasos['foto'] = $fotoFasos;
+                        $data_fasos['foto'] = $image_path;
                         $datasFasos[] = $data_fasos;
                     }
                 }
@@ -202,15 +196,17 @@ class DataSurveyController extends Controller
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         // // image
-
-                        // upload store
-                        $fotoLampiran = $value['foto']->store('foto-lampiran');
+                        $image = $value['foto'];
+                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
+                        $image_path = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_lampiran['foto'] = $fotoLampiran;
+                        $data_lampiran['foto'] = $image_path;
                         $datasLampiran[] = $data_lampiran;
                     }
                 }
