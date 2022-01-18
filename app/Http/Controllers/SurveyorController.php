@@ -188,8 +188,7 @@ class SurveyorController extends Controller
             return view('user.tambah-data', [
                 'active' => 'tambah data',
                 'title' => 'Tambah Data Survei',
-                'data' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
-                    ->orderBy('id', 'ASC')->get(['id', 'nama']),
+                'kecamatan' => $data[0]->kecamatan,
                 'jalan' => JenisKonstruksiJalan::all(),
                 'saluran' => JenisKonstruksiSaluran::all(),
                 'fasos' => JenisFasos::all(),
