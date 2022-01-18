@@ -195,8 +195,9 @@
                 </table>
                 <div class="tombol-detail col-12 d-flex justify-content-center">
                     @if (auth()->user()->id == $data->user->id)
-                        <a href="" class="text-decoration-none btn btn-warning m-2 text-white"
-                            style="border-radius: .5em;"><i class="far fa-edit pe-2"></i>Edit</a>
+                        <a href="/surveyor/data-survei/detail/edit/{{ request()->id }}"
+                            class="text-decoration-none btn btn-warning m-2 text-white" style="border-radius: .5em;"><i
+                                class="far fa-edit pe-2"></i>Edit</a>
                     @endif
                     <a href="/data-survei/print/{{ $data->id }}"
                         class="text-decoration-none btn btn-primary m-2 text-white border-0"

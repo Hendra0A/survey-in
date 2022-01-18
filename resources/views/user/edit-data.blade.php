@@ -7,17 +7,19 @@
                 <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survei</h1>
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
                     lengkap dan benar di bawah ini</p>
-                <form method="POST" action="tambah-data" enctype="multipart/form-data" class="form-tambah"
-                    autocomplete="off">
+                {{-- @dump(old('addmore.0.koordinat_fasos')) --}}
+                <form method="POST" enctype="multipart/form-data" class="form-tambah" autocomplete="off">
                     @csrf
+                    @method('put')
+                    <input type="hidden" name="id" value="{{ request()->id }}">
                     <div class="input-group mb-3">
                         <label for="kecamatan" class="form-label d-block fw-bold m-0">Kecamatan</label>
                         <select id="kecamatan"
                             class="form-select form-select-sm m-auto shadow-none border-primary mt-1 @error('kecamatan_id') is-invalid @enderror"
                             style="width: 95%;" aria-label=".form-select-sm example" name="kecamatan_id">
                             <option value="" hidden>Pilih Kecamatan</option>
-                            @foreach ($data as $kecamatan)
-                                <option {{ old('kecamatan_id') == $kecamatan->id ? 'selected' : '' }}
+                            @foreach ($kecamatans as $kecamatan)
+                                <option {{ $data->kecamatan_id == $kecamatan->id ? 'selected' : '' }}
                                     value="{{ $kecamatan->id }}"
                                     {{ $kecamatan->id == auth()->user()->kabupaten_id ? 'selected' : '' }}>
                                     {{ $kecamatan->nama }}</option>
@@ -35,7 +37,7 @@
                             <label for="nama_gang" class="form-label fw-bold">Nama Gang dan Perumahan</label>
                             <input type="text" class="form-control border-primary @error('nama_gang') is-invalid @enderror"
                                 style="border-radius: .5em;" id="nama_gang" name="nama_gang"
-                                value="{{ old('nama_gang') }}">
+                                value="{{ $data->nama_gang }}">
                             @error('nama_gang')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -46,7 +48,7 @@
                         <div class="col-12 col-sm-6 mb-3">
                             <label for="lokasi" class="form-label fw-bold">Lokasi</label>
                             <input type="text" class="form-control border-primary @error('lokasi') is-invalid @enderror"
-                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ old('lokasi') }}">
+                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ $data->lokasi }}">
                             @error('lokasi')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -64,7 +66,7 @@
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary @error('no_gps') is-invalid @enderror"
                                 style="border-radius: .5em;" id="input-koordinat" name="no_gps"
-                                value="{{ old('no_gps') }}">
+                                value="{{ $data->no_gps }}">
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -85,7 +87,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_panjang" value="{{ old('dimensi_jalan_panjang') }}">
+                                        name="dimensi_jalan_panjang" value="{{ $data->dimensi_jalan_panjang }}">
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">m</span>
                                     @error('dimensi_jalan_panjang')
@@ -102,7 +104,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_lebar" value="{{ old('dimensi_jalan_lebar') }}">
+                                        name="dimensi_jalan_lebar" value="{{ $data->dimensi_jalan_lebar }}">
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">m</span>
                                     @error('dimensi_jalan_lebar')
@@ -130,7 +132,7 @@
                                         name="jenis_konstruksi_jalan_id">
                                         <option value="" selected hidden></option>
                                         @foreach ($jalan as $item)
-                                            <option {{ old('jenis_konstruksi_jalan_id') == $item->id ? 'selected' : '' }}
+                                            <option {{ $data->jenis_konstruksi_jalan_id == $item->id ? 'selected' : '' }}
                                                 value="{{ $item->id }}">{{ $item->jenis }}</option>
                                         @endforeach
                                     </select>
@@ -148,7 +150,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('status_jalan') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="status_jalan" value="{{ old('status_jalan') }}" id="status_jalan">
+                                        name="status_jalan" value="{{ $data->status_jalan }}" id="status_jalan">
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">%</span>
                                     @error('status_jalan')
@@ -187,7 +189,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_panjang_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_panjang_kanan"
-                                                    value="{{ old('dimensi_saluran_panjang_kanan') }}">
+                                                    value="{{ $data->dimensi_saluran_panjang_kanan }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_panjang_kanan')
@@ -205,7 +207,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_panjang_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_panjang_kiri"
-                                                    value="{{ old('dimensi_saluran_panjang_kiri') }}">
+                                                    value="{{ $data->dimensi_saluran_panjang_kiri }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_panjang_kiri')
@@ -228,7 +230,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_lebar_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_lebar_kanan"
-                                                    value="{{ old('dimensi_saluran_lebar_kanan') }}">
+                                                    value="{{ $data->dimensi_saluran_lebar_kanan }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_lebar_kanan')
@@ -246,7 +248,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_lebar_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_lebar_kiri"
-                                                    value="{{ old('dimensi_saluran_lebar_kiri') }}">
+                                                    value="{{ $data->dimensi_saluran_lebar_kiri }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_lebar_kiri')
@@ -269,7 +271,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_kedalaman_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_kedalaman_kanan"
-                                                    value="{{ old('dimensi_saluran_kedalaman_kanan') }}">
+                                                    value="{{ $data->dimensi_saluran_kedalaman_kanan }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_kedalaman_kanan')
@@ -287,7 +289,7 @@
                                                     class="form-control border-primary @error('dimensi_saluran_kedalaman_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_kedalaman_kiri"
-                                                    value="{{ old('dimensi_saluran_kedalaman_kiri') }}">
+                                                    value="{{ $data->dimensi_saluran_kedalaman_kiri }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">m</span>
                                                 @error('dimensi_saluran_kedalaman_kiri')
@@ -319,7 +321,7 @@
                                         <option value="" selected hidden></option>
                                         @foreach ($saluran as $item)
                                             <option
-                                                {{ old('jenis_konstruksi_saluran_id') == $item->id ? 'selected' : '' }}
+                                                {{ $data->jenis_konstruksi_saluran_id == $item->id ? 'selected' : '' }}
                                                 value="{{ $item->id }}">{{ $item->jenis }}</option>
                                         @endforeach
                                     </select>
@@ -331,7 +333,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('status_saluran') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="status_saluran" value="{{ old('status_saluran') }}" id="status_saluran">
+                                        name="status_saluran" value="{{ $data->status_saluran }}" id="status_saluran">
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">%</span>
                                     @error('status_saluran')
@@ -381,7 +383,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_layak" value="{{ old('jumlah_rumah_layak') }}">
+                                        name="jumlah_rumah_layak" value="{{ $data->jumlah_rumah_layak }}">
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_layak')
@@ -398,7 +400,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_tak_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_tak_layak" value="{{ old('jumlah_rumah_tak_layak') }}">
+                                        name="jumlah_rumah_tak_layak" value="{{ $data->jumlah_rumah_tak_layak }}">
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_tak_layak')
@@ -415,7 +417,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_kosong') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_kosong" value="{{ old('jumlah_rumah_kosong') }}">
+                                        name="jumlah_rumah_kosong" value="{{ $data->jumlah_rumah_kosong }}">
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_kosong')
@@ -444,7 +446,7 @@
                                                     class="form-control border-primary @error('jumlah_rumah_developer') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_developer"
-                                                    value="{{ old('jumlah_rumah_developer') }}">
+                                                    value="{{ $data->jumlah_rumah_developer }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_developer')
@@ -462,7 +464,7 @@
                                                     class="form-control border-primary @error('jumlah_rumah_swadaya') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_swadaya"
-                                                    value="{{ old('jumlah_rumah_swadaya') }}">
+                                                    value="{{ $data->jumlah_rumah_swadaya }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_swadaya')
@@ -484,13 +486,11 @@
                                                     style="border-radius: .5em;" aria-label=".form-select example"
                                                     name="pos_jaga">
                                                     <option value="" selected disabled></option>
-                                                    <option {{ old('pos_jaga') == 0 ? 'selected' : '' }} value="0">Tidak
+                                                    <option {{ $data->pos_jaga == 0 ? 'selected' : '' }} value="0">Tidak
                                                         Ada</option>
-                                                    <option {{ old('pos_jaga') == 1 ? 'selected' : '' }} value="1">Ada
+                                                    <option {{ $data->pos_jaga == 1 ? 'selected' : '' }} value="1">Ada
                                                     </option>
                                                 </select>
-                                                {{-- <input type="number" class="border-primary" style="border-radius: .5em;"
-                                                    name="pos_jaga"> --}}
                                             </div>
                                         </div>
                                     </div>
@@ -517,7 +517,7 @@
                                                     class="form-control border-primary @error('jumlah_ruko_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_ruko_kanan"
-                                                    value="{{ old('jumlah_ruko_kanan') }}">
+                                                    value="{{ $data->jumlah_ruko_kanan }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">unit</span>
                                                 @error('jumlah_ruko_kanan')
@@ -531,7 +531,7 @@
                                                     class="form-control border-primary @error('lantai_ruko_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="lantai_ruko_kanan"
-                                                    value="{{ old('lantai_ruko_kanan') }}">
+                                                    value="{{ $data->lantai_ruko_kanan }}">
                                                 <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">lantai</span>
                                                 @error('lantai_ruko_kanan')
@@ -549,7 +549,7 @@
                                                     class="form-control border-primary @error('jumlah_ruko_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_ruko_kiri"
-                                                    value="{{ old('jumlah_ruko_kiri') }}">
+                                                    value="{{ $data->jumlah_ruko_kiri }}">
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">unit</span>
                                                 @error('jumlah_ruko_kiri')
@@ -563,7 +563,7 @@
                                                     class="form-control border-primary @error('lantai_ruko_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="lantai_ruko_kiri"
-                                                    value="{{ old('lantai_ruko_kiri') }}">
+                                                    value="{{ $data->lantai_ruko_kiri }}">
                                                 <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">lantai</span>
                                                 @error('lantai_ruko_kiri')
@@ -586,7 +586,7 @@
                     <div class="col-12 mb-3 ps-2">
                         <label for="input-imb" class="form-label fw-bold">No. IMB Pendahuluan</label>
                         <input type="text" class="form-control border-primary" style="border-radius: .5em;" id="input-imb"
-                            name="no_imb" value="{{ old('no_imb') }}">
+                            name="no_imb" value="{{ $data->no_imb }}">
                     </div>
                     <!-- Imb Pendahuluan -->
 
@@ -594,8 +594,7 @@
                     <div class="col-12 ps-2 mb-3">
                         <label for="input-catatan" class="form-label fw-bold">Catatan</label>
                         <textarea class="form-control" style="border-radius: .5em; border: 1px solid #3F4FC8;"
-                            id="input-catatan" style="height: 9em" name="catatan"
-                            value="{{ old('catatan') }}"></textarea>
+                            id="input-catatan" style="height: 9em" name="catatan">{{ $data->catatan }}</textarea>
                     </div>
                     <!-- catatan -->
 
@@ -625,16 +624,16 @@
                     <!-- simpan tombol -->
                 </form>
 
+                {{-- @dump($data->status_jalan); --}}
             </div>
 
             <!-- good luck have fun :) -->
         </div>
     </div>
-    {{-- @dump(addmore[0].panjang); --}}
-    <script src="/js/renderForm.js"></script>
+    <script type="text/javascript">
+        var url = '{{ URL::asset('storage/') }}';
+    </script>
+    <script src="/js/renderFormEdit.js"></script>
     <script src="/js/tambah-data-user.js"></script>
-    {{-- <script type="text/javascript">
-        var old = '{{ old('') }}';
-    </script> --}}
     @include('user.navigation')
 @endsection

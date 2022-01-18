@@ -24,3 +24,4 @@ Route::post('/data-survei', [ApiController::class, 'getData']);
 Route::post('/data-survei-saya', [ApiController::class, 'myDataSurvey']);
 Route::post('/data-survei-saya', [ApiController::class, 'myDataSurvey']);
 Route::get('/option-form', [ApiController::class, 'getOption']);
+Route::get('/option-form/{id}', [ApiController::class, 'getOptionEdit']);
