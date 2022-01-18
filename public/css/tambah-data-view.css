@@ -1,14 +1,14 @@
 label {
     font-size: 0.7em;
 }
-/* 
+
 #form-tambahan {
-    display: none;
+    display: block;
 }
 
 #tambah-lampiran {
-    display: none;
-} */
+    display: block;
+}
 
 .imageFasos, .imageLampiran {
     width: 0.1px;

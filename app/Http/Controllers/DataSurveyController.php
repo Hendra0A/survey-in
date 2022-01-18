@@ -175,28 +175,9 @@ class DataSurveyController extends Controller
             // fasos
             $datasFasos = [];
             if ($request->addmore[0]['jenis_fasos_id'] !== null) {
-                // $request->validate([
-                //     "addmore[0]['jenis_fasos_id']" => ['required'],
-                //     "addmore[0]['koordinat_fasos']" => ['required'],
-                //     "addmore[0]['foto']" => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
-                // ]);
-                // dd($request->addmore);
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
-                        // // image
-                        // $fotoFasos_nameWithExt = $value['foto']->getClientOriginalName();
-
-                        // // get filename
-                        // $fotoFasos_name = pathinfo($fotoFasos_nameWithExt, PATHINFO_FILENAME);
-
-                        // // encrypt
-                        // $fotoFasos_encrypt_name = encrypt($fotoFasos_name);
-
-                        // // get just extension
-                        // $fotoFasos_extension = $value['foto']->getClientOriginalExtension();
-
-                        // // filename to store
-                        // $fotoFasosStore = $fotoFasos_encrypt_name . '_' . time() . '.' . $fotoFasos_extension;
+                        // image
 
                         // upload store
                         $fotoFasos = $value['foto']->store('foto-fasos');
@@ -218,27 +199,9 @@ class DataSurveyController extends Controller
             // lampiran
             $datasLampiran = [];
             if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
-                // $request->validate([
-                //     'jenis_lampiran_id' => ['required'],
-                //     'foto' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
-                // ]);
-                // dd($request->addmoreLampiran);
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         // // image
-                        // $fotoLampiran_nameWithExt = $value['foto']->getClientOriginalName();
-
-                        // // get filename
-                        // $fotoLampiran_name = pathinfo($fotoLampiran_nameWithExt, PATHINFO_FILENAME);
-
-                        // // encrypt
-                        // $fotoLampiran_encrypt_name = encrypt($fotoLampiran_name);
-
-                        // // get just extension
-                        // $fotoLampiran_extension = $value['foto']->getClientOriginalExtension();
-
-                        // // filename to store
-                        // $fotoLampiranStore = $fotoLampiran_encrypt_name . '_' . time() . '.' . $fotoLampiran_extension;
 
                         // upload store
                         $fotoLampiran = $value['foto']->store('foto-lampiran');

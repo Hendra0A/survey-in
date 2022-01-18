@@ -1,6 +1,9 @@
 $(document).ready(async function () {
-    let getData = () => {
-        let url = "http://survey-in.test/api/option-form";
+    
+    let getData = () => {   
+        var uri = window.location.pathname;
+        var idUri = uri.split('/').pop();
+        let url = "http://survey-in.test/api/option-form/"+idUri;
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -14,7 +17,9 @@ $(document).ready(async function () {
             })
             .catch((error) => console.log("error", error));
     };
-
+    
+    var data = await getData();
+    // var datas = await getDataEdit();
     if (typeof Storage !== "undefined") {
         if (sessionStorage.getItem("jmlFasos") === null) {
             sessionStorage.setItem("jmlFasos", 0);
@@ -22,13 +27,21 @@ $(document).ready(async function () {
         if (sessionStorage.getItem("jmlLampiran") === null) {
             sessionStorage.setItem("jmlLampiran", 0);
         }
+        if(data.fasos.length){
+            sessionStorage.setItem("jmlFasos", data.fasos.length);
+        }
+        if(data.lampiran.length){
+            sessionStorage.setItem("jmlLampiran", data.lampiran.length);
+        }
     } else {
         alert("Browser yang Anda gunakan tidak mendukung Web Storage");
     }
-    var data = await getData();
+    
+    // console.log(datas);
+    console.log(data.fasos[3]);
     var x = 0;
     var y = 0;
-    // console.log(data.fasos[0].panjang);
+    // console.log(data.lampiran[0].jenis_lampiran_id);
     let renderFasos = () => {
         $(".form-fasos").append(`
                 <div class="single-form-fasos mt-3">
@@ -37,18 +50,27 @@ $(document).ready(async function () {
                         <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
                             Sosial(Fasos)</label>
                         <select class="form-select form-select border-primary" autocomplete="off"
-                            style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
-                            value="{{ old('jenis_fasos_id') }}">
+                            style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]">
                             <option value="" selected disabled>-Pilih fasos-</option>
                             ${Object.keys(data.jenisFasos)
                                 .map(function (key) {
+                                    if(data.fasos[x] == undefined){
+                                        return (
+                                            "<option value='" +
+                                            data.jenisFasos[key]["id"] +
+                                            "'>" +
+                                            data.jenisFasos[key]["jenis"] +
+                                            "</option>"
+                                        );
+                                    } else {
                                     return (
-                                        "<option value='" +
+                                        '<option '+ (data.fasos[x].jenis_fasos_id == data.jenisFasos[key]['id'] ? 'selected' : '') +' value="' +
                                         data.jenisFasos[key]["id"] +
-                                        "'>" +
+                                        '">' +
                                         data.jenisFasos[key]["jenis"] +
-                                        "</option>"
+                                        '</option>'
                                     );
+                                    }
                                 })
                                 .join("")}
                         </select>
@@ -60,7 +82,7 @@ $(document).ready(async function () {
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="">
+                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="`+data.fasos[x].panjang+`">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
                         </div>
@@ -70,7 +92,8 @@ $(document).ready(async function () {
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]">
+                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]"
+                                    value="`+data.fasos[x].lebar+`">
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
                         </div>
@@ -88,7 +111,7 @@ $(document).ready(async function () {
                                     <input type="text"
                                         class="lokasi-fasos form-control border-primary "
                                         style="border-radius: .5em;" id="input-koordinat-fasos"
-                                        name="addmore[${x}][koordinat_fasos]" value="">
+                                        name="addmore[${x}][koordinat_fasos]" value="`+data.fasos[x].koordinat_fasos+`">
                                 </div>
                             </div>
 
@@ -99,7 +122,7 @@ $(document).ready(async function () {
                     <label for="fasos-${x}">
                     <div class="img-keterangan mt-2 p-2 text-sm-center"
                         style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                        <img src="/img/kartu-empat.png" class="imageFasosView" style="width: 9em;">
+                        <img src="${url+ '/' + data.fasos[x].foto}" class="imageFasosView" style="width: 9em;">
                     </div>
                 </label>
                 </div>
@@ -107,7 +130,6 @@ $(document).ready(async function () {
                 style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
                 </div>
         `);
-        console.log(data);
         x++;
     };
     let renderLampiran = () => {
@@ -122,11 +144,11 @@ $(document).ready(async function () {
                             ${Object.keys(data.jenisLampiran)
                                 .map(function (key) {
                                     return (
-                                        "<option value='" +
+                                        '<option '+ (data.lampiran[y].jenis_lampiran_id == data.jenisLampiran[key]['id'] ? 'selected' : '') +' value="' +
                                         data.jenisLampiran[key]["id"] +
-                                        "'>" +
+                                        '">' +
                                         data.jenisLampiran[key]["jenis"] +
-                                        "</option>"
+                                        '</option>'
                                     );
                                 })
                                 .join("")}
@@ -140,7 +162,7 @@ $(document).ready(async function () {
                             <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"
                             style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                            <img src="/img/kartu-empat.png" id="imageLampiran" style="width: 9em;">
+                            <img src="${url+ '/' + data.lampiran[y].foto}" id="imageLampiran" style="width: 9em;">
                         </div>
                         </label>
                     </div>

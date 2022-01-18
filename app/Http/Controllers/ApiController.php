@@ -2,14 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Kecamatan;
-use App\Models\Kabupaten;
-use App\Models\DataSurvey;
 use App\Models\Fasos;
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
+use App\Models\DataSurvey;
 use App\Models\JenisFasos;
+use Illuminate\Http\Request;
 use App\Models\JenisLampiran;
 use Dflydev\DotAccessData\Data;
-use Illuminate\Http\Request;
+use App\Models\JenisKonstruksiJalan;
+use App\Models\JenisKonstruksiSaluran;
+use App\Models\LampiranFoto;
 use Symfony\Component\HttpFoundation\Response;
 
 class ApiController extends Controller
@@ -36,10 +39,29 @@ class ApiController extends Controller
     }
     public function getOption()
     {
+
+        // dd(LampiranFoto::where('data_survey_id', $id)->get());
         $response = [
             'message' => 'List of option',
-            'fasos' => JenisFasos::get((['id', 'jenis'])),
-            'lampiran' => JenisLampiran::get(['id', 'jenis'])
+            'jenisFasos' => JenisFasos::get((['id', 'jenis'])),
+            'jenisLampiran' => JenisLampiran::get(['id', 'jenis']),
+            'fasos' => Fasos::all()
+
+
+        ];
+        return response()->json($response, Response::HTTP_OK);
+    }
+    public function getOptionEdit($id)
+    {
+
+        // dd(LampiranFoto::where('data_survey_id', $id)->get());
+        $response = [
+            'message' => 'List of option',
+            'jenisFasos' => JenisFasos::get((['id', 'jenis'])),
+            'jenisLampiran' => JenisLampiran::get(['id', 'jenis']),
+            'fasos' => Fasos::where('data_survey_id', $id)->get(),
+            'lampiran' => LampiranFoto::where('data_survey_id', $id)->get()
+
 
         ];
         return response()->json($response, Response::HTTP_OK);
