@@ -135,6 +135,7 @@ i {
     background-color: #f3f5f7;
     margin-left: 250px;
     transition: none;
+    min-height: 100vh;
 }
 
 /* Header section */
