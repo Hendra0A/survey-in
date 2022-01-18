@@ -1,6 +1,5 @@
 $(document).ready(async function () {
     let getData = async (path, method, kecamatan_id, id) => {
-        // let url = "http://192.168.137.1:8000/api";
         let url = "http://survey-in.test/api";
         let fd = new FormData();
         fd.append("id", id);
@@ -46,7 +45,24 @@ $(document).ready(async function () {
     setResumeSurvey(method, $("#kecamatan").val());
     let render = (data) => {
         if (data.length == 0) {
-            $(".list-data").html(`Data Kecamatan Belum Tersedia`);
+            $(".list-data").html("");
+            if (method == "all") {
+                $(".list-data").append(
+                    `<p class="text-center fw-bold">Data Kecamatan ${$(
+                        "#kecamatan"
+                    )
+                        .find("option:selected")
+                        .text()} belum tersedia</p>`
+                );
+            } else if (method == "single") {
+                $(".list-data").append(
+                    `<p class="text-center fw-bold">Anda belum melakukan survei pada Kecamatan ${$(
+                        "#kecamatan"
+                    )
+                        .find("option:selected")
+                        .text()}</p>`
+                );
+            }
         } else {
             $(".list-data").html("");
             data.forEach((element) => {

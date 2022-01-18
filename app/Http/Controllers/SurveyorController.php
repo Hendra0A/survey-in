@@ -99,10 +99,8 @@ class SurveyorController extends Controller
         // ddd($request);
         $validateData = $request->validate([
             'nama_lengkap' => ['required'],
-            'email' => ['required'],
             'tanggal_lahir' => ['required'],
             'gender' => ['required'],
-            'nomor_telepon' => ['required'],
             'alamat' => ['required'],
             'avatar' => 'image|file|max:2048'
         ]);
@@ -111,7 +109,12 @@ class SurveyorController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+            $image = $request->file('avatar');
+            $md5Name = md5_file($request->file('avatar')->getRealPath());
+            $guessExtension = $request->file('avatar')->guessExtension();
+            $image->move(public_path('/storage/avatar-images'), $md5Name . '.' . $guessExtension);
+            $image_path = "avatar-images/" . $md5Name . '.' . $guessExtension;
+            $validateData['avatar'] = $image_path;
         }
         try {
             User::where('id', $request->id)
@@ -176,16 +179,23 @@ class SurveyorController extends Controller
     public function tambah()
     {
 
-        return view('user.tambah-data', [
-            'active' => 'tambah data',
-            'title' => 'Tambah Data Survei',
-            'data' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
-                ->orderBy('id', 'ASC')->get(['id', 'nama']),
-            'jalan' => JenisKonstruksiJalan::all(),
-            'saluran' => JenisKonstruksiSaluran::all(),
-            'fasos' => JenisFasos::all(),
-            'lampiran' => JenisLampiran::all()
-        ]);
+        $data = DetailSurveys::with('kecamatan')->where('user_id', auth()->user()->id)
+            ->whereDate('tanggal_selesai', '>=', Carbon::now())
+            ->get();
+        if (count($data) == 0) {
+            return redirect('/surveyor/beranda')->with('info', 'Anda belum memiliki target survey hari ini');
+        } else {
+            return view('user.tambah-data', [
+                'active' => 'tambah data',
+                'title' => 'Tambah Data Survei',
+                'data' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
+                    ->orderBy('id', 'ASC')->get(['id', 'nama']),
+                'jalan' => JenisKonstruksiJalan::all(),
+                'saluran' => JenisKonstruksiSaluran::all(),
+                'fasos' => JenisFasos::all(),
+                'lampiran' => JenisLampiran::all()
+            ]);
+        }
     }
 
     public function edit($id)

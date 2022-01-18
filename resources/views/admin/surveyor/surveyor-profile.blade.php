@@ -57,7 +57,17 @@
                                             <tr>
                                                 <td>{{ $profile_surveyor->nama_lengkap }}</td>
                                                 <td>{{ $item->kecamatan->nama }}</td>
-                                                <td>Per-Minggu</td>
+                                                <td>
+                                                    @php
+                                                        $selisih=\Carbon\Carbon::createFromTimestamp(strtotime($item->tanggal_mulai))->diff(\Carbon\Carbon::createFromTimestamp(strtotime($item->tanggal_selesai)))->days;
+                                                        $selisih= $selisih+1;
+                                                    @endphp
+                                                    @if ($selisih !=6 && $selisih !=7)
+                                                        {{ $selisih }} hari
+                                                    @else
+                                                        Per-minggu
+                                                    @endif
+                                                </td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_mulai)->format('j F Y') }}
                                                 </td>
                                                 <td>{{ \Carbon\Carbon::parse($item->tanggal_selesai)->format('j F Y') }}
@@ -126,7 +136,7 @@
                         <td class="left-bio">Tanggal Lahir</td>
                         <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
                         <td class="right-bio align-top">
-                            {{                             $profile_surveyor->tanggal_lahir === null ? $profile_surveyor->tanggal_lahir : \Carbon\Carbon::parse($profile_surveyor->tanggal_lahir)->format('j F, Y') }}
+                            {{                             $profile_surveyor->tanggal_lahir === null ? $profile_surveyor->tanggal_lahir : \Carbon\Carbon::parse($profile_surveyor->tanggal_lahir)->format('j F Y') }}
                         </td>
                     </tr>
                     <tr>

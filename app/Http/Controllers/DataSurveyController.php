@@ -164,22 +164,12 @@ class DataSurveyController extends Controller
                 'catatan' => $request->catatan
             ]);
 
-            // if ($jenis_fasos_id !== null || $jenis_lampiran_id !== null) {
-            //     $request->validate([
-            //         'koordinat_fasos' => ['required'],
-            //         'foto' => ['required', 'image', 'mimes:jpg,png,jpeg', 'max:2048'],
-            //     ]);
-            // }
-
-
             // fasos
             $datasFasos = [];
             if ($request->addmore[0]['jenis_fasos_id'] !== null) {
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
-                        // image
-
-                        // upload store
+       
                         $fotoFasos = $value['foto']->store('foto-fasos');
 
                         // add element array
