@@ -181,7 +181,7 @@ class SurveyorController extends Controller
 
         $data = DetailSurveys::with('kecamatan')->where('user_id', auth()->user()->id)
             ->whereDate('tanggal_selesai', '>=', Carbon::now())
-            ->get();
+            ->get('kecamatan_id');
         if (count($data) == 0) {
             return redirect('/surveyor/beranda')->with('info', 'Anda belum memiliki target survey hari ini');
         } else {
