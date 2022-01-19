@@ -3,7 +3,7 @@
 @section('main-content')
 @include('admin.header')
 {{-- content --}}
-<div class="content ms-5">
+<div class="content ms-md-5">
     <div class="surveyor-hl ms-5l">
         <h1>Tambah Akun Surveyor</h1>
         <p class="mb-5">Isi data akun surveyor di bawah ini dengan benar</p>
@@ -11,7 +11,7 @@
 
     <form method="POST" action="tambah" class="bio-edit d-flex flex-row mt-4" autocomplete="off">
         @csrf
-        <div class="bio-left w-50">
+        <div class="bio-left col-12 col-md-6">
             <div class="col-md-8 mb-3 w-100">
                 <label for="validationServer03" class="form-label">Nama Lengkap</label>
                 <input type="text" class="form-control @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap"
