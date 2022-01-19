@@ -170,7 +170,7 @@ class DataSurveyController extends Controller
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
-                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $md5Name = uniqid();
                         $guessExtension = $value['foto']->guessExtension();
                         $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
                         $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
@@ -188,7 +188,7 @@ class DataSurveyController extends Controller
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         $image = $value['foto'];
-                        $md5Name = md5_file($value['foto']->getRealPath());
+                        $md5Name = uniqid();
                         $guessExtension = $value['foto']->guessExtension();
                         $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
                         $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;

@@ -109,7 +109,7 @@ class SurveyorController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $md5Name = md5_file($request->file('avatar')->getRealPath());
+            $md5Name = uniqid();
             $guessExtension = $request->file('avatar')->guessExtension();
             $image->move(public_path('/storage/avatar-images'), $md5Name . '.' . $guessExtension);
             $image_path = "avatar-images/" . $md5Name . '.' . $guessExtension;
