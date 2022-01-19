@@ -17,8 +17,8 @@
                 @endif
         </div>
         <div class="profile-status mt-3 d-flex flex-column">
-            <h3>{{ auth()->user()->nama_lengkap }}</h3>
-            <p>{{ auth()->user()->role }}</p>
+            <h3>{{ $profile_surveyor->nama_lengkap }}</h3>
+            <p>{{ $profile_surveyor->role }}</p>
         </div>
     </div>
 

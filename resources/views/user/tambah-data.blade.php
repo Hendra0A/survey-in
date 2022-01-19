@@ -24,8 +24,13 @@
                         <div class="col-12 mb-3">
                             <label for="nama_gang" class="form-label fw-bold">Kecamatan</label>
                             <input type="hidden" name="kecamatan_id" value="{{ $kecamatan->id }}">
+<<<<<<< HEAD
                             <label type="text" class="form-control border-primary" style="border-radius: .5em;"
                                 value="">{{ $kecamatan->nama }}</label>
+=======
+                            <input type="hidden" name="id_detail" value="{{ $id_detail }}">
+                            <label type="text" class="form-control border-primary"style="border-radius: .5em;" value="">{{ $kecamatan->nama }}</label>
+>>>>>>> a31f3e7a4df00cee65e388584362f4dee83a591c
                         </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
@@ -632,8 +637,8 @@
     {{-- @dump(addmore[0].panjang); --}}
     <script src="/js/renderForm.js"></script>
     <script src="/js/tambah-data-user.js"></script>
-    {{-- <script type="text/javascript">
+    <!-- {{-- <script type="text/javascript">
         var old = '{{ old('') }}';
-    </script> --}}
+    </script> --}} -->
     @include('user.navigation')
 @endsection

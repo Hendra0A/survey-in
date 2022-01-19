@@ -11,6 +11,7 @@ use Illuminate\Support\Arr;
 use App\Models\LampiranFoto;
 use Illuminate\Http\Request;
 use App\Exports\DataSurveyExport;
+use App\Models\DetailSurveys;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DataSurveyController extends Controller
@@ -103,133 +104,142 @@ class DataSurveyController extends Controller
 
     public function tambahData(Request $request)
     {
-        $request->validate([
-            'kecamatan_id' => ['required'],
-            'nama_gang' => ['required', 'max:255'],
-            'lokasi' => ['required'],
-            'no_gps' => ['required'],
-            'jenis_konstruksi_jalan_id' => ['required'],
-            'status_jalan' => ['required', 'numeric', 'min:0'],
-            'dimensi_jalan_panjang' => ['required', 'numeric', 'min:0'],
-            'dimensi_jalan_lebar' => ['required', 'numeric', 'min:0'],
-            'dimensi_saluran_panjang_kanan' => ['nullable', 'numeric', 'min:0'],
-            'dimensi_saluran_panjang_kiri' => ['nullable', 'numeric', 'min:0'],
-            'dimensi_saluran_lebar_kanan' => ['nullable', 'numeric', 'min:0'],
-            'dimensi_saluran_lebar_kiri' => ['nullable', 'numeric', 'min:0'],
-            'dimensi_saluran_kedalaman_kanan' => ['nullable', 'numeric', 'min:0'],
-            'dimensi_saluran_kedalaman_kiri' => ['nullable', 'numeric', 'min:0'],
-            'status_saluran' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_rumah_layak' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_rumah_tak_layak' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_rumah_kosong' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_rumah_developer' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_rumah_swadaya' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_ruko_kiri' => ['nullable', 'numeric', 'min:0'],
-            'lantai_ruko_kiri' => ['nullable', 'numeric', 'min:0'],
-            'jumlah_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
-            'lantai_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
-        ]);
+        $detail = DetailSurveys::find($request->id_detail);
 
-        $dataSurvey = DataSurvey::create([
-            'user_id' => auth()->user()->id,
-            'kecamatan_id' => $request->kecamatan_id,
-            'nama_gang' => $request->nama_gang,
-            'lokasi' => $request->lokasi,
-            'no_gps' => $request->no_gps,
-            'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
-            'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
-            'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
-            'status_jalan' => $request->status_jalan,
-            'dimensi_saluran_panjang_kanan' => $request->dimensi_saluran_panjang_kanan,
-            'dimensi_saluran_panjang_kiri' => $request->dimensi_saluran_panjang_kiri,
-            'dimensi_saluran_lebar_kanan' => $request->dimensi_saluran_lebar_kanan,
-            'dimensi_saluran_lebar_kiri' => $request->dimensi_saluran_lebar_kiri,
-            'dimensi_saluran_kedalaman_kanan' => $request->dimensi_saluran_kedalaman_kanan,
-            'dimensi_saluran_kedalaman_kiri' => $request->dimensi_saluran_kedalaman_kiri,
-            'jenis_konstruksi_saluran_id' => $request->jenis_konstruksi_saluran_id,
-            'status_saluran' => $request->status_saluran,
-            'jumlah_rumah_layak' => $request->jumlah_rumah_layak === null ? 0 : $request->jumlah_rumah_layak,
-            'jumlah_rumah_tak_layak' => $request->jumlah_rumah_tak_layak === null ? 0 : $request->jumlah_rumah_tak_layak,
-            'jumlah_rumah_kosong' => $request->jumlah_rumah_kosong === null ? 0 : $request->jumlah_rumah_kosong,
-            'jumlah_rumah_developer' => $request->jumlah_rumah_developer === null ? 0 : $request->jumlah_rumah_developer,
-            'jumlah_rumah_swadaya' => $request->jumlah_rumah_swadaya === null ? 0 : $request->jumlah_rumah_swadaya,
-            'jumlah_ruko_kiri' => $request->jumlah_ruko_kiri,
-            'lantai_ruko_kiri' => $request->lantai_ruko_kiri,
-            'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
-            'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
-            'pos_jaga' => $request->pos_jaga,
-            'fasos' => empty($request->addmore) ? 0 : 1,
-            'no_imb' => $request->no_imb,
-            'catatan' => $request->catatan
-        ]);
-
-        // fasos
-        $datasFasos = [];
-        if (!empty($request->addmore)) {
+        try {
             $request->validate([
-                'addmore.*.jenis_fasos_id' => ['required'],
-                'addmore.*.koordinat_fasos' => ['required'],
-                'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-                'addmore.*.panjang' => ['required', 'numeric'],
-                'addmore.*.lebar' => ['required', 'numeric']
+                'kecamatan_id' => ['required'],
+                'nama_gang' => ['required', 'max:255'],
+                'lokasi' => ['required'],
+                'no_gps' => ['required'],
+                'jenis_konstruksi_jalan_id' => ['required'],
+                'status_jalan' => ['required', 'numeric', 'min:0'],
+                'dimensi_jalan_panjang' => ['required', 'numeric', 'min:0'],
+                'dimensi_jalan_lebar' => ['required', 'numeric', 'min:0'],
+                'dimensi_saluran_panjang_kanan' => ['nullable', 'numeric', 'min:0'],
+                'dimensi_saluran_panjang_kiri' => ['nullable', 'numeric', 'min:0'],
+                'dimensi_saluran_lebar_kanan' => ['nullable', 'numeric', 'min:0'],
+                'dimensi_saluran_lebar_kiri' => ['nullable', 'numeric', 'min:0'],
+                'dimensi_saluran_kedalaman_kanan' => ['nullable', 'numeric', 'min:0'],
+                'dimensi_saluran_kedalaman_kiri' => ['nullable', 'numeric', 'min:0'],
+                'status_saluran' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_rumah_layak' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_rumah_tak_layak' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_rumah_kosong' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_rumah_developer' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_rumah_swadaya' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_ruko_kiri' => ['nullable', 'numeric', 'min:0'],
+                'lantai_ruko_kiri' => ['nullable', 'numeric', 'min:0'],
+                'jumlah_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
+                'lantai_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
             ]);
-            foreach ($request->addmore as $key => $value) {
-                if (!empty($request->addmore[0]['foto'])) {
-                    $image = $value['foto'];
-                    $md5Name = md5_file($value['foto']->getRealPath());
-                    $guessExtension = $value['foto']->guessExtension();
-                    $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                    $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
 
-                    // add element array
-                    $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+            $dataSurvey = DataSurvey::create([
+                'user_id' => auth()->user()->id,
+                'kecamatan_id' => $request->kecamatan_id,
+                'nama_gang' => $request->nama_gang,
+                'lokasi' => $request->lokasi,
+                'no_gps' => $request->no_gps,
+                'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
+                'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
+                'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
+                'status_jalan' => $request->status_jalan,
+                'dimensi_saluran_panjang_kanan' => $request->dimensi_saluran_panjang_kanan,
+                'dimensi_saluran_panjang_kiri' => $request->dimensi_saluran_panjang_kiri,
+                'dimensi_saluran_lebar_kanan' => $request->dimensi_saluran_lebar_kanan,
+                'dimensi_saluran_lebar_kiri' => $request->dimensi_saluran_lebar_kiri,
+                'dimensi_saluran_kedalaman_kanan' => $request->dimensi_saluran_kedalaman_kanan,
+                'dimensi_saluran_kedalaman_kiri' => $request->dimensi_saluran_kedalaman_kiri,
+                'jenis_konstruksi_saluran_id' => $request->jenis_konstruksi_saluran_id,
+                'status_saluran' => $request->status_saluran,
+                'jumlah_rumah_layak' => $request->jumlah_rumah_layak === null ? 0 : $request->jumlah_rumah_layak,
+                'jumlah_rumah_tak_layak' => $request->jumlah_rumah_tak_layak === null ? 0 : $request->jumlah_rumah_tak_layak,
+                'jumlah_rumah_kosong' => $request->jumlah_rumah_kosong === null ? 0 : $request->jumlah_rumah_kosong,
+                'jumlah_rumah_developer' => $request->jumlah_rumah_developer === null ? 0 : $request->jumlah_rumah_developer,
+                'jumlah_rumah_swadaya' => $request->jumlah_rumah_swadaya === null ? 0 : $request->jumlah_rumah_swadaya,
+                'jumlah_ruko_kiri' => $request->jumlah_ruko_kiri,
+                'lantai_ruko_kiri' => $request->lantai_ruko_kiri,
+                'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
+                'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
+                'pos_jaga' => $request->pos_jaga,
+                'fasos' => empty($request->addmore) ? 0 : 1,
+                'no_imb' => $request->no_imb,
+                'catatan' => $request->catatan
+            ]);
 
-                    // change element array
-                    $data_fasos['foto'] = $fotoFasos;
-                    $datasFasos[] = $data_fasos;
+            // fasos
+            $datasFasos = [];
+            if (!empty($request->addmore)) {
+                $request->validate([
+                    'addmore.*.jenis_fasos_id' => ['required'],
+                    'addmore.*.koordinat_fasos' => ['required'],
+                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+                    'addmore.*.panjang' => ['required', 'numeric'],
+                    'addmore.*.lebar' => ['required', 'numeric']
+                ]);
+                foreach ($request->addmore as $key => $value) {
+                    if (!empty($request->addmore[0]['foto'])) {
+                        $image = $value['foto'];
+                        $md5Name = uniqid();
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
+                        $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
+
+                        // add element array
+                        $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+
+                        // change element array
+                        $data_fasos['foto'] = $fotoFasos;
+                        $datasFasos[] = $data_fasos;
+                    }
+                }
+
+                foreach ($datasFasos as $dataFasos) {
+                    Fasos::create($dataFasos);
                 }
             }
 
-            foreach ($datasFasos as $dataFasos) {
-                Fasos::create($dataFasos);
-            }
-        }
+            // lampiran
+            $datasLampiran = [];
+            if (!empty($request->addmoreLampiran)) {
+                $request->validate([
+                    'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
+                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+                ]);
+                foreach ($request->addmoreLampiran as $key => $value) {
+                    if (!empty($request->addmoreLampiran[0]['foto'])) {
+                        // // image
+                        $image = $value['foto'];
+                        $md5Name = uniqid();
+                        $guessExtension = $value['foto']->guessExtension();
+                        $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
+                        $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
 
-        // lampiran
-        $datasLampiran = [];
-        if (!empty($request->addmoreLampiran)) {
-            $request->validate([
-                'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
-                'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
-            ]);
-            foreach ($request->addmoreLampiran as $key => $value) {
-                if (!empty($request->addmoreLampiran[0]['foto'])) {
-                    // // image
-                    $image = $value['foto'];
-                    $md5Name = md5_file($value['foto']->getRealPath());
-                    $guessExtension = $value['foto']->guessExtension();
-                    $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                    $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
+                        // add element array
+                        $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
-                    // add element array
-                    $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+                        // change element array
+                        $data_lampiran['foto'] = $fotoLampiran;
+                        $datasLampiran[] = $data_lampiran;
+                    }
+                }
 
-                    // change element array
-                    $data_lampiran['foto'] = $fotoLampiran;
-                    $datasLampiran[] = $data_lampiran;
+                foreach ($datasLampiran as $dataLampiran) {
+                    LampiranFoto::create($dataLampiran);
                 }
             }
 
-            foreach ($datasLampiran as $dataLampiran) {
-                LampiranFoto::create($dataLampiran);
-            }
+            DetailSurveys::where('id', $request->id_detail)->update([
+                'selesai' => $detail->selesai + 1
+            ]);
+            $request->session()->forget('jmlFasos');
+            $request->session()->forget('jmlLampiran');
+
+            return redirect('/surveyor/beranda')
+                ->with('success', 'Data telah berhasil ditambahkan !')
+                ->with('confirm', 'ok');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withInput();
         }
-
-        $request->session()->forget('jmlFasos');
-        $request->session()->forget('jmlLampiran');
-
-        return redirect('/')
-            ->with('success', 'Data telah berhasil ditambahkan !')
-            ->with('confirm', 'Kembali ke Surveyor');
     }
 }

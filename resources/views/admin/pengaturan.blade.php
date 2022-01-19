@@ -9,9 +9,9 @@
             <p class=" text-wrap col-sm-12 col-10">Pengaturan yang mungkin dibutuhkan selama proses survei</p>
         </div>
 
-        <div class="setting d-flex justify-content-evenly mt-3 ms-sm-0 ms-2 position-relative flex-wrap gap-2 gap-sm-3">
-            <div class="card d-flex flex-column position-relative" style="width: 20rem;">
-                <img src="/img/card1.png" class="card-img-top card1 position-relative" alt="">
+        <div class="setting d-flex justify-content-evenly mt-3 ms-sm-0 ms-2 position-relative flex-wrap">
+            <div class="card d-flex flex-column position-relative m-2" style="width: 20rem;">
+                <img src="/img/card1.png" class="card-img-top card1 position-relative ms-3 ms-sm-0" alt="">
                 <div class="card-body p-4 pt-0">
                     <h5 class="card-title mb-2">Edit Input Data Survei</h5>
                     <p class="card-text mb-5">Ubah inputan data survei</p>
@@ -20,8 +20,8 @@
             </div>
 
 
-            <div class="card d-flex flex-column position-relative" style="width: 20rem;">
-                <img src="/img/card2.png" class="card-img-top card2 position-relative" alt="">
+            <div class="card d-flex flex-column position-relative m-2" style="width: 20rem;">
+                <img src="/img/card2.png" class="card-img-top card2 position-relative ms-3 ms-sm-0" alt="">
                 <div class="card-body p-4 pt-0">
                     <h5 class="card-title mb-2">Ubah Password</h5>
                     <p class="card-text mb-5">Ubah password Admin</p>

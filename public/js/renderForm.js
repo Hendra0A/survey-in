@@ -1,5 +1,6 @@
 $(document).ready(async function () {
     let getData = () => {
+        // let url = "https://survey-kite.000webhostapp.com/api/option-form";
         let url = "http://survey-in.test/api/option-form";
         let requestOptions = {
             method: "GET",
@@ -98,8 +99,8 @@ $(document).ready(async function () {
                     <input type="file" name="addmore[${x}][foto]" class="imageFasos btn btn-primary border-0" style="border-radius: .5em; background: #3F4FC8;" id="fasos-${x}">
                     <label for="fasos-${x}">
                     <div class="img-keterangan mt-2 p-2 text-sm-center"
-                        style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                        <img src="/img/kartu-empat.png" class="imageFasosView" style="width: 9em;">
+                        style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em; box-sizing: border-box;">
+                        <img src="/img/kartu-empat.png" class="imageFasosView pe-2" style="width: 9em;">
                     </div>
                 </label>
                 </div>
@@ -140,7 +141,7 @@ $(document).ready(async function () {
                             <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"
                             style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                            <img src="/img/kartu-empat.png" id="imageLampiran" style="width: 9em;">
+                            <img src="/img/kartu-empat.png" id="imageLampiran" class="pe-2" style="width: 9em;">
                         </div>
                         </label>
                     </div>

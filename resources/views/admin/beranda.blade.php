@@ -33,8 +33,8 @@
                 <p class="beranda text-center">
                     Dibawah ini adalah hasil survei sementara di<br>Kecamatan <span class="text-kec">Pontianak Barat</span>
                 </p>
-                <div class="row mt-5 justify-content-center gap-4">
-                    <div class="kartu satu col-4">
+                <div class="row mt-5 justify-content-center">
+                    <div class="kartu satu col-4 m-2">
                         <h3 class="kartu border-0 p-0 text-center w-100">Gang dan Perumahan</h3>
                         <div class="kartu-img d-flex flex-row align-items-center">
                             <img src="img/kartu-satu.png" style="width: 70px;" alt="">
@@ -43,7 +43,7 @@
                         <p class="sub-kartu mb-0 mt-2">Jumlah Gang dan Perumahan yang Ada di Kecamatan <span class="text-kec">Pontianak Barat</span>.</p>
                     </div>
                     
-                    <div class="kartu dua col-4">
+                    <div class="kartu dua col-4 m-2">
                         <h3 class="kartu border-0 p-0 mb-3 text-center w-100">Kondisi Jalan Baik</h3>
                         <div class="kartu-img mb-3 d-flex flex-row align-items-center">
                             <img src="img/kartu-dua.png" style="width: 70px;" alt="">
@@ -51,7 +51,7 @@
                         </div>
                         <p class="sub-kartu mb-0 mt-2">Kondisi jalan baik yang ada di Kecamatan <span class="text-kec">Pontianak Barat</span>.</p>
                     </div>
-                    <div class="kartu tiga col-4">
+                    <div class="kartu tiga col-4 m-2">
                         <h3 class="kartu border-0 p-0 mb-3 text-center w-100">Kondisi Jalan Tidak Baik</h3>
                         <div class="kartu-img mb-3 d-flex flex-row align-items-center">
                             <img src="img/kartu-tiga.png" style="width: 70px;" alt="">
@@ -59,7 +59,7 @@
                         </div>
                         <p class="sub-kartu mb-0 mt-2">Kondisi jalan rusak yang ada di Kecamatan <span class="text-kec">Pontianak Barat</span>.</p>
                     </div>
-                    <div class="kartu empat col-4">
+                    <div class="kartu empat col-4 m-2">
                         <h3 class="kartu border-0 p-0 mb-3 text-center w-100">Jumlah Rumah</h3>
                         <div class="kartu-img mb-3 d-flex flex-row align-items-center">
                             <img src="img/kartu-empat.png" style="width: 70px;" alt="">
@@ -67,7 +67,7 @@
                         </div>
                         <p class="sub-kartu mb-0 mt-2">Jumlah Rumah yang Ada di Kecamatan <span class="text-kec">Pontianak Barat</span>.</p>
                     </div>
-                    <div class="kartu lima col-4">
+                    <div class="kartu lima col-4 m-2">
                         <h3 class="kartu border-0 mb-3 p-0 text-center w-100">Panjang Jalan Perumahan</h3>
                         <div class="kartu-img mb-3 d-flex flex-row align-items-center">
                             <img src="img/kartu-lima.png" style="width: 70px;" alt="">
@@ -75,7 +75,7 @@
                         </div>
                         <p class="sub-kartu mb-0 mt-2">Panjang Jalan Perumahan yang Ada di Kecamatan <span class="text-kec">Pontianak Barat</span>.</p>
                     </div>
-                    <div class="kartu enam col-4">
+                    <div class="kartu enam col-4 m-2">
                         <h3 class="kartu border-0 mb-3 p-0 text-center w-100">Lebar Jalan Perumahan</h3>
                         <div class="kartu-img mb-3 d-flex flex-row align-items-center">
                             <img src="img/kartu-enam.png" style="width: 70px;" alt="">
