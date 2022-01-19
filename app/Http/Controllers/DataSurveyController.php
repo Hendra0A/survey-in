@@ -133,6 +133,18 @@ class DataSurveyController extends Controller
                 'jumlah_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
                 'lantai_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
             ]);
+            if (!empty($request->addmoreLampiran)) {
+                $request->validate([
+                    'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
+                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+                ]);
+            }
+            if (!empty($request->addmoreLampiran)) {
+                $request->validate([
+                    'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
+                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+                ]);
+            }
 
             $dataSurvey = DataSurvey::create([
                 'user_id' => auth()->user()->id,
@@ -166,17 +178,9 @@ class DataSurveyController extends Controller
                 'no_imb' => $request->no_imb,
                 'catatan' => $request->catatan
             ]);
-
             // fasos
             $datasFasos = [];
             if (!empty($request->addmore)) {
-                $request->validate([
-                    'addmore.*.jenis_fasos_id' => ['required'],
-                    'addmore.*.koordinat_fasos' => ['required'],
-                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
-                    'addmore.*.panjang' => ['required', 'numeric'],
-                    'addmore.*.lebar' => ['required', 'numeric']
-                ]);
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
@@ -202,10 +206,6 @@ class DataSurveyController extends Controller
             // lampiran
             $datasLampiran = [];
             if (!empty($request->addmoreLampiran)) {
-                $request->validate([
-                    'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
-                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
-                ]);
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         // // image

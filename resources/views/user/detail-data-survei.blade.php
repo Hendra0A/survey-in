@@ -157,7 +157,12 @@
 
                     <tr>
                         <th>Surveyor</th>
-                        <td>: <b>{{ $data->user->nama_lengkap }}</b></td>
+                        <td>: <b>
+                        @if ($data->user == null )
+                            -
+                        @else
+                            $data->user->nama_lengkap
+                        @endif</b></td>
                     </tr>
 
                     <tr>

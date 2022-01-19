@@ -261,7 +261,11 @@
                     <td><b>Nama Surveyor</b></td>
                     <td style="padding: 0 20px">:</td>
                     <td style="max-width: 30px">
-                        <b>{{ $data->user->nama_lengkap }}</b>
+                        <b>@if ($data->user == null )
+                            -
+                        @else
+                            $data->user->nama_lengkap
+                        @endif</b>
                     </td>
                 </tr>
                 <tr valign='top'>
