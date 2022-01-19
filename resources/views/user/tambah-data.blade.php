@@ -7,6 +7,16 @@
                 <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survei</h1>
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
                     lengkap dan benar di bawah ini</p>
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <p><strong>Opps Something went wrong</strong></p>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form method="POST" action="tambah-data" enctype="multipart/form-data" class="form-tambah"
                     autocomplete="off">
                     @csrf
@@ -14,7 +24,8 @@
                         <div class="col-12 mb-3">
                             <label for="nama_gang" class="form-label fw-bold">Kecamatan</label>
                             <input type="hidden" name="kecamatan_id" value="{{ $kecamatan->id }}">
-                            <label type="text" class="form-control border-primary"style="border-radius: .5em;" value="">{{ $kecamatan->nama }}</label>
+                            <label type="text" class="form-control border-primary" style="border-radius: .5em;"
+                                value="">{{ $kecamatan->nama }}</label>
                         </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->

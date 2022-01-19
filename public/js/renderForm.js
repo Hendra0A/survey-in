@@ -1,6 +1,6 @@
 $(document).ready(async function () {
     let getData = () => {
-        let url = "https://survey-kite.000webhostapp.com/api/option-form";
+        let url = "http://survey-in.test/api/option-form";
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -39,7 +39,7 @@ $(document).ready(async function () {
                         <select class="form-select form-select border-primary" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
                             value="{{ old('jenis_fasos_id') }}">
-                            <option value="" selected disabled>-Pilih fasos-</option>
+                            <option value="0" selected disabled>-Pilih fasos-</option>
                             ${Object.keys(data.jenisFasos)
                                 .map(function (key) {
                                     return (
@@ -135,7 +135,7 @@ $(document).ready(async function () {
 
                     <div class="col-12">
                             <input type="file" name="addmoreLampiran[${y}][foto]"
-                            class="imageLampiran btn btn-primary border-0 @error('addmoreLampiran[${y}][foto]') is-invalid @enderror"
+                            class="imageLampiran btn btn-primary border-0"
                             style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}">
                             <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"

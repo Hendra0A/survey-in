@@ -103,7 +103,6 @@ class DataSurveyController extends Controller
 
     public function tambahData(Request $request)
     {
-        // dd($request);
         $request->validate([
             'kecamatan_id' => ['required'],
             'nama_gang' => ['required', 'max:255'],
@@ -159,14 +158,21 @@ class DataSurveyController extends Controller
             'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
             'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
             'pos_jaga' => $request->pos_jaga,
-            'fasos' => $request->addmore[0]['jenis_fasos_id'] === null ? 0 : 1,
+            'fasos' => empty($request->addmore) ? 0 : 1,
             'no_imb' => $request->no_imb,
             'catatan' => $request->catatan
         ]);
 
         // fasos
         $datasFasos = [];
-        if ($request->addmore[0]['jenis_fasos_id'] !== null) {
+        if (!empty($request->addmore)) {
+            $request->validate([
+                'addmore.*.jenis_fasos_id' => ['required'],
+                'addmore.*.koordinat_fasos' => ['required'],
+                'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+                'addmore.*.panjang' => ['required', 'numeric'],
+                'addmore.*.lebar' => ['required', 'numeric']
+            ]);
             foreach ($request->addmore as $key => $value) {
                 if (!empty($request->addmore[0]['foto'])) {
                     $image = $value['foto'];
@@ -191,7 +197,11 @@ class DataSurveyController extends Controller
 
         // lampiran
         $datasLampiran = [];
-        if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
+        if (!empty($request->addmoreLampiran)) {
+            $request->validate([
+                'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
+                'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+            ]);
             foreach ($request->addmoreLampiran as $key => $value) {
                 if (!empty($request->addmoreLampiran[0]['foto'])) {
                     // // image
