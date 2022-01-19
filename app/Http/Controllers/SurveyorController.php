@@ -239,24 +239,49 @@ class SurveyorController extends Controller
             'catatan' => $request->catatan
         ]);
 
+        $count = count(Fasos::where('data_survey_id', $request->id)->get('id'));
+
+        $datasFasosNew = [];
+        if ($request->addmore[$count]['jenis_fasos_id'] !== null) {
+            foreach ($request->addmore as $key => $value) {
+                if ($value == $request->addmore[$count]) {
+                    if (!empty($value['foto'])) {
+                        // image
+
+                        // dd($request->addmore[2]['foto']);
+                        // upload store
+                        $fotoFasos = $value['foto']->store('foto-fasos');
+
+                        // add element array
+                        $data_fasos = Arr::add($value, 'data_survey_id', $request->id);
+
+
+                        // change element array
+                        $data_fasos['foto'] = $fotoFasos;
+                        $datasFasosNew[] = $data_fasos;
+                        $count++;
+                    }
+                }
+            }
+            // dd($datasFasosNew);
+            foreach ($datasFasosNew as $dataNew) {
+                Fasos::create($dataNew);
+            }
+        }
+
         // fasos
         $datasFasos = [];
         $y = 0;
+        // dd($request->addmore);
         if ($request->addmore[0]['jenis_fasos_id'] !== null) {
             foreach ($request->addmore as $key => $value) {
-                if (!empty($request->addmore[0]['foto'])) {
-                    // image
-
-                    // upload store
+                if (!empty($value['foto'])) {
                     $fotoFasos = $value['foto']->store('foto-fasos');
 
                     // // add element array
                     $data_fasos = $value;
 
                     $data_fasos['foto'] = $fotoFasos;
-
-                    // // change element array
-                    // $data_fasos['foto'] = $fotoFasos;
                 } else {
                     $fotoFasos = Fasos::where('data_survey_id', $request->id)->get('foto');
                     $data_fasos = Arr::add($value, 'foto', $fotoFasos[$y]->foto);
@@ -274,38 +299,38 @@ class SurveyorController extends Controller
         }
 
         // lampiran
-        $datasLampiran = [];
-        $z = 0;
-        if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
-            foreach ($request->addmoreLampiran as $key => $value) {
-                if (!empty($request->addmoreLampiran[0]['foto'])) {
-                    // image
+        // $datasLampiran = [];
+        // $z = 0;
+        // if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
+        //     foreach ($request->addmoreLampiran as $key => $value) {
+        //         if (!empty($request->addmoreLampiran[0]['foto'])) {
+        //             // image
 
-                    // upload store
-                    $fotoLampiran = $value['foto']->store('foto-lampiran');
+        //             // upload store
+        //             $fotoLampiran = $value['foto']->store('foto-lampiran');
 
-                    // // add element array
-                    $data_lampiran = $value;
+        //             // // add element array
+        //             $data_lampiran = $value;
 
-                    $data_lampiran['foto'] = $fotoLampiran;
+        //             $data_lampiran['foto'] = $fotoLampiran;
 
-                    // // change element array
-                    // $data_fasos['foto'] = $fotoFasos;
-                } else {
-                    $fotoLampiran = LampiranFoto::where('data_survey_id', $request->id)->get('foto');
-                    $data_lampiran = Arr::add($value, 'foto', $fotoLampiran[$z]->foto);
-                }
-                $datasLampiran[] = $data_lampiran;
-                $z++;
-            }
-            // dd($datasFasos);
-            $j = 0;
-            foreach ($datasLampiran as $dataLampiran) {
-                $id = LampiranFoto::where('data_survey_id', $request->id)->get('id');
-                LampiranFoto::where('data_survey_id', $request->id)->where('id', $id[$j]->id)->update($dataLampiran);
-                $j++;
-            }
-        }
+        //             // // change element array
+        //             // $data_fasos['foto'] = $fotoFasos;
+        //         } else {
+        //             $fotoLampiran = LampiranFoto::where('data_survey_id', $request->id)->get('foto');
+        //             $data_lampiran = Arr::add($value, 'foto', $fotoLampiran[$z]->foto);
+        //         }
+        //         $datasLampiran[] = $data_lampiran;
+        //         $z++;
+        //     }
+        //     // dd($datasFasos);
+        //     $j = 0;
+        //     foreach ($datasLampiran as $dataLampiran) {
+        //         $id = LampiranFoto::where('data_survey_id', $request->id)->get('id');
+        //         LampiranFoto::where('data_survey_id', $request->id)->where('id', $id[$j]->id)->update($dataLampiran);
+        //         $j++;
+        //     }
+        // }
 
         return redirect('/')->with('success', 'Data telah berhasil di edit')->with('confirm', 'Kembali ke Beranda');
     }
