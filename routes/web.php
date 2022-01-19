@@ -75,9 +75,8 @@ Route::group(['middleware' => ['auth']], function () {
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/', [AccessController::class, 'index'])->name('login');
     Route::post('/', [AccessController::class, 'authenticate']);
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm']);
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotPasswordForm']);
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
+    Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);
 });
-
-Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm']);
-Route::post('/forgot-password', [ForgotPasswordController::class, 'submitForgotPasswordForm']);
-Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm']);
-Route::post('/reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm']);

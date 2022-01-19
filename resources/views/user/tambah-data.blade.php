@@ -11,23 +11,11 @@
                     autocomplete="off">
                     @csrf
                     <div class="input-group mb-3">
-                        <label for="kecamatan" class="form-label d-block fw-bold m-0">Kecamatan</label>
-                        <select id="kecamatan"
-                            class="form-select form-select-sm m-auto shadow-none border-primary mt-1 @error('kecamatan_id') is-invalid @enderror"
-                            style="width: 95%;" aria-label=".form-select-sm example" name="kecamatan_id">
-                            <option value="" hidden>Pilih Kecamatan</option>
-                            @foreach ($data as $kecamatan)
-                                <option {{ old('kecamatan_id') == $kecamatan->id ? 'selected' : '' }}
-                                    value="{{ $kecamatan->id }}"
-                                    {{ $kecamatan->id == auth()->user()->kabupaten_id ? 'selected' : '' }}>
-                                    {{ $kecamatan->nama }}</option>
-                            @endforeach
-                        </select>
-                        @error('kecamatan_id')
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="col-12 mb-3">
+                            <label for="nama_gang" class="form-label fw-bold">Kecamatan</label>
+                            <input type="hidden" name="kecamatan_id" value="{{ $kecamatan->id }}">
+                            <label type="text" class="form-control border-primary"style="border-radius: .5em;" value="">{{ $kecamatan->nama }}</label>
+                        </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
                     <div class="row row-cols-3">

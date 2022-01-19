@@ -103,6 +103,7 @@ class DataSurveyController extends Controller
 
     public function tambahData(Request $request)
     {
+        // dd($request);
         $request->validate([
             'kecamatan_id' => ['required'],
             'nama_gang' => ['required', 'max:255'],
@@ -169,18 +170,17 @@ class DataSurveyController extends Controller
             if ($request->addmore[0]['jenis_fasos_id'] !== null) {
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
-                        // image
                         $image = $value['foto'];
                         $md5Name = md5_file($value['foto']->getRealPath());
                         $guessExtension = $value['foto']->guessExtension();
                         $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                        $image_path = "foto-fasos/" . $md5Name . '.' . $guessExtension;
+                        $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_fasos['foto'] = $image_path;
+                        $data_fasos['foto'] = $fotoFasos;
                         $datasFasos[] = $data_fasos;
                     }
                 }
@@ -200,13 +200,13 @@ class DataSurveyController extends Controller
                         $md5Name = md5_file($value['foto']->getRealPath());
                         $guessExtension = $value['foto']->guessExtension();
                         $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                        $image_path = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
+                        $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
 
                         // add element array
                         $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_lampiran['foto'] = $image_path;
+                        $data_lampiran['foto'] = $fotoLampiran;
                         $datasLampiran[] = $data_lampiran;
                     }
                 }

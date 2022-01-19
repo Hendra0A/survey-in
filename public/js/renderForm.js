@@ -1,6 +1,6 @@
 $(document).ready(async function () {
     let getData = () => {
-        let url = "http://survey-in.test/api/option-form";
+        let url = "https://survey-kite.000webhostapp.com/api/option-form";
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -203,5 +203,4 @@ $(document).ready(async function () {
             sessionStorage.setItem("jmlFasos", i);
         }
     });
-
 });

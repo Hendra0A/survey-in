@@ -35,7 +35,7 @@
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Tanggal Lahir
                             </td>
                         <td style="vertical-align: top; width: max-content; width: 1%;" class="pt-2">:</td>
-                        <td class="right-bio p-2" style="vertical-align: top;">{{ $data->tanggal_lahir }}</td>
+                        <td class="right-bio p-2" style="vertical-align: top;">{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('j F Y') }}</td>
                     </tr>
                     <tr>
                         <th class="left-bio p-2" style="font-size: .8em; width: 40%; vertical-align: top;">Jenis Kelamin

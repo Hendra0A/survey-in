@@ -78,9 +78,13 @@ class AdminController extends Controller
             if ($request->oldImage) {
                 Storage::delete($request->oldImage);
             }
-            $validateData['avatar'] = $request->file('avatar')->store('avatar-images');
+            $image = $request->file('avatar');
+            $md5Name = md5_file($request->file('avatar')->getRealPath());
+            $guessExtension = $request->file('avatar')->guessExtension();
+            $image->move(public_path('/storage/avatar-images'), $md5Name . '.' . $guessExtension);
+            $image_path = "avatar-images/" . $md5Name . '.' . $guessExtension;
+            $validateData['avatar'] = $image_path;
         }
-
         try {
             User::where('id', $request->id)
                 ->update($validateData);

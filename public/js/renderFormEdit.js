@@ -1,9 +1,9 @@
 $(document).ready(async function () {
-    
-    let getData = () => {   
+    let getData = () => {
         var uri = window.location.pathname;
-        var idUri = uri.split('/').pop();
-        let url = "http://survey-in.test/api/option-form/"+idUri;
+        var idUri = uri.split("/").pop();
+        let url =
+            "https://survey-kite.000webhostapp.com/api/option-form/" + idUri;
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -17,7 +17,7 @@ $(document).ready(async function () {
             })
             .catch((error) => console.log("error", error));
     };
-    
+
     var data = await getData();
     // var datas = await getDataEdit();
     if (typeof Storage !== "undefined") {
@@ -27,23 +27,24 @@ $(document).ready(async function () {
         if (sessionStorage.getItem("jmlLampiran") === null) {
             sessionStorage.setItem("jmlLampiran", 0);
         }
-        if(data.fasos.length){
+        if (data.fasos.length) {
             sessionStorage.setItem("jmlFasos", data.fasos.length);
         }
-        if(data.lampiran.length){
+        if (data.lampiran.length) {
             sessionStorage.setItem("jmlLampiran", data.lampiran.length);
         }
     } else {
         alert("Browser yang Anda gunakan tidak mendukung Web Storage");
     }
-    
+
     // console.log(datas);
     console.log(data.fasos[3]);
     var x = 0;
     var y = 0;
     // console.log(data.lampiran[0].jenis_lampiran_id);
     let renderFasos = () => {
-        $(".form-fasos").append(`
+        $(".form-fasos").append(
+            `
                 <div class="single-form-fasos mt-3">
                 <div class="d-flex flex-wrap mb-3">
                     <div class="col-12 col-sm-6 mt-sm-1">
@@ -54,7 +55,7 @@ $(document).ready(async function () {
                             <option value="" selected disabled>-Pilih fasos-</option>
                             ${Object.keys(data.jenisFasos)
                                 .map(function (key) {
-                                    if(data.fasos[x] == undefined){
+                                    if (data.fasos[x] == undefined) {
                                         return (
                                             "<option value='" +
                                             data.jenisFasos[key]["id"] +
@@ -63,13 +64,18 @@ $(document).ready(async function () {
                                             "</option>"
                                         );
                                     } else {
-                                    return (
-                                        '<option '+ (data.fasos[x].jenis_fasos_id == data.jenisFasos[key]['id'] ? 'selected' : '') +' value="' +
-                                        data.jenisFasos[key]["id"] +
-                                        '">' +
-                                        data.jenisFasos[key]["jenis"] +
-                                        '</option>'
-                                    );
+                                        return (
+                                            "<option " +
+                                            (data.fasos[x].jenis_fasos_id ==
+                                            data.jenisFasos[key]["id"]
+                                                ? "selected"
+                                                : "") +
+                                            ' value="' +
+                                            data.jenisFasos[key]["id"] +
+                                            '">' +
+                                            data.jenisFasos[key]["jenis"] +
+                                            "</option>"
+                                        );
                                     }
                                 })
                                 .join("")}
@@ -129,7 +135,8 @@ $(document).ready(async function () {
                 <button type="button" id="close" class="btn btn-primary border-0 mt-3"
                 style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
                 </div>
-        `);
+        `
+        );
         x++;
     };
     let renderLampiran = () => {
@@ -153,11 +160,16 @@ $(document).ready(async function () {
                                         );
                                     } else {
                                     return (
-                                        '<option '+ (data.lampiran[y].jenis_lampiran_id == data.jenisLampiran[key]['id'] ? 'selected' : '') +' value="' +
+                                        "<option " +
+                                        (data.lampiran[y].jenis_lampiran_id ==
+                                        data.jenisLampiran[key]["id"]
+                                            ? "selected"
+                                            : "") +
+                                        ' value="' +
                                         data.jenisLampiran[key]["id"] +
                                         '">' +
                                         data.jenisLampiran[key]["jenis"] +
-                                        '</option>'
+                                        "</option>"
                                     );
                                     }
                                 })
@@ -235,5 +247,4 @@ $(document).ready(async function () {
             sessionStorage.setItem("jmlFasos", i);
         }
     });
-
 });
