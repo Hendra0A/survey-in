@@ -622,8 +622,8 @@
     {{-- @dump(addmore[0].panjang); --}}
     <script src="/js/renderForm.js"></script>
     <script src="/js/tambah-data-user.js"></script>
-    {{-- <script type="text/javascript">
+    <!-- {{-- <script type="text/javascript">
         var old = '{{ old('') }}';
-    </script> --}}
+    </script> --}} -->
     @include('user.navigation')
 @endsection
