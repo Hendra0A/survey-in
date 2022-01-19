@@ -47,7 +47,7 @@ class DataSurveyController extends Controller
         try {
             DataSurvey::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survei');
+                ->with('success', 'Berhasil Menghapus Data Survei')->with('confirm', 'ok');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
         }
