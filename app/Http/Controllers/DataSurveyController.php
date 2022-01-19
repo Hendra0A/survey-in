@@ -131,99 +131,95 @@ class DataSurveyController extends Controller
             'lantai_ruko_kanan' => ['nullable', 'numeric', 'min:0'],
         ]);
 
-        try {
-            $dataSurvey = DataSurvey::create([
-                'user_id' => auth()->user()->id,
-                'kecamatan_id' => $request->kecamatan_id,
-                'nama_gang' => $request->nama_gang,
-                'lokasi' => $request->lokasi,
-                'no_gps' => $request->no_gps,
-                'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
-                'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
-                'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
-                'status_jalan' => $request->status_jalan,
-                'dimensi_saluran_panjang_kanan' => $request->dimensi_saluran_panjang_kanan,
-                'dimensi_saluran_panjang_kiri' => $request->dimensi_saluran_panjang_kiri,
-                'dimensi_saluran_lebar_kanan' => $request->dimensi_saluran_lebar_kanan,
-                'dimensi_saluran_lebar_kiri' => $request->dimensi_saluran_lebar_kiri,
-                'dimensi_saluran_kedalaman_kanan' => $request->dimensi_saluran_kedalaman_kanan,
-                'dimensi_saluran_kedalaman_kiri' => $request->dimensi_saluran_kedalaman_kiri,
-                'jenis_konstruksi_saluran_id' => $request->jenis_konstruksi_saluran_id,
-                'status_saluran' => $request->status_saluran,
-                'jumlah_rumah_layak' => $request->jumlah_rumah_layak === null ? 0 : $request->jumlah_rumah_layak,
-                'jumlah_rumah_tak_layak' => $request->jumlah_rumah_tak_layak === null ? 0 : $request->jumlah_rumah_tak_layak,
-                'jumlah_rumah_kosong' => $request->jumlah_rumah_kosong === null ? 0 : $request->jumlah_rumah_kosong,
-                'jumlah_rumah_developer' => $request->jumlah_rumah_developer === null ? 0 : $request->jumlah_rumah_developer,
-                'jumlah_rumah_swadaya' => $request->jumlah_rumah_swadaya === null ? 0 : $request->jumlah_rumah_swadaya,
-                'jumlah_ruko_kiri' => $request->jumlah_ruko_kiri,
-                'lantai_ruko_kiri' => $request->lantai_ruko_kiri,
-                'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
-                'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
-                'pos_jaga' => $request->pos_jaga,
-                'fasos' => $request->addmore[0]['jenis_fasos_id'] === null ? 0 : 1,
-                'no_imb' => $request->no_imb,
-                'catatan' => $request->catatan
-            ]);
+        $dataSurvey = DataSurvey::create([
+            'user_id' => auth()->user()->id,
+            'kecamatan_id' => $request->kecamatan_id,
+            'nama_gang' => $request->nama_gang,
+            'lokasi' => $request->lokasi,
+            'no_gps' => $request->no_gps,
+            'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
+            'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
+            'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
+            'status_jalan' => $request->status_jalan,
+            'dimensi_saluran_panjang_kanan' => $request->dimensi_saluran_panjang_kanan,
+            'dimensi_saluran_panjang_kiri' => $request->dimensi_saluran_panjang_kiri,
+            'dimensi_saluran_lebar_kanan' => $request->dimensi_saluran_lebar_kanan,
+            'dimensi_saluran_lebar_kiri' => $request->dimensi_saluran_lebar_kiri,
+            'dimensi_saluran_kedalaman_kanan' => $request->dimensi_saluran_kedalaman_kanan,
+            'dimensi_saluran_kedalaman_kiri' => $request->dimensi_saluran_kedalaman_kiri,
+            'jenis_konstruksi_saluran_id' => $request->jenis_konstruksi_saluran_id,
+            'status_saluran' => $request->status_saluran,
+            'jumlah_rumah_layak' => $request->jumlah_rumah_layak === null ? 0 : $request->jumlah_rumah_layak,
+            'jumlah_rumah_tak_layak' => $request->jumlah_rumah_tak_layak === null ? 0 : $request->jumlah_rumah_tak_layak,
+            'jumlah_rumah_kosong' => $request->jumlah_rumah_kosong === null ? 0 : $request->jumlah_rumah_kosong,
+            'jumlah_rumah_developer' => $request->jumlah_rumah_developer === null ? 0 : $request->jumlah_rumah_developer,
+            'jumlah_rumah_swadaya' => $request->jumlah_rumah_swadaya === null ? 0 : $request->jumlah_rumah_swadaya,
+            'jumlah_ruko_kiri' => $request->jumlah_ruko_kiri,
+            'lantai_ruko_kiri' => $request->lantai_ruko_kiri,
+            'jumlah_ruko_kanan' => $request->jumlah_ruko_kanan,
+            'lantai_ruko_kanan' => $request->lantai_ruko_kanan,
+            'pos_jaga' => $request->pos_jaga,
+            'fasos' => $request->addmore[0]['jenis_fasos_id'] === null ? 0 : 1,
+            'no_imb' => $request->no_imb,
+            'catatan' => $request->catatan
+        ]);
 
-            // fasos
-            $datasFasos = [];
-            if ($request->addmore[0]['jenis_fasos_id'] !== null) {
-                foreach ($request->addmore as $key => $value) {
-                    if (!empty($request->addmore[0]['foto'])) {
-                        $image = $value['foto'];
-                        $md5Name = md5_file($value['foto']->getRealPath());
-                        $guessExtension = $value['foto']->guessExtension();
-                        $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                        $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
+        // fasos
+        $datasFasos = [];
+        if ($request->addmore[0]['jenis_fasos_id'] !== null) {
+            foreach ($request->addmore as $key => $value) {
+                if (!empty($request->addmore[0]['foto'])) {
+                    $image = $value['foto'];
+                    $md5Name = md5_file($value['foto']->getRealPath());
+                    $guessExtension = $value['foto']->guessExtension();
+                    $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
+                    $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
 
-                        // add element array
-                        $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+                    // add element array
+                    $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
-                        // change element array
-                        $data_fasos['foto'] = $fotoFasos;
-                        $datasFasos[] = $data_fasos;
-                    }
-                }
-
-                foreach ($datasFasos as $dataFasos) {
-                    Fasos::create($dataFasos);
+                    // change element array
+                    $data_fasos['foto'] = $fotoFasos;
+                    $datasFasos[] = $data_fasos;
                 }
             }
 
-            // lampiran
-            $datasLampiran = [];
-            if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
-                foreach ($request->addmoreLampiran as $key => $value) {
-                    if (!empty($request->addmoreLampiran[0]['foto'])) {
-                        // // image
-                        $image = $value['foto'];
-                        $md5Name = md5_file($value['foto']->getRealPath());
-                        $guessExtension = $value['foto']->guessExtension();
-                        $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                        $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
-
-                        // add element array
-                        $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
-
-                        // change element array
-                        $data_lampiran['foto'] = $fotoLampiran;
-                        $datasLampiran[] = $data_lampiran;
-                    }
-                }
-
-                foreach ($datasLampiran as $dataLampiran) {
-                    LampiranFoto::create($dataLampiran);
-                }
+            foreach ($datasFasos as $dataFasos) {
+                Fasos::create($dataFasos);
             }
-
-            $request->session()->forget('jmlFasos');
-            $request->session()->forget('jmlLampiran');
-
-            return redirect('/')
-                ->with('success', 'Data telah berhasil ditambahkan !')
-                ->with('confirm', 'Kembali ke Surveyor');
-        } catch (\Exception $e) {
-            return redirect()->back()->withInput();
         }
+
+        // lampiran
+        $datasLampiran = [];
+        if ($request->addmoreLampiran[0]['jenis_lampiran_id'] !== null) {
+            foreach ($request->addmoreLampiran as $key => $value) {
+                if (!empty($request->addmoreLampiran[0]['foto'])) {
+                    // // image
+                    $image = $value['foto'];
+                    $md5Name = md5_file($value['foto']->getRealPath());
+                    $guessExtension = $value['foto']->guessExtension();
+                    $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
+                    $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
+
+                    // add element array
+                    $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
+
+                    // change element array
+                    $data_lampiran['foto'] = $fotoLampiran;
+                    $datasLampiran[] = $data_lampiran;
+                }
+            }
+
+            foreach ($datasLampiran as $dataLampiran) {
+                LampiranFoto::create($dataLampiran);
+            }
+        }
+
+        $request->session()->forget('jmlFasos');
+        $request->session()->forget('jmlLampiran');
+
+        return redirect('/')
+            ->with('success', 'Data telah berhasil ditambahkan !')
+            ->with('confirm', 'Kembali ke Surveyor');
     }
 }

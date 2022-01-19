@@ -247,35 +247,39 @@ class SurveyorController extends Controller
             'catatan' => $request->catatan
         ]);
 
+
+        // dd($request->addmore);
         $count = count(Fasos::where('data_survey_id', $request->id)->get('id'));
+        if (!empty($request->addmore[$count])) {
+            $datasFasosNew = [];
+            if ($request->addmore[$count]['jenis_fasos_id'] !== null) {
+                foreach ($request->addmore as $key => $value) {
+                    if ($value == $request->addmore[$count]) {
+                        if (!empty($value['foto'])) {
+                            // image
 
-        $datasFasosNew = [];
-        if ($request->addmore[$count]['jenis_fasos_id'] !== null) {
-            foreach ($request->addmore as $key => $value) {
-                if ($value == $request->addmore[$count]) {
-                    if (!empty($value['foto'])) {
-                        // image
+                            // dd($request->addmore[2]['foto']);
+                            // upload store
+                            $fotoFasos = $value['foto']->store('foto-fasos');
 
-                        // dd($request->addmore[2]['foto']);
-                        // upload store
-                        $fotoFasos = $value['foto']->store('foto-fasos');
-
-                        // add element array
-                        $data_fasos = Arr::add($value, 'data_survey_id', $request->id);
+                            // add element array
+                            $data_fasos = Arr::add($value, 'data_survey_id', $request->id);
 
 
-                        // change element array
-                        $data_fasos['foto'] = $fotoFasos;
-                        $datasFasosNew[] = $data_fasos;
-                        $count++;
+                            // change element array
+                            $data_fasos['foto'] = $fotoFasos;
+                            $datasFasosNew[] = $data_fasos;
+                            $count++;
+                        }
                     }
                 }
-            }
-            // dd($datasFasosNew);
-            foreach ($datasFasosNew as $dataNew) {
-                Fasos::create($dataNew);
+                // dd($datasFasosNew);
+                foreach ($datasFasosNew as $dataNew) {
+                    Fasos::create($dataNew);
+                }
             }
         }
+
 
         // fasos
         $datasFasos = [];
