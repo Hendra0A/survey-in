@@ -2,8 +2,7 @@ $(document).ready(async function () {
     let getData = () => {
         var uri = window.location.pathname;
         var idUri = uri.split("/").pop();
-        let url =
-            "https://survey-kite.000webhostapp.com/api/option-form/" + idUri;
+        let url = "http://survey-in.test/api/option-form/" + idUri;
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -17,7 +16,6 @@ $(document).ready(async function () {
             })
             .catch((error) => console.log("error", error));
     };
-
     var data = await getData();
     // var datas = await getDataEdit();
     if (typeof Storage !== "undefined") {
@@ -38,7 +36,7 @@ $(document).ready(async function () {
     }
 
     // console.log(datas);
-    console.log(data.fasos[3]);
+    // console.log(data.fasos[x]);
     var x = 0;
     var y = 0;
     // console.log(data.lampiran[0].jenis_lampiran_id);
@@ -46,7 +44,8 @@ $(document).ready(async function () {
         $(".form-fasos").append(
             `
                 <div class="single-form-fasos mt-3">
-                <div class="d-flex flex-wrap mb-3">
+                <div class="ok d-flex flex-wrap mb-3">
+                <input type="text" name="idFasos" class="idFasos" id="idFasos" value="${data.fasos[x].id}">
                     <div class="col-12 col-sm-6 mt-sm-1">
                         <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
                             Sosial(Fasos)</label>
@@ -240,11 +239,30 @@ $(document).ready(async function () {
             sessionStorage.setItem("jmlLampiran", j);
         }
     });
+    
     $(document).on("click", "#close", function () {
+        console.log($(this).parents(".single-form-fasos").find(".idFasos").val());
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        var id = $(this).parents(".single-form-fasos").find(".idFasos").val();
+        $.ajax({
+            url: "/data-survei/destroy/"+id,
+            dataType: "JSON",
+            type: 'put',
+            data: id,
+            success: function(response){
+                console.log(response);
+            }
+        });
+        console.log(id);
         $(this).parents(".single-form-fasos").remove();
         if (i > 0) {
             i--;
             sessionStorage.setItem("jmlFasos", i);
         }
+        // console.log(data);
     });
 });
