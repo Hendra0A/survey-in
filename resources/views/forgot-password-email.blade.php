@@ -67,7 +67,7 @@
 				</p>
 				<a
 					class="btn"
-					href="http://survey-in.test/reset-password/{{ $token }}"
+					href="https://survey-kite.000webhostapp.com/reset-password/{{ $token }}"
 					>Atur Ulang Password</a
 				>
 			</div>

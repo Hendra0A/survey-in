@@ -150,6 +150,10 @@
                         <th>No. IMB Pendahuluan</th>
                         <td>: {{ $data->no_imb != 0 ? $data->no_imb : '-' }}</td>
                     </tr>
+                    <tr>
+                        <th>Catatan</th>
+                        <td>: {{ $data->catatan}}</td>
+                    </tr>
 
                     <tr>
                         <th>Surveyor</th>

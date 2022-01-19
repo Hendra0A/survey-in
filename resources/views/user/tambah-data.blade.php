@@ -14,6 +14,7 @@
                         <div class="col-12 mb-3">
                             <label for="nama_gang" class="form-label fw-bold">Kecamatan</label>
                             <input type="hidden" name="kecamatan_id" value="{{ $kecamatan->id }}">
+                            <input type="hidden" name="id_detail" value="{{ $id_detail }}">
                             <label type="text" class="form-control border-primary"style="border-radius: .5em;" value="">{{ $kecamatan->nama }}</label>
                         </div>
                     </div>

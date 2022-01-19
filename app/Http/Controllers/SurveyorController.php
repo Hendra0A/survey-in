@@ -96,7 +96,6 @@ class SurveyorController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // ddd($request);
         $validateData = $request->validate([
             'nama_lengkap' => ['required'],
             'tanggal_lahir' => ['required'],
@@ -120,8 +119,7 @@ class SurveyorController extends Controller
             User::where('id', $request->id)
                 ->update($validateData);
             return redirect('/surveyor/profile')
-                ->with('success', 'Profil admin telah berhasil di edit')
-                ->with('confirm', 'Kembali ke Profil');
+                ->with('success', 'Profil surveyor telah berhasil di edit')->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -161,8 +159,7 @@ class SurveyorController extends Controller
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
             return redirect('/surveyor/beranda')
-                ->with('success', 'Password anda berhasil diubah')
-                ->with('confirm', 'Kembali ke pengaturan');;
+                ->with('success', 'Password anda berhasil diubah')->with('confirm', 'Ok');
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
@@ -181,7 +178,7 @@ class SurveyorController extends Controller
 
         $data = DetailSurveys::with('kecamatan')->where('user_id', auth()->user()->id)
             ->whereDate('tanggal_selesai', '>=', Carbon::now())
-            ->get('kecamatan_id');
+            ->get(['id', 'kecamatan_id']);
         if (count($data) == 0) {
             return redirect('/surveyor/beranda')->with('info', 'Anda belum memiliki target survey hari ini');
         } else {
@@ -192,14 +189,15 @@ class SurveyorController extends Controller
                 'jalan' => JenisKonstruksiJalan::all(),
                 'saluran' => JenisKonstruksiSaluran::all(),
                 'fasos' => JenisFasos::all(),
-                'lampiran' => JenisLampiran::all()
+                'lampiran' => JenisLampiran::all(),
+                'id_detail' => $data[0]->id
             ]);
         }
+        
     }
 
     public function edit($id)
     {
-        // dd(Fasos::where('data_survey_id', $id)->get());
         return view('user.edit-data', [
             'active' => 'tambah data',
             'title' => 'Tambah Data Survei',

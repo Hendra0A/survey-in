@@ -90,7 +90,7 @@ class AdminController extends Controller
                 ->update($validateData);
             return redirect('/profile')
                 ->with('success', 'Profil admin telah berhasil di edit')
-                ->with('confirm', 'Kembali ke Profil');
+                ->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -189,7 +189,7 @@ class AdminController extends Controller
                     ]);
                 return redirect('/surveyor/profile/' . $request->id)
                     ->with('success', 'Akun surveyor telah berhasil di edit')
-                    ->with('confirm', 'Kembali ke Surveyor Profil');
+                    ->with('confirm', 'OK');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
@@ -205,7 +205,7 @@ class AdminController extends Controller
                     ]);
                 return redirect('/surveyor/profile/' . $request->id)
                     ->with('success', 'Password surveyor telah berhasil diubah')
-                    ->with('confirm', 'Kembali ke Surveyor Profil');
+                    ->with('confirm', 'OK');
             } catch (\Exception $e) {
                 return redirect()->back()->withInput();
             }
@@ -290,7 +290,7 @@ class AdminController extends Controller
             ]);
             return redirect('/surveyor')
                 ->with('success', 'Berhasil menambahkan target surveyor')
-                ->with('confirm', 'Kembali ke Surveyor Profil');
+                ->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -313,7 +313,7 @@ class AdminController extends Controller
                 ]);
             return redirect('/surveyor')
                 ->with('success', 'Berhasil mengubah target surveyor')
-                ->with('confirm', 'Kembali ke Surveyor Profil');
+                ->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }
@@ -323,7 +323,7 @@ class AdminController extends Controller
         try {
             User::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus')->with('confirm', 'Kembali ke Surveyor');
+                ->with('success', 'Berhasil Menghapus')->with('confirm', 'OK');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Mengapus Akun Surveyor');
         }
@@ -335,7 +335,6 @@ class AdminController extends Controller
         return view('admin.pengaturan', [
             'active' => 'pengaturan',
             'title' => 'Pengaturan',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0]
         ]);
     }
     public function editDataSurvey()
@@ -343,7 +342,6 @@ class AdminController extends Controller
         return view('admin.pengaturan.edit-data-survey', [
             'active' => 'pengaturan',
             'title' => 'Pengaturan-Edit Data',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'jalan' => JenisKonstruksiJalan::all(),
             'saluran' => JenisKonstruksiSaluran::all(),
             'sosial' => JenisFasos::all(),
@@ -485,7 +483,7 @@ class AdminController extends Controller
                 'password' => Hash::make($request->kata_sandi_baru)
             ]);
             return redirect('/pengaturan')
-                ->with('success', 'Password anda berhasil diubah');
+                ->with('success', 'Password anda berhasil diubah')->with('confirm', 'Ok');
         } else {
             return back()->withErrors(['kata_sandi_lama' => 'Kata sandi tidak cocok!']);
         }
@@ -495,7 +493,6 @@ class AdminController extends Controller
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
             'title' => 'Data Survei',
-            // 'profile' => User::where('role', 'admin')->get(['nama_lengkap', 'avatar'])[0],
             'data' => $data[0],
         ]);
     }
@@ -504,7 +501,7 @@ class AdminController extends Controller
         try {
             DataSurvey::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survei');
+                ->with('success', 'Berhasil Menghapus Data Survei')->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
         }
