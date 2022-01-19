@@ -167,7 +167,7 @@
                     {{-- @dd($data->lampiranFoto) --}}
                     @foreach ($data->fasosTable as $item)
                         @if ($loop->iteration % 2 == 1)
-                            <tr>
+                            <tr class="d-flex flex-column flex-sm-row justify-content-center">
                         @endif
                         <td align="center" style="padding: 10px">
                             <h3 style="text-align: center">{{ $item->jenisFasos->jenis }}</h3>
@@ -182,7 +182,7 @@
                     {{-- @dd($data->lampiranFoto) --}}
                     @foreach ($data->lampiranFoto as $item)
                         @if ($loop->iteration % 2 == 1)
-                            <tr>
+                            <tr class="d-flex flex-column flex-sm-row justify-content-center">
                         @endif
                         <td align="center" style="padding: 10px">
                             <h3 style="text-align: center">{{ $item->jenisLampiran->jenis }}</h3>
