@@ -1,8 +1,11 @@
 @extends('user.main')
+@section('header')
+    <a href="/surveyor/data-survei/detail/{{ $data->id}}" class="nav-link"><i class="fas fa-chevron-left text-dark"></i></a>
+    <span class="fw-bold">Edit Data Survei Gang {{ $data->nama_gang }}</span>
+@endsection
 @section('content')
     <div class="content">
         <div class="container">
-
             <div class="content ps-3 pe-3">
                 <h1 class="col-12 text-center fs-3 mt-2">Edit Data Survei</h1>
                 <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan edit data survei dengan
@@ -58,15 +61,32 @@
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat</label>
+                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Depan Gang/Komplek </label>
                         <div class="col-12 d-flex">
-                            <button type="button" id="koordinat"
+                            <button type="button" id="koordinat-depan"
                                 class="lokasi btn btn-primary d-flex align-items-center me-2 border-0 koordinat-fasos"
                                 style="border-radius: .5em; background: #3F4FC8;"><i
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
-                            <input type="text" class="form-control border-primary @error('no_gps') is-invalid @enderror"
-                                style="border-radius: .5em;" id="input-koordinat" name="no_gps"
-                                value="{{ $data->no_gps }}">
+                            <input type="text" class="form-control border-primary @error('no_gps_depan') is-invalid @enderror"
+                                style="border-radius: .5em;" id="input-koordinat-depan" name="no_gps_depan"
+                                value="{{ $data->no_gps_depan}}">
+                            @error('no_gps')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Belakang Gang/Komplek </label>
+                        <div class="col-12 d-flex">
+                            <button type="button" id="koordinat-belakang"
+                                class="lokasi btn btn-primary d-flex align-items-center me-2 border-0 koordinat-fasos"
+                                style="border-radius: .5em; background: #3F4FC8;"><i
+                                    class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
+                            <input type="text" class="form-control border-primary @error('no_gps_belakang') is-invalid @enderror"
+                                style="border-radius: .5em;" id="input-koordinat-belakang" name="no_gps_belakang"
+                                value="{{  $data->no_gps_belakang}}">
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}

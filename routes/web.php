@@ -12,6 +12,7 @@ use App\Http\Controllers\AccessController;
 use App\Http\Controllers\SurveyorController;
 use App\Http\Controllers\DataSurveyController;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Models\DataSurvey;
 use App\Models\ForgotPassword;
 
 Route::group(['middleware' => ['auth']], function () {
@@ -30,9 +31,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('/tentang', [SurveyorController::class, 'tentang']);
         Route::get('/tambah-data', [SurveyorController::class, 'tambah']);
         Route::post('/tambah-data', [DataSurveyController::class, 'tambahData']);
-        Route::delete('/data-survei/destroy', [SurveyorController::class, 'destroy'])->name('destroy');
+        Route::delete('/data-survei/destroy', [DataSurveyController::class, 'destroyEditData'])->name('destroy');
         Route::get('/data-survei/detail/edit/{id}', [SurveyorController::class, 'edit']);
-        Route::put('/data-survei/detail/edit/{id}', [SurveyorController::class, 'updateData']);
+        Route::put('/data-survei/detail/edit/{id}', [DataSurveyController::class, 'updateData']);
     });
     Route::group(['middleware' => 'admin'], function () {
         //beranda
