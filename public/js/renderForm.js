@@ -172,7 +172,6 @@ $(document).ready(async function () {
         }
     }
     onReloadWindow();
-
     var i = sessionStorage.getItem("jmlFasos");
     var j = sessionStorage.getItem("jmlLampiran");
     $("#tombol-lampiran").click(function () {

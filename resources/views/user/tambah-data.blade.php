@@ -180,7 +180,7 @@
                                 <label for="" class="ms-2">Status :</label>
                                 <div class="input-group m-1">
                                     <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                        aria-label="Username" aria-describedby="basic-addon1" id="status_jalanan">
+                                        aria-label="Username" aria-describedby="basic-addon1" id="status_jalanan" readonly>
                                 </div>
                             </div>
                         </div>
@@ -363,7 +363,7 @@
                                 <label for="" class="ms-2">Status :</label>
                                 <div class="input-group m-1">
                                     <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                        aria-label="Username" aria-describedby="basic-addon1" id="status_salurann">
+                                        aria-label="Username" aria-describedby="basic-addon1" id="status_salurann" readonly>
                                 </div>
                             </div>
                         </div>

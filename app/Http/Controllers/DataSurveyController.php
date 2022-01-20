@@ -105,7 +105,6 @@ class DataSurveyController extends Controller
     public function tambahData(Request $request)
     {
         $detail = DetailSurveys::find($request->id_detail);
-
         try {
             $request->validate([
                 'kecamatan_id' => ['required'],
@@ -140,10 +139,13 @@ class DataSurveyController extends Controller
                     'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
                 ]);
             }
-            if (!empty($request->addmoreLampiran)) {
+            if (!empty($request->addmore)) {
                 $request->validate([
-                    'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
-                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+                    'addmore.*.jenis_fasos_id' => ['required'],
+                    'addmore.*.koordinat_fasos' => ['required'],
+                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+                    'addmore.*.panjang' => ['required', 'numeric'],
+                    'addmore.*.lebar' => ['required', 'numeric']
                 ]);
             }
 
@@ -199,12 +201,10 @@ class DataSurveyController extends Controller
                         $datasFasos[] = $data_fasos;
                     }
                 }
-
                 foreach ($datasFasos as $dataFasos) {
                     Fasos::create($dataFasos);
                 }
             }
-
             // lampiran
             $datasLampiran = [];
             if (!empty($request->addmoreLampiran)) {
@@ -230,13 +230,12 @@ class DataSurveyController extends Controller
                     LampiranFoto::create($dataLampiran);
                 }
             }
-
             DetailSurveys::where('id', $request->id_detail)->update([
                 'selesai' => $detail->selesai + 1
             ]);
+
             $request->session()->forget('jmlFasos');
             $request->session()->forget('jmlLampiran');
-
             return redirect('/surveyor/beranda')
                 ->with('success', 'Data telah berhasil ditambahkan !')
                 ->with('confirm', 'ok');
