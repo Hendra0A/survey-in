@@ -48,7 +48,7 @@
 
             </div>
             <div class="login mb-3 ms-sm-5 mb-4 w-75">
-                <label for="exampleInputPassword1" class="form-label login">Ulangi Password</label>
+                <label for="exampleInputPassword1" class="form-label login">Konfirmai Password</label>
                 <div class="position-relative">
                     <input name="kata_sandi_baru_confirmation" type="password"
                         class="kolom form-control shadow-none pe-5 @error('kata_sandi_baru_confirmation') is-invalid @enderror"
