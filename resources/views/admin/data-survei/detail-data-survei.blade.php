@@ -85,7 +85,9 @@
                 <tr valign='top'>
                     <td>Koordinat</td>
                     <td style="padding: 0 20px">:</td>
-                    <td>{{ $data->no_gps }}</td>
+                    <td>Depan = {{ $data->no_gps_depan }} <br>
+                        Belakang = {{ $data->no_gps_belakang }}
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Jalan Utama</td>
@@ -98,8 +100,14 @@
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
                     <td style="padding: 0 20px">:</td>
-                    <td>{{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
-                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}</td>
+                    <td>
+                        @if ($data->konstruksiJalan==null)
+                            Tidak ada
+                        @else
+                        {{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
+                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}
+                        @endif
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
@@ -125,8 +133,14 @@
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
                     <td style="padding: 0 20px">:</td>
-                    <td>{{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
-                        {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}</td>
+                    <td>
+                        @if ($data->konstruksiSaluran==null)
+                            Tidak Ada
+                        @else
+                            {{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
+                            {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}
+                        @endif
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
@@ -261,7 +275,11 @@
                     <td><b>Nama Surveyor</b></td>
                     <td style="padding: 0 20px">:</td>
                     <td style="max-width: 30px">
-                        <b>{{ $data->user->nama_lengkap }}</b>
+                        <b>@if ($data->user == null )
+                            -
+                        @else
+                           {{  $data->user->nama_lengkap }}
+                        @endif</b>
                     </td>
                 </tr>
                 <tr valign='top'>

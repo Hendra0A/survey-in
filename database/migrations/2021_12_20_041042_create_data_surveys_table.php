@@ -24,10 +24,8 @@ class CreateDataSurveysTable extends Migration
             $table->string('lokasi')->nullable();
 
             // koordinat
-            $table->string('no_gps')->nullable();
-            $table->string('no_gps_fasos')->nullable();
-            $table->string('no_gps_lainnya')->nullable();
-
+            $table->string('no_gps_depan')->nullable();
+            $table->string('no_gps_belakang')->nullable();
             // jalan
             $table->integer('jenis_konstruksi_jalan_id')->nullable();
             $table->integer('dimensi_jalan_panjang')->nullable();

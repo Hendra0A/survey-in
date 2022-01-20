@@ -48,7 +48,7 @@ class DatabaseSeeder extends Seeder
 
         ];
         $jenisLampiran = ['Gerbang', 'Ruko Samping Kanan', 'Ruko Samping Kiri', 'Kondisi Jalan', 'Kondisi Saluran Kanan', 'Kondisi Saluran Kiri', 'Kondisi Fasos', 'Tampak Rumah'];
-        User::factory(5)->create();
+        // User::factory(5)->create();
         // Jenis Lampiran
         foreach ($jenisLampiran as $value) {
             JenisLampiran::create([
@@ -86,52 +86,7 @@ class DatabaseSeeder extends Seeder
             'jenis' => 'Kuburan'
         ]);
 
-        // DetailSurveys::factory(10)->create();
-        // DetailSurveys::create([
-        //     'user_id' => 1,
-        //     'kecamatan_id' => 160,
-        //     'tanggal_mulai' => '2022-01-01',
-        //     'tanggal_selesai' => '2022-01-02',
-        //     'target' => 10,
-        //     'selesai' => 8
-        // ]);
-
-        // DetailSurveys::create([
-        //     'user_id' => 2,
-        //     'kecamatan_id' => 161,
-        //     'tanggal_mulai' => '2022-01-03',
-        //     'tanggal_selesai' => '2022-01-05',
-        //     'target' => 20,
-        //     'selesai' => 18
-        // ]);
-
-        // DetailSurveys::create([
-        //     'user_id' => 3,
-        //     'kecamatan_id' => 162,
-        //     'tanggal_mulai' => '2022-01-06',
-        //     'tanggal_selesai' => '2022-01-07',
-        //     'target' => 10,
-        //     'selesai' => 10
-        // ]);
-
-        // DetailSurveys::create([
-        //     'user_id' => 4,
-        //     'kecamatan_id' => 163,
-        //     'tanggal_mulai' => '2022-01-01',
-        //     'tanggal_selesai' => '2022-01-03',
-        //     'target' => 20,
-        //     'selesai' => 20
-        // ]);
-
-        // DetailSurveys::create([
-        //     'user_id' => 5,
-        //     'kecamatan_id' => 164,
-        //     'tanggal_mulai' => '2022-01-03',
-        //     'tanggal_selesai' => '2022-01-05',
-        //     'target' => 20,
-        //     'selesai' => 16
-        // ]);
-
+        
         // Jenis Konstruksi Saluran
         JenisKonstruksiSaluran::create([
             'jenis' => 'Cor Beton'
@@ -163,9 +118,6 @@ class DatabaseSeeder extends Seeder
             'jenis' => 'Tanah Berbatu'
         ]);
 
-        // DataSurvey::factory(10)->create();
-        // LampiranFoto::factory(30)->create();
-        // Fasos::factory(30)->create();
 
         User::create([
             'nama_lengkap' => 'Seli bitri',
@@ -177,31 +129,5 @@ class DatabaseSeeder extends Seeder
             'email' => 'selibitri@gmail.com',
             'password' => bcrypt('password')
         ]);
-        // User::create([
-        //     'nama_lengkap' => 'Admin',
-        //     'nomor_telepon' => '082252423199',
-        //     'role' => 'admin',
-        //     'email' => 'admin@gmail.com',
-        //     'password' => bcrypt('admin')
-        // ]);
-        // User::create([
-        //     'nama_lengkap' => 'Hendra',
-        //     'gender' => 'laki-laki',
-        //     'kabupaten_id' => 13,
-        //     'nomor_telepon' => '082252423199',
-        //     'alamat' => 'DK',
-        //     'tanggal_lahir' => '1994-06-22',
-        //     'role' => 'admin',
-        //     'email' => 'hendra@gmail.com',
-        //     'password' => bcrypt('123')
-        // ]);
-        // User::create([
-        //     'nama_lengkap' => 'Haris',
-        //     'avatar' => "https://source.unsplash.com/128x128",
-        //     'nomor_telepon' => '082252423199',
-        //     'role' => 'admin',
-        //     'email' => 'hrswjynto@gmail.com',
-        //     'password' => bcrypt('admin')
-        // ]);
     }
 }
