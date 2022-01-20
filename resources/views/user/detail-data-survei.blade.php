@@ -23,7 +23,9 @@
 
                     <tr>
                         <th>Koordinat</th>
-                        <td>: {{ $data->no_gps }}</td>
+                        <td>: Depan = {{ $data->no_gps_depan }} <br>
+                            : Belakang = {{ $data->no_gps_belakang }}
+                        </td>
                     </tr>
 
                     <tr>
@@ -173,7 +175,7 @@
                         @if ($data->user == null )
                             -
                         @else
-                            $data->user->nama_lengkap
+                            {{  $data->user->nama_lengkap }}
                         @endif</b></td>
                     </tr>
 

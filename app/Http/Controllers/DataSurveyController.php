@@ -111,7 +111,8 @@ class DataSurveyController extends Controller
                 'kecamatan_id' => ['required'],
                 'nama_gang' => ['required', 'max:255'],
                 'lokasi' => ['required'],
-                'no_gps' => ['required'],
+                'no_gps_depan' => ['required'],
+                'no_gps_belakang' => ['required'],
                 'jenis_konstruksi_jalan_id' => ['required'],
                 'status_jalan' => ['required', 'numeric', 'min:0'],
                 'dimensi_jalan_panjang' => ['required', 'numeric', 'min:0'],
@@ -151,7 +152,8 @@ class DataSurveyController extends Controller
                 'kecamatan_id' => $request->kecamatan_id,
                 'nama_gang' => $request->nama_gang,
                 'lokasi' => $request->lokasi,
-                'no_gps' => $request->no_gps,
+                'no_gps_depan' => $request->no_gps_depan,
+                'no_gps_belakang' => $request->no_gps_belakang,
                 'dimensi_jalan_panjang' => $request->dimensi_jalan_panjang === null ? 0 : $request->dimensi_jalan_panjang,
                 'dimensi_jalan_lebar' => $request->dimensi_jalan_lebar === null ? 0 : $request->dimensi_jalan_lebar,
                 'jenis_konstruksi_jalan_id' => $request->jenis_konstruksi_jalan_id,
@@ -239,6 +241,7 @@ class DataSurveyController extends Controller
                 ->with('success', 'Data telah berhasil ditambahkan !')
                 ->with('confirm', 'ok');
         } catch (\Throwable $th) {
+            request()->session('error', 'Data Gagal DIsimpan, input data belum lengkap');
             return redirect()->back()->withInput();
         }
     }
