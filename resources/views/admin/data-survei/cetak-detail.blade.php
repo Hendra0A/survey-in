@@ -44,8 +44,14 @@
                 <tr valign='top'>
                     <td>Kondisi Jalan</td>
                     <td>:</td>
-                    <td>{{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
-                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}</td>
+                    <td>
+                        @if ($data->konstruksiJalan==null)
+                            Tidak ada
+                        @else
+                        {{ $data->konstruksiJalan->jenis }} Kondisi {{ $data->status_jalan }}%
+                        {{ $data->status_jalan >= 50 ? '(baik)' : '(buruk)' }}
+                        @endif
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Saluran</td>
@@ -71,8 +77,14 @@
                 <tr valign='top'>
                     <td>Kondisi Saluran</td>
                     <td>:</td>
-                    <td>{{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
-                        {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}</td>
+                    <td>
+                        @if ($data->konstruksiSaluran==null)
+                            Tidak Ada
+                        @else
+                            {{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
+                            {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}
+                        @endif
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Fasos</td>
