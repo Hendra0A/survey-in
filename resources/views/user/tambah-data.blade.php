@@ -95,8 +95,8 @@
                     <!-- Dimensi Jalan Utama -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama <sup class="text-danger">*</sup></label>
-                        <div class="col-12 d-flex justify-content-around">
-                            <div class="kolom-data m-1">
+                        <div class="col-12 d-flex justify-content-around justify-content-sm-between">
+                            <div class="kolom-data m-1 col-sm-5">
                                 <label for="" class="ms-2">Panjang :</label>
                                 <div class="input-group m-1">
                                     <input type="text"
@@ -113,7 +113,7 @@
                                 </div>
                             </div>
 
-                            <div class="kolom-data m-1">
+                            <div class="kolom-data m-1 col-sm-5">
                                 <label for="" class="ms-2">Lebar :</label>
                                 <div class="input-group m-1">
                                     <input type="text"
