@@ -76,7 +76,7 @@ $(document).ready(function () {
 
     $("#status_jalan").keyup(function (e) {
         if ($(this).val() < 50) {
-            $("#status_jalanan").val("Tidak Baik");
+            $("#status_jalanan").val("Buruk");
         } else if ($(this).val() >= 50) {
             $("#status_jalanan").val("Baik");
         } else {
@@ -85,13 +85,29 @@ $(document).ready(function () {
     });
     $("#status_saluran").keyup(function (e) {
         if ($(this).val() < 50) {
-            $("#status_salurann").val("Tidak Baik");
+            $("#status_salurann").val("Buruk");
         } else if ($(this).val() >= 50) {
             $("#status_salurann").val("Baik");
         } else {
-            $("#status_salurann").val("Tidak Terdefini");
+            $("#status_salurann").val("Tidak Terdefinisi");
         }
     });
+    if ($("status_jalan").val() != "") {
+        if ($(this).val() < 50) {
+            $("#status_jalanan").val("Buruk");
+        } else if ($(this).val() >= 50) {
+            $("#status_jalanan").val("Baik");
+        }
+    }
+    if ($("status_saluran").val() != "") {
+        if ($(this).val() < 50) {
+            $("#status_salurann").val("Buruk");
+        } else if ($(this).val() >= 50) {
+            $("#status_salurann").val("Baik");
+        } else {
+            $("#status_salurann").val("Tidak Terdefinisi");
+        }
+    }
 
     let isReadOnly = (bool = true) => {
         $(".status_saluran").prop("readonly", bool);

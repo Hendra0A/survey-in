@@ -208,7 +208,7 @@
                                     <input type="text"
                                         class="form-control border-primary status_saluran @error('status_saluran') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="status_saluran" value="{{ $data->status_saluran }}">
+                                        name="status_saluran" value="{{ $data->status_saluran }}" id="status_saluran">
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">%</span>
                                     @error('status_saluran')
