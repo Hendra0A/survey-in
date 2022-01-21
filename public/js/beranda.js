@@ -22,8 +22,8 @@ $(document).ready(async function () {
         let data;
         try {
             data = await getData(`/kecamatan`, idKab);
+            $(".text-kec").text(data.data[0].nama);
             setResumeSurvey(data.data[0].id);
-            $(".text-kec").text($("#kecamatan").find("option:selected").text());
         } catch (error) {}
         $("#kecamatan").html("");
         data.data.forEach((element) => {

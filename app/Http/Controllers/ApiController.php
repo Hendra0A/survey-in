@@ -45,7 +45,8 @@ class ApiController extends Controller
             'message' => 'List of option',
             'jenisFasos' => JenisFasos::get((['id', 'jenis'])),
             'jenisLampiran' => JenisLampiran::get(['id', 'jenis']),
-            'fasos' => Fasos::all()
+            'fasos' => Fasos::all(),
+            'lampiran' => LampiranFoto::all(),
 
 
         ];

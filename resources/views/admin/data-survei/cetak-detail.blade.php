@@ -31,7 +31,9 @@
                 <tr valign='top'>
                     <td>Koordinat</td>
                     <td>:</td>
-                    <td>{{ $data->no_gps }}</td>
+                    <td>Depan = {{ $data->no_gps_depan }} <br>
+                        Belakang = {{ $data->no_gps_belakang }}
+                    </td>
                 </tr>
                 <tr valign='top'>
                     <td>Dimensi Jalan Utama</td>

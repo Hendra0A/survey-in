@@ -132,7 +132,7 @@ class AdminController extends Controller
             ]);
             return redirect('/surveyor')
                 ->with('success', 'Akun telah berhasil ditambahkan !')
-                ->with('confirm', 'Kembali ke Surveyor');
+                ->with('confirm', 'Ok');
         } catch (\Exception $e) {
             return redirect()->back()->withInput();
         }

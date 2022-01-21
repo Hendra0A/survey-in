@@ -1,17 +1,32 @@
 $(document).ready(function () {
     // koordinat
-    $("#koordinat").click(function () {
+    $("#koordinat-depan").click(function () {
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showPosition);
+            navigator.geolocation.getCurrentPosition(showPositionDepan);
         } else {
-            $("#input-koordinat").val(
+            $("#input-koordinat-depan").val(
                 "Geolocation is not supported by this browser."
             );
         }
     });
 
-    function showPosition(position) {
-        $("#input-koordinat").val(
+    function showPositionDepan(position) {
+        $("#input-koordinat-depan").val(
+            position.coords.latitude + " " + position.coords.longitude
+        );
+    }
+    $("#koordinat-belakang").click(function () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPositionBelakang);
+        } else {
+            $("#input-koordinat-belakang").val(
+                "Geolocation is not supported by this browser."
+            );
+        }
+    });
+
+    function showPositionBelakang(position) {
+        $("#input-koordinat-belakang").val(
             position.coords.latitude + " " + position.coords.longitude
         );
     }

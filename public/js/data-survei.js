@@ -47,7 +47,7 @@ $(document).ready(async function () {
                 columns: [
                     { data: "nama_gang" },
                     { data: "lokasi" },
-                    { data: "no_gps" },
+                    { data: "no_gps_depan" },
                     { data: "user" == null ? "-" : "user.nama_lengkap" },
                     {
                         data: "id",
