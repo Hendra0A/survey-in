@@ -22,7 +22,7 @@
                     @csrf
                     <div class="input-group mb-3">
                         <div class="col-12 mb-3">
-                            <label for="nama_gang" class="form-label fw-bold">Kecamatan</label>
+                            <label for="nama_gang" class="form-label fw-bold">Kecamatan <sup class="text-danger">*</sup> </label>
                             <input type="hidden" name="kecamatan_id" value="{{ $kecamatan->id }}">
                             <input type="hidden" name="id_detail" value="{{ $id_detail }}">
                             <label type="text" class="form-control border-primary" style="border-radius: .5em;"
@@ -32,10 +32,10 @@
                     <!-- Nama gang & lokasi & koordinat -->
                     <div class="row row-cols-3">
                         <div class="col-12 col-sm-6 mb-3">
-                            <label for="nama_gang" class="form-label fw-bold">Nama Gang dan Perumahan</label>
+                            <label for="nama_gang" class="form-label fw-bold">Nama Gang dan Perumahan <sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control border-primary @error('nama_gang') is-invalid @enderror"
                                 style="border-radius: .5em;" id="nama_gang" name="nama_gang"
-                                value="{{ old('nama_gang') }}">
+                                value="{{ old('nama_gang') }}" required>
                             @error('nama_gang')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -44,9 +44,9 @@
                         </div>
 
                         <div class="col-12 col-sm-6 mb-3">
-                            <label for="lokasi" class="form-label fw-bold">Lokasi</label>
+                            <label for="lokasi" class="form-label fw-bold">Lokasi <sup class="text-danger">*</sup></label>
                             <input type="text" class="form-control border-primary @error('lokasi') is-invalid @enderror"
-                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ old('lokasi') }}">
+                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ old('lokasi') }}" required>
                             @error('lokasi')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -56,7 +56,7 @@
                     </div>
 
                     <div class="col-12 mb-3">
-                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Depan Gang/Komplek </label>
+                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Depan Gang/Komplek <sup class="text-danger">*</sup> </label>
                         <div class="col-12 d-flex">
                             <button type="button" id="koordinat-depan"
                                 class="lokasi btn btn-primary d-flex align-items-center me-2 border-0 koordinat-fasos"
@@ -64,7 +64,7 @@
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary @error('no_gps_depan') is-invalid @enderror"
                                 style="border-radius: .5em;" id="input-koordinat-depan" name="no_gps_depan"
-                                value="{{ old('no_gps_depan') }}">
+                                value="{{ old('no_gps_depan') }}" required>
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -73,7 +73,7 @@
                         </div>
                     </div>
                     <div class="col-12 mb-3">
-                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Belakang Gang/Komplek </label>
+                        <label for="input-koordinat" class="form-label fw-bold d-block m-0 mb-2">Koordinat Belakang Gang/Komplek <sup class="text-danger">*</sup> </label>
                         <div class="col-12 d-flex">
                             <button type="button" id="koordinat-belakang"
                                 class="lokasi btn btn-primary d-flex align-items-center me-2 border-0 koordinat-fasos"
@@ -81,7 +81,7 @@
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary @error('no_gps_belakang') is-invalid @enderror"
                                 style="border-radius: .5em;" id="input-koordinat-belakang" name="no_gps_belakang"
-                                value="{{ old('no_gps_belakang') }}">
+                                value="{{ old('no_gps_belakang') }}" required>
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -94,7 +94,7 @@
 
                     <!-- Dimensi Jalan Utama -->
                     <div class="col-12 mb-3">
-                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama</label>
+                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama <sup class="text-danger">*</sup></label>
                         <div class="col-12 d-flex justify-content-around">
                             <div class="kolom-data m-1">
                                 <label for="" class="ms-2">Panjang :</label>
@@ -102,7 +102,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_panjang" value="{{ old('dimensi_jalan_panjang') }}">
+                                        name="dimensi_jalan_panjang" value="{{ old('dimensi_jalan_panjang') }}" required>
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">m</span>
                                     @error('dimensi_jalan_panjang')
@@ -119,7 +119,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_lebar" value="{{ old('dimensi_jalan_lebar') }}">
+                                        name="dimensi_jalan_lebar" value="{{ old('dimensi_jalan_lebar') }}" required>
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">m</span>
                                     @error('dimensi_jalan_lebar')
@@ -136,15 +136,15 @@
 
                     <!-- Kondisi jalan -->
                     <div class="col-12 mb-3">
-                        <label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan</label>
+                        <label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan  <sup class="text-danger">*</sup></label>
                         <div class="col-12 d-flex justify-content-around">
                             <div class="kolom-data m-1" style="width: 40%;">
-                                <label for="" class="ms-2">Keadaan Jalan :</label>
+                                <label for="" class="ms-2">Keadaan Jalan <sup class="text-danger">*</sup> :</label>
                                 <div class="input-group m-1">
                                     <select
                                         class="form-select form-select border-primary @error('jenis_konstruksi_jalan_id') is-invalid @enderror"
                                         autocomplete="off" style="border-radius: .5em;" aria-label=".form-select example"
-                                        name="jenis_konstruksi_jalan_id">
+                                        name="jenis_konstruksi_jalan_id" required>
                                         <option value="" selected hidden></option>
                                         @foreach ($jalan as $item)
                                             <option {{ old('jenis_konstruksi_jalan_id') == $item->id ? 'selected' : '' }}
@@ -387,10 +387,9 @@
                     </div>
                     <!-- form-tambahan -->
 
-
                     <!-- Jumlah rumah -->
                     <div class="col-12 mb-3 ps-2">
-                        <label for="" class="form-label d-block fw-bold">Jumlah Rumah</label>
+                        <label for="" class="form-label d-block fw-bold">Jumlah Rumah  <sup class="text-danger">*</sup></label>
                         <div class="col-12 d-flex justify-content-between">
                             <div class="kolom-data col-3">
                                 <label for="" class="">Layak :</label>
@@ -398,7 +397,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_layak" value="{{ old('jumlah_rumah_layak') }}">
+                                        name="jumlah_rumah_layak" value="{{ old('jumlah_rumah_layak') }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_layak')
@@ -415,9 +414,9 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_tak_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_tak_layak" value="{{ old('jumlah_rumah_tak_layak') }}">
+                                        name="jumlah_rumah_tak_layak" value="{{ old('jumlah_rumah_tak_layak') }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">unit</span>
+                                        id="basic-addon1 required">unit</span>
                                     @error('jumlah_rumah_tak_layak')
                                         <div id="validationServer03Feedback" class="invalid-feedback">
                                             {{ $message }}
@@ -432,7 +431,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_kosong') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_kosong" value="{{ old('jumlah_rumah_kosong') }}">
+                                        name="jumlah_rumah_kosong" value="{{ old('jumlah_rumah_kosong') }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_kosong')
@@ -448,20 +447,20 @@
 
                     <!-- Jenis rumah & pos jaga -->
                     <div class="col-12 mb-3">
-                        <label for="" class="form-label ms-2 d-block fw-bold">Jenis Rumah</label>
+                        <label for="" class="form-label ms-2 d-block fw-bold">Jenis Rumah  <sup class="text-danger">*</sup>:</label>
                         <div class=" justify-content-center">
                             <div class="row row-cols-2">
 
                                 <div class="col-12 col-sm-6 mb-2">
                                     <div class="d-flex col-sm-6">
                                         <div class="col-6 col-sm-12 ps-1 pe-1">
-                                            <label for="" class="ms-2">Developer :</label>
+                                            <label for="" class="ms-2">Developer  <sup class="text-danger">*</sup> :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
                                                     class="form-control border-primary @error('jumlah_rumah_developer') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_developer"
-                                                    value="{{ old('jumlah_rumah_developer') }}">
+                                                    value="{{ old('jumlah_rumah_developer') }}" required>
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_developer')
@@ -479,11 +478,11 @@
                                                     class="form-control border-primary @error('jumlah_rumah_swadaya') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_swadaya"
-                                                    value="{{ old('jumlah_rumah_swadaya') }}">
+                                                    value="{{ old('jumlah_rumah_swadaya') }}" required>
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_swadaya')
-                                                    <div id="validationServer03Feedback" class="invalid-feedback">
+                                                    <div id="validationServer03Feedback" class="invalid-feedback" required>
                                                         {{ $message }}
                                                     </div>
                                                 @enderror

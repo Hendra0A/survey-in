@@ -36,10 +36,10 @@ $(document).ready(async function () {
                 <div class="d-flex flex-wrap mb-3">
                     <div class="col-12 col-sm-6 mt-sm-1">
                         <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
-                            Sosial(Fasos)</label>
+                            Sosial(Fasos)  <sup class="text-danger">*</sup></label>
                         <select class="form-select form-select border-primary" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]"
-                            value="{{ old('jenis_fasos_id') }}">
+                            value="{{ old('jenis_fasos_id') }}" required>
                             <option value="0" selected disabled>-Pilih fasos-</option>
                             ${Object.keys(data.jenisFasos)
                                 .map(function (key) {
@@ -61,7 +61,7 @@ $(document).ready(async function () {
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="">
+                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="" required>
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
                         </div>
@@ -71,7 +71,7 @@ $(document).ready(async function () {
                             <div class="input-group">
                                 <input type="text" class="form-control border-primary"
                                     style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]">
+                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]" required>
                                 <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                             </div>
                         </div>
@@ -89,14 +89,14 @@ $(document).ready(async function () {
                                     <input type="text"
                                         class="lokasi-fasos form-control border-primary "
                                         style="border-radius: .5em;" id="input-koordinat-fasos"
-                                        name="addmore[${x}][koordinat_fasos]" value="">
+                                        name="addmore[${x}][koordinat_fasos]" value="" required>
                                 </div>
                             </div>
 
                 
 
                 <div class="col-12">
-                    <input type="file" name="addmore[${x}][foto]" class="imageFasos btn btn-primary border-0" style="border-radius: .5em; background: #3F4FC8;" id="fasos-${x}">
+                    <input type="file" name="addmore[${x}][foto]" class="imageFasos btn btn-primary border-0" style="border-radius: .5em; background: #3F4FC8;" id="fasos-${x}" required>
                     <label for="fasos-${x}">
                     <div class="img-keterangan mt-2 p-2 text-sm-center"
                         style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em; box-sizing: border-box;">
@@ -114,11 +114,11 @@ $(document).ready(async function () {
     let renderLampiran = () => {
         $(".form-lampiran").append(`
                 <div class="single-form-lampiran">
-                    <label for="" class="fw-bold">Keterangan</label>
+                    <label for="" class="fw-bold">Keterangan  <sup class="text-danger">*</sup></label>
                     <div class="input-group mb-3">
                         <select class="form-select form-select border-primary" autocomplete="off"
                             style="border-radius: .5em;" aria-label=".form-select example"
-                            name="addmoreLampiran[${y}][jenis_lampiran_id]" value="">
+                            name="addmoreLampiran[${y}][jenis_lampiran_id]" value="" required> 
                             <option value="" selected disabled>-Pilih kategori-</option>
                             ${Object.keys(data.jenisLampiran)
                                 .map(function (key) {
@@ -131,13 +131,13 @@ $(document).ready(async function () {
                                     );
                                 })
                                 .join("")}
-                            </select>
+                        </select>
                     </div>
 
                     <div class="col-12">
                             <input type="file" name="addmoreLampiran[${y}][foto]"
                             class="imageLampiran btn btn-primary border-0"
-                            style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}">
+                            style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}" required>
                             <label for="lampiran-${y}">
                         <div class="img-keterangan mt-2 p-2 text-sm-center"
                             style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">

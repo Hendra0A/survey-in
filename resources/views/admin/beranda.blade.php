@@ -20,7 +20,6 @@
                     <div class="input-group mb-3">
                         <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                         <select class="form-select" id="kecamatan" name="kecamatan">
-                            <option value="" selected> Pilih kabupaten</option>
                         </select>
                     </div>
                 </div>
