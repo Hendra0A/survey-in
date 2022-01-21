@@ -107,7 +107,7 @@
                         <td class="right-bio align-top">{{ ucwords($profile_surveyor->nama_lengkap) }}</td>
                     </tr>
                     <tr>
-                        <td class="left-bio">Wilayah Survei</td>
+                        <td class="left-bio">Wilayah Survey</td>
                         <td style="width: 1%;" class="pe-1 ps-1 align-top">:</td>
                         <td class="right-bio align-top">Kabupaten {{ ucwords($area->nama) }}</td>
                     </tr>
