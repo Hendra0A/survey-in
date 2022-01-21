@@ -22,6 +22,7 @@ use App\Models\JenisKonstruksiSaluran;
 
 use function PHPUnit\Framework\isEmpty;
 use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class SurveyorController extends Controller
 {
@@ -101,7 +102,7 @@ class SurveyorController extends Controller
             'tanggal_lahir' => ['required'],
             'gender' => ['required'],
             'alamat' => ['required'],
-            'avatar' => 'image|file|max:2048'
+            'avatar' => 'image|file|'
         ]);
 
         if ($request->file('avatar')) {
@@ -109,10 +110,9 @@ class SurveyorController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $md5Name = uniqid();
-            $guessExtension = $request->file('avatar')->guessExtension();
-            $image->move(public_path('/storage/avatar-images'), $md5Name . '.' . $guessExtension);
-            $image_path = "avatar-images/" . $md5Name . '.' . $guessExtension;
+            $name['imgname'] = auth()->user()->nama_lengkap.'_'.uniqid().'.'.$image->guessExtension();
+            Image::make($image)->resize(115,115)->save(public_path('storage/avatar-images/').$name['imgname']);
+            $image_path = "avatar-images/" .$name['imgname'];
             $validateData['avatar'] = $image_path;
         }
         try {

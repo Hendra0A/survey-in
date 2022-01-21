@@ -27,6 +27,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 use function PHPUnit\Framework\isEmpty;
+use Intervention\Image\Facades\Image;
 
 // jika erorr menggunakan alert
 // jalankan composer install
@@ -79,10 +80,9 @@ class AdminController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $md5Name = uniqid();
-            $guessExtension = $request->file('avatar')->guessExtension();
-            $image->move(public_path('/storage/avatar-images'), $md5Name . '.' . $guessExtension);
-            $image_path = "avatar-images/" . $md5Name . '.' . $guessExtension;
+            $name['imgname'] = auth()->user()->nama_lengkap.'_'.uniqid().'.'.$image->guessExtension();
+            Image::make($image)->resize(115,115)->save(public_path('storage/avatar-images/').$name['imgname']);
+            $image_path = "avatar-images/" .$name['imgname'];
             $validateData['avatar'] = $image_path;
         }
         try {
