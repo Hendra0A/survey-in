@@ -1,7 +1,7 @@
 @extends('user.main')
 @section('header')
   <a href="/surveyor/beranda" class="nav-link"><i class="fas fa-chevron-left text-dark"></i></a>
-  <span class="fw-bold">Riwayat Survei</span>
+  <span class="fw-bold">Riwayat Survey</span>
 @endsection
 @section('content')
 <div class="content">
@@ -30,7 +30,7 @@
             @if (($item->selesai - $item->target) > 0)
                 + {{$item->selesai - $item->target }} Gang dan Perumahan
             @elseif ($item->selesai - $item->target == 0)
-                Survei Sukses
+                Survey Sukses
             @elseif(($item->selesai - $item->target) < 0)
                 {{$item->selesai - $item->target }} Gang dan Perumahan
             @endif

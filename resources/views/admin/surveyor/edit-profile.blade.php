@@ -5,7 +5,7 @@
     <div class="row justify-content-start">
         <div class="col-10">
             <div class="surveyor-hl ms-0 ms-sm-5">
-                <h1>Edit Profile Surveyor</h1>
+                <h1>Edit Profil Surveyor</h1>
                 <p class="mb-5">Edit akun surveyor di bawah ini dengan benar</p>
 
                 <!-- avatar -->
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-10 mb-3 m-3">
                             <div class="mb-3">
-                                <label class="form-label">Area Survei</label>
+                                <label class="form-label">Area Survey</label>
                                 <select class="form-control form-select @error('area') is-invalid @enderror py-2"
                                     id="area" name="area">
                                     @foreach ($kabupaten as $item)

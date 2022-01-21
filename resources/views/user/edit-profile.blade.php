@@ -6,8 +6,8 @@
 @section('content')
     <div class="content">
         <div class="container mt-3">
-            <h1 class="fw-bold">Profile Edit</h1>
-            <p style="color: #a5a5a5;">Edit profile Anda untuk melengkapi data pribadi.</p>
+            <h1 class="fw-bold">Profil Edit</h1>
+            <p style="color: #a5a5a5;">Edit profil Anda untuk melengkapi data pribadi.</p>
             <form action="/surveyor/profile/edit-profile" id="prf-edit-form" autocomplete="off" method="post"
                 enctype="multipart/form-data">
                 @csrf
@@ -36,7 +36,7 @@
                                 </div>
                             @enderror
                             <label for="avatar" class="form-label fw-bold fs-6 btn btn-primary px-4 py-2 border-0"
-                                style="border-radius: 0.5em; background: #3F4FC8;">Ubah Foto Profile</label>
+                                style="border-radius: 0.5em; background: #3F4FC8;">Ubah Foto Profil</label>
                             <p class="upload ms-3">maks upload (2 Mb)</p>
                         </div>
                     </div>

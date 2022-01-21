@@ -1,5 +1,5 @@
 @extends('admin.main')
-@section('title', 'Data Survei')
+@section('title', 'Data Survey')
 @section('main-content')
     {{-- header --}}
     @include('admin.header')
@@ -8,10 +8,10 @@
     <div class="content d-flex flex-column" id="dasur-content">
         <div class="pilih w-100 d-flex flex-column container-fluid">
             <h1 class="dasur-content w-100 text-center mt-4">
-                Pencarian Hasil Survei
+                Pencarian Hasil Survey
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survei Gang dan Perumahan <br> di Kecamatan <span class="text-kec">Pontianak Barat</span>
+                Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec">Pontianak Barat</span>
             </p>
             <form action="" method="POST">
                 @csrf

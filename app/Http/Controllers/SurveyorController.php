@@ -79,7 +79,7 @@ class SurveyorController extends Controller
     public function show()
     {
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'active' => 'profile',
             'data' => auth()->user()
         ];
@@ -89,7 +89,7 @@ class SurveyorController extends Controller
     {
         $data = [
             'active' => 'Profile - Edit',
-            'title' => 'Profile-Page',
+            'title' => 'Profil',
             'data' => auth()->user()
         ];
         return view('user.edit-profile', $data);
@@ -184,7 +184,7 @@ class SurveyorController extends Controller
         } else {
             return view('user.tambah-data', [
                 'active' => 'tambah data',
-                'title' => 'Tambah Data Survei',
+                'title' => 'Tambah Data Survey',
                 'kecamatan' => $data[0]->kecamatan,
                 'jalan' => JenisKonstruksiJalan::all(),
                 'saluran' => JenisKonstruksiSaluran::all(),
@@ -203,7 +203,7 @@ class SurveyorController extends Controller
         } else {
             return view('user.edit-data', [
                 'active' => 'tambah data',
-                'title' => 'Tambah Data Survei',
+                'title' => 'Tambah Data Survey',
                 'kecamatans' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
                     ->orderBy('id', 'ASC')->get(['id', 'nama']),
                 'jalan' => JenisKonstruksiJalan::all(),

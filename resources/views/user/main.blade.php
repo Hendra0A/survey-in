@@ -25,7 +25,7 @@
                     @yield('header')
                 @else
                     <img src="/img/logo-b.png" alt="" style="width: 3em;">
-                    <p class=" m-0 ms-1 text-warning ">Survei</p>
+                    <p class=" m-0 ms-1 text-warning ">Survey</p>
                 @endif
             </div>
             <div class="dropdown me-1">

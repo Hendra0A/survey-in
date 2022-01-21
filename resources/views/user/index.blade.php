@@ -14,9 +14,9 @@
         <div class="col-12 ">
           <div class="d-flex ms-2 me-2 mt-2 m-auto justify-content-center shadow-sm bg-white p-3 justify-content-md-between" style="border-radius: 1em;">
               <div class="pe-1 d-flex flex-column justify-content-center">
-                  <h4>Ayo selesaikan target surveimu!</h4>
+                  <h4>Ayo selesaikan target surveymu!</h4>
                   <p class="mb-2">Kecamatan {{ $data['kecamatan']['nama'] }}</p>
-                  <p class=" text-primary mb-2">Status : {{ $data['selesai'] }}/{{ $data['target'] }} Survei</p>
+                  <p class=" text-primary mb-2">Status : {{ $data['selesai'] }}/{{ $data['target'] }} Survey</p>
                   <p class=" text-danger">Deadline :  {{ $data['tanggal_selesai'] }}</p>
               </div>
               <div class="hero-beranda">
@@ -26,7 +26,7 @@
         </div>
       </div>
       <div class="ms-2 me-2 mt-2 m-auto justify-content-center" style="background: #F3F8FF;">
-        <a href="/surveyor/riwayat-survei" class="text-end text-decoration-none fs-6 d-block">Riwayat Survei</a>
+        <a href="/surveyor/riwayat-survei" class="text-end text-decoration-none fs-6 d-block">Riwayat Survey</a>
       </div>
       <div class="pilih-kec mt-4 mb-2 p-2">
           <label for="" class=" ms-4" id="pilih-kec">Kecamatan :</label>

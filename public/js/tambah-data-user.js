@@ -67,11 +67,12 @@ $(document).ready(function () {
             let reader = new FileReader();
             let img = $(e.target).next().find("img");
             reader.onload = (e) => {
-                img.attr("src", e.target.result);
+                console.log(this.files[0]);
+                img.attr("src", srcEncoded);
             };
             reader.readAsDataURL(this.files[0]);
         } catch (error) {}
-    });
+    }); 
 
     $("#status_jalan").keyup(function (e) {
         if ($(this).val() < 50) {

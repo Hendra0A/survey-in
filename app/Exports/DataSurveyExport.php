@@ -31,7 +31,7 @@ class DataSurveyExport implements FromView, ShouldAutoSize, WithEvents
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('kecamatan_id', $this->id)->get();
         $fasos = JenisFasos::all();
         return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'datas' => $data,
             'fasos' => $fasos
         ]);

@@ -6,7 +6,7 @@
 <div class="content d-flex flex-column">
     <div class="surveyor-hl ms-0 ms-sm-5">
         <h1>Tambah Target Surveyor</h1>
-        <p class="mb-5">Tentukan targer survei per surveyor di bawah ini </p>
+        <p class="mb-5">Tentukan targer survey per surveyor di bawah ini </p>
 
         <!-- avatar -->
         <div class="surveyor">

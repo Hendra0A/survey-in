@@ -47,7 +47,7 @@ class AdminController extends Controller
     public function profile()
     {
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'active' => 'profile',
             'data' => auth()->user()
         ];
@@ -57,7 +57,7 @@ class AdminController extends Controller
     {
         $data = [
             'active' => 'Profile - Edit',
-            'title' => 'Profile-Page',
+            'title' => 'Halaman Profil',
             'data' => auth()->user()
         ];
         return view('admin.edit-profile', $data);
@@ -158,7 +158,7 @@ class AdminController extends Controller
 
         $detail = [
             'active' => 'surveyor',
-            'title' => 'Surveyor - Profile', [0],
+            'title' => 'Surveyor - Profil', [0],
             'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
@@ -216,7 +216,7 @@ class AdminController extends Controller
         if ($action == 'profile') {
             $data = [
                 'active' => 'surveyor',
-                'title' => 'Surveyor - Edit Profile Surveyor',
+                'title' => 'Surveyor - Edit Profil Surveyor',
                 'kabupaten' => Kabupaten::all(),
                 'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')
@@ -492,7 +492,7 @@ class AdminController extends Controller
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'data' => $data[0],
         ]);
     }
@@ -501,9 +501,9 @@ class AdminController extends Controller
         try {
             DataSurvey::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survei')->with('confirm', 'Ok');
+                ->with('success', 'Berhasil Menghapus Data Survey')->with('confirm', 'Ok');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
+            return redirect()->back()->with('error', 'Gagal Menghapus Data Survey');
         }
     }
 }

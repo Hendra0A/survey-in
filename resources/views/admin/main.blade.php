@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ $title }} | Survei</title>
+	<title>{{ $title }} | Survey</title>
 	<link rel="icon" href="/img/logo.png" type="image/gif" sizes="16x16">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<script src="/js/jquery-3.6.0.min.js"></script>
@@ -22,34 +22,34 @@
 		<nav class="navbar navbar-expand d-flex flex-column align-item-start p-2" id="sidebar">
 			<div class="logo mt-3">
 				<div class="logo-img mt-5 mb-3 d-flex m-auto"></div>
-				<h2 class="logo text-center mt-2">Survei</h2>
-				<p class="logo text-center ps-1 pe-1">Aplikasi Survei Gang dan Perumahan</p>
+				<h2 class="logo text-center mt-2">Survey</h2>
+				<p class="logo text-center ps-1 pe-1">Aplikasi Survey Gang dan Perumahan</p>
 			</div>
 			<ul class="navbar-nav d-flex flex-column mt-3 w-100">
 				<li class="nav-item w-100">
-					<a href="/beranda" class="nav-link {{ $active == 'beranda' ? 'text-primary' : '' }}"><i
-							class="fas fa-home"></i>Beranda</a>
+					<a href="/beranda" class="nav-link {{ $active == 'beranda' ? 'text-primary' : '' }}"><i class="fas fa-home"
+							style="width: 1rem;"></i>Beranda</a>
 				</li>
 				<li class="nav-item w-100">
-					<a href="/profile" class="nav-link {{ $active == 'profile' ? 'text-primary' : '' }}"><i
-							class="fas fa-user"></i>Profile</a>
+					<a href="/profile" class="nav-link {{ $active == 'profile' ? 'text-primary' : '' }}"><i class="fas fa-user"
+							style="width: 1rem;"></i>Profil</a>
 				</li>
 				<li class="nav-item w-100">
-					<a href="/surveyor" class="nav-link {{ $active == 'surveyor' ? 'text-primary' : '' }}"><i
-							class="fas fa-poll-h"></i>Surveyor</a>
+					<a href="/surveyor" class="nav-link {{ $active == 'surveyor' ? 'text-primary' : '' }}"><i class="fas fa-poll-h"
+							style="width: 1rem;"></i>Surveyor</a>
 				</li>
 				<li class="nav-item w-100">
 					<a href="/data-survei" class="nav-link {{ $active == 'data survei' ? 'text-primary' : '' }}"><i
-							class="fas fa-download"></i>Data Survei</a>
+							class="fas fa-download" style="width: 1rem;"></i>Data Survey</a>
 				</li>
 				<li class="nav-item w-100">
 					<a href="/pengaturan" class="nav-link {{ $active == 'pengaturan' ? 'text-primary' : '' }}"><i
-							class="fas fa-cog"></i>Pengaturan</a>
+							class="fas fa-cog" style="width: 1rem;"></i>Pengaturan</a>
 				</li>
 				<li class="nav-item w-100">
 
 					<a href="login.html" class="nav-link" data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-							class="fas fa-sign-out-alt"></i>Keluar</a>
+							class="fas fa-sign-out-alt" style="width: 1rem;"></i>Keluar</a>
 				</li>
 			</ul>
 		</nav>
@@ -63,7 +63,7 @@
 			@yield('main-content')
 			<!-- Footer -->
 			<div class="footer pt-4 d-flex justify-content-center">
-				<p class="copyright pt-2 pb-2">&copy; Website Survei 2022</p>
+				<p class="copyright pt-2 pb-2">&copy; Website Survey 2022</p>
 			</div>
 
 		</section>

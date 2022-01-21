@@ -8,7 +8,7 @@
         <li class="nav-item">
             <i class="bi {{ ($active=='data-survei')? 'bi-file-earmark-minus-fill' : 'bi-file-earmark-minus'}}"></i>
             <a href="/surveyor/data-survei"
-                class="nav-link text-white d-flex justify-content-center align-items-end">Data Survei</a>
+                class="nav-link text-white d-flex justify-content-center align-items-end">Data Survey</a>
         </li>
         <li class="nav-item">
             <i class="bi {{ ($active=='tambah-data')? 'bi-file-earmark-plus-fill' : 'bi-file-earmark-plus'}}"></i>

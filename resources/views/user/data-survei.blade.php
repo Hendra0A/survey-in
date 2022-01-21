@@ -2,11 +2,11 @@
 @section('content')
 <div class="content">
     <div class="container">
-      <h1 class="text-center my-5">Data Survei</h1>
+      <h1 class="text-center my-5">Data Survey</h1>
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <span class="nav-item nav-link active page" data-id="0" data-method="all" aria-selected="true" >Seluruh Data</span>
-          <span class="nav-item nav-link page" data-method="single" data-id="{{ auth()->user()->id }}" aria-selected="false">Survei Saya</span>
+          <span class="nav-item nav-link page" data-method="single" data-id="{{ auth()->user()->id }}" aria-selected="false">Survey Saya</span>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">
