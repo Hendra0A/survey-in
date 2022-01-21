@@ -110,9 +110,9 @@ class SurveyorController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $name['imgname'] = auth()->user()->nama_lengkap.'_'.uniqid().'.'.$image->guessExtension();
-            Image::make($image)->resize(115,115)->save(public_path('storage/avatar-images/').$name['imgname']);
-            $image_path = "avatar-images/" .$name['imgname'];
+            $name['imgname'] = auth()->user()->nama_lengkap . '_' . uniqid() . '.' . $image->guessExtension();
+            Image::make($image)->resize(115, 115)->save(public_path('storage/avatar-images/') . $name['imgname']);
+            $image_path = "avatar-images/" . $name['imgname'];
             $validateData['avatar'] = $image_path;
         }
         try {
@@ -197,15 +197,13 @@ class SurveyorController extends Controller
 
     public function edit($id)
     {
-        $data = DataSurvey::where('id', $id)->get()[0];
+        $data = DataSurvey::with('kecamatan')->where('id', $id)->get()[0];
         if ($data->user_id != auth()->user()->id) {
             return redirect('/surveyor/data-survei')->with('info', 'Anda tidak memiliki akses untuk mengedit');
         } else {
             return view('user.edit-data', [
                 'active' => 'tambah data',
                 'title' => 'Tambah Data Survey',
-                'kecamatans' => Kecamatan::where('kabupaten_id', auth()->user()->kabupaten_id)
-                    ->orderBy('id', 'ASC')->get(['id', 'nama']),
                 'jalan' => JenisKonstruksiJalan::all(),
                 'saluran' => JenisKonstruksiSaluran::all(),
                 'jenisFasos' => JenisFasos::all(),

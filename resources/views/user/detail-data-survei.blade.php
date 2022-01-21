@@ -64,7 +64,7 @@
                             : Kedalaman =
                             {{ $data->dimensi_saluran_kedalaman_kanan != 0 ? $data->dimensi_saluran_kedalaman_kanan . ' m' : 'tidak ada' }}
                             (kanan) dan
-                            {{ $data->dimensi_saluran_kedalaman_kiri != 0 ? $data->dimensi_saluran_kedalaman_kiri . ' m' : 'tidakada' }}
+                            {{ $data->dimensi_saluran_kedalaman_kiri != 0 ? $data->dimensi_saluran_kedalaman_kiri . ' m' : 'tidak ada' }}
                             (kiri)<br>
                         </td>
                     </tr>
@@ -73,7 +73,7 @@
                         <th>Kondisi saluran</th>
                         <td>:
                             @if ($data->konstruksiSaluran==null)
-                            Tidak Ada'
+                            Tidak Ada
                             @else
                                 {{ $data->konstruksiSaluran->jenis }} Kondisi {{ $data->status_saluran }}%
                                 {{ $data->status_saluran >= 50 ? '(baik)' : '(buruk)' }}

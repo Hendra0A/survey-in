@@ -11,7 +11,7 @@
                 class="nav-link text-white d-flex justify-content-center align-items-end">Data Survey</a>
         </li>
         <li class="nav-item">
-            <i class="bi {{ ($active=='tambah-data')? 'bi-file-earmark-plus-fill' : 'bi-file-earmark-plus'}}"></i>
+            <i class="bi {{ ($active=='tambah data')? 'bi-file-earmark-plus-fill' : 'bi-file-earmark-plus'}}"></i>
             <a href="/surveyor/tambah-data"
                 class="nav-link text-white d-flex justify-content-center align-items-end">Tambah Data</a>
         </li>

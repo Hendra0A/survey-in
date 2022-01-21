@@ -16,18 +16,9 @@
                     @method('put')
                     <input type="hidden" name="id" value="{{ request()->id }}">
                     <div class="input-group mb-3">
+                        <input type="hidden" name="kecamatan_id" value="{{ $data->kecamatan_id }}">
                         <label for="kecamatan" class="form-label d-block fw-bold m-0">Kecamatan</label>
-                        <select id="kecamatan"
-                            class="form-select form-select-sm m-auto shadow-none border-primary mt-1 @error('kecamatan_id') is-invalid @enderror"
-                            style="width: 95%;" aria-label=".form-select-sm example" name="kecamatan_id">
-                            <option value="" hidden>Pilih Kecamatan</option>
-                            @foreach ($kecamatans as $kecamatan)
-                                <option {{ $data->kecamatan_id == $kecamatan->id ? 'selected' : '' }}
-                                    value="{{ $kecamatan->id }}"
-                                    {{ $kecamatan->id == auth()->user()->kabupaten_id ? 'selected' : '' }}>
-                                    {{ $kecamatan->nama }}</option>
-                            @endforeach
-                        </select>
+                        <span type="text" class="form-control border-primary p-2" style="border-radius: .5em;">{{ $data->kecamatan->nama }}</span>
                         @error('kecamatan_id')
                             <div id="validationServer03Feedback" class="invalid-feedback">
                                 {{ $message }}
@@ -40,7 +31,7 @@
                             <label for="nama_gang" class="form-label fw-bold">Nama Gang dan Perumahan</label>
                             <input type="text" class="form-control border-primary @error('nama_gang') is-invalid @enderror"
                                 style="border-radius: .5em;" id="nama_gang" name="nama_gang"
-                                value="{{ $data->nama_gang }}">
+                                value="{{ $data->nama_gang }}" required>
                             @error('nama_gang')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -51,7 +42,7 @@
                         <div class="col-12 col-sm-6 mb-3">
                             <label for="lokasi" class="form-label fw-bold">Lokasi</label>
                             <input type="text" class="form-control border-primary @error('lokasi') is-invalid @enderror"
-                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ $data->lokasi }}">
+                                style="border-radius: .5em;" id="lokasi" name="lokasi" value="{{ $data->lokasi }}" required>
                             @error('lokasi')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -69,7 +60,7 @@
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary @error('no_gps_depan') is-invalid @enderror"
                                 style="border-radius: .5em;" id="input-koordinat-depan" name="no_gps_depan"
-                                value="{{ $data->no_gps_depan}}">
+                                value="{{ $data->no_gps_depan}}" required>
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -86,7 +77,7 @@
                                     class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
                             <input type="text" class="form-control border-primary @error('no_gps_belakang') is-invalid @enderror"
                                 style="border-radius: .5em;" id="input-koordinat-belakang" name="no_gps_belakang"
-                                value="{{  $data->no_gps_belakang}}">
+                                value="{{  $data->no_gps_belakang}}" required>
                             @error('no_gps')
                                 <div id="validationServer03Feedback" class="invalid-feedback">
                                     {{ $message }}
@@ -96,50 +87,6 @@
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
 
-
-                    <!-- Dimensi Jalan Utama -->
-                    <div class="col-12 mb-3">
-                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama</label>
-                        <div class="col-12 d-flex justify-content-around">
-                            <div class="kolom-data m-1">
-                                <label for="" class="ms-2">Panjang :</label>
-                                <div class="input-group m-1">
-                                    <input type="text"
-                                        class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
-                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_panjang" value="{{ $data->dimensi_jalan_panjang }}">
-                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">m</span>
-                                    @error('dimensi_jalan_panjang')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="kolom-data m-1">
-                                <label for="" class="ms-2">Lebar :</label>
-                                <div class="input-group m-1">
-                                    <input type="text"
-                                        class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
-                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_lebar" value="{{ $data->dimensi_jalan_lebar }}">
-                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">m</span>
-                                    @error('dimensi_jalan_lebar')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dimensi Jalan Utama -->
-
-
-                    <!-- Kondisi jalan -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan</label>
                         <div class="col-12 d-flex justify-content-around">
@@ -149,7 +96,7 @@
                                     <select
                                         class="form-select form-select border-primary @error('jenis_konstruksi_jalan_id') is-invalid @enderror"
                                         autocomplete="off" style="border-radius: .5em;" aria-label=".form-select example"
-                                        name="jenis_konstruksi_jalan_id">
+                                        name="jenis_konstruksi_jalan_id" required>
                                         <option value="" selected hidden></option>
                                         @foreach ($jalan as $item)
                                             <option {{ $data->jenis_konstruksi_jalan_id == $item->id ? 'selected' : '' }}
@@ -170,7 +117,7 @@
                                     <input type="text"
                                         class="form-control border-primary @error('status_jalan') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="status_jalan" value="{{ $data->status_jalan }}" id="status_jalan">
+                                        name="status_jalan" value="{{ $data->status_jalan }}" id="status_jalan" required>
                                     <span class="input-group-text border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">%</span>
                                     @error('status_jalan')
@@ -185,14 +132,103 @@
                                 <label for="" class="ms-2">Status :</label>
                                 <div class="input-group m-1">
                                     <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                        aria-label="Username" aria-describedby="basic-addon1" id="status_jalanan">
+                                        aria-label="Username" aria-describedby="basic-addon1" id="status_jalanan" readonly>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Dimensi Jalan Utama -->
+                    <div class="col-12 mb-3">
+                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama</label>
+                        <div class="col-12 d-flex justify-content-around">
+                            <div class="kolom-data m-1">
+                                <label for="" class="ms-2">Panjang :</label>
+                                <div class="input-group m-1">
+                                    <input type="text"
+                                        class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
+                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
+                                        name="dimensi_jalan_panjang" value="{{ $data->dimensi_jalan_panjang }}" required>
+                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
+                                        id="basic-addon1">m</span>
+                                    @error('dimensi_jalan_panjang')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="kolom-data m-1">
+                                <label for="" class="ms-2">Lebar :</label>
+                                <div class="input-group m-1">
+                                    <input type="text"
+                                        class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
+                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
+                                        name="dimensi_jalan_lebar" value="{{ $data->dimensi_jalan_lebar }}" required>
+                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
+                                        id="basic-addon1">m</span>
+                                    @error('dimensi_jalan_lebar')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dimensi Jalan Utama -->
+
+
+                    <!-- Kondisi jalan -->
+                    
                     <!-- Kondisi jalan -->
 
+                     <!-- Kondisi Saluran -->
+                     <div class="col-12 mb-3">
+                        <label for="" class="form-label d-block fw-bold m-0">Kondisi Saluran</label>
+                        <div class="col-12 d-flex justify-content-around">
+                            <div class="kolom-data m-1" style="width: 40%;">
+                                <label for="" class="ms-2">Keadaan Saluran :</label>
+                                <div class="input-group m-1">
+                                    <select class="form-select form-select border-primary" autocomplete="off"
+                                        style="border-radius: .5em;" aria-label=".form-select example"
+                                        name="jenis_konstruksi_saluran_id" id="keadaan-saluran">
+                                        <option value="">Tidak Ada</option>
+                                        @foreach ($saluran as $item)
+                                            <option
+                                                {{ $data->jenis_konstruksi_saluran_id == $item->id ? 'selected' : '' }}
+                                                value="{{ $item->id }}">{{ $item->jenis }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="kolom-data m-1" style="width: 30%;">
+                                <label for="" class="ms-2">Persentase :</label>
+                                <div class="input-group m-1">
+                                    <input type="text"
+                                        class="form-control border-primary status_saluran @error('status_saluran') is-invalid @enderror"
+                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
+                                        name="status_saluran" value="{{ $data->status_saluran }}">
+                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
+                                        id="basic-addon1">%</span>
+                                    @error('status_saluran')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
 
+                            <div class="kolom-data m-1" style="width: 30%;">
+                                <label for="" class="ms-2">Status :</label>
+                                <div class="input-group m-1">
+                                    <input type="text" class="form-control border-primary" style="border-radius: .5em;"
+                                        aria-label="Username" aria-describedby="basic-addon1" id="status_salurann" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Kondisi Saluran -->
                     <!-- Dimensi Saluran -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block fw-bold">Dimensi Saluran</label>
@@ -206,7 +242,7 @@
                                             <label for="" class="ms-2">Kanan :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_panjang_kanan') is-invalid @enderror"
+                                                    class="form-control border-primary pj_saluran_kanan @error('dimensi_saluran_panjang_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_panjang_kanan"
                                                     value="{{ $data->dimensi_saluran_panjang_kanan }}">
@@ -224,7 +260,7 @@
                                             <label for="" class="ms-2">Kiri :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_panjang_kiri') is-invalid @enderror"
+                                                    class="form-control border-primary pj_saluran_kiri @error('dimensi_saluran_panjang_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_panjang_kiri"
                                                     value="{{ $data->dimensi_saluran_panjang_kiri }}">
@@ -247,7 +283,7 @@
                                             <label for="" class="ms-2">kanan :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_lebar_kanan') is-invalid @enderror"
+                                                    class="form-control border-primary lb_saluran_kanan @error('dimensi_saluran_lebar_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_lebar_kanan"
                                                     value="{{ $data->dimensi_saluran_lebar_kanan }}">
@@ -265,7 +301,7 @@
                                             <label for="" class="ms-2">Kiri :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_lebar_kiri') is-invalid @enderror"
+                                                    class="form-control border-primary lb_saluran_kiri @error('dimensi_saluran_lebar_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_lebar_kiri"
                                                     value="{{ $data->dimensi_saluran_lebar_kiri }}">
@@ -288,7 +324,7 @@
                                             <label for="" class="ms-2">kanan :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_kedalaman_kanan') is-invalid @enderror"
+                                                    class="form-control border-primary kdl_saluran_kanan @error('dimensi_saluran_kedalaman_kanan') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_kedalaman_kanan"
                                                     value="{{ $data->dimensi_saluran_kedalaman_kanan }}">
@@ -306,7 +342,7 @@
                                             <label for="" class="ms-2">Kiri :</label>
                                             <div class="input-group m-1">
                                                 <input type="text"
-                                                    class="form-control border-primary @error('dimensi_saluran_kedalaman_kiri') is-invalid @enderror"
+                                                    class="form-control border-primary kdl_saluran_kiri @error('dimensi_saluran_kedalaman_kiri') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="dimensi_saluran_kedalaman_kiri"
                                                     value="{{ $data->dimensi_saluran_kedalaman_kiri }}">
@@ -328,52 +364,7 @@
                     <!-- Dimensi Saluran -->
 
 
-                    <!-- Kondisi Saluran -->
-                    <div class="col-12 mb-3">
-                        <label for="" class="form-label d-block fw-bold m-0">Kondisi Saluran</label>
-                        <div class="col-12 d-flex justify-content-around">
-                            <div class="kolom-data m-1" style="width: 40%;">
-                                <label for="" class="ms-2">Keadaan Saluran :</label>
-                                <div class="input-group m-1">
-                                    <select class="form-select form-select border-primary" autocomplete="off"
-                                        style="border-radius: .5em;" aria-label=".form-select example"
-                                        name="jenis_konstruksi_saluran_id">
-                                        <option value="" selected hidden></option>
-                                        @foreach ($saluran as $item)
-                                            <option
-                                                {{ $data->jenis_konstruksi_saluran_id == $item->id ? 'selected' : '' }}
-                                                value="{{ $item->id }}">{{ $item->jenis }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="kolom-data m-1" style="width: 30%;">
-                                <label for="" class="ms-2">Persentase :</label>
-                                <div class="input-group m-1">
-                                    <input type="text"
-                                        class="form-control border-primary @error('status_saluran') is-invalid @enderror"
-                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="status_saluran" value="{{ $data->status_saluran }}" id="status_saluran">
-                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">%</span>
-                                    @error('status_saluran')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="kolom-data m-1" style="width: 30%;">
-                                <label for="" class="ms-2">Status :</label>
-                                <div class="input-group m-1">
-                                    <input type="text" class="form-control border-primary" style="border-radius: .5em;"
-                                        aria-label="Username" aria-describedby="basic-addon1" id="status_salurann">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Kondisi Saluran -->
+                   
 
 
                     <!-- Jenis Fasilitas Sosial -->
@@ -403,7 +394,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_layak" value="{{ $data->jumlah_rumah_layak }}">
+                                        name="jumlah_rumah_layak" value="{{ $data->jumlah_rumah_layak }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_layak')
@@ -420,7 +411,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_tak_layak') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_tak_layak" value="{{ $data->jumlah_rumah_tak_layak }}">
+                                        name="jumlah_rumah_tak_layak" value="{{ $data->jumlah_rumah_tak_layak }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_tak_layak')
@@ -437,7 +428,7 @@
                                     <input type="text"
                                         class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_kosong') is-invalid @enderror"
                                         style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="jumlah_rumah_kosong" value="{{ $data->jumlah_rumah_kosong }}">
+                                        name="jumlah_rumah_kosong" value="{{ $data->jumlah_rumah_kosong }}" required>
                                     <span class="input-group-text p-1 border-0" style="background: #F3F8FF;"
                                         id="basic-addon1">unit</span>
                                     @error('jumlah_rumah_kosong')
@@ -466,7 +457,7 @@
                                                     class="form-control border-primary @error('jumlah_rumah_developer') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_developer"
-                                                    value="{{ $data->jumlah_rumah_developer }}">
+                                                    value="{{ $data->jumlah_rumah_developer }}" required>
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_developer')
@@ -484,7 +475,7 @@
                                                     class="form-control border-primary @error('jumlah_rumah_swadaya') is-invalid @enderror"
                                                     style="border-radius: .5em;" aria-label="Username"
                                                     aria-describedby="basic-addon1" name="jumlah_rumah_swadaya"
-                                                    value="{{ $data->jumlah_rumah_swadaya }}">
+                                                    value="{{ $data->jumlah_rumah_swadaya }}" required>
                                                 <span class="input-group-text border-0" style="background: #F3F8FF;"
                                                     id="basic-addon1">Unit</span>
                                                 @error('jumlah_rumah_swadaya')
@@ -651,292 +642,6 @@
     <script type="text/javascript">
         var url = '{{ URL::asset('storage/') }}';
     </script>
-    {{-- <script type="text/javascript">
-        var csrf = '{{ csrf_token() }}';
-    </script> --}}
-    {{-- <script>
-        $(document).ready(async function() {
-            let getData = () => {
-                var uri = window.location.pathname;
-                var idUri = uri.split("/").pop();
-                let url = "http://survey-in.test/api/option-form/" + idUri;
-                let requestOptions = {
-                    method: "GET",
-                    Headers: {
-                        "Content-Type": "application/json",
-                    },
-                };
-                return fetch(`${url}`, requestOptions)
-                    .then((response) => response.text())
-                    .then((result) => {
-                        return JSON.parse(result);
-                    })
-                    .catch((error) => console.log("error", error));
-            };
-            var data = await getData();
-            // var datas = await getDataEdit();
-            if (typeof Storage !== "undefined") {
-                if (sessionStorage.getItem("jmlFasos") === null) {
-                    sessionStorage.setItem("jmlFasos", 0);
-                }
-                if (sessionStorage.getItem("jmlLampiran") === null) {
-                    sessionStorage.setItem("jmlLampiran", 0);
-                }
-                if (data.fasos.length) {
-                    sessionStorage.setItem("jmlFasos", data.fasos.length);
-                }
-                if (data.lampiran.length) {
-                    sessionStorage.setItem("jmlLampiran", data.lampiran.length);
-                }
-            } else {
-                alert("Browser yang Anda gunakan tidak mendukung Web Storage");
-            }
-
-            // console.log(datas);
-            console.log(data.lampiran);
-            var x = 0;
-            var y = 0;
-            // console.log(data.lampiran[0].jenis_lampiran_id);
-            let renderFasos = () => {
-                $(".form-fasos").append(
-                    `
-                <div class="single-form-fasos mt-3">
-                <div class="ok d-flex flex-wrap mb-3">
-                    <div class="col-12 col-sm-6 mt-sm-1">
-                        <label for="" class="form-label d-block mb-1 fw-bold">Jenis Fasilitas
-                            Sosial(Fasos)</label>
-                        <select class="form-select form-select border-primary" autocomplete="off"
-                            style="border-radius: .5em;" aria-label=".form-select example" name="addmore[${x}][jenis_fasos_id]">
-                            <option value="" selected disabled>-Pilih fasos-</option>
-                            ${Object.keys(data.jenisFasos)
-                                .map(function (key) {
-                                    if (data.fasos[x] == undefined) {
-                                        return (
-                                            "<option value='" +
-                                            data.jenisFasos[key]["id"] +
-                                            "'>" +
-                                            data.jenisFasos[key]["jenis"] +
-                                            "</option>"
-                                        );
-                                    } else {
-                                        return (
-                                            "<option " +
-                                            (data.fasos[x].jenis_fasos_id ==
-                                            data.jenisFasos[key]["id"]
-                                                ? "selected"
-                                                : "") +
-                                            ' value="' +
-                                            data.jenisFasos[key]["id"] +
-                                            '">' +
-                                            data.jenisFasos[key]["jenis"] +
-                                            "</option>"
-                                        );
-                                    }
-                                })
-                                .join("")}
-                        </select>
-                    </div>
-
-                    <div class="d-flex col-sm-6 justify-content-evenly">
-                        <div class="kolom-data col-5">
-                            <label for="" class="ms-2">Panjang :</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control border-primary"
-                                    style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="${data.fasos[x] === undefined ? '' : data.fasos[x].panjang}">
-                                <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
-                            </div>
-                        </div>
-
-                        <div class="kolom-data col-5">
-                            <label for="" class="ms-2">Lebar :</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control border-primary"
-                                    style="border-radius: .5em;" aria-label="Username"
-                                    aria-describedby="basic-addon1" name="addmore[${x}][lebar]"
-                                    value="${data.fasos[x] === undefined ? '' : data.fasos[x].lebar}">
-                                <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-12 mb-3">
-                                <label for="input-koordinat-fasos" class="form-label d-block fw-bold">Koordinat
-                                    Fasos</label>
-                                <div class="col-12 d-flex koordinat-lokasi-fasos" id="koordinat-lokasi-fasos">
-                                    <button type="button" id="koordinat-fasos"
-                                        class="lokasi btn btn-primary d-flex align-items-center me-2 border-0 koordinat-fasos"
-                                        style="border-radius: .5em; background: #3F4FC8;"><i
-                                            class="fas fa-map-marker-alt m-0 pe-1"></i>Lokasi</button>
-                                    <input type="text"
-                                        class="lokasi-fasos form-control border-primary "
-                                        style="border-radius: .5em;" id="input-koordinat-fasos"
-                                        name="addmore[${x}][koordinat_fasos]" value="${data.fasos[x] === undefined ? '' : data.fasos[x].koordinat_fasos}">
-                                </div>
-                            </div>
-
-                
-
-                <div class="col-12">
-                    <input type="file" name="addmore[${x}][foto]" class="imageFasos btn btn-primary border-0" style="border-radius: .5em; background: #3F4FC8;" id="fasos-${x}">
-                    <label for="fasos-${x}">
-                    <div class="img-keterangan mt-2 p-2 text-sm-center"
-                        style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                        <img src="${data.fasos[x] === undefined ? '/img/kartu-empat.png' : url+ '/' + data.fasos[x].foto}" class="imageFasosView" style="width: 9em;">
-                    </div>
-                </label>
-                </div>
-                <button type="button" id="close" class="btn btn-primary border-0 mt-3" data-id="${data.fasos[x] === undefined ? '' : data.fasos[x].id}"
-                style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
-                </div>
-        `
-                );
-                x++;
-            };
-            let renderLampiran = () => {
-                $(".form-lampiran").append(`
-                <div class="single-form-lampiran">
-                    <label for="" class="fw-bold">Keterangan</label>
-                    <div class="input-group mb-3">
-                        <select class="form-select form-select border-primary" autocomplete="off"
-                            style="border-radius: .5em;" aria-label=".form-select example"
-                            name="addmoreLampiran[${y}][jenis_lampiran_id]" value="">
-                            <option value="" selected disabled>-Pilih kategori-</option>
-                            ${Object.keys(data.jenisLampiran)
-                                .map(function (key) {
-                                    if(data.lampiran[y] == undefined){
-                                        return (
-                                            "<option value='" +
-                                            data.jenisLampiran[key]["id"] +
-                                            "'>" +
-                                            data.jenisLampiran[key]["jenis"] +
-                                            "</option>"
-                                        );
-                                    } else {
-                                    return (
-                                        "<option " +
-                                        (data.lampiran[y].jenis_lampiran_id ==
-                                        data.jenisLampiran[key]["id"]
-                                            ? "selected"
-                                            : "") +
-                                        ' value="' +
-                                        data.jenisLampiran[key]["id"] +
-                                        '">' +
-                                        data.jenisLampiran[key]["jenis"] +
-                                        "</option>"
-                                    );
-                                    }
-                                })
-                                .join("")}
-                            </select>
-                    </div>
-
-                    <div class="col-12">
-                            <input type="file" name="addmoreLampiran[${y}][foto]"
-                            class="imageLampiran btn btn-primary border-0"
-                            style="border-radius: .5em; background: #3F4FC8;" id="lampiran-${y}">
-                            <label for="lampiran-${y}">
-                        <div class="img-keterangan mt-2 p-2 text-sm-center"
-                            style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                            <img src="${data.lampiran[y] === undefined ? '/img/kartu-empat.png' : url+ '/' + data.lampiran[y].foto}" id="imageLampiran" style="width: 9em;">
-                        </div>
-                        </label>
-                    </div>
-                    <button type="button" id="closeLampiran" data-id="${data.lampiran[y] === undefined ? '' : data.lampiran[y].id}" class="btn btn-primary border-0 mt-3"style="border-radius: .5em; background: #3F4FC8;">Hapus Lampiran</button>
-                </div>
-        
-
-        `);
-
-                y++;
-            };
-
-            function onReloadWindow() {
-                $(".form-lampiran").empty();
-                $(".form-fasos").empty();
-                for (
-                    let index = 0; index < sessionStorage.getItem("jmlFasos"); index++
-                ) {
-                    renderFasos();
-                }
-                for (
-                    let index = 0; index < sessionStorage.getItem("jmlLampiran"); index++
-                ) {
-                    renderLampiran();
-                }
-            }
-            onReloadWindow();
-
-            var i = sessionStorage.getItem("jmlFasos");
-            var j = sessionStorage.getItem("jmlLampiran");
-            $("#tombol-lampiran").click(function() {
-                j = sessionStorage.getItem("jmlLampiran");
-                j++;
-                sessionStorage.setItem("jmlLampiran", j);
-                $("jmlLampiran").val(j);
-                renderLampiran();
-            });
-            $("#fasos").click(function() {
-                i = sessionStorage.getItem("jmlFasos");
-                i++;
-                sessionStorage.setItem("jmlFasos", i);
-                $("jmlFasos").val(i);
-                renderFasos();
-            });
-
-            $(document).on("click", "#closeLampiran", function() {
-                $(this).parents(".single-form-lampiran").remove();
-                if (j > 0) {
-                    j--;
-                    sessionStorage.setItem("jmlLampiran", j);
-                }
-
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var id = $(this).data("id");
-                $.ajax({
-                    url: "/surveyor/data-survei/destroy",
-                    type: 'DELETE',
-                    dataType: "JSON",
-                    data: {
-                        'idLampiran': id,
-                    },
-                    success: function(response) {
-                        console.log(response);
-                    }
-                });
-            });
-
-            $(document).on("click", "#close", function() {
-                $(this).parents(".single-form-fasos").remove();
-                if (i > 0) {
-                    i--;
-                    sessionStorage.setItem("jmlFasos", i);
-                }
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                var id = $(this).data("id");
-                $.ajax({
-                    url: "/surveyor/data-survei/destroy",
-                    type: 'DELETE',
-                    dataType: "JSON",
-                    data: {
-                        'idFasos': id,
-                    },
-                    success: function(response) {
-                        console.log(response);
-                    }
-                });
-            });
-        });
-    </script> --}}
     <script src="{{ asset('js/renderFormEdit.js') }}"></script>
     <script src="/js/tambah-data-user.js"></script>
     @include('user.navigation')

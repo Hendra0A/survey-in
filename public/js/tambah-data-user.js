@@ -72,7 +72,7 @@ $(document).ready(function () {
             };
             reader.readAsDataURL(this.files[0]);
         } catch (error) {}
-    }); 
+    });
 
     $("#status_jalan").keyup(function (e) {
         if ($(this).val() < 50) {
@@ -108,6 +108,13 @@ $(document).ready(function () {
         $(".lb_saluran_kanan").prop("required", !bool);
         $(".kdl_saluran_kiri").prop("required", !bool);
         $(".kdl_saluran_kanan").prop("required", !bool);
+        $(".status_saluran").val("");
+        $(".pj_saluran_kiri").val(0);
+        $(".pj_saluran_kanan").val(0);
+        $(".lb_saluran_kiri").val(0);
+        $(".lb_saluran_kanan").val(0);
+        $(".kdl_saluran_kiri").val(0);
+        $(".kdl_saluran_kanan").val(0);
     };
     if ($("#keadaan-saluran").find("option:selected").val() == "") {
         isReadOnly();
