@@ -73,25 +73,6 @@ $(document).ready(function () {
         } catch (error) {}
     });
 
-    // form fasos
-    // $("#fasos").click(function () {
-    //     var x = document.getElementById("form-tambahan");
-    //     if (x.style.display === "block") {
-    //         x.style.display = "none";
-    //     } else {
-    //         x.style.display = "block";
-    //     }
-    // });
-
-    // form lampiran
-    // $("#tombol-lampiran").click(function () {
-    //     var x = document.getElementById("tambah-lampiran");
-    //     if (x.style.display === "block") {
-    //         x.style.display = "none";
-    //     } else {
-    //         x.style.display = "block";
-    //     }
-    // });
     $("#status_jalan").keyup(function (e) {
         if ($(this).val() < 50) {
             $("#status_jalanan").val("Tidak Baik");
@@ -108,6 +89,33 @@ $(document).ready(function () {
             $("#status_salurann").val("Baik");
         } else {
             $("#status_salurann").val("Tidak Terdefini");
+        }
+    });
+
+    let isReadOnly = (bool = true) => {
+        $(".status_saluran").prop("readonly", bool);
+        $(".pj_saluran_kiri").prop("readonly", bool);
+        $(".pj_saluran_kanan").prop("readonly", bool);
+        $(".lb_saluran_kiri").prop("readonly", bool);
+        $(".lb_saluran_kanan").prop("readonly", bool);
+        $(".kdl_saluran_kiri").prop("readonly", bool);
+        $(".kdl_saluran_kanan").prop("readonly", bool);
+        $(".status_saluran").prop("required", !bool);
+        $(".pj_saluran_kiri").prop("required", !bool);
+        $(".pj_saluran_kanan").prop("required", !bool);
+        $(".lb_saluran_kiri").prop("required", !bool);
+        $(".lb_saluran_kanan").prop("required", !bool);
+        $(".kdl_saluran_kiri").prop("required", !bool);
+        $(".kdl_saluran_kanan").prop("required", !bool);
+    };
+    if ($("#keadaan-saluran").find("option:selected").val() == "") {
+        isReadOnly();
+    }
+    $("#keadaan-saluran").change(function (e) {
+        if ($(this).val() == "") {
+            isReadOnly(true);
+        } else {
+            isReadOnly(false);
         }
     });
 });
