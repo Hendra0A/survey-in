@@ -67,8 +67,7 @@ $(document).ready(function () {
             let reader = new FileReader();
             let img = $(e.target).next().find("img");
             reader.onload = (e) => {
-                console.log(this.files[0]);
-                img.attr("src", srcEncoded);
+                img.attr("src", e.target.result);
             };
             reader.readAsDataURL(this.files[0]);
         } catch (error) {}

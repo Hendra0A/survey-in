@@ -29,7 +29,6 @@ $(document).ready(async function () {
     var data = await getData();
     var x = 0;
     var y = 0;
-    // console.log(data.fasos[0].panjang);
     let renderFasos = () => {
         $(".form-fasos").append(`
                 <div class="single-form-fasos mt-3">
@@ -108,7 +107,6 @@ $(document).ready(async function () {
                 style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
                 </div>
         `);
-        console.log(data);
         x++;
     };
     let renderLampiran = () => {

@@ -16,14 +16,16 @@
                     @method('put')
                     <input type="hidden" name="id" value="{{ request()->id }}">
                     <div class="input-group mb-3">
-                        <input type="hidden" name="kecamatan_id" value="{{ $data->kecamatan_id }}">
-                        <label for="kecamatan" class="form-label d-block fw-bold m-0">Kecamatan</label>
-                        <span type="text" class="form-control border-primary p-2" style="border-radius: .5em;">{{ $data->kecamatan->nama }}</span>
-                        @error('kecamatan_id')
-                            <div id="validationServer03Feedback" class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="col-12 mb-3">
+                            <label for="kecamatan" class="form-label d-block fw-bold">Kecamatan</label>
+                            <input type="hidden" name="kecamatan_id" value="{{ $data->kecamatan_id }}">
+                            <span type="text" class="form-control border-primary p-2" style="border-radius: .5em;">{{ $data->kecamatan->nama }}</span>
+                            @error('kecamatan_id')
+                                <div id="validationServer03Feedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
                     <div class="row row-cols-3">
@@ -140,8 +142,8 @@
                     <!-- Dimensi Jalan Utama -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama</label>
-                        <div class="col-12 d-flex justify-content-around">
-                            <div class="kolom-data m-1">
+                        <div class="col-12 d-flex justify-content-around justify-content-sm-between">
+                            <div class="kolom-data m-1 col-sm-5">
                                 <label for="" class="ms-2">Panjang :</label>
                                 <div class="input-group m-1">
                                     <input type="text"
@@ -158,7 +160,7 @@
                                 </div>
                             </div>
 
-                            <div class="kolom-data m-1">
+                            <div class="kolom-data m-1 col-sm-5">
                                 <label for="" class="ms-2">Lebar :</label>
                                 <div class="input-group m-1">
                                     <input type="text"
