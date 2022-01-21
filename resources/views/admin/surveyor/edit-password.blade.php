@@ -3,7 +3,7 @@
 @section('main-content')
 <div class="content d-flex flex-column">
     <div class="surveyor-hl ms-0 ms-sm-5">
-        <h1>Edit Profile Surveyor</h1>
+        <h1>Edit Profil Surveyor</h1>
         <p class="mb-5">Edit akun surveyor di bawah ini dengan benar</p>
 
         <!-- avatar -->

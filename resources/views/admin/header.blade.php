@@ -17,7 +17,7 @@
                 data-bs-toggle="dropdown" aria-expanded="false">
             </a>
             <ul class="dropdown-menu shadow" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="/profile">Profile Admin</a></li>
+                <li><a class="dropdown-item" href="/profile">Profil Admin</a></li>
                 <li>
                         <button  class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Keluar</button>
 

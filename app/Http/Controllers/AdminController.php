@@ -47,7 +47,7 @@ class AdminController extends Controller
     public function profile()
     {
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'active' => 'profile',
             'data' => auth()->user()
         ];
@@ -57,7 +57,7 @@ class AdminController extends Controller
     {
         $data = [
             'active' => 'Profile - Edit',
-            'title' => 'Profile-Page',
+            'title' => 'Halaman Profil',
             'data' => auth()->user()
         ];
         return view('admin.edit-profile', $data);
@@ -158,7 +158,7 @@ class AdminController extends Controller
 
         $detail = [
             'active' => 'surveyor',
-            'title' => 'Surveyor - Profile', [0],
+            'title' => 'Surveyor - Profil', [0],
             'profile_surveyor' => $data[0],
             'selesai' => $selesai,
             'target' => $target,
@@ -216,7 +216,7 @@ class AdminController extends Controller
         if ($action == 'profile') {
             $data = [
                 'active' => 'surveyor',
-                'title' => 'Surveyor - Edit Profile Surveyor',
+                'title' => 'Surveyor - Edit Profil Surveyor',
                 'kabupaten' => Kabupaten::all(),
                 'profile' => User::where('id', $id)
                     ->where('role', 'surveyor')

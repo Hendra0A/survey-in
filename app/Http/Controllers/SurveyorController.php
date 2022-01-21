@@ -79,7 +79,7 @@ class SurveyorController extends Controller
     public function show()
     {
         $data = [
-            'title' => 'Profile',
+            'title' => 'Profil',
             'active' => 'profile',
             'data' => auth()->user()
         ];
@@ -89,7 +89,7 @@ class SurveyorController extends Controller
     {
         $data = [
             'active' => 'Profile - Edit',
-            'title' => 'Profile-Page',
+            'title' => 'Profil',
             'data' => auth()->user()
         ];
         return view('user.edit-profile', $data);

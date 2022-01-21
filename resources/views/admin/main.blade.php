@@ -32,7 +32,7 @@
 				</li>
 				<li class="nav-item w-100">
 					<a href="/profile" class="nav-link {{ $active == 'profile' ? 'text-primary' : '' }}"><i class="fas fa-user"
-							style="width: 1rem;"></i>Profile</a>
+							style="width: 1rem;"></i>Profil</a>
 				</li>
 				<li class="nav-item w-100">
 					<a href="/surveyor" class="nav-link {{ $active == 'surveyor' ? 'text-primary' : '' }}"><i class="fas fa-poll-h"

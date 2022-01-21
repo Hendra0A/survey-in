@@ -360,6 +360,9 @@ class DataSurveyController extends Controller
                     if ($value == $request->addmoreLampiran[$count]) {
                         if (!empty($value['foto'])) {
                             // image
+
+                            
+
                             $image = $value['foto'];
                             $md5Name = uniqid();
                             $guessExtension = $value['foto']->guessExtension();
