@@ -27,10 +27,10 @@
 
             <div class="survei-stat container-fluid mb-5">
                 <h1 class="beranda text-center">
-                    Hasil Survei Saat Ini
+                    Hasil Survey Saat Ini
                 </h1>
                 <p class="beranda text-center">
-                    Dibawah ini adalah hasil survei sementara di<br>Kecamatan <span class="text-kec">Pontianak Barat</span>
+                    Dibawah ini adalah hasil survey sementara di<br>Kecamatan <span class="text-kec">Pontianak Barat</span>
                 </p>
                 <div class="row mt-5 justify-content-center">
                     <div class="kartu satu col-4 m-2">

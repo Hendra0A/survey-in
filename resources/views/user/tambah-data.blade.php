@@ -4,8 +4,8 @@
         <div class="container">
 
             <div class="content ps-3 pe-3">
-                <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survei</h1>
-                <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survei dengan
+                <h1 class="col-12 text-center fs-3 mt-2">Tambah Data Survey</h1>
+                <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan tambah data survey dengan
                     lengkap dan benar di bawah ini</p>
                 @if ($errors->any())
                     <div class="alert alert-danger">

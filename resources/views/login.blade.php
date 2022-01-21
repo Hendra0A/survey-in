@@ -5,7 +5,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login Pengguna | Survei</title>
+	<title>Login Pengguna | Survey</title>
 	<link rel="icon" href="/img/logo.png" type="image/gif" sizes="16x16">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<script src="/js/jquery-3.6.0.min.js"></script>
@@ -60,12 +60,12 @@
 		<div class="hero flex-column position-relative justify-content-center" id="hero">
 			<div class="logo position-absolute d-flex flex-column align-items-center">
 				<img src="img/logo.png" alt="" class="logo-img text-center">
-				<h4 class="logo w-75 text-center p-0 mt-2">Survei</h4>
+				<h4 class="logo w-75 text-center p-0 mt-2">Survey</h4>
 			</div>
 
 			<div class="desc pe-5">
-				<h1 class="h1 w-100">Selamat Datang di Aplikasi Website <span>Survei</span></h1>
-				<p class="sub w-100">Aplikasi ini memudahkan anda untuk menyimpan data hasil survei gang dan
+				<h1 class="h1 w-100">Selamat Datang di Aplikasi Website <span>Survey</span></h1>
+				<p class="sub w-100">Aplikasi ini memudahkan anda untuk menyimpan data hasil survey gang dan
 					perumahan</p>
 			</div>
 

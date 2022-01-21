@@ -1,7 +1,7 @@
 @extends('user.main')
 @section('header')
     <a href="/surveyor/data-survei" class="nav-link"><i class="fas fa-chevron-left text-dark"></i></a>
-    <span class="fw-bold">Detail Data Survei Gang {{ $data->nama_gang }}</span>
+    <span class="fw-bold">Detail Data Survey Gang {{ $data->nama_gang }}</span>
 @endsection
 @section('content')
     <div class="content">

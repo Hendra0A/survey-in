@@ -492,7 +492,7 @@ class AdminController extends Controller
     {
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         return view('admin.data-survei.detail-data-survei', [
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'data' => $data[0],
         ]);
     }

@@ -31,13 +31,13 @@ class DataSurveyController extends Controller
 
             return view('admin.data-survei.detail-data-survei', [
                 'active' => 'data-survei',
-                'title' => 'Data Survei',
+                'title' => 'Data Survey',
                 'data' => $data[0],
             ]);
         } elseif (auth()->user()->role == 'surveyor') {
             return view('user.detail-data-survei', [
                 'active' => 'data-survei',
-                'title' => 'Data Survei',
+                'title' => 'Data Survey',
                 'data' => $data[0],
             ]);
         }
@@ -47,9 +47,9 @@ class DataSurveyController extends Controller
         try {
             DataSurvey::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survei')->with('confirm', 'ok');
+                ->with('success', 'Berhasil Menghapus Data Survey')->with('confirm', 'ok');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
+            return redirect()->back()->with('error', 'Gagal Menghapus Data Survey');
         }
     }
     public function printResume($id)
@@ -66,7 +66,7 @@ class DataSurveyController extends Controller
         $fasos = JenisFasos::all();
         // dd($data);
         return view('admin.data-survei.view-cetak-resume-detail-data-survei', [
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'datas' => $data,
             'fasos' => $fasos
         ]);
@@ -94,7 +94,7 @@ class DataSurveyController extends Controller
 
         //Cargar vista/tabla html y enviar varibles con la data
         $pdf->loadView('admin.data-survei.cetak-detail', [
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'data' => $data[0],
         ]);
         //descargar la vista en formato pdf 

@@ -1,14 +1,14 @@
 @extends('user.main')
 @section('header')
     <a href="/surveyor/data-survei/detail/{{ $data->id}}" class="nav-link"><i class="fas fa-chevron-left text-dark"></i></a>
-    <span class="fw-bold">Edit Data Survei Gang {{ $data->nama_gang }}</span>
+    <span class="fw-bold">Edit Data Survey Gang {{ $data->nama_gang }}</span>
 @endsection
 @section('content')
     <div class="content">
         <div class="container">
             <div class="content ps-3 pe-3">
-                <h1 class="col-12 text-center fs-3 mt-2">Edit Data Survei</h1>
-                <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan edit data survei dengan
+                <h1 class="col-12 text-center fs-3 mt-2">Edit Data Survey</h1>
+                <p class="col-12 text-center" style="font-size: .9em; color: #A5A5A5;">Silahkan edit data survey dengan
                     lengkap dan benar di bawah ini</p>
                 {{-- @dump(old('addmore.0.koordinat_fasos')) --}}
                 <form method="POST" enctype="multipart/form-data" class="form-tambah" autocomplete="off">

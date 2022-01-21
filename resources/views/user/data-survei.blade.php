@@ -6,7 +6,7 @@
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <span class="nav-item nav-link active page" data-id="0" data-method="all" aria-selected="true" >Seluruh Data</span>
-          <span class="nav-item nav-link page" data-method="single" data-id="{{ auth()->user()->id }}" aria-selected="false">Survei Saya</span>
+          <span class="nav-item nav-link page" data-method="single" data-id="{{ auth()->user()->id }}" aria-selected="false">Survey Saya</span>
         </div>
       </nav>
       <div class="tab-content" id="nav-tabContent">

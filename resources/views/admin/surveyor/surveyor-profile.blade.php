@@ -25,7 +25,7 @@
         <div class="data-surveyor p-0 p-sm-5">
             <!-- Riwayat -->
             <div class="riwayat d-flex justify-content-end mb-2" data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                Riwayat Survei
+                Riwayat Survey
             </div>
 
             <!-- Modal -->
@@ -80,7 +80,7 @@
                                                     @if ($item->selesai - $item->target > 0)
                                                         + {{ $item->selesai - $item->target }} Gang dan Perumahan
                                                     @elseif ($item->selesai - $item->target == 0)
-                                                        Survei Sukses
+                                                        Survey Sukses
                                                     @elseif($item->selesai - $item->target < 0)
                                                         {{                                                         $item->selesai - $item->target }}
                                                         Gang dan Perumahan
@@ -158,7 +158,7 @@
                             @if ($selesai - $target > 0)
                                 + {{ $selesai - $target }} Gang dan Perumahan
                             @elseif ($selesai - $target == 0)
-                                Survei Komplit
+                                Survey Komplit
                             @elseif($selesai - $target < 0) {{ $selesai - $target }} Gang dan Perumahan
                             @endif
                         </td>

@@ -3,8 +3,8 @@
 @include('admin.header')
 <div class="content d-flex flex-column ps-sm-0" id="set-content">
     <div class="admin-hl mt-4 ps-sm-5 ms-sm-2 ps-1">
-        <h1>Edit Input Data Survei</h1>
-        <p>Edit atau tambah input data survei di sini</p>
+        <h1>Edit Input Data Survey</h1>
+        <p>Edit atau tambah input data survey di sini</p>
     </div>
 
     <div class="tambah-data d-flex flex-column w-100 mt-5 flex-wrap">

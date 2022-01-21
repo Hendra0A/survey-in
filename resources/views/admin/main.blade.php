@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	<title>{{ $title }} | Survei</title>
+	<title>{{ $title }} | Survey</title>
 	<link rel="icon" href="/img/logo.png" type="image/gif" sizes="16x16">
 	<link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}">
 	<script src="/js/jquery-3.6.0.min.js"></script>
@@ -22,7 +22,7 @@
 		<nav class="navbar navbar-expand d-flex flex-column align-item-start p-2" id="sidebar">
 			<div class="logo mt-3">
 				<div class="logo-img mt-5 mb-3 d-flex m-auto"></div>
-				<h2 class="logo text-center mt-2">Survei</h2>
+				<h2 class="logo text-center mt-2">Survey</h2>
 				<p class="logo text-center ps-1 pe-1">Aplikasi Survei Gang dan Perumahan</p>
 			</div>
 			<ul class="navbar-nav d-flex flex-column mt-3 w-100">
@@ -63,7 +63,7 @@
 			@yield('main-content')
 			<!-- Footer -->
 			<div class="footer pt-4 d-flex justify-content-center">
-				<p class="copyright pt-2 pb-2">&copy; Website Survei 2022</p>
+				<p class="copyright pt-2 pb-2">&copy; Website Survey 2022</p>
 			</div>
 
 		</section>

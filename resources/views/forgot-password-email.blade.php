@@ -57,7 +57,7 @@
 				src="{{ $message->embed(asset('img/logo-2.png')) }}"
 				alt="logo"
 			/>
-			<h2 class="title">Survei</h2>
+			<h2 class="title">Survey</h2>
 			<div class="content">
 				<h3>Hai {{ $name }}</h3>
 				<p>
