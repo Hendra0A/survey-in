@@ -15,7 +15,7 @@
                 <div class="card-body p-4 pt-0">
                     <h5 class="card-title mb-2">Edit Input Data Survey</h5>
                     <p class="card-text mb-5">Ubah inputan data survey</p>
-                    <a href="/pengaturan/edit-data-survey" class="btn btn-primary kartu border-0">Edit Data Survei</a>
+                    <a href="/pengaturan/edit-data-survey" class="btn btn-primary kartu border-0">Edit Data Survey</a>
                 </div>
             </div>
 

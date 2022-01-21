@@ -21,7 +21,7 @@
 
 			<div class="d-sm-block d-md-none">
 				<img src="{{ asset('/img/logo-b.png') }}" class="img-fluid d-block mx-auto">
-				<p class="text-center text-warning fw-bold fs-1">Survei</p>
+				<p class="text-center text-warning fw-bold fs-1">Survey</p>
 			</div>
 
 			<h1 class="login mb-5 px-3 text-center">Mari kita mulai</h1>

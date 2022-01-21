@@ -20,7 +20,7 @@ class DataSurveyController extends Controller
     {
         return view('admin.data-survei', [
             'active' => 'data survei',
-            'title' => 'Data Survei',
+            'title' => 'Data Survey',
             'kabupaten' => Kabupaten::get(['id', 'nama'])
         ]);
     }

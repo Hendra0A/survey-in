@@ -23,7 +23,7 @@
 			<div class="logo mt-3">
 				<div class="logo-img mt-5 mb-3 d-flex m-auto"></div>
 				<h2 class="logo text-center mt-2">Survey</h2>
-				<p class="logo text-center ps-1 pe-1">Aplikasi Survei Gang dan Perumahan</p>
+				<p class="logo text-center ps-1 pe-1">Aplikasi Survey Gang dan Perumahan</p>
 			</div>
 			<ul class="navbar-nav d-flex flex-column mt-3 w-100">
 				<li class="nav-item w-100">
@@ -40,7 +40,7 @@
 				</li>
 				<li class="nav-item w-100">
 					<a href="/data-survei" class="nav-link {{ $active == 'data survei' ? 'text-primary' : '' }}"><i
-							class="fas fa-download"></i>Data Survei</a>
+							class="fas fa-download"></i>Data Survey</a>
 				</li>
 				<li class="nav-item w-100">
 					<a href="/pengaturan" class="nav-link {{ $active == 'pengaturan' ? 'text-primary' : '' }}"><i

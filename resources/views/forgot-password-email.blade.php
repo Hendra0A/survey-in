@@ -61,7 +61,7 @@
 			<div class="content">
 				<h3>Hai {{ $name }}</h3>
 				<p>
-					Password Survei kamu dapat di atur ulang dengan mengklik
+					Password Survey kamu dapat di atur ulang dengan mengklik
 					tombol dibawah. Jika kamu merasa tidak meminta pengaturan
 					ulang password, kamu dapat mengabaikan email ini.
 				</p>

@@ -16,7 +16,7 @@
               <div class="pe-1 d-flex flex-column justify-content-center">
                   <h4>Ayo selesaikan target surveymu!</h4>
                   <p class="mb-2">Kecamatan {{ $data['kecamatan']['nama'] }}</p>
-                  <p class=" text-primary mb-2">Status : {{ $data['selesai'] }}/{{ $data['target'] }} Survei</p>
+                  <p class=" text-primary mb-2">Status : {{ $data['selesai'] }}/{{ $data['target'] }} Survey</p>
                   <p class=" text-danger">Deadline :  {{ $data['tanggal_selesai'] }}</p>
               </div>
               <div class="hero-beranda">

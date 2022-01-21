@@ -1,5 +1,5 @@
 @extends('admin.main')
-@section('title', 'Data Survei')
+@section('title', 'Data Survey')
 @section('main-content')
     {{-- header --}}
     @include('admin.header')

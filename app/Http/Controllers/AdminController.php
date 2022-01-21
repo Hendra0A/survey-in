@@ -501,9 +501,9 @@ class AdminController extends Controller
         try {
             DataSurvey::destroy($request->id);
             return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survei')->with('confirm', 'Ok');
+                ->with('success', 'Berhasil Menghapus Data Survey')->with('confirm', 'Ok');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Gagal Menghapus Data Survei');
+            return redirect()->back()->with('error', 'Gagal Menghapus Data Survey');
         }
     }
 }
