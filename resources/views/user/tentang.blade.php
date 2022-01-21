@@ -13,7 +13,7 @@
 				<h1 class="fw-bold" style="color: #F8B94A; margin-bottom: 2em; letter-spacing: .05em;">Survey</h1>
 				<h6 class="fw-bold mb-4">Aplikasi Survey</h6>
 				<p class="text-center col-11" style="letter-spacing: 0.001em; line-height: 24px; color: #A5A5A5;">Aplikasi
-					Survey merupakan aplikasi yang memudahkan para surveyor (penyurvei) di Dinas PUPR Kalimantan Barat untuk
+					Survey merupakan aplikasi yang memudahkan para surveyor di Dinas PUPR Kalimantan Barat untuk
 					menyimpan data survey. Aplikasi Survey menawarkan berbagai fitur yang memudahkan Anda melakukan survey
 					di lapangan.</p>
 			</div>
