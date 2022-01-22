@@ -24,13 +24,15 @@ $(document).ready(async function () {
         try {
             data = await getData(`/kecamatan`, idKab);
             setData(data.data[0].id);
-            $(".text-kec").text(data.data[0].nama);
             $("#resume").attr(
                 "href",
                 `/data-survei/print/resume/${data.data[0].id}`
             );
         } catch (error) {}
         $("#kecamatan").html("");
+        $("#kecamatan").append(
+            '<option value="" selected> Pilih Kecamatan</option>'
+        );
         data.data.forEach((element) => {
             $("#kecamatan").append(new Option(element.nama, element.id));
         });
@@ -80,6 +82,4 @@ $(document).ready(async function () {
         $("#resume").attr("href", `/data-survei/print/resume/` + $(this).val());
         setData($(this).val());
     });
-
-    setKecamatan();
 });

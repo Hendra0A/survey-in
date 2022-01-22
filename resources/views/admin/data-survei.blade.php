@@ -11,7 +11,7 @@
                 Pencarian Hasil Survey
             </h1>
             <p class="dasur-content w-100 text-center mb-4">
-                Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec">Pontianak Barat</span>
+                Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec"></span>
             </p>
             <form action="" method="POST">
                 @csrf
@@ -22,7 +22,7 @@
                             <select class="form-select" id="kabupaten" name="kabupaten">
                                 <option selected>Pilih kota/kabupaten</option>
                                 @foreach ($kabupaten as $item)
-                                    <option value="{{ $item->id }}" {{ $item->id == 13 ? 'selected' : '' }}>
+                                    <option value="{{ $item->id }}">
                                         {{ $item->nama }}</option>
                                 @endforeach
                             </select>
@@ -32,7 +32,7 @@
                         <div class="input-group mb-3">
                             <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
                             <select class="form-select" id="kecamatan" name="kecamatan">
-                                <option value="" selected> Pilih kabupaten</option>
+                                <option value="" selected> Pilih Kecamatan</option>
                             </select>
                         </div>
                     </div>
