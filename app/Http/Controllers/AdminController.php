@@ -80,9 +80,9 @@ class AdminController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $name['imgname'] = auth()->user()->nama_lengkap.'_'.uniqid().'.'.$image->guessExtension();
-            Image::make($image)->resize(115,115)->save(public_path('storage/avatar-images/').$name['imgname']);
-            $image_path = "avatar-images/" .$name['imgname'];
+            $name['imgname'] = auth()->user()->nama_lengkap . '_' . uniqid() . '.' . $image->guessExtension();
+            Image::make($image)->resize(115, 115)->save(public_path('storage/avatar-images/') . $name['imgname']);
+            $image_path = "avatar-images/" . $name['imgname'];
             $validateData['avatar'] = $image_path;
         }
         try {
@@ -165,7 +165,8 @@ class AdminController extends Controller
             'weekly_target' => $weekly_target,
             'weekly_selesai' => $weekly_selesai,
             'detailSurvey' => $data[0]->detailSurvey,
-            'area' => $data[0]->kabupaten
+            'area' => $data[0]->kabupaten,
+            'kabupaten' => Kabupaten::get()
         ];
         // dd($detail);
         return view('admin.surveyor.surveyor-profile', $detail);

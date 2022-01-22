@@ -25,16 +25,17 @@
         <div class="data-surveyor p-0 p-sm-5">
             <!-- Riwayat -->
             <div class="riwayat d-flex justify-content-end mb-2" data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                Riwayat Survey
+                <span data-bs-toggle="modal" data-bs-target="#surveyModal" class="me-2 btn btn-outline-primary" >Riwayat Survey</span>
+                <span data-bs-toggle="modal" data-bs-target="#riwayatModal" class="me-1 btn btn-outline-primary ">Riwayat Target</span> 
             </div>
-
-            <!-- Modal -->
+            <input type="hidden" value="{{ $profile_surveyor->id }}" id="data-id">
+            <!-- Modal Riwayat Target -->
             <div class="modal fade mt-0" id="riwayatModal" tabindex="-1" aria-labelledby="riwayatModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="riwayatModalLabel">Riwayat Survey</h5>
+                            <h5 class="modal-title" id="riwayatModalLabel">Riwayat Target</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
                         </div>
@@ -82,7 +83,7 @@
                                                     @elseif ($item->selesai - $item->target == 0)
                                                         Survey Sukses
                                                     @elseif($item->selesai - $item->target < 0)
-                                                        {{                                                         $item->selesai - $item->target }}
+                                                        {{$item->selesai - $item->target }}
                                                         Gang dan Perumahan
                                                     @endif
                                                 </td>
@@ -95,11 +96,74 @@
                     </div>
                 </div>
             </div>
-            <!-- Riwayat -->
+            <!-- Modal Riwayat Target -->
+            <!-- Modal Riwayat Survey -->
+            <div class="modal fade mt-0" id="surveyModal" tabindex="-1" aria-labelledby="riwayatModalLabelSurvey aria-hidden="true">
+                <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="riwayatModalLabel">Riwayat Survey {{ $profile_surveyor->nama_lengkap }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-tabel">
+                                <div class="pilih w-100 d-flex flex-column container-fluid">
+                                    <h1 class="dasur-content w-100 text-center mt-4">
+                                        Pencarian Hasil Survey
+                                    </h1>
+                                    <p class="dasur-content w-100 text-center mb-4">
+                                        Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec"></span>
+                                    </p>
+                                        <div class="row justify-content-around my-3 col-12 d-flex flex-column flex-sm-row">
+                                            <div class="col-sm-5 col-12">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text fw-bold" for="kabupaten">Kabupaten/Kota</label>
+                                                    <select class="form-select" id="kabupaten" name="kabupaten">
+                                                        <option selected>Pilih kota/kabupaten</option>
+                                                        @foreach ($kabupaten as $item)
+                                                            <option value="{{ $item->id }}">
+                                                                {{ $item->nama }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5 col-12">
+                                                <div class="input-group mb-3">
+                                                    <label class="input-group-text fw-bold" for="kecamatan">Kecamatan</label>
+                                                    <select class="form-select" id="kecamatan" name="kecamatan">
+                                                        <option value="" selected> Pilih Kecamatan</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="form-dasur ps-4 pe-4 mb-4 mt-4">
+                                    <table class="table table-hover bg-white shadow-sm table-responsive flex-column" id="dasur-table" style="width: 100%;">
+                                        <thead>
+                                            <tr style="vertical-align: middle">
+                                                <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
+                                                <th scope="col" style="width: 21%;">Lokasi</th>
+                                                <th scope="col" style="width: 20%;">Kecamatan</th>
+                                                <th scope="col" style="width: 15%;">koordinat Depan</th>
+                                                <th scope="col" style="width: 25%;">Aktivitas</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="data" class="data">
+                                            <script type="module" src="/js/data-survei-single.js"></script>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Modal Riwayat Survey -->
+
 
             <!--  Data Profil Surveyor -->
             <div class="biodata p-0 p-sm-3">
-
                 <table class="bio">
                     <tr>
                         <td class="left-bio">Nama Lengkap</td>
@@ -174,5 +238,17 @@
             <a href="/surveyor/edit/password/{{ $profile_surveyor->id }}" class="btn btn-primary ps-2 pe-2 ps-sm-5 pe-sm-5 mb-5 border-0 h-auto" style="border-radius: .5em; background: #3f4fc8;">Edit
                 Password</a>
         </div>
+        <script>
+            $(window).ready(function() {
+                $("#dasur-table").click(function(e) {
+                    let btn = e.target;
+                    if (btn.classList.contains('btn-hapus')) {
+                        $('#hapus-id').attr('value', btn.value);
+                    }
+                })
+            });
+        </script>
+        <script src="/js/jquery.dataTables.min.js"></script>
     </div>
+
 @endsection

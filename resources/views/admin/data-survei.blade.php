@@ -13,8 +13,6 @@
             <p class="dasur-content w-100 text-center mb-4">
                 Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec"></span>
             </p>
-            <form action="" method="POST">
-                @csrf
                 <div class="row justify-content-around my-3 col-12 d-flex flex-column flex-sm-row">
                     <div class="col-sm-5 col-12">
                         <div class="input-group mb-3">
@@ -59,7 +57,6 @@
                 </tbody>
             </table>
         </div>
-        </form>
 
 
         <!-- Modal 3 -->

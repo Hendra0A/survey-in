@@ -88,7 +88,7 @@
                         </div>
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
-
+                    <!-- Kondisi jalan -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan</label>
                         <div class="col-12 d-flex justify-content-around">
@@ -139,6 +139,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- Kondisi jalan -->
                     <!-- Dimensi Jalan Utama -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama</label>
@@ -181,9 +182,7 @@
                     <!-- Dimensi Jalan Utama -->
 
 
-                    <!-- Kondisi jalan -->
                     
-                    <!-- Kondisi jalan -->
 
                      <!-- Kondisi Saluran -->
                      <div class="col-12 mb-3">

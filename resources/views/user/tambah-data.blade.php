@@ -91,49 +91,6 @@
                     </div>
                     <!-- Nama gang & lokasi & koordinat -->
 
-
-                    <!-- Dimensi Jalan Utama -->
-                    <div class="col-12 mb-3">
-                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama <sup class="text-danger">*</sup></label>
-                        <div class="col-12 d-flex justify-content-around justify-content-sm-between">
-                            <div class="kolom-data m-1 col-sm-5">
-                                <label for="" class="ms-2">Panjang :</label>
-                                <div class="input-group m-1">
-                                    <input type="text"
-                                        class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
-                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_panjang" value="{{ old('dimensi_jalan_panjang') }}" required>
-                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">m</span>
-                                    @error('dimensi_jalan_panjang')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            <div class="kolom-data m-1 col-sm-5">
-                                <label for="" class="ms-2">Lebar :</label>
-                                <div class="input-group m-1">
-                                    <input type="text"
-                                        class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
-                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
-                                        name="dimensi_jalan_lebar" value="{{ old('dimensi_jalan_lebar') }}" required>
-                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
-                                        id="basic-addon1">m</span>
-                                    @error('dimensi_jalan_lebar')
-                                        <div id="validationServer03Feedback" class="invalid-feedback">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dimensi Jalan Utama -->
-
-
                     <!-- Kondisi jalan -->
                     <div class="col-12 mb-3">
                         <label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan  <sup class="text-danger">*</sup></label>
@@ -186,6 +143,49 @@
                         </div>
                     </div>
                     <!-- Kondisi jalan -->
+                    <!-- Dimensi Jalan Utama -->
+                    <div class="col-12 mb-3">
+                        <label for="" class="form-label d-block m-0 fw-bold mt-2">Dimensi Jalan Utama <sup class="text-danger">*</sup></label>
+                        <div class="col-12 d-flex justify-content-around justify-content-sm-between">
+                            <div class="kolom-data m-1 col-sm-5">
+                                <label for="" class="ms-2">Panjang :</label>
+                                <div class="input-group m-1">
+                                    <input type="text"
+                                        class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
+                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
+                                        name="dimensi_jalan_panjang" value="{{ old('dimensi_jalan_panjang') }}" required>
+                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
+                                        id="basic-addon1">m</span>
+                                    @error('dimensi_jalan_panjang')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="kolom-data m-1 col-sm-5">
+                                <label for="" class="ms-2">Lebar :</label>
+                                <div class="input-group m-1">
+                                    <input type="text"
+                                        class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
+                                        style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
+                                        name="dimensi_jalan_lebar" value="{{ old('dimensi_jalan_lebar') }}" required>
+                                    <span class="input-group-text border-0" style="background: #F3F8FF;"
+                                        id="basic-addon1">m</span>
+                                    @error('dimensi_jalan_lebar')
+                                        <div id="validationServer03Feedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Dimensi Jalan Utama -->
+
+
+                    
 
                     <!-- Kondisi Saluran -->
                     <div class="col-12 mb-3">
