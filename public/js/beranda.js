@@ -1,7 +1,8 @@
 $(document).ready(async function () {
     let getData = async (path, id) => {
-        // let url = "https://survey-kite.000webhostapp.com/api";
-        let url = "http://survey-in.test/api";
+        // let url = "http://survey.idekite.id/api";
+        let url = "http://127.0.0.1:8000/api";
+
         let fd = new FormData();
         fd.append("id", id);
         let requestOptions = {
@@ -22,10 +23,12 @@ $(document).ready(async function () {
         let data;
         try {
             data = await getData(`/kecamatan`, idKab);
-            $(".text-kec").text(data.data[0].nama);
             setResumeSurvey(data.data[0].id);
         } catch (error) {}
         $("#kecamatan").html("");
+        $("#kecamatan").append(
+            `<option value="" selected>Pilih Kecamatan</option> `
+        );
         data.data.forEach((element) => {
             let list = document.createElement("option");
             list.innerText = `${element.nama}`;
@@ -33,7 +36,7 @@ $(document).ready(async function () {
             $("#kecamatan").append(list);
         });
     };
-    let setResumeSurvey = async (idKec = 160) => {
+    let setResumeSurvey = async (idKec) => {
         let dataS = await getData("/data-survey", idKec);
         if (dataS.length == 0) {
             $("#jmlGang").text("-");
@@ -70,5 +73,4 @@ $(document).ready(async function () {
         e.preventDefault();
         setKecamatan($(this).val());
     });
-    setKecamatan();
 });

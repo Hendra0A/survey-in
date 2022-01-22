@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Exports\DataSurveyExport;
 use App\Models\DetailSurveys;
 use Maatwebsite\Excel\Facades\Excel;
+use Intervention\Image\Facades\Image;
 
 class DataSurveyController extends Controller
 {
@@ -186,10 +187,11 @@ class DataSurveyController extends Controller
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
-                        $md5Name = uniqid();
+                        $name = uniqid();
                         $guessExtension = $value['foto']->guessExtension();
-                        $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                        $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
+                        Image::make($image)->resize(115, 115)->save(public_path('/storage/foto-fasos/' . $name . '.' . $guessExtension));
+                        // $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
+                        $fotoFasos = "foto-fasos/" . $name . '.' . $guessExtension;
 
                         // add element array
                         $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
@@ -210,10 +212,11 @@ class DataSurveyController extends Controller
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
                         // // image
                         $image = $value['foto'];
-                        $md5Name = uniqid();
+                        $name = uniqid();
                         $guessExtension = $value['foto']->guessExtension();
-                        $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                        $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
+                        Image::make($image)->resize(115, 115)->save(public_path('/storage/foto-lampiran/' . $name . '.' . $guessExtension));
+                        // $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
+                        $fotoLampiran = "foto-lampiran/" . $name . '.' . $guessExtension;
 
                         // add element array
                         $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
@@ -361,7 +364,7 @@ class DataSurveyController extends Controller
                         if (!empty($value['foto'])) {
                             // image
 
-                            
+
 
                             $image = $value['foto'];
                             $md5Name = uniqid();

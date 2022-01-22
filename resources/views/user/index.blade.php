@@ -31,7 +31,8 @@
       <div class="pilih-kec mt-4 mb-2 p-2">
           <label for="" class=" ms-4" id="pilih-kec">Kecamatan :</label>
           <select id="kecamatan" class="form-select form-select-sm m-auto shadow-none border-primary mt-1" style="width: 92%;" aria-label=".form-select-sm example">
-              @foreach ($area_survei->kecamatan as $kecamatan)    
+            <option value="" selected>Pilih Kecamatan</option> 
+            @foreach ($area_survei->kecamatan as $kecamatan)    
                   <option value="{{ $kecamatan->id }}" {{ ($data['kecamatan_id']==$kecamatan->id)?'selected' : '' }}>{{ $kecamatan->nama }}</option>
               @endforeach
           </select>

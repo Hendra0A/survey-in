@@ -14,8 +14,9 @@
             <p class="my-3">Kecamatan :</p>
           <div class="input-group mb-3">
             <select id="kecamatan" class="form-select form-select-sm m-auto shadow-none border-primary mt-1" style="width: 92%;" aria-label=".form-select-sm example">
-                @foreach ($data as $kecamatan)    
-                    <option value="{{ $kecamatan->id}}" {{ ($kecamatan->id == auth()->user()->kabupaten_id)?'selected':''}}">{{ $kecamatan->nama }}</option>
+              <option value="" selected>Pilih Kecamatan</option>   
+               @foreach ($data as $kecamatan)    
+                    <option value="{{ $kecamatan->id}}">{{ $kecamatan->nama }}</option>
                 @endforeach
             </select>
           </div>

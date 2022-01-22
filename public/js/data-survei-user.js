@@ -1,7 +1,7 @@
 $(document).ready(async function () {
     let getData = async (path, method, kecamatan_id, id) => {
-        // let url = "https://survey-kite.000webhostapp.com/api";
-        let url = "http://survey-in.test/api";
+        // let url = "http://survey.idekite.id/api";
+        let url = "http://127.0.0.1:8000/api";
         let fd = new FormData();
         fd.append("id", id);
         fd.append("kecamatan_id", kecamatan_id);
@@ -43,7 +43,6 @@ $(document).ready(async function () {
             console.log("data gagal didapatkan");
         }
     };
-    setResumeSurvey(method, $("#kecamatan").val());
     let render = (data) => {
         if (data.length == 0) {
             $(".list-data").html("");
@@ -105,13 +104,21 @@ $(document).ready(async function () {
         $(".text-kec").text($(this).find("option:selected").text());
         e.preventDefault();
         let id = $(".active").data("id");
-        setResumeSurvey(method, $(this).val(), id);
+        if ($("#kecamatan").val() == "") {
+            $(".list-data").html("");
+        } else {
+            setResumeSurvey(method, $("#kecamatan").val(), id);
+        }
     });
     $(".page").click(function (e) {
         e.preventDefault();
         $(".page").toggleClass("active");
-        method = $(this).data("method");
         let id = $(".active").data("id");
-        setResumeSurvey(method, $("#kecamatan").val(), id);
+        method = $(this).data("method");
+        if ($("#kecamatan").val() == "") {
+            $(".list-data").html("");
+        } else {
+            setResumeSurvey(method, $("#kecamatan").val(), id);
+        }
     });
 });

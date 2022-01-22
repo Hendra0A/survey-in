@@ -1,8 +1,8 @@
-$(document).ready(async function() {
+$(document).ready(async function () {
     let getData = () => {
         var uri = window.location.pathname;
         var idUri = uri.split("/").pop();
-        let url = "http://survey-in.test/api/option-form/" + idUri;
+        let url = "http://127.0.0.1:8000/api/option-form/" + idUri;
         let requestOptions = {
             method: "GET",
             Headers: {
@@ -86,7 +86,9 @@ $(document).ready(async function() {
                     <div class="input-group">
                         <input type="text" class="form-control border-primary"
                             style="border-radius: .5em;" aria-label="Username"
-                            aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="${data.fasos[x] === undefined ? '' : data.fasos[x].panjang}">
+                            aria-describedby="basic-addon1" name="addmore[${x}][panjang]" value="${
+                data.fasos[x] === undefined ? "" : data.fasos[x].panjang
+            }">
                         <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                     </div>
                 </div>
@@ -97,7 +99,11 @@ $(document).ready(async function() {
                         <input type="text" class="form-control border-primary"
                             style="border-radius: .5em;" aria-label="Username"
                             aria-describedby="basic-addon1" name="addmore[${x}][lebar]"
-                            value="${data.fasos[x] === undefined ? '' : data.fasos[x].lebar}">
+                            value="${
+                                data.fasos[x] === undefined
+                                    ? ""
+                                    : data.fasos[x].lebar
+                            }">
                         <span class="input-group-text border-0 bg-white" id="basic-addon1">m</span>
                     </div>
                 </div>
@@ -115,7 +121,9 @@ $(document).ready(async function() {
                             <input type="text"
                                 class="lokasi-fasos form-control border-primary "
                                 style="border-radius: .5em;" id="input-koordinat-fasos"
-                                name="addmore[${x}][koordinat_fasos]" value="${data.fasos[x] === undefined ? '' : data.fasos[x].koordinat_fasos}">
+                                name="addmore[${x}][koordinat_fasos]" value="${
+                data.fasos[x] === undefined ? "" : data.fasos[x].koordinat_fasos
+            }">
                         </div>
                     </div>
 
@@ -126,11 +134,17 @@ $(document).ready(async function() {
             <label for="fasos-${x}">
             <div class="img-keterangan mt-2 p-2 text-sm-center"
                 style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                <img src="${data.fasos[x] === undefined ? '/img/kartu-empat.png' : url+ '/' + data.fasos[x].foto}" class="imageFasosView" style="width: 9em;">
+                <img src="${
+                    data.fasos[x] === undefined
+                        ? "/img/kartu-empat.png"
+                        : url + "/" + data.fasos[x].foto
+                }" class="imageFasosView" style="width: 9em;">
             </div>
         </label>
         </div>
-        <button type="button" id="close" class="btn btn-primary border-0 mt-3" data-id="${data.fasos[x] === undefined ? '' : data.fasos[x].id}"
+        <button type="button" id="close" class="btn btn-primary border-0 mt-3" data-id="${
+            data.fasos[x] === undefined ? "" : data.fasos[x].id
+        }"
         style="border-radius: .5em; background: #3F4FC8;">Hapus Fasos</button>
         </div>
 `
@@ -148,7 +162,7 @@ $(document).ready(async function() {
                     <option value="" selected disabled>-Pilih kategori-</option>
                     ${Object.keys(data.jenisLampiran)
                         .map(function (key) {
-                            if(data.lampiran[y] == undefined){
+                            if (data.lampiran[y] == undefined) {
                                 return (
                                     "<option value='" +
                                     data.jenisLampiran[key]["id"] +
@@ -157,18 +171,18 @@ $(document).ready(async function() {
                                     "</option>"
                                 );
                             } else {
-                            return (
-                                "<option " +
-                                (data.lampiran[y].jenis_lampiran_id ==
-                                data.jenisLampiran[key]["id"]
-                                    ? "selected"
-                                    : "") +
-                                ' value="' +
-                                data.jenisLampiran[key]["id"] +
-                                '">' +
-                                data.jenisLampiran[key]["jenis"] +
-                                "</option>"
-                            );
+                                return (
+                                    "<option " +
+                                    (data.lampiran[y].jenis_lampiran_id ==
+                                    data.jenisLampiran[key]["id"]
+                                        ? "selected"
+                                        : "") +
+                                    ' value="' +
+                                    data.jenisLampiran[key]["id"] +
+                                    '">' +
+                                    data.jenisLampiran[key]["jenis"] +
+                                    "</option>"
+                                );
                             }
                         })
                         .join("")}
@@ -182,11 +196,17 @@ $(document).ready(async function() {
                     <label for="lampiran-${y}">
                 <div class="img-keterangan mt-2 p-2 text-sm-center"
                     style="border: 3px dashed #3F4FC8; width: 10em; border-radius: .5em;">
-                    <img src="${data.lampiran[y] === undefined ? '/img/kartu-empat.png' : url+ '/' + data.lampiran[y].foto}" id="imageLampiran" style="width: 9em;">
+                    <img src="${
+                        data.lampiran[y] === undefined
+                            ? "/img/kartu-empat.png"
+                            : url + "/" + data.lampiran[y].foto
+                    }" id="imageLampiran" style="width: 9em;">
                 </div>
                 </label>
             </div>
-            <button type="button" id="closeLampiran" data-id="${data.lampiran[y] === undefined ? '' : data.lampiran[y].id}" class="btn btn-primary border-0 mt-3"style="border-radius: .5em; background: #3F4FC8;">Hapus Lampiran</button>
+            <button type="button" id="closeLampiran" data-id="${
+                data.lampiran[y] === undefined ? "" : data.lampiran[y].id
+            }" class="btn btn-primary border-0 mt-3"style="border-radius: .5em; background: #3F4FC8;">Hapus Lampiran</button>
         </div>
 
 
@@ -199,12 +219,16 @@ $(document).ready(async function() {
         $(".form-lampiran").empty();
         $(".form-fasos").empty();
         for (
-            let index = 0; index < sessionStorage.getItem("jmlFasos"); index++
+            let index = 0;
+            index < sessionStorage.getItem("jmlFasos");
+            index++
         ) {
             renderFasos();
         }
         for (
-            let index = 0; index < sessionStorage.getItem("jmlLampiran"); index++
+            let index = 0;
+            index < sessionStorage.getItem("jmlLampiran");
+            index++
         ) {
             renderLampiran();
         }
@@ -213,14 +237,14 @@ $(document).ready(async function() {
 
     var i = sessionStorage.getItem("jmlFasos");
     var j = sessionStorage.getItem("jmlLampiran");
-    $("#tombol-lampiran").click(function() {
+    $("#tombol-lampiran").click(function () {
         j = sessionStorage.getItem("jmlLampiran");
         j++;
         sessionStorage.setItem("jmlLampiran", j);
         $("jmlLampiran").val(j);
         renderLampiran();
     });
-    $("#fasos").click(function() {
+    $("#fasos").click(function () {
         i = sessionStorage.getItem("jmlFasos");
         i++;
         sessionStorage.setItem("jmlFasos", i);
@@ -228,7 +252,7 @@ $(document).ready(async function() {
         renderFasos();
     });
 
-    $(document).on("click", "#closeLampiran", function() {
+    $(document).on("click", "#closeLampiran", function () {
         $(this).parents(".single-form-lampiran").remove();
         if (j > 0) {
             j--;
@@ -237,24 +261,24 @@ $(document).ready(async function() {
 
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
         });
         var id = $(this).data("id");
         $.ajax({
             url: "/surveyor/data-survei/destroy",
-            type: 'DELETE',
+            type: "DELETE",
             dataType: "JSON",
             data: {
-                'idLampiran': id,
+                idLampiran: id,
             },
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
-            }
+            },
         });
     });
 
-    $(document).on("click", "#close", function() {
+    $(document).on("click", "#close", function () {
         $(this).parents(".single-form-fasos").remove();
         if (i > 0) {
             i--;
@@ -262,20 +286,20 @@ $(document).ready(async function() {
         }
         $.ajaxSetup({
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
         });
         var id = $(this).data("id");
         $.ajax({
             url: "/surveyor/data-survei/destroy",
-            type: 'DELETE',
+            type: "DELETE",
             dataType: "JSON",
             data: {
-                'idFasos': id,
+                idFasos: id,
             },
-            success: function(response) {
+            success: function (response) {
                 console.log(response);
-            }
+            },
         });
     });
 });
