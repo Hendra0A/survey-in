@@ -25,8 +25,8 @@
         <div class="data-surveyor p-0 p-sm-5">
             <!-- Riwayat -->
             <div class="riwayat d-flex justify-content-end mb-2" data-bs-toggle="modal" data-bs-target="#riwayatModal">
-                <span data-bs-toggle="modal" data-bs-target="#surveyModal" class="me-2 btn btn-outline-primary" >Riwayat Survey</span>
-                <span data-bs-toggle="modal" data-bs-target="#riwayatModal" class="me-1 btn btn-outline-primary ">Riwayat Target</span> 
+                <span data-bs-toggle="modal" data-bs-target="#surveyModal" class="riwayat-survey me-2 btn btn-outline-primary" >Riwayat Survey</span>
+                <span data-bs-toggle="modal" data-bs-target="#riwayatModal" class="riwayat-target me-1 btn btn-outline-primary ">Riwayat Target</span> 
             </div>
             <input type="hidden" value="{{ $profile_surveyor->id }}" id="data-id">
             <!-- Modal Riwayat Target -->
@@ -97,8 +97,9 @@
                 </div>
             </div>
             <!-- Modal Riwayat Target -->
+
             <!-- Modal Riwayat Survey -->
-            <div class="modal fade mt-0" id="surveyModal" tabindex="-1" aria-labelledby="riwayatModalLabelSurvey aria-hidden="true">
+            <div class="modal fade mt-0" id="surveyModal" tabindex="-1" aria-labelledby="riwayatModalLabelSurvey" aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-scrollable">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -109,12 +110,12 @@
                         <div class="modal-body">
                             <div class="container-tabel">
                                 <div class="pilih w-100 d-flex flex-column container-fluid">
-                                    <h1 class="dasur-content w-100 text-center mt-4">
+                                    {{-- <h1 class="dasur-content w-100 text-center mt-4">
                                         Pencarian Hasil Survey
                                     </h1>
                                     <p class="dasur-content w-100 text-center mb-4">
                                         Temukan hasil Survey Gang dan Perumahan <br> di Kecamatan <span class="text-kec"></span>
-                                    </p>
+                                    </p> --}}
                                         <div class="row justify-content-around my-3 col-12 d-flex flex-column flex-sm-row">
                                             <div class="col-sm-5 col-12">
                                                 <div class="input-group mb-3">
@@ -142,11 +143,10 @@
                                     <table class="table table-hover bg-white shadow-sm table-responsive flex-column" id="dasur-table" style="width: 100%;">
                                         <thead>
                                             <tr style="vertical-align: middle">
-                                                <th scope="col" style="width: 20%;">Nama Gang dan Perumahan</th>
-                                                <th scope="col" style="width: 21%;">Lokasi</th>
-                                                <th scope="col" style="width: 20%;">Kecamatan</th>
-                                                <th scope="col" style="width: 15%;">koordinat Depan</th>
-                                                <th scope="col" style="width: 25%;">Aktivitas</th>
+                                                <th scope="col" style="width: 30%;">Nama Gang dan Perumahan</th>
+                                                <th scope="col" style="width: 25%;">Lokasi</th>
+                                                <th scope="col" style="width: 25%;">koordinat Depan</th>
+                                                <th scope="col" style="width: 20%;">Aktivitas</th>
                                             </tr>
                                         </thead>
                                         <tbody id="data" class="data">
