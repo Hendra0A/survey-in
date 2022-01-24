@@ -28,18 +28,18 @@ class CreateDataSurveysTable extends Migration
             $table->string('no_gps_belakang')->nullable();
             // jalan
             $table->integer('jenis_konstruksi_jalan_id')->nullable();
-            $table->integer('dimensi_jalan_panjang')->nullable();
-            $table->integer('dimensi_jalan_lebar')->nullable();
+            $table->float('dimensi_jalan_panjang')->nullable();
+            $table->float('dimensi_jalan_lebar')->nullable();
             $table->integer('status_jalan')->nullable();
 
             // saluran
             $table->integer('jenis_konstruksi_saluran_id')->nullable();
-            $table->integer('dimensi_saluran_panjang_kanan')->nullable();
-            $table->integer('dimensi_saluran_panjang_kiri')->nullable();
-            $table->integer('dimensi_saluran_lebar_kanan')->nullable();
-            $table->integer('dimensi_saluran_lebar_kiri')->nullable();
-            $table->integer('dimensi_saluran_kedalaman_kanan')->nullable();
-            $table->integer('dimensi_saluran_kedalaman_kiri')->nullable();
+            $table->float('dimensi_saluran_panjang_kanan')->nullable();
+            $table->float('dimensi_saluran_panjang_kiri')->nullable();
+            $table->float('dimensi_saluran_lebar_kanan')->nullable();
+            $table->float('dimensi_saluran_lebar_kiri')->nullable();
+            $table->float('dimensi_saluran_kedalaman_kanan')->nullable();
+            $table->float('dimensi_saluran_kedalaman_kiri')->nullable();
             $table->integer('status_saluran')->nullable();
 
             // rumah

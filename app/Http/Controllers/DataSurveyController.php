@@ -181,6 +181,7 @@ class DataSurveyController extends Controller
                 'no_imb' => $request->no_imb,
                 'catatan' => $request->catatan
             ]);
+
             // fasos
             $datasFasos = [];
             if (!empty($request->addmore)) {
@@ -241,7 +242,7 @@ class DataSurveyController extends Controller
                 ->with('success', 'Data telah berhasil ditambahkan !')
                 ->with('confirm', 'ok');
         } catch (\Throwable $th) {
-            request()->session('error', 'Data Gagal DIsimpan, input data belum lengkap');
+            request()->session('error', 'Data Gagal Disimpan, input data belum lengkap');
             return redirect()->back()->withInput();
         }
     }
@@ -467,16 +468,12 @@ class DataSurveyController extends Controller
                 Fasos::destroy($request->idFasos);
                 return response()->json([
                     'success' => 'Record has been deleted successfully!',
-                    'ok' => $request->id,
-                    'delete' => Fasos::find($request->id)
                 ]);
             }
             if ($request->idLampiran) {
                 LampiranFoto::destroy($request->idLampiran);
                 return response()->json([
                     'success' => 'Record has been deleted successfully!',
-                    'ok' => $request->id,
-                    'delete' => LampiranFoto::find($request->id)
                 ]);
             }
         }
