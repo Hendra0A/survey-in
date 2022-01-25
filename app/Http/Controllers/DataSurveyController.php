@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Fasos;
 use Barryvdh\DomPDF\PDF;
 use App\Models\Kabupaten;
@@ -10,8 +11,8 @@ use App\Models\JenisFasos;
 use Illuminate\Support\Arr;
 use App\Models\LampiranFoto;
 use Illuminate\Http\Request;
-use App\Exports\DataSurveyExport;
 use App\Models\DetailSurveys;
+use App\Exports\DataSurveyExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
 
@@ -27,6 +28,7 @@ class DataSurveyController extends Controller
     }
     public function detail($id)
     {
+
         $data = DataSurvey::with(['user', 'konstruksiJalan', 'konstruksiSaluran', 'kecamatan', 'fasosTable.jenisFasos', 'lampiranFoto.jenisLampiran'])->where('id', $id)->get();
         if (auth()->user()->role == 'admin') {
 
@@ -46,9 +48,35 @@ class DataSurveyController extends Controller
     public function destroy(Request $request)
     {
         try {
-            DataSurvey::destroy($request->id);
-            return redirect()->back()
-                ->with('success', 'Berhasil Menghapus Data Survey')->with('confirm', 'ok');
+            // data survey
+            $created_at = DataSurvey::where('id', $request->id)->first()->created_at;
+            $created_at_data_survey = Carbon::createFromFormat('Y-m-d H:i:s', $created_at)->format('Y-m-d');
+
+            // detail data survey
+            $detail_survey = DetailSurveys::get(['tanggal_mulai', 'tanggal_selesai', 'selesai']);
+
+            $dat = [];
+            foreach ($detail_survey as $detail) {
+                $dates = [];
+                $mulai = strtotime($detail->tanggal_mulai);
+                $selesai = strtotime($detail->tanggal_selesai);
+
+                while ($mulai <= $selesai) {
+                    $dates[] = date('Y-m-d', $mulai);
+                    $mulai = strtotime('+1 day', $mulai);
+                }
+                $dat[$detail->tanggal_mulai] = $dates;
+                for ($i = 0; $i < count($dates); $i++) {
+                    if ($dates[$i] === $created_at_data_survey) {
+                        DataSurvey::destroy($request->id);
+                        DetailSurveys::where('tanggal_mulai', $dat[$detail->tanggal_mulai])->update([
+                            'selesai' => $detail->selesai - 1
+                        ]);
+                        return redirect()->back()
+                            ->with('success', 'Berhasil Menghapus Data Survey')->with('confirm', 'ok');
+                    }
+                }
+            }
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Gagal Menghapus Data Survey');
         }
