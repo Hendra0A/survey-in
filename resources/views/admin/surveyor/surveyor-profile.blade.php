@@ -145,7 +145,7 @@
                                             <tr style="vertical-align: middle">
                                                 <th scope="col" style="width: 30%;">Nama Gang dan Perumahan</th>
                                                 <th scope="col" style="width: 25%;">Lokasi</th>
-                                                <th scope="col" style="width: 25%;">koordinat Depan</th>
+                                                <th scope="col" style="width: 25%;">Tanggal Survei</th>
                                                 <th scope="col" style="width: 20%;">Aktivitas</th>
                                             </tr>
                                         </thead>

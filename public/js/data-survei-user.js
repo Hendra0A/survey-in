@@ -1,8 +1,7 @@
 $(document).ready(async function () {
     let getData = async (path, method, kecamatan_id, id) => {
         // let url = "http://survey.idekite.id/api";
-        // let url = "http://127.0.0.1:8000/api";
-        let url = "http://survey-in.test/api";
+        let url = "https://survey.idekite.id/api";
         let fd = new FormData();
         fd.append("id", id);
         fd.append("kecamatan_id", kecamatan_id);

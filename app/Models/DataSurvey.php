@@ -12,7 +12,7 @@ class DataSurvey extends Model
 {
     use HasFactory;
     use SoftDeletes;
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = ['id'];
 
     public function kecamatan()
