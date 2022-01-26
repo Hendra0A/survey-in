@@ -1,76 +1,85 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<style>
-			:root {
-				font-family: Arial, Helvetica, sans-serif;
-				line-height: 1.5rem;
-			}
-			* {
-				margin: 0;
-				padding: 0;
-				box-sizing: 0;
-			}
-			.container {
-				width: 100%;
-				padding: 1rem 0;
-				text-align: center;
-			}
-			.logo {
-				margin: 0 auto;
-			}
-			.title {
-				margin: 1rem;
-				color: orange;
-			}
-			.content {
-				margin: 0 auto;
-				max-height: fit-content;
-				max-width: 512px;
-				padding: 1rem 2rem;
-				background-color: #fafafa;
-			}
-			.content h3 {
-				text-align: center;
-                color: black;
-			}
-			.content p {
-				text-align: justify;
-				margin: 1rem 0;
-                color: black;
-			}
-			.content .btn {
-				display: inline-block;
-				width: fit-content;
-				padding: 0.5rem 1rem;
-				background-color: #0d6efd;
-				color: white;
-				border-radius: 0.3rem;
-				text-decoration: none;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<img
-				class="logo"
-				src="{{ $message->embed(asset('img/logo-2.png')) }}"
-				alt="logo"
-			/>
-			<h2 class="title">Survey</h2>
-			<div class="content">
-				<h3>Hai {{ $name }}</h3>
-				<p>
-					Password Survey kamu dapat di atur ulang dengan mengklik
-					tombol dibawah. Jika kamu merasa tidak meminta pengaturan
-					ulang password, kamu dapat mengabaikan email ini.
-				</p>
-				<a
-					class="btn"
-					href="https://survey-kite.000webhostapp.com/reset-password/{{ $token }}"
-					>Atur Ulang Password</a
-				>
-			</div>
-		</div>
-	</body>
+<!doctype html>
+<html lang="en-US">
+
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	<title>Reset Password Email Template</title>
+	<meta name="description" content="Reset Password Email Template.">
+	<style type="text/css">
+		a:hover {
+			text-decoration: underline !important;
+		}
+
+	</style>
+</head>
+
+<body marginheight="0" topmargin="0" marginwidth="0" style="margin: 0px; background-color: #f2f3f8;" leftmargin="0">
+	<!--100% body table-->
+	<table cellspacing="0" border="0" cellpadding="0" width="100%" bgcolor="#f2f3f8"
+		style="@import url(https://fonts.googleapis.com/css?family=Rubik:300,400,500,700|Open+Sans:300,400,600,700); font-family: 'Open Sans', sans-serif;">
+		<tr>
+			<td>
+				<table style="background-color: #f2f3f8; max-width:670px;  margin:0 auto;" width="100%" border="0" align="center"
+					cellpadding="0" cellspacing="0">
+					<tr>
+						<td style="height:80px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="text-align:center;">
+							<a href="https://survey.idekite.id" title="logo" target="_blank">
+								<img width="60" src="{{ $message->embed(asset('img/logo-2.png')) }}" title="logo" alt="logo">
+							</a>
+						</td>
+					</tr>
+					<tr>
+						<td style="height:20px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td>
+							<table width="95%" border="0" align="center" cellpadding="0" cellspacing="0"
+								style="max-width:670px;background:#fff; border-radius:3px; text-align:center;-webkit-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);-moz-box-shadow:0 6px 18px 0 rgba(0,0,0,.06);box-shadow:0 6px 18px 0 rgba(0,0,0,.06);">
+								<tr>
+									<td style="height:40px;">&nbsp;</td>
+								</tr>
+								<tr>
+									<td style="padding:0 35px;">
+										<h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">You have
+											requested to reset your password</h1>
+										<span
+											style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+										<p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+											We cannot simply send you your old password. A unique link to reset your
+											password has been generated for you. To reset your password, click the
+											following link and follow the instructions.
+										</p>
+										<a href="https://survey.idekite.id/reset-password/{{ $token }};"
+											style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">Reset
+											Password</a>
+									</td>
+								</tr>
+								<tr>
+									<td style="height:40px;">&nbsp;</td>
+								</tr>
+							</table>
+						</td>
+					<tr>
+						<td style="height:20px;">&nbsp;</td>
+					</tr>
+					<tr>
+						<td style="text-align:center;">
+							<p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy;
+								<strong>survey.idekite.id</strong>
+							</p>
+						</td>
+					</tr>
+					<tr>
+						<td style="height:80px;">&nbsp;</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	<!--/100% body table-->
+</body>
+
 </html>
