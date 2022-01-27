@@ -93,9 +93,9 @@
 					<!-- Kondisi jalan -->
 					<div class="col-12 mb-3">
 						<label for="" class="form-label d-block fw-bold m-0">Kondisi Jalan <sup class="text-danger">*</sup></label>
-						<div class="col-12 d-flex justify-content-around">
+						<div class="col-12 d-flex justify-content-around align-items-end">
 							<div class="kolom-data m-1" style="width: 40%;">
-								<label for="" class="ms-2">Keadaan Jalan <sup class="text-danger">*</sup> :</label>
+								<label for="" class="ms-2">Keadaan Jalan <sup class="text-danger">*</sup></label>
 								<div class="input-group m-1">
 									<select class="form-select form-select border-primary @error('jenis_konstruksi_jalan_id') is-invalid @enderror"
 										autocomplete="off" style="border-radius: .5em;" aria-label=".form-select example"
@@ -115,7 +115,7 @@
 							</div>
 
 							<div class="kolom-data m-1" style="width: 30%;">
-								<label for="" class="ms-2">Persentase :</label>
+								<label for="" class="ms-2">Persentase</label>
 								<div class="input-group m-1">
 									<input type="number" step=".1" class="form-control border-primary @error('status_jalan') is-invalid @enderror"
 										style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1" name="status_jalan"
@@ -130,7 +130,7 @@
 							</div>
 
 							<div class="kolom-data m-1" style="width: 30%;">
-								<label for="" class="ms-2">Status :</label>
+								<label for="" class="ms-2">Status</label>
 								<div class="input-group m-1">
 									<input type="text" class="form-control border-primary" style="border-radius: .5em;" aria-label="Username"
 										aria-describedby="basic-addon1" id="status_jalanan" readonly>
@@ -145,7 +145,7 @@
 								class="text-danger">*</sup></label>
 						<div class="col-12 d-flex justify-content-around justify-content-sm-between">
 							<div class="kolom-data m-1 col-sm-5">
-								<label for="" class="ms-2">Panjang :</label>
+								<label for="" class="ms-2">Panjang</label>
 								<div class="input-group m-1">
 									<input type="text" class="form-control border-primary @error('dimensi_jalan_panjang') is-invalid @enderror"
 										style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1" name="dimensi_jalan_panjang"
@@ -160,7 +160,7 @@
 							</div>
 
 							<div class="kolom-data m-1 col-sm-5">
-								<label for="" class="ms-2">Lebar :</label>
+								<label for="" class="ms-2">Lebar</label>
 								<div class="input-group m-1">
 									<input type="text" class="form-control border-primary @error('dimensi_jalan_lebar') is-invalid @enderror"
 										style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1" name="dimensi_jalan_lebar"
@@ -183,9 +183,9 @@
 					<!-- Kondisi Saluran -->
 					<div class="col-12 mb-3">
 						<label for="" class="form-label d-block fw-bold m-0">Kondisi Saluran</label>
-						<div class="col-12 d-flex justify-content-around">
+						<div class="col-12 d-flex justify-content-around align-items-end">
 							<div class="kolom-data m-1" style="width: 40%;">
-								<label for="" class="ms-2">Keadaan Saluran :</label>
+								<label for="" class="ms-2">Keadaan Saluran</label>
 								<div class="input-group m-1">
 									<select class="form-select form-select border-primary" id="keadaan-saluran" autocomplete="off"
 										style="border-radius: .5em;" aria-label=".form-select example" name="jenis_konstruksi_saluran_id">
@@ -198,7 +198,7 @@
 								</div>
 							</div>
 							<div class="kolom-data m-1" style="width: 30%;">
-								<label for="" class="ms-2">Persentase :</label>
+								<label for="" class="ms-2">Persentase</label>
 								<div class="input-group m-1">
 									<input type="text"
 										class="form-control border-primary status_saluran @error('status_saluran') is-invalid @enderror"
@@ -214,7 +214,7 @@
 							</div>
 
 							<div class="kolom-data m-1" style="width: 30%;">
-								<label for="" class="ms-2">Status :</label>
+								<label for="" class="ms-2">Status</label>
 								<div class="input-group m-1">
 									<input type="text" class="form-control border-primary" style="border-radius: .5em;" aria-label="Username"
 										aria-describedby="basic-addon1" id="status_salurann" readonly>
@@ -233,7 +233,7 @@
 									<p class="m-0 ms-2 fw-light">Panjang</p>
 									<div class="d-flex col-sm-6">
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Kanan :</label>
+											<label for="" class="ms-2">Kanan</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary pj_saluran_kanan @error('dimensi_saluran_panjang_kanan') is-invalid @enderror"
@@ -249,7 +249,7 @@
 										</div>
 
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Kiri :</label>
+											<label for="" class="ms-2">Kiri</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary pj_saluran_kanan @error('dimensi_saluran_panjang_kiri') is-invalid @enderror"
@@ -270,7 +270,7 @@
 									<p class="m-0 ms-2 fw-light">Lebar</p>
 									<div class="d-flex col-sm-6">
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">kanan :</label>
+											<label for="" class="ms-2">kanan</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary lb_saluran_kanan @error('dimensi_saluran_lebar_kanan') is-invalid @enderror"
@@ -286,7 +286,7 @@
 										</div>
 
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Kiri :</label>
+											<label for="" class="ms-2">Kiri</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary lb_saluran_kiri @error('dimensi_saluran_lebar_kiri') is-invalid @enderror"
@@ -307,7 +307,7 @@
 									<p class="m-0 ms-2 fw-light">Kedalaman</p>
 									<div class="d-flex">
 										<div class="col-6 ps-1 pe-1">
-											<label for="" class="ms-2">kanan :</label>
+											<label for="" class="ms-2">kanan</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary kdl_saluran_kanan @error('dimensi_saluran_kedalaman_kanan') is-invalid @enderror"
@@ -323,7 +323,7 @@
 										</div>
 
 										<div class="col-6 ps-1 pe-1">
-											<label for="" class="ms-2">Kiri :</label>
+											<label for="" class="ms-2">Kiri</label>
 											<div class="input-group m-1">
 												<input type="text"
 													class="form-control border-primary kdl_saluran_kiri @error('dimensi_saluran_kedalaman_kiri') is-invalid @enderror"
@@ -365,9 +365,9 @@
 					<!-- Jumlah rumah -->
 					<div class="col-12 mb-3 ps-2">
 						<label for="" class="form-label d-block fw-bold">Jumlah Rumah <sup class="text-danger">*</sup></label>
-						<div class="col-12 d-flex justify-content-between">
+						<div class="col-12 d-flex justify-content-between align-items-end">
 							<div class="kolom-data col-3">
-								<label for="" class="">Layak :</label>
+								<label for="" class="">Layak</label>
 								<div class="input-group">
 									<input type="text"
 										class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_layak') is-invalid @enderror"
@@ -383,7 +383,7 @@
 							</div>
 
 							<div class="kolom-data col-3">
-								<label for="" class="">Tidak Layak :</label>
+								<label for="" class="">Tidak Layak</label>
 								<div class="input-group">
 									<input type="text"
 										class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_tak_layak') is-invalid @enderror"
@@ -399,7 +399,7 @@
 							</div>
 
 							<div class="kolom-data col-3">
-								<label for="" class="">Kosong :</label>
+								<label for="" class="">Kosong</label>
 								<div class="input-group">
 									<input type="text"
 										class="form-control border-primary ps-1 pe-1 @error('jumlah_rumah_kosong') is-invalid @enderror"
@@ -426,7 +426,7 @@
 								<div class="col-12 col-sm-6 mb-2">
 									<div class="d-flex col-sm-6">
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Developer <sup class="text-danger">*</sup> :</label>
+											<label for="" class="ms-2">Developer <sup class="text-danger">*</sup></label>
 											<div class="input-group m-1">
 												<input type="text" class="form-control border-primary @error('jumlah_rumah_developer') is-invalid @enderror"
 													style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
@@ -441,7 +441,7 @@
 										</div>
 
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Swadaya :</label>
+											<label for="" class="ms-2">Swadaya</label>
 											<div class="input-group m-1">
 												<input type="text" class="form-control border-primary @error('jumlah_rumah_swadaya') is-invalid @enderror"
 													style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1"
@@ -492,7 +492,7 @@
 								<div class="col-12 col-sm-6 mb-2">
 									<div class="d-flex col-sm-6">
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Kanan :</label>
+											<label for="" class="ms-2">Kanan</label>
 											<div class="input-group m-1">
 												<input type="text" class="form-control border-primary @error('jumlah_ruko_kanan') is-invalid @enderror"
 													style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1" name="jumlah_ruko_kanan"
@@ -518,7 +518,7 @@
 										</div>
 
 										<div class="col-6 col-sm-12 ps-1 pe-1">
-											<label for="" class="ms-2">Kiri :</label>
+											<label for="" class="ms-2">Kiri</label>
 											<div class="input-group m-1">
 												<input type="text" class="form-control border-primary @error('jumlah_ruko_kiri') is-invalid @enderror"
 													style="border-radius: .5em;" aria-label="Username" aria-describedby="basic-addon1" name="jumlah_ruko_kiri"
