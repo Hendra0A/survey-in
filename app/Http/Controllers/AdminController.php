@@ -10,7 +10,7 @@ use App\Models\Fasos;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\DataSurvey;
-// use App\Models\JenisFasos;
+use App\Models\JenisFasos;
 use App\Models\LampiranFoto;
 use Illuminate\Http\Request;
 use App\Models\DetailSurveys;
