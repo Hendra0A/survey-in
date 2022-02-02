@@ -80,8 +80,8 @@ class AdminController extends Controller
                 Storage::delete($request->oldImage);
             }
             $image = $request->file('avatar');
-            $name['imgname'] = auth()->user()->nama_lengkap . '_' . uniqid() . '.' . $image->guessExtension();
-            Image::make($image)->resize(115, 115)->save(public_path('storage/avatar-images/') . $name['imgname']);
+            $name['imgname'] = uniqid() . '.' . $image->guessExtension();
+            Image::make($image)->resize(200, 200)->save(public_path('storage/avatar-images/') . $name['imgname']);
             $image_path = "avatar-images/" . $name['imgname'];
             $validateData['avatar'] = $image_path;
         }

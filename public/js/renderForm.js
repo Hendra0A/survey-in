@@ -1,7 +1,7 @@
 $(document).ready(async function () {
     let getData = () => {
-        // let url = "https://survey-kite.000webhostapp.com/api/option-form";
-        let url = "https://survey.idekite.id/api";
+        let url = "http://127.0.0.1:8000/api/option-form";
+        // let url = "https://survey.idekite.id/api/option-form";
         let requestOptions = {
             method: "GET",
             Headers: {

@@ -1,6 +1,7 @@
 $(document).ready(async function () {
     let getData = async (path, kecamatan_id, id) => {
-        let url = "https://survey.idekite.id/api";
+        let url = "http://127.0.0.1:8000/api";
+        // let url = "https://survey.idekite.id/api";
         let fd = new FormData();
         fd.append("id", id);
         fd.append("kecamatan_id", kecamatan_id);
@@ -20,8 +21,8 @@ $(document).ready(async function () {
             .catch((error) => console.log("error", error));
     };
     let getKecamatan = async (path, id) => {
-        // let url = "https://survey-kite.000webhostapp.com/api";
-        let url = "https://survey.idekite.id/api";
+        let url = "http://127.0.0.1:8000/api";
+        // let url = "https://survey.idekite.id/api";
         let fd = new FormData();
         fd.append("id", id);
         let requestOptions = {

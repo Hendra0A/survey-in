@@ -216,17 +216,16 @@ class DataSurveyController extends Controller
                 foreach ($request->addmore as $key => $value) {
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
-                        $name = uniqid();
-                        $guessExtension = $value['foto']->guessExtension();
-                        Image::make($image)->resize(115, 115)->save(public_path('/storage/foto-fasos/' . $name . '.' . $guessExtension));
-                        // $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                        $fotoFasos = "foto-fasos/" . $name . '.' . $guessExtension;
+                        $name['imgname'] =  uniqid() . '.' . $image->guessExtension();
+                        Image::make($image)->resize(200, 200)->save(public_path('storage/foto-fasos') . $name['imgname']);
+                        $image_path = "avatar-images/" . $name['imgname'];
+
 
                         // add element array
                         $data_fasos = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_fasos['foto'] = $fotoFasos;
+                        $data_fasos['foto'] = $image_path;
                         $datasFasos[] = $data_fasos;
                     }
                 }
@@ -239,19 +238,23 @@ class DataSurveyController extends Controller
             if (!empty($request->addmoreLampiran)) {
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
-                        // // image
+
+                        // $name['imgname'] = uniqid() . '.' . $image->guessExtension();
+                        // Image::make($image)->resize(115, 115)->save(public_path('storage/avatar-images/') . $name['imgname']);
+                        // $image_path = "avatar-images/" . $name['imgname'];
+
+                        // image
                         $image = $value['foto'];
-                        $name = uniqid();
-                        $guessExtension = $value['foto']->guessExtension();
-                        Image::make($image)->resize(115, 115)->save(public_path('/storage/foto-lampiran/' . $name . '.' . $guessExtension));
-                        // $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                        $fotoLampiran = "foto-lampiran/" . $name . '.' . $guessExtension;
+                        $name['imgname'] = auth()->user()->nama_lengkap . '_' . uniqid() . '.' . $image->guessExtension();
+                        Image::make($image)->resize(200, 200)->save(public_path('storage/foto-lampiran/') . $name['imgname']);
+                        $image_path = "avatar-images/" . $name['imgname'];
+
 
                         // add element array
                         $data_lampiran = Arr::add($value, 'data_survey_id', $dataSurvey->id);
 
                         // change element array
-                        $data_lampiran['foto'] = $fotoLampiran;
+                        $data_lampiran['foto'] = $image_path;
                         $datasLampiran[] = $data_lampiran;
                     }
                 }
@@ -270,8 +273,7 @@ class DataSurveyController extends Controller
                 ->with('success', 'Data telah berhasil ditambahkan !')
                 ->with('confirm', 'ok');
         } catch (\Throwable $th) {
-            request()->session('error', 'Data Gagal Disimpan, input data belum lengkap');
-            return redirect()->back()->withInput();
+            return redirect()->back()->withInput()->with('error', 'Data Gagal Disimpan, input data belum lengkap');
         }
     }
     public function updateData(Request $request)
@@ -402,7 +404,7 @@ class DataSurveyController extends Controller
                             $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
 
                             // add element array
-                            $data_lampiran = Arr::add($value, 'data_survey_id', $request->id);
+                            $data_lampiran = Arr::add($image, 'data_survey_id', $request->id);
 
                             // change element array
                             $data_lampiran['foto'] = $fotoLampiran;

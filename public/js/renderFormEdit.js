@@ -2,7 +2,8 @@ $(document).ready(async function () {
     let getData = () => {
         var uri = window.location.pathname;
         var idUri = uri.split("/").pop();
-        let url = "https://survey.idekite.id/api/option-form/" + idUri;
+        let url = "http://127.0.0.1:8000/api/option-form/" + idUri;
+        // let url = "https://survey.idekite.id/api/option-form/" + idUri;
         let requestOptions = {
             method: "GET",
             Headers: {
