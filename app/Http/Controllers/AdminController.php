@@ -81,7 +81,7 @@ class AdminController extends Controller
             }
             $image = $request->file('avatar');
             $name['imgname'] = uniqid() . '.' . $image->guessExtension();
-            Image::make($image)->resize(200, 200)->save(public_path('storage/avatar-images/') . $name['imgname']);
+            Image::make($image)->resize(200, 200)->save(public_path('/storage/avatar-images/') . $name['imgname']);
             $image_path = "avatar-images/" . $name['imgname'];
             $validateData['avatar'] = $image_path;
         }
