@@ -218,8 +218,8 @@ class DataSurveyController extends Controller
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
                         $name['imgname'] =  uniqid() . '.' . $image->guessExtension();
-                        Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-fasos/' . $name['imgname']));
-
+                        // Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-fasos/' . $name['imgname']));
+                        $image->move(public_path('/storage/foto-fasos'), $name['imgname']);
                         $image_path = "foto-fasos/" . $name['imgname'];
 
 
@@ -244,6 +244,7 @@ class DataSurveyController extends Controller
                         $image = $value['foto'];
                         $name['imgname'] = uniqid() . '.' . $image->guessExtension();
                         Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-lampiran/') . $name['imgname']);
+                        $image->move(public_path('/storage/foto-lampiran'), $name['imgname']);
                         $image_path = "foto-lampiran/" . $name['imgname'];
 
 
@@ -363,13 +364,12 @@ class DataSurveyController extends Controller
                         if (!empty($value['foto'])) {
                             // image
                             $image = $value['foto'];
-                            $md5Name = uniqid();
-                            $guessExtension = $value['foto']->guessExtension();
-                            $image->move(public_path('/storage/foto-fasos'), $md5Name . '.' . $guessExtension);
-                            $fotoFasos = "foto-fasos/" . $md5Name . '.' . $guessExtension;
+                            $name['imgname'] = uniqid() . '.' . $image->guessExtension();
+                            // Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-lampiran/') . $name['imgname']);
+                            $image->move(public_path('/storage/foto-fasos'), $name['imgname']);
+                            $image_path = "foto-lampiran/" . $name['imgname'];
 
-
-                            $value['foto'] = $fotoFasos;
+                            $value['foto'] = $image_path;
                         }
                         $value['data_survey_id'] = $request->id;
                         $datasFasosNew[] = $value;
@@ -391,20 +391,17 @@ class DataSurveyController extends Controller
                     if ($value == $request->addmoreLampiran[$count]) {
                         if (!empty($value['foto'])) {
                             // image
-
-
-
                             $image = $value['foto'];
-                            $md5Name = uniqid();
-                            $guessExtension = $value['foto']->guessExtension();
-                            $image->move(public_path('/storage/foto-lampiran'), $md5Name . '.' . $guessExtension);
-                            $fotoLampiran = "foto-lampiran/" . $md5Name . '.' . $guessExtension;
+                            $name['imgname'] = uniqid() . '.' . $image->guessExtension();
+                            // Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-lampiran/') . $name['imgname']);
+                            $image->move(public_path('/storage/foto-lampiran'), $name['imgname']);
+                            $image_path = "foto-lampiran/" . $name['imgname'];
 
                             // add element array
-                            $data_lampiran = Arr::add($image, 'data_survey_id', $request->id);
+                            $data_lampiran = Arr::add($value, 'data_survey_id', $request->id);
 
                             // change element array
-                            $data_lampiran['foto'] = $fotoLampiran;
+                            $data_lampiran['foto'] = $image_path;
                             $datasLampiranNew[] = $data_lampiran;
                             $count++;
                         }
