@@ -163,14 +163,14 @@ class DataSurveyController extends Controller
             if (!empty($request->addmoreLampiran)) {
                 $request->validate([
                     'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
-                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048']
+                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg']
                 ]);
             }
             if (!empty($request->addmore)) {
                 $request->validate([
                     'addmore.*.jenis_fasos_id' => ['required'],
                     'addmore.*.koordinat_fasos' => ['required'],
-                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:2048'],
+                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg'],
                     'addmore.*.panjang' => ['required', 'numeric'],
                     'addmore.*.lebar' => ['required', 'numeric']
                 ]);
