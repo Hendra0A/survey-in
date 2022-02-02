@@ -15,6 +15,7 @@ use App\Models\DetailSurveys;
 use App\Exports\DataSurveyExport;
 use Maatwebsite\Excel\Facades\Excel;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Storage;
 
 class DataSurveyController extends Controller
 {
@@ -163,14 +164,14 @@ class DataSurveyController extends Controller
             if (!empty($request->addmoreLampiran)) {
                 $request->validate([
                     'addmoreLampiran.*.jenis_lampiran_id' => ['required'],
-                    'addmoreLampiran.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg']
+                    'addmoreLampiran.*.foto' => ['required', 'image']
                 ]);
             }
             if (!empty($request->addmore)) {
                 $request->validate([
                     'addmore.*.jenis_fasos_id' => ['required'],
                     'addmore.*.koordinat_fasos' => ['required'],
-                    'addmore.*.foto' => ['required', 'image', 'mimes:jpeg,png,jpg'],
+                    'addmore.*.foto' => ['required', 'image'],
                     'addmore.*.panjang' => ['required', 'numeric'],
                     'addmore.*.lebar' => ['required', 'numeric']
                 ]);
@@ -217,8 +218,9 @@ class DataSurveyController extends Controller
                     if (!empty($request->addmore[0]['foto'])) {
                         $image = $value['foto'];
                         $name['imgname'] =  uniqid() . '.' . $image->guessExtension();
-                        Image::make($image)->resize(200, 200)->save(public_path('storage/foto-fasos') . $name['imgname']);
-                        $image_path = "avatar-images/" . $name['imgname'];
+                        Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-fasos/' . $name['imgname']));
+
+                        $image_path = "foto-fasos/" . $name['imgname'];
 
 
                         // add element array
@@ -238,16 +240,11 @@ class DataSurveyController extends Controller
             if (!empty($request->addmoreLampiran)) {
                 foreach ($request->addmoreLampiran as $key => $value) {
                     if (!empty($request->addmoreLampiran[0]['foto'])) {
-
-                        // $name['imgname'] = uniqid() . '.' . $image->guessExtension();
-                        // Image::make($image)->resize(115, 115)->save(public_path('storage/avatar-images/') . $name['imgname']);
-                        // $image_path = "avatar-images/" . $name['imgname'];
-
                         // image
                         $image = $value['foto'];
-                        $name['imgname'] = auth()->user()->nama_lengkap . '_' . uniqid() . '.' . $image->guessExtension();
-                        Image::make($image)->resize(200, 200)->save(public_path('storage/foto-lampiran/') . $name['imgname']);
-                        $image_path = "avatar-images/" . $name['imgname'];
+                        $name['imgname'] = uniqid() . '.' . $image->guessExtension();
+                        Image::make($image)->resize(200, 200)->save(public_path('/storage/foto-lampiran/') . $name['imgname']);
+                        $image_path = "foto-lampiran/" . $name['imgname'];
 
 
                         // add element array
